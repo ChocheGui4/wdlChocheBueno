@@ -1,1 +1,0 @@
-Licenciamiento para productos Warriors
