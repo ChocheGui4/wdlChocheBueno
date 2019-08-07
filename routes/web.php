@@ -11,7 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/cc', function () {
+    return view('super.customerscompanies');
 });
+//route::get('home/cc','PrincipalController@cc');
 route::resource('home','PrincipalController');
+
+
+/*Route::resource('home', 'PrincipalController')->only([
+    'index', 'create','cyc'
+]);*/
+
+

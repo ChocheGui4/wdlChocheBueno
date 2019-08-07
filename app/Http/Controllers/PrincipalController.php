@@ -9,6 +9,9 @@ class PrincipalController extends Controller
     //Página principal
     public function index()
     {
-        return view('super/principal');
+        return view('super.principal');
+    }
+    public function cc(){
+        return view('super.customerscompanies');
     }
 }
