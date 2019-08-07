@@ -511,6 +511,7 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
+        
         <div class="modal-body">
           <form action="">
             <div class="row" >
@@ -533,7 +534,7 @@
               <div class="col-sm-4 " >
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
                   </div>
                   <input type="text" class="form-control" placeholder="Phone">
                 </div>
@@ -565,17 +566,99 @@
                 </div>
               </div>
             </div>
-            <div>
-              <button type="button" class="btn btn-success">Next</button>
+            <div class="row">
+              <div class="col-xl-11">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                
+              </div>
+              <div class="col-xl-1">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-dismiss="modal" data-target="#modal-default2"> Next</button>                
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal-content -->
+
+  <!--Termina la ventana modal-->
+
+  <div class="modal fade show" id="modal-default2" style="display: none" aria-modal="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Address data</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        
+        <div class="modal-body">
+          <form action="">
+            <div class="row" >
+              <div class="col-sm-4 " >
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-mail-bulk"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Zip code">
+                </div>
+              </div>
+              <div class="col-sm-4 " >
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-city"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="District">
+                </div>
+              </div>
+              <div class="col-sm-4 " >
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-road"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Street">
+                </div>
+              </div>
+            </div>
+            <div class="row" >
+              <div class="col-sm-4 " >
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-sort-numeric-up-alt"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="In number">
+                  </div>
+              </div>
+              <div class="col-sm-4 " >
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-sort-numeric-down-alt"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Ex number">
+                </div>
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-xl-10">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                
+              </div>
+              <div class="col-xl-2">
+                <button type="button" class="btn btn-success" data-dismiss="modal" > Saved user</button>                
+              </div>
             </div>
             
           
           </form>
         </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        
       </div>
       <!-- /.modal-content -->
     </div>
@@ -583,13 +666,8 @@
   </div>
 
 
-    <!-- /.modal-content -->
-  </div>
 
 
-
-
-  <!--Termina la ventana modal-->
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
