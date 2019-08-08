@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/home/cc','CustomCompanController@index');
+Route::get('/cc','CustomCompanController@index');
 Route::get('/branches', function () {
     return view('super.branches');
 });
@@ -19,8 +19,9 @@ Route::get('/branches', function () {
 route::resource('/home','PrincipalController');
 
 
-/*Route::resource('home', 'PrincipalController')->only([
-    'index', 'create','cyc'
-]);*/
 
 
+
+Auth::routes();
+
+Route::get('/home1', 'HomeController@index')->name('home1');

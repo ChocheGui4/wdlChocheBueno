@@ -111,7 +111,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview">
-              <a class="nav-link" href="/home">
+              <a class="nav-link" href="{ route('home') }}">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Principal
@@ -124,7 +124,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/home/cc" >
+              <a class="nav-link" href="/cc" >
                 <i class="nav-icon fas fa-building"></i>
                 <p>
                   Customer & Companies
@@ -314,6 +314,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- /.sidebar -->
     </aside>
     @yield('content')  
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+      <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+            <br>
+            <img src="assets/dist/img/HillsongThisisliving.jpg" class="img-circle elevation-2" alt="User Image">
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <br>
+            Super user <br> super@user.com
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+
+          <div class="row mb-2">
+            
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      
+    </aside>
+    <!-- /.control-sidebar -->
     <!-- Main Footer -->
     <footer class="main-footer" background-color="red"> 
       <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>

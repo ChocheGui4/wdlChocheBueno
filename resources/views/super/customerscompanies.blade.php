@@ -358,33 +358,7 @@
       <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
-  </div>
-
-
-
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-          <br>
-          <img src="assets/dist/img/HillsongThisisliving.jpg" class="img-circle elevation-2" alt="User Image">
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-          <br>
-          Super user <br> super@user.com
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-
-        <div class="row mb-2">
-          
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    
-  </aside>
-  <!-- /.control-sidebar -->
+  </div> 
 
 </div>
 <!-- ./wrapper -->
