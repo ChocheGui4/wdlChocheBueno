@@ -11,11 +11,12 @@
 |
 */
 
-Route::get('/cc', function () {
-    return view('super.customerscompanies');
+Route::get('/home/cc','CustomCompanController@index');
+Route::get('/branches', function () {
+    return view('super.branches');
 });
 //route::get('home/cc','PrincipalController@cc');
-route::resource('home','PrincipalController');
+route::resource('/home','PrincipalController');
 
 
 /*Route::resource('home', 'PrincipalController')->only([
