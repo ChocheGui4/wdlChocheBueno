@@ -318,14 +318,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
       <div class="container-fluid">
-          <div class="row mb-2">
+          <div class="row mb-6">
             <div class="col-sm-6">
             <br>
             <img src="assets/dist/img/HillsongThisisliving.jpg" class="img-circle elevation-2" alt="User Image">
             </div><!-- /.col -->
             <div class="col-sm-6">
             <br>
-            Super user <br> super@user.com
+            <a href="">
+              {{ Auth::user()->name }}
+            </a>
+            <br> {{ Auth::user()->email }} 
+            <br>  <a href="">  Sign out </a>
             </div><!-- /.col -->
           </div><!-- /.row -->
 
