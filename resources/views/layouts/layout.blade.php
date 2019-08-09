@@ -127,7 +127,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 
               </ul>
             </li>
-            <button id="prb" class="btn btn-success">Click to here</button>
+            
             <li class="nav-item">
               <a class="nav-link" href="/cc" >
                 <i class="nav-icon fas fa-building"></i>

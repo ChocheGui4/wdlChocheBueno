@@ -17,6 +17,7 @@ Route::get('/cc','CustomCompanController@index');
 Route::get('/branches', function () {
     return view('super.branches');
 });
+route::get('/registers/companydata','UserController@company');
 //route::get('home/cc','PrincipalController@cc');
 route::resource('/home','PrincipalController');
 route::resource('/registers/contactdata','UserController');

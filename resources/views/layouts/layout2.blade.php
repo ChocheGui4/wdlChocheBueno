@@ -44,7 +44,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link vl" data-widget="control-sidebar" data-slide="true" href="#">
+          <a class="nav-link vl" href="/login" >
           <strong > Log in</strong></a>
         </li>
       </ul>
