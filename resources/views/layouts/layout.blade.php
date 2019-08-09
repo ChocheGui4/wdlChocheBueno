@@ -301,10 +301,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             
             <li class="nav-item">
-              <a href="https://adminlte.io/docs/3.0" class="nav-link">
-                <i class="nav-icon fas fa-sign-out-alt"></i>
-                <p>Sign out</p>
+              
+              <a href="{{ route('logout') }}"  class="nav-link"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>Sign out</p>
+                  
               </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
+              
             </li>
             
           </ul>
@@ -326,10 +335,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="col-sm-6">
             <br>
             <a href="">
+              <!---->
               {{ Auth::user()->name }}
             </a>
+            <!---->
             <br> {{ Auth::user()->email }} 
             <br>  <a href="">  Sign out </a>
+            
             </div><!-- /.col -->
           </div><!-- /.row -->
 

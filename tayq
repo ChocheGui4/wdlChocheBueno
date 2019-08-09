@@ -1,0 +1,95 @@
+[33mcommit 26c9fcbedc936e2f90fea3bfa22c19da0e5b2f4b[m[33m ([m[1;36mHEAD -> [m[1;32mjose[m[33m)[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Aug 8 16:20:59 2019 -0700
+
+    Se creo el login con auth de laravel 8/08/19
+
+[33mcommit ccdc8f5d26afdd8e07fb497b006adefc070584e8[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Aug 8 16:18:53 2019 -0700
+
+    Se hicieron cambios al diseño de las vistas y algunas rutas con el login 8/08/19
+
+[33mcommit 4ab86399b040f413c9d3dcb0cb17d7d751ae6a87[m[33m ([m[1;31morigin/jose[m[33m)[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Aug 8 12:22:51 2019 -0700
+
+    Se organizó bien el layout, se quitaron los nav bar de las vistas del super y se corrigieron errores de rutas y estilo 8/08/19
+
+[33mcommit d89095d4b0fb689a309c639476ae68d25e966eeb[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Aug 7 15:14:03 2019 -0700
+
+    Se agregaron los modals para insertar clientes 7/08/19
+
+[33mcommit 621024e98242815b2dabaebecfc0438033094943[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Aug 7 13:43:29 2019 -0700
+
+    Se creo una pantalla para visualizar a los clientes y empresas, hasta el momento solo se han posicionado los componentes 7/08/19
+
+[33mcommit 64725e66fb33f05536cec5b4cf6d060bb3aa0cf9[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Aug 7 13:41:57 2019 -0700
+
+    Se añadieron algunas rutas de prueba, algunos elementos en la pantalla principal y pruebas con distintos métodos en el controlador 7/08/19
+
+[33mcommit e9ade84f116a8b461d69ea05071b7e6c831668fe[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Aug 7 09:08:03 2019 -0700
+
+    Se subieron todos los archivos para que no haya problema en cuanto a la pantilla que se va a utilizar 7/08/19
+
+[33mcommit 49d4c6f1b47fa68121311fa7a980ff42ebb3fbd8[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 18:05:45 2019 -0700
+
+    Se modificaron sentencias en la tabla areas 6/08/19
+
+[33mcommit 94da4788dac7fd27b8421cda5ecb5cae84c975ae[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 18:05:03 2019 -0700
+
+    Se añadieron cosas a la parte del perfil del usuario 6/08/19
+
+[33mcommit 84e439eb65d5eaec57288eeb4356030d9f978b8f[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 16:33:14 2019 -0700
+
+    Se añadieron las migraciones en el sistema con modificaciones previamente realizadas 6/08/19
+
+[33mcommit bd03407321d5d53cedb5fd4c773435c36b962c5e[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 15:17:20 2019 -0700
+
+    Se agregó el menú solo con las opciones que puede hacer el usuario super 6/08/19
+
+[33mcommit ca90c05a16d162d12fc54b9f7025c6397d8bacef[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 12:14:02 2019 -0700
+
+    Se creó la vista principal del usuario super 6/08/19
+
+[33mcommit 16019a268d59850c675c416b69b24ed460426535[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 12:13:15 2019 -0700
+
+    Se agregaron los estilos con la platilla admin-lte 6/08/19
+
+[33mcommit 692812b299bd4748221ec83c40847993c1b360eb[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 12:12:07 2019 -0700
+
+    Se creo la ruta para ir a la página principal del usuario super 6/08/19
+
+[33mcommit 8ca78cb8708b0d42c92207cbe73f8bfd51aa8827[m
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 12:11:14 2019 -0700
+
+    Se creó el controlador para la página principal del usuario Super 6/08/19
+
+[33mcommit 3bdbc224658c24c18fadc7912a9a7cf513daf272[m[33m ([m[1;31morigin/rosa[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: enriqRosa <enriquez.rosaicela@gmail.com>
+Date:   Wed Jul 24 11:12:25 2019 -0500
+
+    Creación del repositorio 24/07/19
