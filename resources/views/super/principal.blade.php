@@ -46,6 +46,7 @@
                 <div class="d-flex justify-content-between">
                   <h3 class="card-title">Online Store Visitors</h3>
                   <a href="javascript:void(0);">View Report</a>
+                  <button id="prb2" class="btn btn-success">Click to here</button>
                 </div>
               </div>
               <div class="card-body">
@@ -291,4 +292,12 @@
 
 </div>
 <!-- ./wrapper -->
+@endsection
+
+@section('scripts')
+<script>
+$('#prb2').on('click', function(){
+    alert("bye");
+  });
+</script>
 @endsection

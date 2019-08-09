@@ -16,6 +16,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    .vl {
+      border-left: 2px solid gray;
+      height: 10000px;
+    }
+</style>
 </head>
 <body class="sidebar-collapse" >
   
@@ -32,39 +38,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Messages Dropdown Menu -->
         
         <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-bell"></i>
-            <span class="badge badge-danger navbar-badge">15</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header">15 Notifications</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-          </div>
-        </li>
-
-        
-
-
         <li class="nav-item">
-          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
-              class="fas fa-user-cog"></i></a>
+          <a href="#" class="nav-link">
+            <i class="fas fa-question-circle"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link vl" data-widget="control-sidebar" data-slide="true" href="#">
+          <strong > Log in</strong></a>
         </li>
       </ul>
     </nav>
@@ -94,6 +75,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('assets/dist/js/adminlte.min.js')}}"></script>
-
+@yield('scripts')  
 </body>
 </html>

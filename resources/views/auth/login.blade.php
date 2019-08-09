@@ -58,7 +58,7 @@
                             <div class="col-md-4 offset-md-4">
                                 
 
-                                <a class="nav-link" href="{{ route('register') }}">Create a new account</a>
+                                <a class="nav-link" href="/registers/contactdata">Create a new account</a>
                             </div>
                             <div class="col-md-4 offset-md-4">
                                 @if (Route::has('password.request'))

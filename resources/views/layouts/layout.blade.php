@@ -16,6 +16,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
+
+
 </head>
 <body >
   
@@ -123,6 +127,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 
               </ul>
             </li>
+            <button id="prb" class="btn btn-success">Click to here</button>
             <li class="nav-item">
               <a class="nav-link" href="/cc" >
                 <i class="nav-icon fas fa-building"></i>
@@ -367,12 +372,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
-<script src="{{ asset('assets/use.js')}}"></script>
+
 <script src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('assets/dist/js/adminlte.min.js')}}"></script>
-
+<script>
+$('#prb').on('click', function(){
+    alert("bye");
+  });
+</script>
+@yield('scripts')  
 </body>
 </html>

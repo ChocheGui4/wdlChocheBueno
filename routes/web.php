@@ -19,6 +19,7 @@ Route::get('/branches', function () {
 });
 //route::get('home/cc','PrincipalController@cc');
 route::resource('/home','PrincipalController');
+route::resource('/registers/contactdata','UserController');
 
 
 

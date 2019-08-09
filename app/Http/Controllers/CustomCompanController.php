@@ -9,6 +9,6 @@ class CustomCompanController extends Controller
     //
 
     public function index(){
-        return view('super.customerscompanies');
+        return view('super.customersCompanies');
     }
 }
