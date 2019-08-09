@@ -60,6 +60,19 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="pet" class="col-md-4 col-form-label text-md-right">{{ __('Pet') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="pet" type="text" class="form-control{{ $errors->has('pet') ? ' is-invalid' : '' }}" name="pet" value="{{ old('pet') }}" required>
+
+                                @if ($errors->has('pet'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('pet') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
