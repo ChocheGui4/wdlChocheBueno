@@ -26,13 +26,27 @@ class UserController extends Controller
      */
     public function store(RuleCreate $request)
     {
-        return view('users.registerCompany');
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+        
         User::create($request->all());
+        //Area::create($request->all());
+
+        $users = new User;
+        $names="user";
+        $users ->name= $names;
+        $users ->email= $request->email;
+        $users ->password= $request->password;
+        $area = new Area;
+        $area->name = $request->area;
+        $area->save();
+        //Contact::create($request->all());
+        $ided= Area::latest('id')->first();
+        $contact = new Contact;
+        $contact->name = $request->name;
+        $contact->lastname = $request->lastname;
+        $contact->telephone = $request->telephone;
+        $contact->areas_id = $ided->id;
+        $contact->save();
+        return redirect()->route('login');
     }
 
     /**

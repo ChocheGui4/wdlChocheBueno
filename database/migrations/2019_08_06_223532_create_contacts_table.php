@@ -18,14 +18,13 @@ class CreateContactsTable extends Migration
             $table->string('name',25);
             $table->string('lastname',25);
             $table->string('telephone',25);
-            $table->string('email',32);
             $table->integer('areas_id');
             $table->foreign('areas_id')
             ->references('id')
             ->on('areas')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            
+            $table->timestamps();
         });
     }
 

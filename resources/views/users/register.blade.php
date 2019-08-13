@@ -3,8 +3,7 @@
 @section('content')
 <div id="gif" class="loader"></div>
 <div class="contanier">
-<h1>{{ $errors}}</h1>
-    @if ($errors->any())
+    <!--@if ($errors->any())
         <div class="alert alert-danger">
             <strong>cuidado!</strong> Hay algún problema con tus datos<br><br>
             <ul>
@@ -13,21 +12,13 @@
                 @endforeach
             </ul>
         </div>
-    @endif
+    @endif-->
     <form action="{{ route('contactdata.store') }}" method="POST">
         <div class="row justify-content-center">
             
             
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <strong>cuidado!</strong> Hay algún problema con tus datos<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            
+            
             <div class="col-md-8">
                 
                 <div class="card">
@@ -42,40 +33,65 @@
                             <div class="row">
                                 <div class=" col-sm-4 col-md-4">
                                     <div class="form-group">
-                                        <strong>Name:</strong>
-                                        <input type="text" name="name" class="form-control" placeholder="Juana" required autofocus>
+                                        <strong>Name</strong>
+                                        <i id="qname" class="fas fa-question-circle"></i>
+                                        <input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="Juana" >
+                                        <span id="aname" class="invalid-feedback" role="alert">
+                                            <strong>Must have the first capital letter for each name and the rest in lower case</strong>
+                                        </span>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4">
+                                    <div class="form-group">
+                                        <strong>Lastname</strong>
+                                        <i id="qlastname" class="fas fa-question-circle"></i>
+                                        <input type="text" name="lastname" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" value="{{ old('lastname') }}" placeholder="Juárez" >
+                                        <span id="alastname" class="invalid-feedback" role="alert">
+                                            <strong>Must have the first capital letter for each lastname and the rest in lower case</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-xs-4 col-sm-4 col-md-4">
                                     <div class="form-group">
-                                        <strong>Apellidos:</strong>
-                                        <input type="text" name="apellidos" class="form-control" placeholder="Juárez" required autofocus>
+                                        <strong>Telephone</strong>
+                                        <i id="qtele" class="fas fa-question-circle"></i>
+                                        <input type="text" name="telephone" class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ old('telephone') }}" placeholder="5523212321"  >
+                                        <span id="atele" class="invalid-feedback" role="alert">
+                                            <strong>Must have only numbers</strong>
+                                        </span>
+                                        
                                     </div>
-                                </div>
-                                <div class="col-xs-4 col-sm-4 col-md-4">
-                                    <div class="form-group">
-                                        <strong>Telephone:</strong>
-                                        <input type="text" name="telephone" class="form-control" placeholder="5523212321" required autofocus>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-4 col-sm-4 col-md-4">
                                     <div class="form-group">
-                                        <strong>Email:</strong>
-                                        <input type="email" name="email" class="form-control" placeholder="user@exam.com" required autofocus>
+                                        <strong>Email</strong>
+                                        <i id="qemail" class="fas fa-question-circle"></i>
+                                        <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="user@exam.com"  >
+                                        <span id="aemail" class="invalid-feedback" role="alert">
+                                            <strong>Must have letters, signs and numbers follow @ and domain</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-xs-4 col-sm-4 col-md-4">
                                     <div class="form-group">
-                                        <strong>Password:</strong>
-                                        <input type="password" name="password" class="form-control" placeholder="Secret" required autofocus>
+                                        <strong>Password</strong>
+                                        <i id="qpassword" class="fas fa-question-circle"></i>
+                                        <input type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="{{ old('password') }}" placeholder="Secret"  >
+                                        <span id="apassword" class="invalid-feedback" role="alert">
+                                            <strong>Must have</strong>
+                                        </span>
+                                        
                                     </div>
                                 </div>
                                 <div class="col-xs-4 col-sm-4 col-md-4">
                                     <div class="form-group">
-                                        <strong>Confirm password:</strong>
-                                        <input type="password" name="cpassword" class="form-control" placeholder="Confirm secret" required autofocus>
+                                        <strong>Confirm password</strong>
+                                        
+                                        <input type="password" name="cpassword" class="form-control" placeholder="Confirm secret" >
                                     </div>
                                 </div>
                                 
@@ -85,28 +101,44 @@
                                 <div class="col-xs-4 col-sm-4 col-md-4">
                                     <div class="form-group">
                                         <strong >Kind of person</strong>
-                                        <select id="choose" class="form-control" required autofocus>
+                                        <i id="qkind" class="fas fa-question-circle"></i>
+                                        <select id="choose" name="kind" class="form-control" value="{{ old('kind') }}" required autofocus>
                                         <option>Choose</option>
                                         <option>Physical</option>
                                         <option>Moral</option>
                                         </select>
+                                        <span id="akind" class="invalid-feedback" role="alert">
+                                            <strong>These credentials do not match our records.</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-xs-4 col-sm-4 col-md-4">
                                     <div class="form-group">
                                         <div id="area">
                                             <strong  >Area</strong>
-                                            
-                                            <select class="form-control" >
+                                            <i id="qarea" class="fas fa-question-circle"></i>
+                                            <select class="form-control" name="area" >
                                             <option>Choose</option>
-                                            <option>Physical</option>
-                                            <option>Moral</option>
+                                            <option>Dirección general</option>
+                                            <option>Auxiliar administrativo</option>
+                                            <option>Administración y Recursos Humanos</option>
+                                            <option>Finanzas y Contabilidad</option>
+                                            <option>Publicidad y Mercadotecnia</option>
+                                            <option>Informática</option>
+
                                             </select>
+                                            <span id="aarea" class="invalid-feedback" role="alert">
+                                                <strong>These credentials do not match our records.</strong>
+                                            </span>
                                         </div>
 
                                         <div id="rfc">
-                                            <strong  > RFC:</strong>
-                                            <input type="text" name="rfc" class="form-control" placeholder="RJSU987635HYS87J" >
+                                            <strong  > RFC</strong>
+                                            <i id="qrfc" class="fas fa-question-circle"></i>
+                                            <input type="text" name="rfc" class="form-control {{ $errors->has('rfc') ? ' is-invalid' : '' }}" value="{{ old('rfc') }}" placeholder="RJSU987635HYS87J" >
+                                            <span id="arfc" class="invalid-feedback" role="alert">
+                                                <strong>These credentials do not match our records.</strong>
+                                            </span>
                                         </div>
                                         
                                         
@@ -116,7 +148,7 @@
                             </div>
                             <a  href="#company"><button id="scd" type="button" class="btn btn-outline-danger btn-sm">
                                 <strong>Next</strong>
-                            </button></a>
+                            </button></a>                            
                             <a  href="#address"><button id="sca1" type="button" class="btn btn-outline-danger btn-sm">
                                 <strong>Next</strong>
                             </button></a>
@@ -132,16 +164,7 @@
         <div class="row justify-content-center">
             
             
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <strong>cuidado!</strong> Hay algún problema con tus datos<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            
             <div class="col-md-8">
                 
                 <div id="generalcom" class="card">
@@ -156,28 +179,44 @@
                             <div class="row">
                                 <div class=" col-sm-4 col-md-4">
                                     <div class="form-group">
-                                        <strong>Company name:</strong>
-                                        <input type="text" name="companyname" class="form-control" placeholder="The beauty S.A. de C.V." required autofocus>
+                                        <strong>Company name</strong>
+                                        <i id="qnamecompany" class="fas fa-question-circle"></i>
+                                        <input type="text" name="companyname" class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}" value="{{ old('companyname') }}" placeholder="The beauty S.A. de C.V."  >
+                                        <span id="anamecompany" class="invalid-feedback" role="alert">
+                                            <strong>These credentials do not match our records.</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-xs-4 col-sm-4 col-md-4">
                                     <div class="form-group">
-                                        <strong>CFR:</strong>
-                                        <input type="text" name="companyrfc" class="form-control" placeholder="FTGY568765H78" required autofocus>
+                                        <strong>RFC</strong>
+                                        <i id="qrfccompany" class="fas fa-question-circle"></i>
+                                        <input type="text" name="companyrfc" class="form-control {{ $errors->has('companyrfc') ? ' is-invalid' : '' }}" value="{{ old('companyrfc') }}" placeholder="FTGY568765H78"  >
+                                        <span id="arfccompany" class="invalid-feedback" role="alert">
+                                            <strong>These credentials do not match our records.</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-xs-4 col-sm-4 col-md-4">
                                     <div class="form-group">
-                                        <strong>Telephone:</strong>
-                                        <input type="text" name="telephone" class="form-control" placeholder="5523212321" required autofocus>
+                                        <strong>Telephone</strong>
+                                        <i id="qtelecompany" class="fas fa-question-circle"></i>
+                                        <input type="text" name="telephonec" class="form-control {{ $errors->has('telephonec') ? ' is-invalid' : '' }}" value="{{ old('telephonec') }}" placeholder="5523212321"  >
+                                        <span id="atelecompany" class="invalid-feedback" role="alert">
+                                            <strong>These credentials do not match our records.</strong>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-4 col-sm-4 col-md-4">
                                     <div class="form-group">
-                                        <strong>Email:</strong>
-                                        <input type="email" name="companyemail" class="form-control" placeholder="company@exam.com" required autofocus>
+                                        <strong>Email</strong>
+                                        <i id="qemailcompany" class="fas fa-question-circle"></i>
+                                        <input type="email" name="companyemail" class="form-control {{ $errors->has('companyemail') ? ' is-invalid' : '' }}" value="{{ old('companyemail') }}" placeholder="company@exam.com"  >
+                                        <span id="aemailcompany" class="invalid-feedback" role="alert">
+                                            <strong>These credentials do not match our records.</strong>
+                                        </span>
                                     </div>
                                 </div>
                                 
@@ -204,16 +243,6 @@
         <div class="row justify-content-center">
             
             
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <strong>cuidado!</strong> Hay algún problema con tus datos<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <div class="col-md-8">
                 
                 <div class="card">
@@ -230,34 +259,54 @@
                                 <div class="row">
                                     <div class=" col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <strong>Zip code:</strong>
-                                            <input type="number" name="zipcode" class="form-control" placeholder="03231" required autofocus>
+                                            <strong>Zip code</strong>
+                                            <i id="qzip" class="fas fa-question-circle"></i>
+                                            <input type="number" name="zipcode" class="form-control {{ $errors->has('zipcode') ? ' is-invalid' : '' }}" value="{{ old('zipcode') }}" placeholder="03231"  >
+                                            <span id="azip" class="invalid-feedback" role="alert">
+                                                <strong>These credentials do not match our records.</strong>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <strong>District:</strong>
-                                            <input type="text" name="district" class="form-control" placeholder="Benito Juárez" required autofocus>
+                                            <strong>District</strong>
+                                            <i id="qdistrict" class="fas fa-question-circle"></i>
+                                            <input type="text" name="district" class="form-control {{ $errors->has('district') ? ' is-invalid' : '' }}" value="{{ old('district') }}" placeholder="Benito Juárez"  >
+                                            <span id="adistrict" class="invalid-feedback" role="alert">
+                                                <strong>These credentials do not match our records.</strong>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <strong>Street:</strong>
-                                            <input type="text" name="street" class="form-control" placeholder="Pedro Santacilia" required autofocus>
+                                            <strong>Street</strong>
+                                            <i id="qstreet" class="fas fa-question-circle"></i>
+                                            <input type="text" name="street" class="form-control {{ $errors->has('street') ? ' is-invalid' : '' }}" value="{{ old('street') }}" placeholder="Pedro Santacilia"  >
+                                            <span id="astreet" class="invalid-feedback" role="alert">
+                                                <strong>These credentials do not match our records.</strong>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <strong>Ext. number:</strong>
-                                            <input type="number" name="enumber" class="form-control" placeholder="1" required autofocus>
+                                            <strong>Ext. number</strong>
+                                            <i id="qextnumber" class="fas fa-question-circle"></i>
+                                            <input type="number" name="extnumber" class="form-control {{ $errors->has('extnumber') ? ' is-invalid' : '' }}" value="{{ old('extnumber') }}" placeholder="1"  >
+                                            <span id="aextnumber" class="invalid-feedback" role="alert">
+                                                <strong>These credentials do not match our records.</strong>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <strong>In. number:</strong>
-                                            <input type="number" name="inumber" class="form-control" placeholder="2" required autofocus>
+                                            <strong>In. number</strong>
+                                            <i id="qinnumber" class="fas fa-question-circle"></i>
+                                            <input type="text" name="inumber" class="form-control {{ $errors->has('inumber') ? ' is-invalid' : '' }}" value="{{ old('inumber') }}" placeholder="2"  >
+                                            <span id="ainnumber" class="invalid-feedback" role="alert">
+                                                <strong>These credentials do not match our records.</strong>
+                                            </span>
                                         </div>
                                     </div>
                                     
@@ -284,51 +333,14 @@
 @endsection
 @section('scripts')
 <script>
-
-    $(document).ready(function() {
-        $("#area").hide();
-        $("#rfc").hide();
-        $("#bodycompany").hide();
-        $("#bodyaddress").hide();
-        $("#scd").hide();
-        $("#sca1").hide();
-        
-    });
-    $('#choose').on('click', function(){
-        var sel=$("#choose").val();
-        if(sel=="Choose"){
-            $("#bodycompany").hide();
-            $("#bodyaddress").hide();
-            $("#generalcom").show();
-            $("#area").hide();
-            $("#rfc").hide();
-            $("#scd").hide();
-            $("#sca1").hide();
-        }else if(sel=="Physical"){
-            $("#bodyaddress").hide();
-            $("#generalcom").hide();
-            $("#area").hide();
-            $("#rfc").show();
-            $("#scd").hide();
-            $("#sca1").show();
-            
-        }else{
-            $("#generalcom").show();
-            $("#bodyaddress").hide();
-            $("#bodycompany").hide();
-            $("#rfc").hide();
-            $("#area").show();
-            $("#scd").show();
-            $("#sca1").hide();
-        }
-        });
-        $("#btnn").on('click',function() {
-            
-    });
+    
+   
 
     $('#scd').on('click', function(){
         $("#bodycompany").show();
     });
+    
+   
 
     $('#sca1').on('click', function(){
         $("#bodyaddress").show();
@@ -337,7 +349,7 @@
     $('#sca2').on('click', function(){
         $("#bodyaddress").show();
     });
-    
+
     
 </script>
 @endsection
