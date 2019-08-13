@@ -16,11 +16,11 @@ class CreateBranchesTable extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',30);
-            $table->integer('zipCode');
+            $table->integer('zipcode');
             $table->string('district',45);
             $table->string('street',45);
-            $table->integer('insideNumber');
-            $table->integer('exteriorNumber');
+            $table->integer('insidenumber');
+            $table->integer('exteriornumber');
             $table->integer('companies_id');
             $table->foreign('companies_id')
             ->references('id')

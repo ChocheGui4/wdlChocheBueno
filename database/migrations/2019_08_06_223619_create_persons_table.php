@@ -17,14 +17,14 @@ class CreatePersonsTable extends Migration
             $table->increments('id');
             $table->string('rfc',20);
             $table->string('name',20);
-            $table->string('lastName',40);
+            $table->string('lastname',40);
             $table->string('telephone',20);
             $table->string('email',32);
-            $table->integer('zipCode');
+            $table->integer('zipcode');
             $table->string('district',45);
             $table->string('street',45);
-            $table->integer('insideNumber');
-            $table->integer('exteriorNumber');
+            $table->integer('insidenumber');
+            $table->integer('exteriornumber');
         });
     }
 

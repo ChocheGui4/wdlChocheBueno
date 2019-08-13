@@ -19,11 +19,11 @@ class CreateCompaniesTable extends Migration
             $table->string('name',50);
             $table->string('telephone',20);
             $table->string('email',32);
-            $table->integer('zipCode');
+            $table->integer('zipcode');
             $table->string('district',45);
             $table->string('street',45);
-            $table->integer('insideNumber');
-            $table->integer('exteriorNumber');
+            $table->integer('insidenumber');
+            $table->integer('exteriornumber');
             $table->integer('contacts_id');
             $table->foreign('contacts_id')
             ->references('id')
