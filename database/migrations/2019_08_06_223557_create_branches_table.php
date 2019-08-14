@@ -15,10 +15,10 @@ class CreateBranchesTable extends Migration
     {
         Schema::create('branches', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',30);
+            $table->string('name',50);
             $table->integer('zipcode');
-            $table->string('district',45);
-            $table->string('street',45);
+            $table->string('district',35);
+            $table->string('street',35);
             $table->integer('insidenumber');
             $table->integer('exteriornumber');
             $table->integer('companies_id');

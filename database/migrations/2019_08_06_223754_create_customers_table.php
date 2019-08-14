@@ -16,7 +16,7 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('users_id');
-            $table->integer('persons_id');
+            $table->integer('people_id');
             $table->integer('acquisitions_id');
             $table->integer('companies_id');
             $table->foreign('users_id')
@@ -24,9 +24,9 @@ class CreateCustomersTable extends Migration
             ->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->foreign('persons_id')
+            $table->foreign('people_id')
             ->references('id')
-            ->on('persons')
+            ->on('people')
             ->onDelete('cascade')
             ->onUpdate('cascade');
             $table->foreign('acquisitions_id')

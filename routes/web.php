@@ -13,6 +13,8 @@
 Route::get('/', function () {
     return view('auth.login');
 });
+Auth::routes(['verify' => true]);
+
 Route::get('/cc','CustomCompanController@index');
 Route::get('/branches', function () {
     return view('super.branches');

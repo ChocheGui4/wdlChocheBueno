@@ -1,48 +1,74 @@
 $(document).ready(function() {
-  $("#area").hide();
-  $("#rfc").hide();
-  //$("#bodycompany").hide();
-  //$("#bodyaddress").hide();
-  $("#scd").hide();
-  $("#sca1").hide();
-  $("#ltelephone").hide();
-  
-});
-$('#choose').on('click', function(){
-  var sel=$("#choose").val();
-  if(sel=="Choose"){
-      $("#bodycompany").hide();
-      $("#bodyaddress").hide();
-      $("#generalcom").show();
-      $("#area").hide();
-      $("#rfc").hide();
-      $("#scd").hide();
-      $("#sca1").hide();
-  }else if(sel=="Physical"){
-      
-      $("#generalcom").hide();
-      $("#area").hide();
-      $("#rfc").show();
-      $("#scd").hide();
-      $("#sca1").show();
-      
-  }else{
-      $("#generalcom").show();
-      
-      $("#rfc").hide();
-      $("#area").show();
-      $("#scd").show();
-      $("#sca1").hide();
-  }
-  });
-  $("#btnn").on('click',function() {
-      
+    $("#area").hide();
+    $("#rfc").hide();
+    //$("#bodycompany").hide();
+    //$("#bodyaddress").hide();
+    $("#scd").hide();
+    $("#sca1").hide();
+    //alert($("#kindname").val());
+    
+    $("#choose").val($("#kindname").val())
+    choose();
 });
 
- //Show regex
-    //Physical person
+function mayus(e) {
+    e.value = e.value.toUpperCase();
+}
+
+
+function clear() {
+    $("#companyname").val("");
+    $("#companyrfc").val("");
+    $("#companytelephone").val("");
+    $("#companyemail").val("");
+}
+function choose() {
+    var sel=$("#choose").val();
+    if(sel=="Choose"){
+        clear();
+        
+        $("#generalcom").show();
+        $("#area").hide();
+        $("#rfc").hide();
+        $("#scd").hide();
+        $("#sca1").hide();
+    }else if(sel=="Physical"){
+        $("#kindname").val("Physical");
+        $("#companyname").val("Null");
+        $("#companyrfc").val("NOHA000000YAB");
+        $("#companytelephone").val("0000000000");
+        $("#companyemail").val("nada@example.com");
+        $("#generalcom").hide();
+        $("#area").hide();
+        $("#rfc").show();
+        $("#scd").hide();
+        $("#sca1").show();
+        
+    }else if(sel=="Moral"){
+        $("#kindname").val("Moral");
+        clear();
+        
+        $("#generalcom").show();
+        $("#rfc").hide();
+        $("#area").show();
+        $("#scd").show();
+        $("#sca1").hide();
+    }else{
+        $("#choose").val("Choose")
+    }
+}
+$('#choose').on('click', function(){
+    choose();
+});
+
+//Do visible forms
+
+//End visible forms
+//Show regex
+//Physical person
 $("#qname").mouseenter(function(){
   $("#aname").show();
+
 });
 $("#qname").mouseleave(function(){
     $("#aname").hide();

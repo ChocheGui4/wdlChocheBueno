@@ -13,7 +13,7 @@
             </ul>
         </div>
     @endif-->
-    <form action="{{ route('contactdata.store') }}" method="POST">
+    <form action="{{ route('contactdata.store') }}" method="POST" autocomplete="off">
         <div class="row justify-content-center">
             
             
@@ -24,7 +24,7 @@
                 <div class="card">
                     
                     <div class="card-header">
-                        <h3>Contact data</h3>
+                        <h3>Contact data<A id="contact" name="contact"></a></h3>
                     </div>
                     <div class="card-body">
                         
@@ -58,7 +58,7 @@
                                         <i id="qtele" class="fas fa-question-circle"></i>
                                         <input type="text" name="telephone" class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ old('telephone') }}" placeholder="5523212321"  >
                                         <span id="atele" class="invalid-feedback" role="alert">
-                                            <strong>Must have only numbers</strong>
+                                            <strong>Must have only numbers (10 digits)</strong>
                                         </span>
                                         
                                     </div>
@@ -71,9 +71,15 @@
                                         <strong>Email</strong>
                                         <i id="qemail" class="fas fa-question-circle"></i>
                                         <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="user@exam.com"  >
+
                                         <span id="aemail" class="invalid-feedback" role="alert">
                                             <strong>Must have letters, signs and numbers follow @ and domain</strong>
                                         </span>
+                                        @if ($errors->has('email'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-xs-4 col-sm-4 col-md-4">
@@ -82,7 +88,7 @@
                                         <i id="qpassword" class="fas fa-question-circle"></i>
                                         <input type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" value="{{ old('password') }}" placeholder="Secret"  >
                                         <span id="apassword" class="invalid-feedback" role="alert">
-                                            <strong>Must have</strong>
+                                            <strong>Must have digits, numbers and symbols and must contain at least 8 characters</strong>
                                         </span>
                                         
                                     </div>
@@ -102,13 +108,16 @@
                                     <div class="form-group">
                                         <strong >Kind of person</strong>
                                         <i id="qkind" class="fas fa-question-circle"></i>
-                                        <select id="choose" name="kind" class="form-control" value="{{ old('kind') }}" required autofocus>
-                                        <option>Choose</option>
+                                        
+                                        <select id="choose" name="kind" class="form-control{{ $errors->has('kind') ? ' is-invalid' : '' }}" value="{{ old('kind') }}" required autofocus placeholder="Choose">
+                                        <option>
+                                        <a  href="#contact">Choose</a> 
+                                        </option>
                                         <option>Physical</option>
                                         <option>Moral</option>
                                         </select>
                                         <span id="akind" class="invalid-feedback" role="alert">
-                                            <strong>These credentials do not match our records.</strong>
+                                            <strong>You must have choose 1 option</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -118,7 +127,7 @@
                                             <strong  >Area</strong>
                                             <i id="qarea" class="fas fa-question-circle"></i>
                                             <select class="form-control" name="area" >
-                                            <option>Choose</option>
+                                            <option>None</option>
                                             <option>Dirección general</option>
                                             <option>Auxiliar administrativo</option>
                                             <option>Administración y Recursos Humanos</option>
@@ -136,8 +145,9 @@
                                             <strong  > RFC</strong>
                                             <i id="qrfc" class="fas fa-question-circle"></i>
                                             <input type="text" name="rfc" class="form-control {{ $errors->has('rfc') ? ' is-invalid' : '' }}" value="{{ old('rfc') }}" placeholder="RJSU987635HYS87J" >
+                                            <input type="text" hidden id="kindname" name="kindname" class="form-control" value="{{ old('kindname') }}" placeholder="kindname" >
                                             <span id="arfc" class="invalid-feedback" role="alert">
-                                                <strong>These credentials do not match our records.</strong>
+                                                <strong>These must contain at least 12-13 characters</strong>
                                             </span>
                                         </div>
                                         
@@ -147,10 +157,10 @@
                                 
                             </div>
                             <a  href="#company"><button id="scd" type="button" class="btn btn-outline-danger btn-sm">
-                                <strong>Next</strong>
+                                <strong>Down the next step</strong>
                             </button></a>                            
                             <a  href="#address"><button id="sca1" type="button" class="btn btn-outline-danger btn-sm">
-                                <strong>Next</strong>
+                                <strong>Down the next step</strong>
                             </button></a>
                         
                         
@@ -181,9 +191,9 @@
                                     <div class="form-group">
                                         <strong>Company name</strong>
                                         <i id="qnamecompany" class="fas fa-question-circle"></i>
-                                        <input type="text" name="companyname" class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}" value="{{ old('companyname') }}" placeholder="The beauty S.A. de C.V."  >
+                                        <input type="text" id="companyname" name="companyname" class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}" value="{{ old('companyname') }}" placeholder="The beauty S.A. de C.V."  >
                                         <span id="anamecompany" class="invalid-feedback" role="alert">
-                                            <strong>These credentials do not match our records.</strong>
+                                            <strong>Must have at least 1 name of 3 letters</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -191,9 +201,9 @@
                                     <div class="form-group">
                                         <strong>RFC</strong>
                                         <i id="qrfccompany" class="fas fa-question-circle"></i>
-                                        <input type="text" name="companyrfc" class="form-control {{ $errors->has('companyrfc') ? ' is-invalid' : '' }}" value="{{ old('companyrfc') }}" placeholder="FTGY568765H78"  >
+                                        <input type="text" id="companyrfc" name="companyrfc" class="form-control {{ $errors->has('companyrfc') ? ' is-invalid' : '' }}" value="{{ old('companyrfc') }}" placeholder="FTGY568765H78"  >
                                         <span id="arfccompany" class="invalid-feedback" role="alert">
-                                            <strong>These credentials do not match our records.</strong>
+                                            <strong>These must contain at least 12-13 characters</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -201,9 +211,9 @@
                                     <div class="form-group">
                                         <strong>Telephone</strong>
                                         <i id="qtelecompany" class="fas fa-question-circle"></i>
-                                        <input type="text" name="telephonec" class="form-control {{ $errors->has('telephonec') ? ' is-invalid' : '' }}" value="{{ old('telephonec') }}" placeholder="5523212321"  >
+                                        <input type="text" id="companytelephone" name="companytelephone" class="form-control {{ $errors->has('companytelephone') ? ' is-invalid' : '' }}" value="{{ old('companytelephone') }}" placeholder="5523212321"  >
                                         <span id="atelecompany" class="invalid-feedback" role="alert">
-                                            <strong>These credentials do not match our records.</strong>
+                                            <strong>Must have only numbers (10 digits)</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -213,9 +223,9 @@
                                     <div class="form-group">
                                         <strong>Email</strong>
                                         <i id="qemailcompany" class="fas fa-question-circle"></i>
-                                        <input type="email" name="companyemail" class="form-control {{ $errors->has('companyemail') ? ' is-invalid' : '' }}" value="{{ old('companyemail') }}" placeholder="company@exam.com"  >
+                                        <input type="email" id="companyemail" name="companyemail" class="form-control {{ $errors->has('companyemail') ? ' is-invalid' : '' }}" value="{{ old('companyemail') }}" placeholder="company@exam.com"  >
                                         <span id="aemailcompany" class="invalid-feedback" role="alert">
-                                            <strong>These credentials do not match our records.</strong>
+                                            <strong>Must have letters, signs and numbers follow @ and domain</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -230,7 +240,7 @@
                                 
                             </div>
                             <a  href="#address"><button id="sca2" type="button" class="btn btn-outline-danger btn-sm">
-                                <strong>Next</strong>
+                                <strong>Down the next step</strong>
                             </button></a>
                         
                         
@@ -263,7 +273,7 @@
                                             <i id="qzip" class="fas fa-question-circle"></i>
                                             <input type="number" name="zipcode" class="form-control {{ $errors->has('zipcode') ? ' is-invalid' : '' }}" value="{{ old('zipcode') }}" placeholder="03231"  >
                                             <span id="azip" class="invalid-feedback" role="alert">
-                                                <strong>These credentials do not match our records.</strong>
+                                                <strong>Must have 5 numbers</strong>
                                             </span>
                                         </div>
                                     </div>
@@ -273,7 +283,7 @@
                                             <i id="qdistrict" class="fas fa-question-circle"></i>
                                             <input type="text" name="district" class="form-control {{ $errors->has('district') ? ' is-invalid' : '' }}" value="{{ old('district') }}" placeholder="Benito Juárez"  >
                                             <span id="adistrict" class="invalid-feedback" role="alert">
-                                                <strong>These credentials do not match our records.</strong>
+                                                <strong>Must have at least 1 name of 3 letters</strong>
                                             </span>
                                         </div>
                                     </div>
@@ -303,7 +313,7 @@
                                         <div class="form-group">
                                             <strong>In. number</strong>
                                             <i id="qinnumber" class="fas fa-question-circle"></i>
-                                            <input type="text" name="inumber" class="form-control {{ $errors->has('inumber') ? ' is-invalid' : '' }}" value="{{ old('inumber') }}" placeholder="2"  >
+                                            <input type="text" name="innumber" class="form-control {{ $errors->has('innumber') ? ' is-invalid' : '' }}" value="{{ old('innumber') }}" placeholder="2"  >
                                             <span id="ainnumber" class="invalid-feedback" role="alert">
                                                 <strong>These credentials do not match our records.</strong>
                                             </span>
@@ -330,26 +340,4 @@
     
 </div>
 
-@endsection
-@section('scripts')
-<script>
-    
-   
-
-    $('#scd').on('click', function(){
-        $("#bodycompany").show();
-    });
-    
-   
-
-    $('#sca1').on('click', function(){
-        $("#bodyaddress").show();
-    });
-
-    $('#sca2').on('click', function(){
-        $("#bodyaddress").show();
-    });
-
-    
-</script>
 @endsection
