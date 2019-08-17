@@ -17,15 +17,18 @@ function mayus(e) {
 
 
 function clear() {
-    $("#companyname").val("");
-    $("#companyrfc").val("");
-    $("#companytelephone").val("");
-    $("#companyemail").val("");
+    if($("#companyname").val()=="Null"){
+        $("#companyname").val("");
+        $("#companyrfc").val("");
+        $("#companytelephone").val("");
+        $("#companyemail").val("");
+    }
+
+    
 }
 function choose() {
     var sel=$("#choose").val();
     if(sel=="Choose"){
-        clear();
         
         $("#generalcom").show();
         $("#area").hide();
@@ -47,7 +50,7 @@ function choose() {
     }else if(sel=="Moral"){
         $("#kindname").val("Moral");
         clear();
-        
+        $("#rfcfield").val("NNNNYYYYUUUU0");
         $("#generalcom").show();
         $("#rfc").hide();
         $("#area").show();
@@ -68,6 +71,8 @@ $('#choose').on('click', function(){
 //Physical person
 $("#qname").mouseenter(function(){
   $("#aname").show();
+  
+  
 
 });
 $("#qname").mouseleave(function(){

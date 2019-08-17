@@ -26,6 +26,7 @@ class UserController extends Controller
      */
     public function store(RuleCreate $request)
     {
+        
         //Insert users
         $users = new User;
         $names="user";
@@ -34,15 +35,12 @@ class UserController extends Controller
         $users ->password= bcrypt($request->password);
         $users->save();
 
-        //Insert area
-        $area = new Area;
-        $areaoption=$request->area;
-        $area->name = $request->area;
-        $area->save();
+        
         
         $kindoption = $request->kind;
         
         if ($kindoption=="Physical") {
+            //Insert people
             $person = new People;
             $person->rfc = $request->rfc;
             $person->name = $request->name;
@@ -55,6 +53,13 @@ class UserController extends Controller
             $person->exteriornumber = $request->extnumber;
             $person->save();
         } else if($kindoption=="Moral"){
+
+            //Insert area
+            $area = new Area;
+            $areaoption=$request->area;
+            $area->name = $request->area;
+            $area->save();
+            
             //Insert contact
             $ided= Area::latest('id')->first();
             $contact = new Contact;
@@ -63,24 +68,25 @@ class UserController extends Controller
             $contact->telephone = $request->telephone;
             //$contact->areas_id = $ided->id;
             $contact->save();
+            $ided= Contact::latest('id')->first();
+            $id=null;
+            if($ided!=""){
+                $id=$ided->id;
+            }
+            $company = new Company;
+            $company->companyrfc = $request->companyrfc;
+            $company->companyname = $request->companyname;
+            $company->companytelephone = $request->companytelephone;
+            $company->companyemail = $request->companyemail;
+            $company->zipcode = $request->zipcode;
+            $company->district = $request->district;
+            $company->street = $request->street;
+            $company->insidenumber = $request->innumber;
+            $company->exteriornumber = $request->extnumber;
+            $company->contacts_id = $id;
+            $company->save();
         }
-        $ided= Contact::latest('id')->first();
-        $id=null;
-        if($ided!=""){
-            $id=$ided->id;
-        }
-        $company = new Company;
-        $company->rfc = $request->companyrfc;
-        $company->name = $request->companyname;
-        $company->telephone = $request->companytelephone;
-        $company->email = $request->companyemail;
-        $company->zipcode = $request->zipcode;
-        $company->district = $request->district;
-        $company->street = $request->street;
-        $company->insidenumber = $request->innumber;
-        $company->exteriornumber = $request->extnumber;
-        $company->contacts_id = $id;
-        $company->save();
+        
         return redirect()->route('login');
     }
 
