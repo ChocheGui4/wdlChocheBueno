@@ -27,7 +27,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="{{ route('wluser.store') }}" method="POST" autocomplete="off">
+                        <form action="{{ route('store') }}" method="POST" autocomplete="off">
+                            @csrf
                             <div class="card">
                                 <div class="card-body">
 
@@ -36,19 +37,19 @@
                                             <div class="form-group">
                                                 <div id="area">
                                                     <strong >Area</strong>
-                                                    <i id="qarea" class="fas fa-question-circle"></i>
-                                                    <select class="form-control" name="area">
-                                                        <option>None</option>
+                                                    <i id="qwlarea" class="fas fa-question-circle"></i>
+                                                    <select id="areas" name="areas"  class="form-control{{ $errors->has('areas') ? ' is-invalid' : '' }}" value="{{ old('areas') }}" required="required"
+                                        autofocus="autofocus">
                                                         <option>Dirección general</option>
-                                                        <option>Auxiliar administrativo</option>
+                                                        <option>Antivirus</option>
                                                         <option>Administración y Recursos Humanos</option>
                                                         <option>Finanzas y Contabilidad</option>
-                                                        <option>Publicidad y Mercadotecnia</option>
-                                                        <option>Informática</option>
+                                                        <option>Ventas</option>
+                                                        <option>Soporte</option>
 
                                                     </select>
-                                                    <span id="aarea" class="invalid-feedback" role="alert">
-                                                        <strong>These credentials do not match our records.</strong>
+                                                    <span id="wlarea" class="invalid-feedback" role="alert">
+                                                        <strong>This field is required.</strong>
                                                     </span>
                                                 </div>
                                             </div>
@@ -57,7 +58,7 @@
                                         <div class="col-xs-4 col-sm-4 col-md-4">
                                             <div class="form-group">
                                                 <strong>Email</strong>
-                                                <i id="qemail" class="fas fa-question-circle"></i>
+                                                <i id="qwlemail" class="fas fa-question-circle"></i>
 
                                                 <!--Se inicia icono con campo de texto-->
                                                 <div class="input-group mb-3">
@@ -71,7 +72,7 @@
                                                         value="{{ old('email') }}"
                                                         placeholder="user@exam.com">
 
-                                                    <span id="aemail" class="invalid-feedback" role="alert">
+                                                    <span id="wlemail" class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('email') }}Must have letters, signs and/or numbers follow "@" and domain</strong>
                                                     </span>
 
@@ -85,7 +86,7 @@
                                         <div class="col-xs-4 col-sm-4 col-md-4">
                                             <div class="form-group">
                                                 <strong>Password</strong>
-                                                <i id="qpassword" class="fas fa-question-circle"></i>
+                                                <i id="qwlpassword" class="fas fa-question-circle"></i>
                                                 <!--Se inicia icono con campo de texto-->
                                                 <div class="input-group mb-3">
                                                     <span class="input-group-text">
@@ -97,7 +98,7 @@
                                                         class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                                         value="{{ old('password') }}"
                                                         placeholder="Secret">
-                                                    <span id="apassword" class="invalid-feedback" role="alert">
+                                                    <span id="wlpassword" class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('password') }}
                                                             Must have digits, numbers and symbols and must contain at least 8 characters</strong>
                                                     </span>
@@ -109,7 +110,7 @@
                                 </div>
                             </div>
                             <div align="center">
-                                <button class="btn btn-success">
+                                <button type="submit" class="btn btn-success">
                                     Add user
                                 </button>
                             </div>
@@ -129,4 +130,6 @@
 
 </div>
 <!-- ./wrapper -->
+@endsection @section('scripts')
+<script></script>
 @endsection

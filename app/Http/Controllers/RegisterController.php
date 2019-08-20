@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RuleCreate;
+use App\User;
+use App\Contact;
+use App\Company;
+use App\Area;
+use App\People;
 
 class RegisterController extends Controller
 {

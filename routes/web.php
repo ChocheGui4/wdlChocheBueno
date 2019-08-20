@@ -22,6 +22,8 @@ Route::get('/branches', function () {
 });
 Route::resource('/user','UserController');
 Route::resource('/wluser','WlUserController');
+Route::get('/wlusercreate','WlUserController@create');
+Route::post('/wluserstore','WlUserController@store')->name('store');
 route::resource('/registers/contactdata','RegisterController');
 
 

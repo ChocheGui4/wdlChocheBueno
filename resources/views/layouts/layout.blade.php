@@ -352,11 +352,8 @@ only. -->
         <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <!-- AdminLTE App -->
         <script src="{{ asset('assets/dist/js/adminlte.min.js')}}"></script>
-        <script>
-            $('#prb').on('click', function () {
-                alert("bye");
-            });
-        </script>
+        
         @yield('scripts')
+        <script src="{{ asset('assets/use2.js') }}"></script>
     </body>
 </html>

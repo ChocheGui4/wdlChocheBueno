@@ -22,12 +22,12 @@ class WlUserController extends Controller
         
         //Insert users
         $users = new User;
-        $users ->name= $request->area;
+        $users ->name= $request->areas;
         $users ->email= $request->email;
         $users ->password= bcrypt($request->password);
         $users->save();
 
-        return redirect()->route('/wluser');
+        return redirect()->route('wluser.index');
     }
 
     /**

@@ -24,9 +24,9 @@ class WlUserCreate extends FormRequest
     public function rules()
     {
         return [          
-            'area' =>'required',
+            'areas' =>'required',
             'email' => 'required|email|max:45|unique:users',
-            'password' => 'required|min:8|max:45|regex: /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,45}$/|confirmed'
+            'password' => 'required|min:8|max:45|regex: /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,45}$/'
         ];
     }
 }

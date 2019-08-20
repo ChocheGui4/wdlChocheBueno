@@ -1,3 +1,4 @@
+//Funciones jquery para formulario de usuarios de empresas
 $(document).ready(function() {
     $("#area").hide();
     $("#rfc").hide();
@@ -192,5 +193,4 @@ $("#qinnumber").mouseenter(function(){
 $("#qinnumber").mouseleave(function(){
   $("#ainnumber").hide();
 });
-
-//End show regex
+//Terminan funciones jquery para formulario de usuarios de empresas

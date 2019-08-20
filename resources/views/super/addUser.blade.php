@@ -1,4 +1,4 @@
-@extends('layouts.layout2') @section('content')
+@extends('layouts.layout') @section('content')
 <div id="gif" class="loader"></div>
 <div class="contanier">
 
