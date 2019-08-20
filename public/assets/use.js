@@ -23,6 +23,7 @@ function clear() {
         $("#companytelephone").val("");
         $("#companyemail").val("");
     }
+    
 
     
 }

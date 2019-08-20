@@ -11,7 +11,11 @@ use App\People;
 class UserController extends Controller
 {
     public function index(){
-        return view('users.register');
+        $usuarios=User::where("name","=",'user')->paginate(5);
+        //$usuarios= User::orderBy('id','ASC')->paginate(5);
+        return view('super.users', compact('usuarios'))
+            ->with('i',(request()->input('page',1)-1)*5);
+        //return view('super.users');
     }
     public function create()
     {

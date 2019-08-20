@@ -11,7 +11,5 @@ class PrincipalController extends Controller
     {
         return view('super.principal');
     }
-    public function cc(){
-        return view('super.customerscompanies');
-    }
+    
 }

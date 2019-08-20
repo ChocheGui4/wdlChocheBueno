@@ -293,11 +293,3 @@
 </div>
 <!-- ./wrapper -->
 @endsection
-
-@section('scripts')
-<script>
-$('#prb2').on('click', function(){
-    alert("bye");
-  });
-</script>
-@endsection
