@@ -14,16 +14,15 @@ Route::get('/', function () {
     return view('auth.login');
 });
 Auth::routes(['verify' => true]);
-
+route::get('/home','PrincipalController@index');
 Route::get('/cc','CustomCompanController@index');
+//Route::get('/wluser','WlUserController@index');
 Route::get('/branches', function () {
     return view('super.branches');
 });
-route::get('/registers/contactdata','UserController@company');
-//route::get('/registers/contactdata','UserController@store');
-//route::get('home/cc','PrincipalController@cc');
-route::resource('/home','PrincipalController');
-route::resource('/registers/contactdata','UserController');
+Route::resource('/user','UserController');
+Route::resource('/wluser','WlUserController');
+route::resource('/registers/contactdata','RegisterController');
 
 
 

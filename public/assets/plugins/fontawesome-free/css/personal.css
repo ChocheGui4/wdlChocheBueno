@@ -1,0 +1,8 @@
+.flotante {
+    display: scroll;
+    position: fixed;
+    bottom: 120px;
+    right: 600px;
+    transform: scale(3);
+    color: blue;
+}
