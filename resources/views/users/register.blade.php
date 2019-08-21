@@ -3,7 +3,7 @@
 <div class="contanier">
 
     <form
-        action="{{ route('contactdata.store') }}"
+        action="{{ route('registerStore') }}"
         method="POST"
         autocomplete="off">
         <div class="row justify-content-center">

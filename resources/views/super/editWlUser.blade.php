@@ -27,7 +27,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="{{ route('wluserAdd') }}" method="POST" autocomplete="off">
+                        <form action="{{ route('wluserUpdate',$usuario->id) }}" method="POST" autocomplete="off">
                             @csrf
                             <div class="card">
                                 <div class="card-body">
@@ -38,8 +38,7 @@
                                                 <div >
                                                     <strong >Area</strong>
                                                     <i id="qwlarea" class="fas fa-question-circle"></i>
-                                                    <select id="areas" name="areas"  class="form-control{{ $errors->has('areas') ? ' is-invalid' : '' }}" value="{{ old('areas') }}" required="required"
-                                        autofocus="autofocus">
+                                                    <select id="areas" name="areas"  class="form-control{{ $errors->has('areas') ? ' is-invalid' : '' }}">
                                                         <option>Dirección general</option>
                                                         <option>Antivirus</option>
                                                         <option>Administración y Recursos Humanos</option>
@@ -69,8 +68,7 @@
                                                         type="email"
                                                         name="email"
                                                         class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                                        value="{{ old('email') }}"
-                                                        placeholder="user@exam.com">
+                                                        value={{ $usuario->email }}>
 
                                                     <span id="wlemail" class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('email') }}Must have letters, signs and/or numbers follow "@" and domain</strong>
@@ -94,10 +92,20 @@
                                                     </span>
                                                     <input
                                                         type="password"
+                                                        id="password"
                                                         name="password"
                                                         class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                                        value="{{ old('password') }}"
-                                                        placeholder="Secret">
+                                                        value={{ $pass }}>
+                                                    <input
+                                                        
+                                                        type="text"
+                                                        id="areainput"
+                                                        name="areainput"
+                                                        class="form-control"
+                                                        value={{ $usuario->name }}>
+                                                        <span id="showpass" class="input-group-text">
+                                                            <i class="fas fa-eye"></i>
+                                                        </span>
                                                     <span id="wlpassword" class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('password') }}
                                                             Must have digits, numbers and symbols and must contain at least 8 characters</strong>

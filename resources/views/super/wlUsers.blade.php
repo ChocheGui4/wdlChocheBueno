@@ -73,7 +73,7 @@
                                         <td>{{ $usuario->name }}</td>
                                         <td>{{ $usuario->email }}</td>
                                         <td>
-                                            <a class="btn btn-warning" href="">
+                                            <a class="btn btn-warning" href="{{ route('wluserEdit',$usuario->id) }}">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
@@ -90,6 +90,7 @@
                                     </tr>
                                     @endforeach
                                 </table>
+                                {!! $usuarios->links() !!}
 
                             </div>
                         </div>

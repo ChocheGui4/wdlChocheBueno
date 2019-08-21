@@ -3,28 +3,29 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Http\Requests\WlUserCreate;
+use App\Http\Requests\WlUserEditCreate;
 
 class WlUserController extends Controller
 {
     public function index(){
-        $usuarios=User::where("name","<>",'user')->paginate(5);
+        $usuarios=User::where("name","<>",'user')->paginate(6);
         //$usuarios= User::orderBy('id','ASC')->paginate(5);
         return view('super.wlUsers', compact('usuarios'))
-            ->with('i',(request()->input('page',1)-1)*5);
+            ->with('i',(request()->input('page',1)-1)*6);
         //return view('super.wlUsers');
     }
 
-    public function create(){
+    public function wluserCreate(){
         return view('super.addWlUser');
     }
-    public function store(WlUserCreate $request)
+    public function wluserAdd(WlUserCreate $request)
     {
         
         //Insert users
         $users = new User;
         $users ->name= $request->areas;
         $users ->email= $request->email;
-        $users ->password= bcrypt($request->password);
+        $users ->password= encrypt($request->password);
         $users->save();
 
         return redirect()->route('wluser.index');
@@ -49,19 +50,15 @@ class WlUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function wluserEdit($id)
     {
         $usuario = User::find($id);
+        //$users ->password= decrypt($request->password);
+        
+        $pass=decrypt($usuario->password);
         
         
-        //dd($usuario);
-
-        /*$usuario = DB::table('usuarios')
-        ->join('direccions','usuarios.id', '=','direccions.usuarios_id')
-        ->select()
-        ->where('usuarios_id', $id);
-        dd($usuario);*/
-        return view('wlusers.edit', compact('usuario'));
+        return view('super.editWlUser', compact('usuario','pass'));
     }
 
     /**
@@ -71,25 +68,17 @@ class WlUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CrearReglas $request, $id)
+    public function wluserUpdate(WlUserEditCreate $request, $id)
     {
 
-        $request->validate([
-            'name' => 'required',
-            'apellidos' => 'required',
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-        $usuario = Usuarios::find($id);
-        $usuario->name = $request->get('name');
-        $usuario->apellidos = $request->get('apellidos');
-        $usuario->email = $request->get('email');
-        $usuario->password = $request->get('password');
+        $usuario = User::find($id);
+        $usuario->name = $request->areas;
+        $usuario->email = $request->email;
+        $usuario ->password= encrypt($request->password);
         $usuario->save();
 
 
-        return redirect()->route('direccion.edit',$id)
-                        ->with('success','Usuario actualizado.');
+        return redirect()->route('wluser.index');
 
     }
 
@@ -110,3 +99,4 @@ class WlUserController extends Controller
                         ->with('success','Usuario eliminado.');
     }
 }
+

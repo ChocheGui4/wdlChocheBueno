@@ -17,9 +17,9 @@ class UserController extends Controller
             ->with('i',(request()->input('page',1)-1)*5);
         //return view('super.users');
     }
-    public function create()
+    public function userCreate()
     {
-        
+        return view('super.addUser');
     }
 
     /**
@@ -28,7 +28,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RuleCreate $request)
+    public function userAdd(RuleCreate $request)
     {
         
         //Insert users

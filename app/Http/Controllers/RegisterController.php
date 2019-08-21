@@ -15,7 +15,7 @@ class RegisterController extends Controller
         return view('users.register');
     }
 
-    public function store(RuleCreate $request)
+    public function registerStore(RuleCreate $request)
     {
         
         //Insert users
@@ -23,7 +23,7 @@ class RegisterController extends Controller
         $names="user";
         $users ->name= $names;
         $users ->email= $request->email;
-        $users ->password= bcrypt($request->password);
+        $users ->password= encrypt($request->password);
         $users->save();
 
         

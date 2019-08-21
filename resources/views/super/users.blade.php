@@ -36,7 +36,7 @@
                     <div class="col-sm-6"></div>
                     <div class="col-sm-2">
                         <div class="input-group input-group-sm">
-                            <a href="/wlusercreate">
+                            <a href="/usercreate">
                                 <button class="btn btn-success">
                                     <i class="fas fa-user-plus"></i>
                                     Create user
@@ -71,7 +71,7 @@
                                         <td>{{ $usuario->name }}</td>
                                         <td>{{ $usuario->email }}</td>
                                         <td>
-                                            <a class="btn btn-warning" href="{{ route('wluser.edit',$usuario->id) }}">
+                                            <a class="btn btn-warning" href="">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
@@ -88,6 +88,7 @@
                                     </tr>
                                     @endforeach
                                 </table>
+                                {!! $usuarios->links() !!}
                             </div>
                         </div>
                         <!-- /.card -->
