@@ -59,6 +59,14 @@ class UserController extends Controller
             $person->insidenumber = $request->innumber;
             $person->exteriornumber = $request->extnumber;
             $person->save();
+
+            //Customer
+            $us= User::latest('id')->first();
+            $peo= People::latest('id')->first();
+            $customers = new Customer;
+            $customers->users_id=$us->id;
+            $customers->people_id=$peo->id;
+            $customers->save();
         } else if($kindoption=="Moral"){
 
             //Insert area
@@ -92,6 +100,14 @@ class UserController extends Controller
             $company->exteriornumber = $request->extnumber;
             $company->contacts_id = $id;
             $company->save();
+
+            //Customer
+            $com= Company::latest('id')->first();
+            $us= User::latest('id')->first();
+            $customers = new Customer;
+            $customers->users_id=$us->id;
+            $customers->users_id=$com->id;
+            $customers->save();
         }
         
         return redirect()->route('user.index');
@@ -119,12 +135,16 @@ class UserController extends Controller
     public function userEdit($id)
     {
         $usuario = User::find($id);
+        
         $customer = Customer::where("users_id","=",$usuario->id)->get();
+        
         foreach ($customer as $cus) {
-            $val=$cus->id;
+            $val=$cus->people_id;
+            
         }
+        
         $people = People::find($val);
-
+        
         return view('super.editUser', compact('usuario','people'));
     }
 

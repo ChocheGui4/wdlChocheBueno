@@ -10,15 +10,15 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-sm-2">
-                                <button id="showprofile">
-                                    <u>
-                                        <h5>Profile<a></a>
-                                        </h5>
-                                    </u>
+                                <button id="showprofile" class="btn btn-link">
+                                    
+                                    <h5>Profile<a></a>
+                                    </h5>
+                                    
                                 </button>
                             </div>
                             <div class="col-sm-3">
-                                <button id="showcontact">
+                                <button id="showcompany" class="btn btn-link">
 
                                     <h5>Company<a></a>
                                     </h5>
@@ -26,7 +26,7 @@
                                 </button>
                             </div>
                             <div class="col-xl-3">
-                                <button id="showinformation">
+                                <button id="showinformation" class="btn btn-link">
 
                                     <h5>Information<a></a>
                                     </h5>
@@ -75,6 +75,7 @@
                                     <div class="col-md-12">
                                         
                                         <div id="profile" class="card">
+                                            
                                             <form action="{{ route('userUpdateProfile',$people->id) }}" method="POST" autocomplete="off">
                                                 <div class="card-body">                                                
                                                 

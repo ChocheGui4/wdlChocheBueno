@@ -27,6 +27,7 @@ class CreateBranchesTable extends Migration
             ->on('companies')
             ->onDelete('cascade')
             ->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

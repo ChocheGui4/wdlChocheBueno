@@ -15,6 +15,11 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    public function customer()
+    {
+        return $this->hasMany('App\Customer');
+    }
     protected $fillable = [
         'role', 'email', 'password','password_encrypt',
     ];

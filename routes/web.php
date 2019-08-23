@@ -15,7 +15,12 @@ Route::get('/', function () {
 });
 Auth::routes(['verify' => true]);
 route::get('/home', 'PrincipalController@index') -> middleware('auth');
-Route::get('/cc', 'CustomCompanController@index') -> middleware('auth');
+Route::get('/customandcompanies', 'CustomCompanController@index') -> middleware('auth');
+Route::get('/ccbranches/{id}', 'CustomCompanController@showBranches') ->name('showBranches')-> middleware('auth');
+Route::get('/cccreatebranches/{id}', 'CustomCompanController@createBranches') ->name('createBranches')-> middleware('auth');
+Route::post('/ccaddbranches/{id}', 'CustomCompanController@addBranches') ->name('addBranches')-> middleware('auth');
+Route::resource('/customandcompanies', 'CustomCompanController') -> middleware('auth');
+
 
 
 //Users
