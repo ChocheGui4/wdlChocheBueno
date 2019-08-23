@@ -11,7 +11,7 @@ use App\People;
 class UserController extends Controller
 {
     public function index(){
-        $usuarios=User::where("name","=",'user')->paginate(5);
+        $usuarios=User::where("role","=",'user')->paginate(5);
         //$usuarios= User::orderBy('id','ASC')->paginate(5);
         return view('super.users', compact('usuarios'))
             ->with('i',(request()->input('page',1)-1)*5);
@@ -34,7 +34,7 @@ class UserController extends Controller
         //Insert users
         $users = new User;
         $names="user";
-        $users ->name= $names;
+        $users ->role= $names;
         $users ->email= $request->email;
         $users ->password= bcrypt($request->password);
         $users->save();
@@ -70,7 +70,7 @@ class UserController extends Controller
             $contact->name = $request->name;
             $contact->lastname = $request->lastname;
             $contact->telephone = $request->telephone;
-            //$contact->areas_id = $ided->id;
+            $contact->areas_id = $ided->id;
             $contact->save();
             $ided= Contact::latest('id')->first();
             $id=null;
@@ -91,7 +91,7 @@ class UserController extends Controller
             $company->save();
         }
         
-        return redirect()->route('login');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -113,10 +113,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function userEdit($id)
     {
-        $usuario = Usuarios::find($id);
-        $res=Direccion::where("usuarios_id","=",$id)->get();
+        $usuario = User::find($id);
         
         //dd($usuario);
 
@@ -125,7 +124,7 @@ class UserController extends Controller
         ->select()
         ->where('usuarios_id', $id);
         dd($usuario);*/
-        return view('usuario.edit', compact('usuario','res'));
+        return view('super.editUser', compact('usuario'));
     }
 
     /**

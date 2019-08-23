@@ -15,6 +15,7 @@ class AreasTableSeeders extends Seeder
         DB::table('areas')->insert([
             'name' => Str::random(10),
         ]);
+        
         //DB::table('areas')->truncate();
     }
 }

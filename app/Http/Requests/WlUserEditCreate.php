@@ -25,8 +25,7 @@ class WlUserEditCreate extends FormRequest
     {
         return [
             'areas' =>'required',
-            'email' => 'required|email|max:45',
-            'password' => 'required|min:8|max:45|regex: /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,45}$/'
+            'email' => 'required|email|max:45'
         ];
     }
 }

@@ -11,6 +11,11 @@ use App\People;
 
 class RegisterController extends Controller
 {
+    protected $redirectTo = '/home';
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
     public function index(){
         return view('users.register');
     }
@@ -21,9 +26,10 @@ class RegisterController extends Controller
         //Insert users
         $users = new User;
         $names="user";
-        $users ->name= $names;
+        $users ->role= $names;
         $users ->email= $request->email;
-        $users ->password= encrypt($request->password);
+        $users ->password= bcrypt($request->password);
+        
         $users->save();
 
         

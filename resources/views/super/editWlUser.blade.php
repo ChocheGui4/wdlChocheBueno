@@ -38,7 +38,8 @@
                                                 <div >
                                                     <strong >Area</strong>
                                                     <i id="qwlarea" class="fas fa-question-circle"></i>
-                                                    <select id="areas" name="areas"  class="form-control{{ $errors->has('areas') ? ' is-invalid' : '' }}">
+                                                    <select id="areas" name="areas"  class="form-control{{ $errors->has('areas') ? ' is-invalid' : '' }}"
+                                                        >
                                                         <option>Dirección general</option>
                                                         <option>Antivirus</option>
                                                         <option>Administración y Recursos Humanos</option>
@@ -83,33 +84,9 @@
 
                                         <div class="col-xs-4 col-sm-4 col-md-4">
                                             <div class="form-group">
-                                                <strong>Password</strong>
-                                                <i id="qwlpassword" class="fas fa-question-circle"></i>
-                                                <!--Se inicia icono con campo de texto-->
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text">
-                                                        <i class="fas fa-lock"></i>
-                                                    </span>
-                                                    <input
-                                                        type="password"
-                                                        id="password"
-                                                        name="password"
-                                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                                        value={{ $pass }}>
-                                                    <input
-                                                        
-                                                        type="text"
-                                                        id="areainput"
-                                                        name="areainput"
-                                                        class="form-control"
-                                                        value={{ $usuario->name }}>
-                                                        <span id="showpass" class="input-group-text">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                    <span id="wlpassword" class="invalid-feedback" role="alert">
-                                                        <strong>{{ $errors->first('password') }}
-                                                            Must have digits, numbers and symbols and must contain at least 8 characters</strong>
-                                                    </span>
+                                                
+                                                <div class="input-group mb-3">                                                    
+                                                    <textarea hidden id="areainput" cols="30" rows="10">{{ $usuario->role }}</textarea>
                                                 </div>
                                             </div>
                                         </div>

@@ -102,7 +102,7 @@ only. -->
                 <!-- Brand Logo -->
                 <a href="index3.html" class="brand-link">
                     <img
-                        src="assets/dist/img/AdminLTELogo.png"
+                        src="{{ asset('assets/dist/img/AdminLTELogo.png') }}"
                         alt="AdminLTE Logo"
                         class="brand-image img-circle elevation-3"
                         style="opacity: .8">
@@ -115,7 +115,7 @@ only. -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
                             <img
-                                src="assets/dist/img/user2-160x160.jpg"
+                                src="{{ asset('assets/dist/img/user2-160x160.jpg') }}"
                                 class="img-circle elevation-2"
                                 alt="User Image">
                         </div>
@@ -301,7 +301,7 @@ only. -->
                         <div class="col-sm-6">
                             <br>
                             <img
-                                src="assets/dist/img/HillsongThisisliving.jpg"
+                                src="{{ asset('assets/dist/img/HillsongThisisliving.jpg') }}"
                                 class="img-circle elevation-2"
                                 alt="User Image">
                         </div>
@@ -310,7 +310,7 @@ only. -->
                             <br>
                             <a href="">
                                 <!---->
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->role }}
                             </a>
                             <!---->
                             <br>
@@ -355,5 +355,7 @@ only. -->
         
         @yield('scripts')
         <script src="{{ asset('assets/use2.js') }}"></script>
+        <script src="{{ asset('assets/edituser.js') }}"></script>
+        
     </body>
 </html>

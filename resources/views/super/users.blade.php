@@ -68,14 +68,14 @@
                                     @foreach ($usuarios as $usuario)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td>{{ $usuario->name }}</td>
+                                        <td>{{ $usuario->role }}</td>
                                         <td>{{ $usuario->email }}</td>
                                         <td>
-                                            <a class="btn btn-warning" href="">
+                                            <a class="btn btn-warning" href="{{ route('userEdit',$usuario->id) }}">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
-                                            <button class="btn btn-danger" href="#">
+                                            <button class="btn btn-danger" href="">
                                                 <i class="fas fa-trash"></i>
                                             </button>
 
@@ -88,6 +88,7 @@
                                     </tr>
                                     @endforeach
                                 </table>
+                                
                                 {!! $usuarios->links() !!}
                             </div>
                         </div>

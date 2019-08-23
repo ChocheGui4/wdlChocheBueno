@@ -70,22 +70,23 @@
                                     @foreach ($usuarios as $usuario)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td>{{ $usuario->name }}</td>
+                                        <td>{{ $usuario->role }}</td>
                                         <td>{{ $usuario->email }}</td>
                                         <td>
-                                            <a class="btn btn-warning" href="{{ route('wluserEdit',$usuario->id) }}">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-
-                                            <button class="btn btn-danger" href="#">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-
+                                            @if ($usuario->role != "Super")
+                                                <a class="btn btn-warning" href="{{ route('wluserEdit',$usuario->id) }}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a id="deleteuser" href="" class="btn btn-danger" >
+                                                    <i class="fas fa-trash tspersonal"></i>
+                                                </a>
+                                            @endif 
+                                            
                                             @csrf @method('DELETE')
 
                                             <!--<button class="btn btn-danger" data-toggle="modal"
                                             data-target="#exampleModalLong">Eliminar</button>-->
-
+                                            
                                         </td>
                                     </tr>
                                     @endforeach
@@ -108,6 +109,32 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+    <div
+        class="modal fade"
+        id="confirm"
+        style="display: none;"
+        aria-modal="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    
+                    <h4 class="modal-title"><i class="fas fa-exclamation-triangle deletet"></i>Delete</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div align="center" class="modal-body">
+                    <h5>Are you sure?</h5>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="{{ route('wluserDelete',$usuario->id) }}" >Confirm</a>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 
 </div>
 <!-- ./wrapper -->

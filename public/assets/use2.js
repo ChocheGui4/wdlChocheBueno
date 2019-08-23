@@ -2,15 +2,10 @@
 $(document).ready(function () {
     $("#area").hide();
     $("#rfc").hide();
-    //$("#bodycompany").hide(); $("#bodyaddress").hide();
     $("#scd").hide();
     $("#sca1").hide();
-    //alert($("#kindname").val());
-
     $("#choose").val($("#kindname").val())
     choose();
-    
-    
     $("#areas").val($("#areainput").val());
     
 });
@@ -223,6 +218,14 @@ $('#showpass').click(function () {
     }
 
 });
-//
-
+//button delete
+$('#deleteuser').on('click', function(e){
+    var $form=$(this).closest('form'); 
+    e.preventDefault();
+    $('#confirm').modal({ backdrop: 'static', keyboard: false })
+        .one('click', '#delete', function() {
+            $form.trigger('submit'); // submit the form
+        });
+        // .one() is NOT a typo of .on()
+});
 //-------------

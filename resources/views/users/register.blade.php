@@ -1,5 +1,5 @@
 @extends('layouts.layout2') @section('content')
-<div id="gif" class="loader"></div>
+
 <div class="contanier">
 
     <form
@@ -409,6 +409,7 @@
                 </div >
 
             </div>
+            
         </div>
         <div class="row justify-content-center">
 

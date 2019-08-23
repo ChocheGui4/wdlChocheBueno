@@ -8,7 +8,7 @@ use App\Http\Requests\WlUserEditCreate;
 class WlUserController extends Controller
 {
     public function index(){
-        $usuarios=User::where("name","<>",'user')->paginate(6);
+        $usuarios=User::where("role","<>",'user')->paginate(6);
         //$usuarios= User::orderBy('id','ASC')->paginate(5);
         return view('super.wlUsers', compact('usuarios'))
             ->with('i',(request()->input('page',1)-1)*6);
@@ -23,9 +23,10 @@ class WlUserController extends Controller
         
         //Insert users
         $users = new User;
-        $users ->name= $request->areas;
+        $users ->role= $request->areas;
         $users ->email= $request->email;
-        $users ->password= encrypt($request->password);
+        $users ->password= bcrypt($request->password);
+        
         $users->save();
 
         return redirect()->route('wluser.index');
@@ -53,12 +54,7 @@ class WlUserController extends Controller
     public function wluserEdit($id)
     {
         $usuario = User::find($id);
-        //$users ->password= decrypt($request->password);
-        
-        $pass=decrypt($usuario->password);
-        
-        
-        return view('super.editWlUser', compact('usuario','pass'));
+        return view('super.editWlUser', compact('usuario'));
     }
 
     /**
@@ -72,9 +68,8 @@ class WlUserController extends Controller
     {
 
         $usuario = User::find($id);
-        $usuario->name = $request->areas;
+        $usuario->role = $request->areas;
         $usuario->email = $request->email;
-        $usuario ->password= encrypt($request->password);
         $usuario->save();
 
 
@@ -88,15 +83,15 @@ class WlUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function wluserDelete($id)
     {
         //$direccion=Direccion::find(11);
-        $res=Direccion::where("usuarios_id","=",$id);
+        $group = User::find($id)->delete();
+        /*$res=Direccion::where("usuarios_id","=",$id);
         $res->delete();
         $usuario = Usuarios::find($id);
-        $usuario->delete();
-        return redirect()->route('usuario.index')
-                        ->with('success','Usuario eliminado.');
+        $usuario->delete();*/
+        return redirect()->route('wluser.index');
     }
 }
 
