@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\RuleCreate;
+use App\Http\Requests\UserEditCreate;
+use App\Http\Requests\UserAddressEditCreate;
 use App\User;
 use App\Contact;
 use App\Company;
 use App\Area;
 use App\People;
+use App\Customer;
 
 class UserController extends Controller
 {
@@ -116,15 +119,13 @@ class UserController extends Controller
     public function userEdit($id)
     {
         $usuario = User::find($id);
-        
-        //dd($usuario);
+        $customer = Customer::where("users_id","=",$usuario->id)->get();
+        foreach ($customer as $cus) {
+            $val=$cus->id;
+        }
+        $people = People::find($val);
 
-        /*$usuario = DB::table('usuarios')
-        ->join('direccions','usuarios.id', '=','direccions.usuarios_id')
-        ->select()
-        ->where('usuarios_id', $id);
-        dd($usuario);*/
-        return view('super.editUser', compact('usuario'));
+        return view('super.editUser', compact('usuario','people'));
     }
 
     /**
@@ -134,27 +135,40 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CrearReglas $request, $id)
+    public function userUpdateProfile(UserEditCreate $request, $id)
     {
 
-        $request->validate([
-            'name' => 'required',
-            'apellidos' => 'required',
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-        $usuario = Usuarios::find($id);
-        $usuario->name = $request->get('name');
-        $usuario->apellidos = $request->get('apellidos');
-        $usuario->email = $request->get('email');
-        $usuario->password = $request->get('password');
+        $usuario = People::find($id);
+        $usuario->name = $request->name;
+        $usuario->lastname = $request->lastname;
+        $usuario->telephone = $request->telephone;
+        //$usuario->email = $request->email;
+        
         $usuario->save();
 
 
-        return redirect()->route('direccion.edit',$id)
-                        ->with('success','Usuario actualizado.');
+        return redirect()->route('user.index');
 
     }
+
+    public function userUpdateAddress(UserAddressEditCreate $request, $id)
+    {
+
+        $usuario = People::find($id);
+        $usuario->zipcode = $request->zipcode;
+        $usuario->district = $request->district;
+        $usuario->street = $request->street;
+        $usuario->exteriornumber = $request->extnumber;
+        $usuario->insidenumber = $request->innumber;
+        //$usuario->email = $request->email;
+        
+        $usuario->save();
+
+
+        return redirect()->route('user.index');
+
+    }
+    
 
     /**
      * Remove the specified resource from storage.

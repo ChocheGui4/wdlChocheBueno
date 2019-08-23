@@ -15,10 +15,10 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('users_id');
-            $table->integer('people_id');
-            $table->integer('acquisitions_id');
-            $table->integer('companies_id');
+            $table->integer('users_id')->nullable();
+            $table->integer('people_id')->nullable();
+            $table->integer('acquisitions_id')->nullable();
+            $table->integer('companies_id')->nullable();
             $table->foreign('users_id')
             ->references('id')
             ->on('users')

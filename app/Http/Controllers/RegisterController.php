@@ -8,6 +8,7 @@ use App\Contact;
 use App\Company;
 use App\Area;
 use App\People;
+use App\Customer;
 
 class RegisterController extends Controller
 {
@@ -28,12 +29,9 @@ class RegisterController extends Controller
         $names="user";
         $users ->role= $names;
         $users ->email= $request->email;
-        $users ->password= bcrypt($request->password);
-        
+        $users ->password= bcrypt($request->password);        
         $users->save();
 
-        
-        
         $kindoption = $request->kind;
         
         if ($kindoption=="Physical") {
@@ -49,6 +47,14 @@ class RegisterController extends Controller
             $person->insidenumber = $request->innumber;
             $person->exteriornumber = $request->extnumber;
             $person->save();
+
+            //Customers
+            $us= User::latest('id')->first();
+            $peo= People::latest('id')->first();
+            $customers = new Customer;
+            $customers->users_id=$us->id;
+            $customers->people_id=$peo->id;
+            $customers->save();
         } else if($kindoption=="Moral"){
 
             //Insert area
@@ -82,7 +88,15 @@ class RegisterController extends Controller
             $company->exteriornumber = $request->extnumber;
             $company->contacts_id = $id;
             $company->save();
+            
+            $com= Company::latest('id')->first();
+            $us= User::latest('id')->first();
+            $customers = new Customer;
+            $customers->users_id=$us->id;
+            $customers->users_id=$com->id;
+            $customers->save();
         }
+        
         
         return redirect()->route('login');
     }

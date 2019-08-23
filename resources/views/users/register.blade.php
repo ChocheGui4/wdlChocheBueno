@@ -1,7 +1,7 @@
 @extends('layouts.layout2') @section('content')
 
 <div class="contanier">
-
+    <br>
     <form
         action="{{ route('registerStore') }}"
         method="POST"

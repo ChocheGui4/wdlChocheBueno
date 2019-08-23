@@ -21,6 +21,9 @@ Route::get('/cc', 'CustomCompanController@index') -> middleware('auth');
 //Users
 Route::get('/user','UserController@index');
 Route::get('/useredit/{id}','UserController@userEdit')->name('userEdit')-> middleware('auth');
+Route::post('/userupdatep/{id}','UserController@userUpdateProfile')->name('userUpdateProfile')-> middleware('auth');
+Route::post('/userupdatea/{id}','UserController@userUpdateAddress')->name('userUpdateAddress')-> middleware('auth');
+
 Route::get('/usercreate','UserController@userCreate');
 Route::post('/useradd','UserController@userAdd')->name('userAdd');
 Route::resource('/user','UserController');
