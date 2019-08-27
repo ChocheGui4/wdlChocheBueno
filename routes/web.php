@@ -14,7 +14,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 Auth::routes(['verify' => true]);
-route::get('/home','PrincipalController@index');
+Route::get('home','PrincipalController@index')->name('home');
 Route::get('/cc','CustomCompanController@index');
 //Route::get('/wluser','WlUserController@index');
 Route::get('/branches', function () {
