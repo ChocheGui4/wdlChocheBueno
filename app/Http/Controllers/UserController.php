@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function showUsers(){
         $usuarios=User::where("role","=",'user')->paginate(5);
-        return view('super.users', compact('usuarios'))
+        return view('super.user', compact('usuarios'))
             ->with('i',(request()->input('page',1)-1)*5);
         
     }
@@ -119,19 +119,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $usuario = Usuarios::find($id);
-        $res=Direccion::where("usuarios_id","=",$id)->get();
-        return view('usuario.show', compact('usuario','res'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -140,32 +127,8 @@ class UserController extends Controller
     public function userEdit($id)
     {
         $usuario = User::find($id);
-        $consult = Customer::where("users_id","=",$usuario->id)->get();
-        foreach ($consult as $con ) {
-            $valpeople=$con->people_id;
-            $valcompany=$con->companies_id;
-        }
-        $people = People::find($valpeople);
-        $company = Company::find($valcompany);
-        $contact = Contact::find($company->contacts_id);
-        /*
-        foreach ($consult as $cus) {
-            if($cus->people_id!=null){
-                $val=$cus->people_id;
-                $customers = People::find($val);
-                return view('super.editUser', compact('usuario','customers'));
-            }else{
-                $val=$cus->companies_id;
-                $customers = Company::find($val);
-                
-                $valcon=$customers->contacts_id;
-                
-                $contact = Contact::find($valcon);
-                return view('super.editUser', compact('usuario','customers','contact'));
-            }
-            //$valcompany=$cus->companies_id;
-        }*/
-        return view('super.editUser', compact('usuario','people','company','contact'));
+        
+        return view('super.editUser', compact('usuario'));
     }
 
     /**

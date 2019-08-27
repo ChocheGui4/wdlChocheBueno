@@ -5,19 +5,86 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\BranchCreate;
+use App\Http\Requests\CompanyCreate;
+use App\Http\Requests\UserEditCreate;
+use App\Http\Requests\UserAddressEditCreate;
 use App\Company;
 use App\Branch;
 use App\People;
+use App\User;
+use App\Area;
+use App\Customer;
+use App\Contact;
 
 
 class CompanyController extends Controller
 {
-    public function showCC(){
+    public function companyShow(){
         $companies = Company::orderBy('id','ASC')->get();
         $peoples = People::orderBy('id','ASC')->get();
         
         
-        return view('super.companies',compact('companies','peoples'));
+        return view('super.company',compact('companies','peoples'));
+    }
+    public function companyCreate()
+    {
+        return view('super.addCompany');
+    }
+
+    public function companyAdd(CompanyCreate $request)
+    {
+        
+        //Insert users
+        $users = new User;
+        
+        $users ->role= "user";
+        $users ->email= $request->email;
+        $users ->password= bcrypt($request->password);
+        $users->save();
+
+        //Insert area
+        $area = new Area;
+        $areaoption=$request->area;
+        $area->name = $request->area;
+        $area->save();
+        
+        //Insert contact
+        $ided= Area::latest('id')->first();
+        $contact = new Contact;
+        $contact->name = $request->name;
+        $contact->lastname = $request->lastname;
+        $contact->telephone = $request->telephone;
+        $contact->areas_id = $ided->id;
+        $contact->save();   
+        //Get contact id
+        $ided= Contact::latest('id')->first();
+        $id=$ided->id;
+        
+        //Insert company
+        $company = new Company;
+        $company->companyrfc = $request->companyrfc;
+        $company->companyname = $request->companyname;
+        $company->companytelephone = $request->companytelephone;
+        $company->companyemail = $request->companyemail;
+        $company->zipcode = $request->zipcode;
+        $company->district = $request->district;
+        $company->street = $request->street;
+        $company->insidenumber = $request->innumber;
+        $company->exteriornumber = $request->extnumber;
+        $company->contacts_id = $id;
+        $company->save();
+
+        //Customer
+        $com= Company::latest('id')->first();
+        $us= User::latest('id')->first();
+        $customers = new Customer;
+        $customers->users_id=$us->id;
+        $customers->companies_id=$com->id;
+        $customers->save();
+        
+        
+        return redirect()->route('companyShow');
+        
     }
     public function showBranches($id){
         $company=$id;

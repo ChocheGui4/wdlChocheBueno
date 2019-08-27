@@ -10,7 +10,7 @@ class WlUserController extends Controller
     public function showWlUsers(){
         $usuarios=User::where("role","<>",'user')->paginate(6);
         //$usuarios= User::orderBy('id','ASC')->paginate(5);
-        return view('super.wlUsers', compact('usuarios'))
+        return view('super.wlUser', compact('usuarios'))
             ->with('i',(request()->input('page',1)-1)*6);
         //return view('super.wlUsers');
     }

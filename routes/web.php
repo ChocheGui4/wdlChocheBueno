@@ -18,22 +18,24 @@ Auth::routes(['verify' => true]);
 route::get('/home', 'PrincipalController@showHome') -> middleware('auth');
 
 //Companies
-Route::get('/companies', 'CompanyController@showCC') -> middleware('auth');
-Route::get('/ccbranches/{id}', 'CompanyController@showBranches') ->name('showBranches')-> middleware('auth');
-Route::get('/cccreatebranches/{id}', 'CompanyController@createBranches') ->name('createBranches')-> middleware('auth');
-Route::post('/ccaddbranches/{id}', 'CompanyController@addBranches') ->name('addBranches')-> middleware('auth');
+Route::get('/companies', 'CompanyController@companyShow') -> name('companyShow') -> middleware('auth');
+Route::get('/companycreate', 'CompanyController@companyCreate') -> name('companyCreate') -> middleware('auth');
+Route::post('/companyadd','CompanyController@companyAdd')->name('companyAdd');
+Route::get('/companybranches/{id}', 'CompanyController@showBranches') ->name('showBranches')-> middleware('auth');
+Route::get('/companycreatebranches/{id}', 'CompanyController@createBranches') ->name('createBranches')-> middleware('auth');
+Route::post('/companyaddbranches/{id}', 'CompanyController@addBranches') ->name('addBranches')-> middleware('auth');
 
 //Customers
 Route::get('/customers', 'CustomController@showCustomers')->name('showCustomers') -> middleware('auth');
-
-
+Route::get('/customercreate', 'CustomController@customerCreate') -> name('customerCreate') -> middleware('auth');
+Route::post('/customeradd','CustomController@customerAdd')->name('customerAdd');
 //Users
 Route::get('/user','UserController@showUsers')->name('showUsers');
 Route::get('/useredit/{id}','UserController@userEdit')->name('userEdit')-> middleware('auth');
 Route::post('/userupdatep/{id}','UserController@userUpdateProfile')->name('userUpdateProfile')-> middleware('auth');
 Route::post('/userupdatea/{id}','UserController@userUpdateAddress')->name('userUpdateAddress')-> middleware('auth');
 Route::get('/usercreate','UserController@userCreate')->name('userCreate');
-Route::post('/useradd','UserController@userAdd')->name('userAdd');
+
 Route::get('/userdelete/{id}','UserController@userDelete')->name('userDelete')-> middleware('auth');
 //Route::resource('/user','UserController');
 //Route::resource('/wluser','WlUserController');

@@ -3,15 +3,12 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      
-       
+
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-2">
-
-                    </div>
+                    <div class="col-sm-2"></div>
                     <div class="col-sm-8">
                         <h1 align="center" class="m-0 text-dark">Companies</h1>
                         <br>
@@ -66,11 +63,20 @@
                                                 {{ $company->district }}</p>
 
                                         </div>
-
-                                    </div>
-                                    <div align="right">
-                                        <a href="{{ route('showBranches',$company->id)}}">Inpection<i class="fas fa-arrow-circle-right"></i>
-                                        </a>
+                                        <div class="row">
+                                            <div class="col-lg-8"></div>
+                                            <div class="col-sm-2">
+                                                <a href="{{ route('showBranches',$company->id)}}">
+                                                    <i class="fas fa-user-edit"></i>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a href="{{ route('showBranches',$company->id)}}">
+                                                    <i class="fas fa-arrow-circle-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
 
                                 </div>
@@ -87,7 +93,7 @@
                                     <div class="icon">
                                         <i class="ion ion-pie-graph"></i>
                                     </div>
-                                    <a href="/usercreate" class="small-box-footer">Go<i class="fas fa-arrow-circle-right"></i>
+                                    <a href="/companycreate" class="small-box-footer">Go<i class="fas fa-arrow-circle-right"></i>
                                     </a>
                                 </div>
                             </div>

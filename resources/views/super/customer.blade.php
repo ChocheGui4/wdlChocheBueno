@@ -83,7 +83,7 @@
                                     <div class="icon">
                                         <i class="ion ion-pie-graph"></i>
                                     </div>
-                                    <a href="/usercreate" class="small-box-footer">Go
+                                    <a href="/customercreate" class="small-box-footer">Go
                                         <i class="fas fa-arrow-circle-right"></i>
                                     </a>
                                 </div>
