@@ -6,44 +6,42 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-12">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-7">
-                        <h1 align="center" class="m-0 text-dark">Branch office</h1><br>
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <h1 align="center" class="m-0 text-dark">Customers</h1>
+                        <br>
                     </div>
-
-                    
-                    
-
                     <div class="col-md-2">
-                        <a class="btn btn-dark" href="/companies">Back to company</a>
+                        <a class="btn btn-dark" href="/home">Back to menu</a>
                     </div>
-                </div>
-                <!-- /.row -->
-                <div class="row mb-12">
-                    
                     <!-- /.col -->
+                </div>
+                <div class="row mb-12">
+
                     <div class="col-sm-4">
+
                         <select class="form-control">
                             <option>ALL</option>
                             <option>WDNG</option>
                             <option>WDF</option>
                         </select>
-                        
+
                     </div>
                     <a href="">
                         <i class="right fas fa-question-circle"></i>
                     </a>
                     <div class="col-md-5"></div>
                     <br><br>
-
                 </div>
+                <!-- /.row -->
+
                 <!-- /.row -->
                 <section class="content">
                     <div class="container-fluid">
                         <!-- Small boxes (Stat box) -->
                         <div class="row">
-                            @foreach ($branches as $branch)
+                            @foreach ($usuarios as $people)
                             <div class="col-lg-3 col-6">
                                 <!-- small box -->
                                 <div class="small-box bg-link">
@@ -55,13 +53,12 @@
                                                 src="{{ asset('assets/dist/img/HillsongThisisliving1.jpg') }}">
                                             <br>
                                         </div>
-
-                                        <p>{{ $branch->name }}</p>
                                         <div>
-                                            <p>{{ $branch->street }},
-                                                {{ $branch->exteriornumber }}-{{ $branch->insidenumber }},
-                                                {{ $branch->zipcode }},
-                                                {{ $branch->district }}</p>
+                                            <p>{{ $people->name }}</p>
+                                            
+                                            <p>{{ $people->email }}
+                                            
+                                            </p>
 
                                         </div>
 
@@ -80,13 +77,13 @@
                                 <!-- small box -->
                                 <div class="small-box bg-info">
                                     <div class="inner">
-                                        <p >add Branch</p>
+                                        <p >add Customer</p>
 
                                     </div>
                                     <div class="icon">
                                         <i class="ion ion-pie-graph"></i>
                                     </div>
-                                    <a href="{{ route('createBranches',$company)}}" class="small-box-footer">Go
+                                    <a href="/usercreate" class="small-box-footer">Go
                                         <i class="fas fa-arrow-circle-right"></i>
                                     </a>
                                 </div>
@@ -102,8 +99,6 @@
             <!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
-
-        <!-- Main content -->
 
     </div>
     <!-- /.content-wrapper -->

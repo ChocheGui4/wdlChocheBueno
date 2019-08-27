@@ -19,6 +19,6 @@ class DatabaseSeeder extends Seeder
         $user->role = "Super";
         $user->email = "chochej10@gmail.com";
         $user->password = bcrypt("Hol@mundo1");
-        $user->save();        
+        $user->save();
     }
 }

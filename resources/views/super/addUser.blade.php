@@ -235,8 +235,16 @@
                                                                         <strong>These credentials do not match our records.</strong>
                                                                     </span>
                                                                 </div>
+                                                                <input
+                                                                            type="text"
+                                                                            hidden
+                                                                            id="kindname"
+                                                                            name="kindname"
+                                                                            class="form-control"
+                                                                            value="{{ old('kindname') }}"
+                                                                            placeholder="kindname">
 
-                                                                <div id="rfc">
+                                                                <div id="rfcdiv">
                                                                     <strong >
                                                                         RFC</strong>
                                                                     <i id="qrfc" class="fas fa-question-circle"></i>
@@ -248,19 +256,12 @@
                                                                         <input
                                                                             type="text"
                                                                             onkeyup="mayus(this);"
-                                                                            id="rfcfield"
+                                                                            id="rfc"
                                                                             name="rfc"
                                                                             class="form-control {{ $errors->has('rfc') ? ' is-invalid' : '' }}"
                                                                             value="{{ old('rfc') }}"
                                                                             placeholder="RJSU987635HYS87J">
-                                                                        <input
-                                                                            type="text"
-                                                                            hidden="hidden"
-                                                                            id="kindname"
-                                                                            name="kindname"
-                                                                            class="form-control"
-                                                                            value="{{ old('kindname') }}"
-                                                                            placeholder="kindname">
+                                                                        
                                                                         <span id="arfc" class="invalid-feedback" role="alert">
                                                                             <strong>{{ $errors->first('rfc') }}
                                                                                 These must contain at least 12-13 characters</strong>

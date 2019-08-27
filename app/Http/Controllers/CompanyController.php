@@ -1,76 +1,57 @@
 <?php
 
-use App\Contact;
-use App\Company;
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\BranchCreate;
+use App\Company;
+use App\Branch;
+use App\People;
+
+
 class CompanyController extends Controller
 {
-    public function index(){
-        return view('users.register');
-    }
-    public function create()
-    {
+    public function showCC(){
+        $companies = Company::orderBy('id','ASC')->get();
+        $peoples = People::orderBy('id','ASC')->get();
         
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
         
+        return view('super.companies',compact('companies','peoples'));
+    }
+    public function showBranches($id){
+        $company=$id;
+        $branches = Branch::where("companies_id","=",$id)->get();     
+        return view('super.branches',compact('branches','company'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
+
+    public function createBranches($id){
+        $company=$id;
         
+        return view('super.addBranch',compact('company'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
+
+    public function addBranches(BranchCreate $request,$id){
         
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(CrearReglas $request, $id)
-    {
-
+        $branch = new Branch;
+        $branch ->name= $request->name;
+        $branch ->zipcode= $request->zipcode;
+        $branch ->district= $request->district;
+        $branch ->street= $request->street;
+        $branch ->insidenumber= $request->innumber;
+        $branch ->exteriornumber= $request->extnumber;
+        $branch ->companies_id= $id;
+        $branch->save();
         
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
+        $company=$id;
         
+        return redirect()->route('showBranches',compact('company'));
+
+        /*$company=$id;
+        $branches = Branch::where("companies_id","=",$id)->get();     
+        return view('super.branches',compact('branches','company'));*/
     }
+    
 }

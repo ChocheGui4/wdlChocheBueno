@@ -7,7 +7,7 @@ use App\Http\Requests\WlUserEditCreate;
 
 class WlUserController extends Controller
 {
-    public function index(){
+    public function showWlUsers(){
         $usuarios=User::where("role","<>",'user')->paginate(6);
         //$usuarios= User::orderBy('id','ASC')->paginate(5);
         return view('super.wlUsers', compact('usuarios'))
@@ -29,7 +29,7 @@ class WlUserController extends Controller
         
         $users->save();
 
-        return redirect()->route('wluser.index');
+        return redirect()->route('showWlUsers');
     }
 
     /**
@@ -73,7 +73,7 @@ class WlUserController extends Controller
         $usuario->save();
 
 
-        return redirect()->route('wluser.index');
+        return redirect()->route('showWlUsers');
 
     }
 
@@ -91,7 +91,7 @@ class WlUserController extends Controller
         $res->delete();
         $usuario = Usuarios::find($id);
         $usuario->delete();*/
-        return redirect()->route('wluser.index');
+        return redirect()->route('showWlUsers');
     }
 }
 

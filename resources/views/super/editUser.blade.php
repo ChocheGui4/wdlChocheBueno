@@ -76,7 +76,7 @@
                                         
                                         <div id="profile" class="card">
                                             
-                                            <form action="{{ route('userUpdateProfile',$people->id) }}" method="POST" autocomplete="off">
+                                            <form action="{{ route('userUpdateProfile',$usuario->id) }}" method="POST" autocomplete="off">
                                                 <div class="card-body">                                                
                                                 
                                                     <div class="row">
@@ -101,6 +101,7 @@
                                                                                 <span class="input-group-text">
                                                                                     <i class="fas fa-user-edit"></i>
                                                                                 </span>
+
                                                                                 <input
                                                                                     type="text"
                                                                                     name="name"
@@ -242,8 +243,9 @@
                                                                         id="companyname"
                                                                         name="companyname"
                                                                         class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
-                                                                        value="{{ old('companyname') }}"
-                                                                        placeholder="The beauty S.A. de C.V.">
+                                                                        placeholder="The beauty S.A. de C.V."
+                                                                        value={{ $people->companyname }}
+                                                                        >
                                                                     <span id="anamecompany" class="invalid-feedback" role="alert">
                                                                         <strong>{{ $errors->first('companyname') }}Must have at least 1 name of 3 letters</strong>
                                                                     </span>
@@ -269,8 +271,8 @@
                                                                         id="companyrfc"
                                                                         name="companyrfc"
                                                                         class="form-control {{ $errors->has('companyrfc') ? ' is-invalid' : '' }}"
-                                                                        value="{{ old('companyrfc') }}"
-                                                                        placeholder="FTGY568765H78">
+                                                                        placeholder="FTGY568765H78"
+                                                                        value={{ $people->companyrfc }}>
                                                                     <span id="arfccompany" class="invalid-feedback" role="alert">
                                                                         <strong>
                                                                             {{ $errors->first('companyrfc') }}These must contain at least 12-13 characters</strong>
@@ -296,8 +298,8 @@
                                                                         id="companytelephone"
                                                                         name="companytelephone"
                                                                         class="form-control {{ $errors->has('companytelephone') ? ' is-invalid' : '' }}"
-                                                                        value="{{ old('companytelephone') }}"
-                                                                        placeholder="5523212321">
+                                                                        placeholder="5523212321"
+                                                                        value={{ $people->companytelephone }}>
                                                                     <span id="atelecompany" class="invalid-feedback" role="alert">
                                                                         <strong>Must have only numbers (10 digits)</strong>
                                                                     </span>
@@ -324,8 +326,8 @@
                                                                         id="companyemail"
                                                                         name="companyemail"
                                                                         class="form-control {{ $errors->has('companyemail') ? ' is-invalid' : '' }}"
-                                                                        value="{{ old('companyemail') }}"
-                                                                        placeholder="company@exam.com">
+                                                                        placeholder="company@exam.com"
+                                                                        value={{ $people->companyemail }}>
                                                                     <span id="aemailcompany" class="invalid-feedback" role="alert">
                                                                         <strong>{{ $errors->first('companyemail') }}Must have letters, signs and numbers follow @ and domain</strong>
                                                                     </span>
@@ -358,7 +360,7 @@
                                     <div class="col-md-12">
 
                                         <div id="information" class="card">
-                                            <form action="{{ route('userUpdateAddress',$people->id)}}" method="POST" autocomplete="off">
+                                            <form action="{{ route('userUpdateAddress',$usuario->id)}}" method="POST" autocomplete="off">
                                                 <div id="bodyaddress" class="card-body">
 
                                                     @csrf

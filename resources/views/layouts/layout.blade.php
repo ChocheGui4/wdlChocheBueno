@@ -143,73 +143,6 @@ only. -->
                                 </a>
 
                             </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="/customandcompanies">
-                                    <i class="nav-icon fas fa-building"></i>
-                                    <p>
-                                        Customer & Companies
-
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-file-alt"></i>
-                                    <p>
-                                        Generate Reports
-                                        <i class="fas fa-angle-left right"></i>
-                                        <span class="badge badge-info right">6</span>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="pages/layout/top-nav.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Top Navigation</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/boxed.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Boxed</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Fixed Sidebar</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Fixed Navbar</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/fixed-footer.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Fixed Footer</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Collapsed Sidebar</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item has-treeview">
-                                <a href="/wluser" class="nav-link">
-                                    <i class="nav-icon fas fa-users"></i>
-                                    <p>
-                                        WL Users
-
-                                    </p>
-                                </a>
-                            </li>
                             <li class="nav-item has-treeview">
                                 <a href="/user" class="nav-link">
                                     <i class="nav-icon fas fa-user"></i>
@@ -221,48 +154,48 @@ only. -->
 
                             </li>
 
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon far fa-plus-square"></i>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/companies">
+                                    <i class="nav-icon fas fa-building"></i>
                                     <p>
-                                        Extras
-                                        <i class="fas fa-angle-left right"></i>
+                                        Companies
+
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="pages/examples/login.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Login</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/examples/register.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Register</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/examples/lockscreen.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Lockscreen</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/examples/legacy-user-menu.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Legacy User Menu</p>
-                                        </a>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a href="starter.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Starter Page</p>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/customers">
+                                    <i class="nav-icon fas fa-building"></i>
+                                    <p>
+                                        Customers
+
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-file-alt"></i>
+                                    <p>
+                                        Generate Reports
+                                        
+                                        
+                                    </p>
+                                </a>
+                                
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="/wluser" class="nav-link">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        WL Users
+
+                                    </p>
+                                </a>
+                            </li>
+                            
+
+                            
 
                             <li class="nav-item">
 

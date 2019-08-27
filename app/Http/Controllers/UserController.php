@@ -10,15 +10,14 @@ use App\Company;
 use App\Area;
 use App\People;
 use App\Customer;
-
+use Redirect;
 class UserController extends Controller
 {
-    public function index(){
+    public function showUsers(){
         $usuarios=User::where("role","=",'user')->paginate(5);
-        //$usuarios= User::orderBy('id','ASC')->paginate(5);
         return view('super.users', compact('usuarios'))
             ->with('i',(request()->input('page',1)-1)*5);
-        //return view('super.users');
+        
     }
     public function userCreate()
     {
@@ -33,10 +32,15 @@ class UserController extends Controller
      */
     public function userAdd(RuleCreate $request)
     {
-        
+        $kindoption = $request->kind;
+        if($kindoption=="Physical"){
+            $names="User";
+        }else if($kindoption=="Moral"){
+            $names="Company";
+        }
         //Insert users
         $users = new User;
-        $names="user";
+        
         $users ->role= $names;
         $users ->email= $request->email;
         $users ->password= bcrypt($request->password);
@@ -44,7 +48,7 @@ class UserController extends Controller
 
         
         
-        $kindoption = $request->kind;
+        
         
         if ($kindoption=="Physical") {
             //Insert people
@@ -106,11 +110,12 @@ class UserController extends Controller
             $us= User::latest('id')->first();
             $customers = new Customer;
             $customers->users_id=$us->id;
-            $customers->users_id=$com->id;
+            $customers->companies_id=$com->id;
             $customers->save();
         }
         
-        return redirect()->route('user.index');
+        return redirect()->route('showUsers');
+        
     }
 
     /**
@@ -135,17 +140,32 @@ class UserController extends Controller
     public function userEdit($id)
     {
         $usuario = User::find($id);
-        
-        $customer = Customer::where("users_id","=",$usuario->id)->get();
-        
-        foreach ($customer as $cus) {
-            $val=$cus->people_id;
-            
+        $consult = Customer::where("users_id","=",$usuario->id)->get();
+        foreach ($consult as $con ) {
+            $valpeople=$con->people_id;
+            $valcompany=$con->companies_id;
         }
-        
-        $people = People::find($val);
-        
-        return view('super.editUser', compact('usuario','people'));
+        $people = People::find($valpeople);
+        $company = Company::find($valcompany);
+        $contact = Contact::find($company->contacts_id);
+        /*
+        foreach ($consult as $cus) {
+            if($cus->people_id!=null){
+                $val=$cus->people_id;
+                $customers = People::find($val);
+                return view('super.editUser', compact('usuario','customers'));
+            }else{
+                $val=$cus->companies_id;
+                $customers = Company::find($val);
+                
+                $valcon=$customers->contacts_id;
+                
+                $contact = Contact::find($valcon);
+                return view('super.editUser', compact('usuario','customers','contact'));
+            }
+            //$valcompany=$cus->companies_id;
+        }*/
+        return view('super.editUser', compact('usuario','people','company','contact'));
     }
 
     /**
@@ -196,14 +216,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function userDelete($id)
     {
         //$direccion=Direccion::find(11);
-        $res=Direccion::where("usuarios_id","=",$id);
+        $group = User::find($id)->delete();
+        /*$res=Direccion::where("usuarios_id","=",$id);
         $res->delete();
         $usuario = Usuarios::find($id);
-        $usuario->delete();
-        return redirect()->route('usuario.index')
-                        ->with('success','Usuario eliminado.');
+        $usuario->delete();*/
+        return redirect()->route('showUsers');
     }
 }

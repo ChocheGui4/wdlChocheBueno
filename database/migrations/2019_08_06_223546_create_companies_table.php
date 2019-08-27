@@ -24,7 +24,7 @@ class CreateCompaniesTable extends Migration
             $table->string('street',35);
             $table->integer('insidenumber');
             $table->integer('exteriornumber');
-            $table->integer('contacts_id')->nullable();
+            $table->integer('contacts_id');
             $table->foreign('contacts_id')
             ->references('id')
             ->on('contacts')

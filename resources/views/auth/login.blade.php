@@ -55,11 +55,7 @@
                             </div>
                         </div>
                         <div class="form-group row mb-0">
-                            <div class="col-md-4 offset-md-3">
-                                
-
-                                <a class="nav-link" href="/registers/contactdata">Create a new account</a>
-                            </div>
+                        
                             <div class="col-md-4 offset-md-3">
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">

@@ -13,12 +13,12 @@ class CustomCompanController extends Controller
 {
     //
 
-    public function index(){
+    public function showCC(){
         $companies = Company::orderBy('id','ASC')->get();
         $peoples = People::orderBy('id','ASC')->get();
         
         
-        return view('super.customersCompanies',compact('companies','peoples'));
+        return view('super.companies',compact('companies','peoples'));
     }
     public function showBranches($id){
         $company=$id;
@@ -35,7 +35,7 @@ class CustomCompanController extends Controller
 
 
     public function addBranches(BranchCreate $request,$id){
-        /*
+        
         $branch = new Branch;
         $branch ->name= $request->name;
         $branch ->zipcode= $request->zipcode;
@@ -45,10 +45,10 @@ class CustomCompanController extends Controller
         $branch ->exteriornumber= $request->extnumber;
         $branch ->companies_id= $id;
         $branch->save();
-        */
+        
         $company=$id;
         
-        //return redirect()->route('customandcompanies.index',compact('company'));
+        return redirect()->route('showBranches',compact('company'));
 
         /*$company=$id;
         $branches = Branch::where("companies_id","=",$id)->get();     

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class PrincipalController extends Controller
 {
     //Página principal
-    public function index()
+    public function showHome()
     {
         return view('super.principal');
     }

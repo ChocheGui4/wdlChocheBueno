@@ -15,10 +15,10 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',25)->nullable();
-            $table->string('lastname',35)->nullable();
-            $table->string('telephone',10)->nullable();
-            $table->integer('areas_id')->nullable();
+            $table->string('name',25);
+            $table->string('lastname',35);
+            $table->string('telephone',10);
+            $table->integer('areas_id');
             $table->foreign('areas_id')
             ->references('id')
             ->on('areas')

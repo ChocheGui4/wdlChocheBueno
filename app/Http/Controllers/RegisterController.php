@@ -47,13 +47,23 @@ class RegisterController extends Controller
             $person->insidenumber = $request->innumber;
             $person->exteriornumber = $request->extnumber;
             $person->save();
-
+            //Area, Contact and Company
+            $area = new Area;
+            $area->save();
+            $contact = new Contact;
+            $contact->areas_id=$area->id;
+            $contact->save();
+            $company = new Company;
+            $company->contacts_id=$contact->id;
+            $company->save();
+            
             //Customers
             $us= User::latest('id')->first();
             $peo= People::latest('id')->first();
             $customers = new Customer;
             $customers->users_id=$us->id;
             $customers->people_id=$peo->id;
+            $customers->companies_id=$company->id;
             $customers->save();
         } else if($kindoption=="Moral"){
 
@@ -69,7 +79,7 @@ class RegisterController extends Controller
             $contact->name = $request->name;
             $contact->lastname = $request->lastname;
             $contact->telephone = $request->telephone;
-            //$contact->areas_id = $ided->id;
+            $contact->areas_id = $ided->id;
             $contact->save();
             $ided= Contact::latest('id')->first();
             $id=null;
@@ -88,12 +98,18 @@ class RegisterController extends Controller
             $company->exteriornumber = $request->extnumber;
             $company->contacts_id = $id;
             $company->save();
+
+            //People
+            $person = new People;
+            $person->save();
             
+            $peo= People::latest('id')->first();
             $com= Company::latest('id')->first();
             $us= User::latest('id')->first();
             $customers = new Customer;
             $customers->users_id=$us->id;
-            $customers->users_id=$com->id;
+            $customers->people_id=$peo->id;
+            $customers->companies_id=$com->id;
             $customers->save();
         }
         

@@ -1,13 +1,13 @@
 //Funciones jquery para formulario de usuarios de empresas
 $(document).ready(function () {
     $("#area").hide();
-    $("#rfc").hide();
+    $("#rfcdiv").hide();
     $("#scd").hide();
     $("#sca1").hide();
     $("#choose").val($("#kindname").val())
     choose();
     $("#areas").val($("#areainput").val());
-    
+
 });
 
 function mayus(e) {
@@ -31,27 +31,34 @@ function choose() {
 
         $("#generalcom").show();
         $("#area").hide();
-        $("#rfc").hide();
+        $("#rfcdiv").hide();
         $("#scd").hide();
         $("#sca1").hide();
     } else if (sel == "Physical") {
         $("#kindname").val("Physical");
+        if (i > 1) {
+            $("#rfc").val("");
+        }
+
         $("#companyname").val("Null");
         $("#companyrfc").val("NOHA000000YAB");
         $("#companytelephone").val("0000000000");
         $("#companyemail").val("nada@example.com");
         $("#generalcom").hide();
         $("#area").hide();
-        $("#rfc").show();
+        $("#rfcdiv").show();
         $("#scd").hide();
         $("#sca1").show();
 
     } else if (sel == "Moral") {
         $("#kindname").val("Moral");
-        clear();
-        $("#rfcfield").val("NNNNYYYYUUUU0");
+        if (i != 0) {
+            clear();
+        }
+
+        $("#rfc").val("3ESCXVA7YHSKW");
         $("#generalcom").show();
-        $("#rfc").hide();
+        $("#rfcdiv").hide();
         $("#area").show();
         $("#scd").show();
         $("#sca1").hide();
@@ -59,7 +66,9 @@ function choose() {
         $("#choose").val("Choose")
     }
 }
+var i = 0;
 $('#choose').on('click', function () {
+    i++;
     choose();
 });
 
@@ -219,13 +228,14 @@ $('#showpass').click(function () {
 
 });
 //button delete
-$('#deleteuser').on('click', function(e){
-    var $form=$(this).closest('form'); 
+$('#deleteuser').on('click', function (e) {
+    var $form = $(this).closest('form');
     e.preventDefault();
-    $('#confirm').modal({ backdrop: 'static', keyboard: false })
-        .one('click', '#delete', function() {
+    $('#confirm')
+        .modal({backdrop: 'static', keyboard: false})
+        .one('click', '#delete', function () {
             $form.trigger('submit'); // submit the form
         });
-        // .one() is NOT a typo of .on()
+    // .one() is NOT a typo of .on()
 });
-//-------------
+// -------------
