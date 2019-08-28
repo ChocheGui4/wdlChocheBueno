@@ -15,7 +15,7 @@ Route::get('/', function () {
 });
 Auth::routes(['verify' => true]);
 //Home
-route::get('/home', 'PrincipalController@showHome') -> middleware('auth');
+Route::get('/home', 'PrincipalController@Home')->name('Home')-> middleware('auth');
 
 //Companies
 Route::get('/companies', 'CompanyController@companyShow') -> name('companyShow') -> middleware('auth');

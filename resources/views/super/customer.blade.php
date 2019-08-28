@@ -1,109 +1,101 @@
-@extends('layouts.layout') @section('content')
+@extends('layouts.wdlicenciamiento') @section('content')
 <div class="wrapper">
-
+    <div class="row page-titles">
+        <div class="col-md-6 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Customers</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Customers</li>
+            </ol>
+        </div>
+        <div class="col-md-6 col-4 align-self-center">
+            <button
+                class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10">
+                <i class="ti-settings text-white"></i>
+            </button>
+            <a href="{{ route('customerCreate')}}"  class="btn pull-right hidden-sm-down btn-success">
+                <i class="mdi mdi-plus-circle"></i>
+                Create</a>
+            <div class="dropdown pull-right m-r-10 hidden-sm-down">
+                <button
+                    class="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                    January 2017
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">February 2017</a>
+                    <a class="dropdown-item" href="#">March 2017</a>
+                    <a class="dropdown-item" href="#">April 2017</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-8">
-                        <h1 align="center" class="m-0 text-dark">Customers</h1>
-                        <br>
-                    </div>
-                    <div class="col-md-2">
-                        <a class="btn btn-dark" href="/home">Back to menu</a>
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <div class="row mb-12">
 
-                    <div class="col-sm-4">
+                <!--Inicio de información de la empresa-->
+                <div class="row el-element-overlay">
 
-                        <select class="form-control">
-                            <option>ALL</option>
-                            <option>WDNG</option>
-                            <option>WDF</option>
-                        </select>
-
-                    </div>
-                    <a href="">
-                        <i class="right fas fa-question-circle"></i>
-                    </a>
-                    <div class="col-md-5"></div>
-                    <br><br>
-                </div>
-                <!-- /.row -->
-
-                <!-- /.row -->
-                <section class="content">
-                    <div class="container-fluid">
-                        <!-- Small boxes (Stat box) -->
-                        <div class="row">
-                            @foreach ($usuarios as $people)
-                            <div class="col-lg-3 col-6">
-                                <!-- small box -->
-                                <div class="small-box bg-link">
-                                    <div class="inner">
-                                        <div align="center">
-
-                                            <img
-                                                class="imgre img-circle elevation-2"
-                                                src="{{ asset('assets/dist/img/HillsongThisisliving1.jpg') }}">
-                                            <br>
-                                        </div>
-                                        <div>
-                                            <p>{{ $people->name }}</p>
-                                            
-                                            <p>{{ $people->email }}
-                                            
-                                            </p>
-
-                                        </div>
-
+                    @foreach ($usuarios as $people)
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="el-card-item">
+                                <div class="el-card-avatar el-overlay-1">
+                                    <img src="{{ asset('bundle/assets/images/users/HillsongThisisliving1.jpg') }}" alt="user">
+                                    <div class="el-overlay">
+                                        <ul class="el-info">
+                                            <li>
+                                                <a
+                                                    class="btn default btn-outline image-popup-vertical-fit"
+                                                    href="../plugins/images/users/1.jpg">
+                                                    <i class="mdi mdi-account-edit"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="btn default btn-outline" href="javascript:void(0);">
+                                                    <i class="mdi mdi-close-circle"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="btn default btn-outline" href="javascript:void(0);">
+                                                    <i class="mdi mdi-arrow-right-bold"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div align="right">
-                                        <a href="#">Inpection<i class="fas fa-arrow-circle-right"></i>
-                                        </a>
-                                    </div>
-
+                                </div>
+                                <div class="el-card-content">
+                                    <h3 class="box-title">{{ $people->name }}
+                                    </h3>
+                                    <small>{{ $people->email }}</small>
+                                    <br>
                                 </div>
                             </div>
-                            <!-- ./col -->
-                            @endforeach
-
-                            <div class="col-lg-3 col-6">
-                                <!-- small box -->
-                                <div class="small-box bg-info">
-                                    <div class="inner">
-                                        <p >add Customer</p>
-
-                                    </div>
-                                    <div class="icon">
-                                        <i class="ion ion-pie-graph"></i>
-                                    </div>
-                                    <a href="/customercreate" class="small-box-footer">Go
-                                        <i class="fas fa-arrow-circle-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- ./col -->
                         </div>
-
-                        <!-- /.row (main row) -->
                     </div>
-                    <!-- /.container-fluid -->
-                </section>
+                    @endforeach
+
+                </div>
+                <!--Fin de la información de la empresa-->
+                
             </div>
             <!-- /.container-fluid -->
         </div>
-        <!-- /.content-header -->
-
     </div>
     <!-- /.content-wrapper -->
     <!--Inicia la ventana modal-->
 
 </div>
+<!-- ./wrapper -->
 <!-- ./wrapper -->
 @endsection
