@@ -8,6 +8,9 @@ use App\Http\Requests\BranchCreate;
 use App\Http\Requests\CompanyCreate;
 use App\Http\Requests\UserEditCreate;
 use App\Http\Requests\UserAddressEditCreate;
+use App\Http\Requests\CompanyEditProfileCreate;
+use App\Http\Requests\CompanyEditCompanyCreate;
+use App\Http\Requests\CompanyEditAddressCreate;
 use App\Company;
 use App\Branch;
 use App\People;
@@ -95,9 +98,10 @@ class CompanyController extends Controller
     public function companyEdit($id)
     {
         $compan = Company::find($id);
+        $contact = Contact::find($id);
         
         
-        return view('super.editCompany', compact('compan'));
+        return view('super.editCompany', compact('compan','contact'));
     }
     public function showBranches($id){
         $company=$id;
@@ -133,5 +137,40 @@ class CompanyController extends Controller
         $branches = Branch::where("companies_id","=",$id)->get();     
         return view('super.branches',compact('branches','company'));*/
     }
+    public function companyUpdateProfile(CompanyEditProfileCreate $request, $id)
+    {
+        $contact = Contact::find($id);
+        $contact->name = $request->name;
+        $contact->lastname = $request->lastname;
+        $contact->telephone = $request->telephone;
+        $contact->save();
+        return redirect()->route('companyShow');
+
+    }
+    public function companyUpdateCompany(CompanyEditCompanyCreate $request, $id)
+    {
+        $company = Company::find($id);
+        $company->companyname = $request->companyname;
+        $company->companyrfc = $request->companyrfc;
+        $company->companytelephone = $request->companytelephone;
+        $company->save();
+        return redirect()->route('companyShow');
+
+    }
+    public function companyUpdateAddress(CompanyEditAddressCreate $request, $id)
+    {
+        $company = Company::find($id);
+        $company->zipcode = $request->zipcode;
+        $company->district = $request->district;
+        $company->street = $request->street;
+        $company->exteriornumber = $request->extnumber;
+        $company->insidenumber = $request->innumber;
+        $company->save();
+        return redirect()->route('companyShow');
+
+    }
+
+    
+    
     
 }

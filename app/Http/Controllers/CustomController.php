@@ -29,7 +29,7 @@ class CustomController extends Controller
         ->join('users','customers.users_id', '=','users.id')
         ->select()
         ->get();
-
+        //dd($usuarios);
         
                 
         //$usuarios= User::orderBy('id','ASC')->paginate(5);
@@ -74,7 +74,7 @@ class CustomController extends Controller
         $customers->people_id=$peo->id;
         $customers->save();
         
-        return redirect()->route('showCustomers');
+        return redirect()->route('customerShow');
         
     }
     public function customerEdit($id)
@@ -119,5 +119,20 @@ class CustomController extends Controller
 
         return redirect()->route('customerShow');
 
+    }
+    
+    public function customerDelete($id)
+    {
+        //$direccion=Direccion::find(11);
+        //dd($id);
+        
+        $deleteuser = People::join('customers', 'customers.people_id', '=', 'people.id')
+                ->join('users', 'users.id', '=', 'customers.users_id')->get();
+        foreach ($deleteuser as $del) {
+            $val = $del->id;            
+        }
+        $user = User::find($val)->delete();        
+        $group = People::find($id)->delete();
+        return redirect()->route('customerShow');
     }
 }

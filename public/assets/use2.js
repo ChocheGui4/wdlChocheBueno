@@ -238,4 +238,7 @@ $('#deleteuser').on('click', function (e) {
         });
     // .one() is NOT a typo of .on()
 });
+
+//Button delete customer
+
 // -------------

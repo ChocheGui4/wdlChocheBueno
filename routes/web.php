@@ -24,7 +24,11 @@ Route::get('/companycreate', 'CompanyController@companyCreate') -> name('company
 Route::get('/companyedit/{id}', 'CompanyController@companyEdit') -> name('companyEdit');
 
 Route::post('/companyadd','CompanyController@companyAdd')->name('companyAdd');
+Route::post('/companyupdateprofile/{id}','CompanyController@companyUpdateProfile')->name('companyUpdateProfile');
+Route::post('/companyupdatecompany/{id}','CompanyController@companyUpdateCompany')->name('companyUpdateCompany');
+Route::post('/companyupdateaddress/{id}','CompanyController@companyUpdateAddress')->name('companyUpdateAddress');
 Route::get('/companybranches/{id}', 'CompanyController@showBranches') ->name('showBranches');
+Route::get('/companybranchesproducts/{id}/{branch}', 'ProductController@showBranchesProducts') ->name('showBranchesProducts');
 Route::get('/companycreatebranches/{id}', 'CompanyController@createBranches') ->name('createBranches');
 Route::post('/companyaddbranches/{id}', 'CompanyController@addBranches') ->name('addBranches');
 
@@ -32,6 +36,7 @@ Route::post('/companyaddbranches/{id}', 'CompanyController@addBranches') ->name(
 Route::get('/customers', 'CustomController@customerShow')->name('customerShow');
 Route::get('/customercreate', 'CustomController@customerCreate') -> name('customerCreate');
 Route::get('/customeredit/{id}', 'CustomController@customerEdit') -> name('customerEdit');
+Route::get('/customerdeletet/{id}', 'CustomController@customerDelete') -> name('customerDelete');
 Route::post('/customerupdateprofile/{id}', 'CustomController@customerUpdateProfile') -> name('customerUpdateProfile');
 Route::post('/customerupdateaddress/{id}', 'CustomController@customerUpdateAddress') -> name('customerUpdateAddress');
 Route::post('/customeradd','CustomController@customerAdd')->name('customerAdd');

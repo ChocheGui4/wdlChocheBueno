@@ -91,6 +91,7 @@
                                 </thead>
                                 
                                 <tbody>
+                                
                                 @foreach ($usuarios as $usuario)
                                     <tr role="row" class="odd">
                                         <td>{{ ++$i }}</td>
@@ -133,22 +134,7 @@
     <!-- /.content-wrapper -->
 
     <!-- iniContent Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                
-                <!-- /.row -->
-                <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
-
-        <!-- Main content -->
-       
-        <!-- /.content -->
-    </div>
+    
     <!-- /.content-wrapper -->
     <div
         class="modal fade"
@@ -159,7 +145,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     
-                    <h4 class="modal-title"><i class="fas fa-exclamation-triangle deletet"></i>Delete</h4>
+                    <h4 class="modal-title"><i class="fa fa-exclamation-triangle deletet"></i>Delete</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>

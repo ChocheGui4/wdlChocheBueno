@@ -69,7 +69,15 @@
                                             colspan="1"
                                             aria-sort="ascending"
                                             aria-label="Name: activate to sort column descending"
-                                            style="width: 140px;">id</th>
+                                            style="width: 10px;">id</th>
+                                        <th
+                                            class="sorting"
+                                            tabindex="0"
+                                            aria-controls="example23"
+                                            rowspan="1"
+                                            colspan="1"
+                                            aria-label="Office: activate to sort column ascending"
+                                            style="width: 105px;">Company</th>
                                         <th
                                             class="sorting"
                                             tabindex="0"
@@ -77,7 +85,7 @@
                                             rowspan="1"
                                             colspan="1"
                                             aria-label="Position: activate to sort column ascending"
-                                            style="width: 206px;">Role</th>
+                                            style="width: 20px;">Role</th>
                                         <th
                                             class="sorting"
                                             tabindex="0"
@@ -95,9 +103,10 @@
                                 </thead>
                                 
                                 <tbody>
-                                @foreach ($usuarios as $usuario)
+                                @foreach ($companies as $usuario)
                                     <tr role="row" class="odd">
                                         <td>{{ ++$i }}</td>
+                                        <td>{{ $usuario->companyname }}</td>
                                         <td>{{ $usuario->role }}</td>
                                         <td>{{ $usuario->email }}</td>
                                         <td>
@@ -120,7 +129,34 @@
                                         </td>
                                         
                                     </tr>
-                                    @endforeach 
+                                @endforeach 
+                                @foreach ($peoples as $people)
+                                    <tr role="row" class="odd">
+                                        <td>{{ ++$i }}</td>
+                                        <td>{{ $people->name }}</td>
+                                        <td>{{ $people->role }}</td>
+                                        <td>{{ $people->email }}</td>
+                                        <td>
+                                            <a class="btn btn-warning" href="{{ route('userEdit',$usuario->id) }}">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+
+                                            <a
+                                                id="deleteuser"
+                                                href="{{ route('userEdit',$usuario->id) }}"
+                                                class="btn btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+
+                                            @csrf @method('DELETE')
+
+                                            <!--<button class="btn btn-danger" data-toggle="modal"
+                                            data-target="#exampleModalLong">Eliminar</button>-->
+
+                                        </td>
+                                        
+                                    </tr>
+                                @endforeach 
                                 </tbody>
                             </table>                            
                         </div>

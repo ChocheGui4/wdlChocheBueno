@@ -2,20 +2,21 @@
 <div class="wrapper">
     <div class="row page-titles">
         <div class="col-md-8  align-self-center">
-            <h3 class="text-themecolor m-b-0 m-t-0">Branch</h3>
+            <h3 class="text-themecolor m-b-0 m-t-0">Products</h3>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="javascript:void(0)">Home</a>
                 </li>
                 <li class="breadcrumb-item active">Company</li>
                 <li class="breadcrumb-item active">Branch</li>
+                <li class="breadcrumb-item active">Product</li>
             </ol>
         </div>
 
         <div class="col-md-4 ">
             <div class="col-md-12 align-self-center">
                 <a
-                    href="{{ route('companyShow')}}"
+                    href="{{ route('showBranches',$company)}}"
                     class="btn pull-right hidden-sm-down btn-primary">
                     <i class="mdi mdi-arrow-left"></i>
                     Back</a>
@@ -40,12 +41,12 @@
             <div class="container-fluid">
                 <div class="row el-element-overlay">
 
-                    @foreach ($branches as $branch)
+                    @foreach ($products as $product)
                     <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">
-                                    <img src="{{ asset('bundle/assets/images/users/company.png') }}" alt="user">
+                                    <img src="{{ asset('bundle/assets/images/users/antivirus.png') }}" alt="user">
                                     <div class="el-overlay">
                                         <ul class="el-info">
                                             <li>
@@ -63,7 +64,7 @@
                                             <li>
                                                 <a
                                                     class="btn default btn-outline"
-                                                    href="{{ route('showBranchesProducts',[$company,$branch->id])}}">
+                                                    href="{{ route('showBranchesProducts',[$company,$branches])}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
                                             </li>
@@ -71,12 +72,12 @@
                                     </div>
                                 </div>
                                 <div class="el-card-content">
-                                    <h3 class="box-title">{{ $branch->name }}
+                                    <h3 class="box-title">{{ $product->name }}
                                     </h3>
-                                    <small>{{ $branch->street }},
-                                        {{ $branch->exteriornumber }}-{{ $branch->insidenumber }},
-                                        {{ $branch->zipcode }},
-                                        {{ $branch->district }}</small>
+                                    <small>{{ $product->street }},
+                                        {{ $product->exteriornumber }}-{{ $product->insidenumber }},
+                                        {{ $product->zipcode }},
+                                        {{ $product->district }}</small>
                                     <br>
                                 </div>
                             </div>
@@ -100,5 +101,4 @@
     <!--Inicia la ventana modal-->
 
 </div>
-<!-- ./wrapper -->
 @endsection

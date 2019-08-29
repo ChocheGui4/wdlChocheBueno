@@ -13,9 +13,10 @@ class CreateAcquisitiontypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('acquisitiontypes', function (Blueprint $table) {
+        Schema::create('acquisition_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type',25);
+            $table->timestamps();
         });
     }
 

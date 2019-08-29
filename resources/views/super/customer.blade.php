@@ -1,4 +1,5 @@
-@extends('layouts.wdlicenciamiento') @section('content')
+@extends('layouts.wdlicenciamiento') 
+@section('content')
 <div class="wrapper">
     <div class="row page-titles">
         <div class="col-md-6 col-8 align-self-center">
@@ -8,8 +9,8 @@
                     <a href="javascript:void(0)">Home</a>
                 </li>
                 <li class="breadcrumb-item active">Customers</li>
-                <img src="../assets/images/alert/alert4.png" alt="alert" class="img-responsive model_img" id="sa-warning">
-                <button id="deletecustomer" class="btn btn-danger">Hola</button>
+                
+                
             </ol>
         </div>
         <div class="col-md-6 col-4 align-self-center">
@@ -50,7 +51,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="btn default btn-outline" href="javascript:void(0);">
+                                                <a id="deletecustomer" data-toggle="modal" data-target="#myModal" class="btn default btn-outline" >
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>
                                             </li>
@@ -72,6 +73,34 @@
                             </div>
                         </div>
                     </div>
+                    <!--Inicia la ventana modal-->
+                    <div
+                        class="modal fade"
+                        id="myModal"
+                        style="display: none;"
+                        aria-modal="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    
+                                    <h4 class="modal-title"><i class="fa fa-exclamation-triangle deletet"></i>Delete</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div align="center" class="modal-body">
+                                    <h5>Are you sure?</h5>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <a class="btn btn-primary" href="{{ route('customerDelete',$people->people_id) }}" >Confirm</a>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!--Termina la ventana modal-->
                     @endforeach
 
                 </div>
@@ -80,18 +109,15 @@
             </div>
             <!-- /.container-fluid -->
         </div>
+        
     </div>
-    <!-- /.content-wrapper -->
-    <!--Inicia la ventana modal-->
-
+    <!-- /.content-wrapper -->   
+    
 </div>
 <!-- ./wrapper -->
 <!-- ./wrapper -->
 @endsection
 @section('scripts')
 <script>
-$('#deletecustomer').on('click', function(){
-    swal("Good job!", "You clicked the button!", "success")
-});
 </script>
 @endsection

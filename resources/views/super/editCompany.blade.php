@@ -9,7 +9,7 @@
                     <a href="javascript:void(0)">Home</a>
                 </li>
                 <li class="breadcrumb-item active">Company</li>
-                <li class="breadcrumb-item active">Create</li>
+                <li class="breadcrumb-item active">Edit</li>
             </ol>
         </div>
         <div class="col-md-6 col-4 align-self-center">
@@ -37,6 +37,14 @@
                                 
                             </button>
                         </div>
+                        <div class="col-sm-3">
+                            <button id="showcompany" class="btn btn-link">
+
+                                <h5>Company<a></a>
+                                </h5>
+
+                            </button>
+                        </div>
                         <div class="col-xl-3">
                             <button id="showinformation" class="btn btn-link">
 
@@ -55,322 +63,123 @@
             <!---->
             <div class="row">
                 <div class="col-lg-12">
-                    
+                    <div class="row ">
 
-                        <div class="row ">
-
-                            <div class="col-md-12">
-                                <!--Comienza el perfil-->
-                                <div id="profile" class="card">
+                        <div class="col-md-12">
+                            <!--Comienza el perfil-->
+                            <div id="profile" class="card">
+                                    
+                                    <!---->
+                                    <form action="{{ route('companyUpdateProfile',$contact->id) }}" method="POST" autocomplete="off">
+                                        <div class="card-block">                                                
                                         
-                                        <!---->
-                                        <form action="{{ route('customerUpdateProfile',$peoples->id) }}" method="POST" autocomplete="off">
-                                            <div class="card-block">                                                
-                                            
-                                                <div class="row">
-                                                    <div class="col-xs-3 col-sm-3 col-md-3">
-                                                        <img
-                                                            src="{{ asset('assets/dist/img/HillsongThisisliving1.jpg') }}"
-                                                            class="img-circle elevation-2"
-                                                            alt="User Image">
+                                            <div class="row">
+                                                <div class="col-xs-3 col-sm-3 col-md-3">
+                                                    <img
+                                                        src="{{ asset('assets/dist/img/HillsongThisisliving1.jpg') }}"
+                                                        class="img-circle elevation-2"
+                                                        alt="User Image">
 
-                                                    </div>
+                                                </div>
+                                                
+                                                    @csrf
+
+                                                    <div class="col-xs-9 col-sm-9 col-md-9">
                                                     
-                                                        @csrf
-
-                                                        <div class="col-xs-9 col-sm-9 col-md-9">
-                                                        
-                                                            <div class="row">
-                                                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                                                    <div class="form-group">
-                                                                        <strong>Name</strong>
-                                                                        <i id="qname" class="fa fa-question-circle"></i>
-                                                                        <div class="input-group mb-3">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="mdi mdi-lead-pencil"></i>
-                                                                            </span>
-                                                                            <input
-                                                                                type="text"
-                                                                                name="name"
-                                                                                class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                                                value={{$peoples->name}}
-                                                                                placeholder="Juana">
-                                                                        </div>
-
+                                                        <div class="row">
+                                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                                <div class="form-group">
+                                                                    <strong>Name</strong>
+                                                                    <i id="qname" class="fa fa-question-circle"></i>
+                                                                    <div class="input-group mb-3">
+                                                                        <span class="input-group-addon">
+                                                                            <i class="mdi mdi-lead-pencil"></i>
+                                                                        </span>
+                                                                        <input
+                                                                            type="text"
+                                                                            name="name"
+                                                                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                                            value="{{$contact->name}}"
+                                                                            placeholder="Juana">
                                                                     </div>
 
                                                                 </div>
-                                                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                                                    
-                                                                    <div class="form-group">
-                                                                        <strong>Lastname</strong>
-                                                                        <i id="qlastname" class="fa fa-question-circle"></i>
-                                                                        <!--Se inicia icono con campo de texto-->
-                                                                        <div class="input-group mb-3">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="mdi mdi-lead-pencil"></i>
-                                                                            </span>
-                                                                            <input
-                                                                                type="text"
-                                                                                name="lastname"
-                                                                                class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}"
-                                                                                value={{$peoples->lastname}}
-                                                                                placeholder="Juárez">
-                                                                        </div>
-                                                        <!--Se finaliza icono con campo de texto-->
 
-                                                                    </div>
-                                                                </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                                                    <div class="form-group">
-                                                                        <strong>Telephone</strong>
-                                                                        <i id="qtele" class="fa fa-question-circle"></i>
-
-                                                                        <div class="input-group mb-3">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="fa fa-mobile"></i>
-                                                                            </span>
-                                                                            <input
-                                                                                type="text"
-                                                                                name="telephone"
-                                                                                class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}"
-                                                                                value={{$peoples->telephone}}
-                                                                                placeholder="5523212321"
-                                                                                data-mask="(999) 9999999">
-                                                                        </div>
-
+                                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                                
+                                                                <div class="form-group">
+                                                                    <strong>Lastname</strong>
+                                                                    <i id="qlastname" class="fa fa-question-circle"></i>
+                                                                    <!--Se inicia icono con campo de texto-->
+                                                                    <div class="input-group mb-3">
+                                                                        <span class="input-group-addon">
+                                                                            <i class="mdi mdi-lead-pencil"></i>
+                                                                        </span>
+                                                                        <input
+                                                                            type="text"
+                                                                            name="lastname"
+                                                                            class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}"
+                                                                            value={{$contact->lastname}}
+                                                                            placeholder="Juárez">
                                                                     </div>
-
-                                                                </div>
-                                                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                                                    <div class="form-group">
-                                                                    <div >
-                                                                        <strong >
-                                                                            RFC</strong>
-                                                                        <i id="qrfc" class="fa fa-question-circle"></i>
-                                                                        <!--Se inicia icono con campo de texto-->
-                                                                        <div class="input-group mb-3">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="fa fa-file"></i>
-                                                                            </span>
-                                                                            <input
-                                                                                type="text"
-                                                                                onkeyup="mayus(this);"
-                                                                                id="rfc"
-                                                                                name="rfc"
-                                                                                class="form-control {{ $errors->has('rfc') ? ' is-invalid' : '' }}"
-                                                                                value={{$peoples->rfc}}
-                                                                                placeholder="RJSU987635HYS87J">
-
-                                                                        </div>
-                                                                <!--Se finaliza icono con campo de texto-->
-
-                                                                    </div>
+                                                    <!--Se finaliza icono con campo de texto-->
 
                                                                 </div>
                                                             </div>
-                                                                    
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                                                <div class="form-group">
+                                                                    <strong>Telephone</strong>
+                                                                    <i id="qtele" class="fa fa-question-circle"></i>
+
+                                                                    <div class="input-group mb-3">
+                                                                        <span class="input-group-addon">
+                                                                            <i class="fa fa-mobile"></i>
+                                                                        </span>
+                                                                        <input
+                                                                            type="text"
+                                                                            name="telephone"
+                                                                            class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}"
+                                                                            value={{$contact->telephone}}
+                                                                            placeholder="5523212321"
+                                                                            data-mask="(999) 9999999">
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
 
                                                         </div>
+                                                                
+
                                                     </div>
-                                                            
+                                                </div>
                                                         
-                                                </div>
-                                                <div align="center">
-                                                <button id="updateprofile" class="btn btn-success">Update</button>
+                                                    
                                             </div>
-                                            </div>
-                                            
-                                        </form>
-
-
-                                </div>
-
-                                <!--Termina el perfil-->
-
-
-
-                                <div class="card">
-                                    <div class="card-block">
-                                        @csrf
-
-                                        <div class="row">
-                                            <div class=" col-sm-4 col-md-4">
-                                                <div class="form-group">
-                                                    <strong>Name</strong>
-                                                    <i id="qname" class="fa fa-question-circle"></i>
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-addon">
-                                                            <i class="mdi mdi-lead-pencil"></i>
-                                                        </div>
-                                                        
-                                                        <input
-                                                            type="text"
-                                                            name="name"
-                                                            class="form-control"
-                                                            value="{{ old('name') }}"
-                                                            placeholder="Juana"
-                                                            required >
-                                                            <div class="help-block"></div>
-                                                            
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                            <div class="col-xs-4 col-sm-4 col-md-4">
-                                                <div class="form-group">
-                                                    <strong>Lastname</strong>
-                                                    <i id="qlastname" class="fa fa-question-circle"></i>
-                                                    <!--Se inicia icono con campo de texto-->
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-addon">
-                                                            <i class="mdi mdi-lead-pencil"></i>
-                                                        </div>
-                                                        <input
-                                                            type="text"
-                                                            name="lastname"
-                                                            class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('lastname') }}"
-                                                            placeholder="Juárez">
-
-                                                    </div>
-                                                    <!--Se finaliza icono con campo de texto-->
-
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4 col-sm-4 col-md-4">
-                                                <div class="form-group">
-                                                    <strong>Telephone</strong>
-                                                    <i id="qtele" class="fa fa-question-circle"></i>
-
-                                                    <div class="input-group mb-3">
-
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-mobile"></i>
-                                                        </span>
-
-                                                        <input
-                                                            type="text"
-                                                            name="telephone"
-                                                            class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('telephone') }}"
-                                                            placeholder="5523212321"
-                                                            data-mask="(999) 9999999">
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
+                                            <div align="center">
+                                            <button id="updateprofile" class="btn btn-success">Update</button>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-xs-4 col-sm-4 col-md-4">
-                                                <div class="form-group">
-                                                    <strong>Email</strong>
-                                                    <i id="qemail" class="fa fa-question-circle"></i>
-
-                                                    <!--Se inicia icono con campo de texto-->
-                                                    <div class="input-group mb-3">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-envelope"></i>
-                                                        </span>
-                                                        <input
-                                                            type="email"
-                                                            name="email"
-                                                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('email') }}"
-                                                            placeholder="user@exam.com">
-
-                                                    </div>
-                                                    <!--Se finaliza icono con campo de texto-->
-
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4 col-sm-4 col-md-4">
-                                                <div class="form-group">
-                                                    <strong>Password</strong>
-                                                    <i id="qpassword" class="fa fa-question-circle"></i>
-                                                    <!--Se inicia icono con campo de texto-->
-                                                    <div class="input-group mb-3">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-lock"></i>
-                                                        </span>
-                                                        <input
-                                                            type="password"
-                                                            name="password"
-                                                            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('password') }}"
-                                                            placeholder="Secret">
-                                                    </div>
-                                                    <!--Se finaliza icono con campo de texto-->
-
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4 col-sm-4 col-md-4">
-                                                <div class="form-group">
-                                                    <strong>Confirm password</strong>
-                                                    <!--Se inicia icono con campo de texto-->
-                                                    <div class="input-group mb-3">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-lock"></i>
-                                                        </span>
-
-                                                        <input
-                                                            id="password-confirm"
-                                                            type="password"
-                                                            class="form-control"
-                                                            name="password_confirmation"
-                                                            placeholder="Confirm secret">
-
-                                                    </div>
-                                                    <!--Se finaliza icono con campo de texto-->
-
-                                                </div>
-                                            </div>
-
                                         </div>
-                                        <div class="row">
+                                        
+                                    </form>
 
-                                            <div class="col-xs-4 col-sm-4 col-md-4">
-                                                <div class="form-group">
-                                                    <div id="">
-                                                        <strong >Area</strong>
-                                                        <i id="qarea" class="fa fa-question-circle"></i>
-                                                        <select class="form-control" name="area">
-
-                                                            <option>Dirección general</option>
-                                                            <option>Auxiliar administrativo</option>
-                                                            <option>Administración y Recursos Humanos</option>
-                                                            <option>Finanzas y Contabilidad</option>
-                                                            <option>Publicidad y Mercadotecnia</option>
-                                                            <option>Informática</option>
-
-                                                        </select>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
 
                             </div>
+
+                            <!--Termina el perfil-->
+
                         </div>
-                        <hr>
-                        <div class="row">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
 
-                            <div class="col-md-12">
+                            <div id="contact" class="card">
 
-                                <div >
-
-                                    <div>
+                                <form action="{{ route('companyUpdateCompany',$compan->id) }}" method="POST" autocomplete="off">
+                                    <div  class="card-block">
 
                                         @csrf
 
@@ -390,7 +199,7 @@
                                                             id="companyname"
                                                             name="companyname"
                                                             class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('companyname') }}"
+                                                            value="{{$compan->companyname}}"
                                                             placeholder="The beauty S.A. de C.V.">
 
                                                     </div>
@@ -414,7 +223,7 @@
                                                             id="companyrfc"
                                                             name="companyrfc"
                                                             class="form-control {{ $errors->has('companyrfc') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('companyrfc') }}"
+                                                            value="{{$compan->companyrfc}}"
                                                             placeholder="FTGY568765H78">
 
                                                     </div>
@@ -437,8 +246,16 @@
                                                             id="companytelephone"
                                                             name="companytelephone"
                                                             class="form-control {{ $errors->has('companytelephone') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('companytelephone') }}"
+                                                            value="{{$compan->companytelephone}}"
                                                             placeholder="5523212321">
+                                                            <input
+                                                            hidden
+                                                            type="text"
+                                                            id="seccioncompany"
+                                                            name="seccioncompany"
+                                                            class="form-control"
+                                                            placeholder="2"
+                                                            value="{{ old('seccioncompany') }}">
 
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
@@ -447,45 +264,29 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-4 col-sm-4 col-md-4">
-                                                <div class="form-group">
-                                                    <strong>Email</strong>
-                                                    <i id="qemailcompany" class="fa fa-question-circle"></i>
-
-                                                    <!--Se inicia icono con campo de texto-->
-                                                    <div class="input-group mb-3">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-envelope"></i>
-                                                        </span>
-                                                        <input
-                                                            type="email"
-                                                            id="companyemail"
-                                                            name="companyemail"
-                                                            class="form-control {{ $errors->has('companyemail') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('companyemail') }}"
-                                                            placeholder="company@exam.com">
-                                                    </div>
-                                                    <!--Se finaliza icono con campo de texto-->
-
-                                                </div>
-                                            </div>
+                                            
 
                                         </div>
                                         <div class="row"></div>
+                                        
+
                                     </div>
+                                    <div align="center">
+                                        <button id="updatecompany" class="btn btn-success">Update</button>
+                                    </div>
+                                    
+                                </form>
 
-                                </div >
+                            </div >
 
-                            </div>
                         </div>
-                        <hr>
-                        <div class="row">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
 
-                            <div class="col-md-12">
-
-                                <div >
-
-                                    <div >
+                            <div id="information" class="card">
+                                <form action="{{ route('companyUpdateAddress',$compan->id)}}" method="POST" autocomplete="off">
+                                    <div id="bodyaddress" class="card-block">
 
                                         @csrf
 
@@ -504,7 +305,7 @@
                                                             type="text"
                                                             name="zipcode"
                                                             class="form-control {{ $errors->has('zipcode') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('zipcode') }}"
+                                                            value="{{$compan->zipcode}}"
                                                             placeholder="03231">
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
@@ -525,7 +326,7 @@
                                                             type="text"
                                                             name="district"
                                                             class="form-control {{ $errors->has('district') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('district') }}"
+                                                            value="{{$compan->district}}"
                                                             placeholder="Benito Juárez">
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
@@ -545,7 +346,7 @@
                                                             type="text"
                                                             name="street"
                                                             class="form-control {{ $errors->has('street') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('street') }}"
+                                                            value="{{$compan->street}}"
                                                             placeholder="Pedro Santacilia">
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
@@ -567,7 +368,7 @@
                                                             type="text"
                                                             name="extnumber"
                                                             class="form-control {{ $errors->has('extnumber') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('extnumber') }}"
+                                                            value="{{$compan->exteriornumber}}"
                                                             placeholder="1">
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
@@ -587,8 +388,16 @@
                                                             type="text"
                                                             name="innumber"
                                                             class="form-control {{ $errors->has('innumber') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('innumber') }}"
+                                                            value="{{$compan->insidenumber}}"
                                                             placeholder="2">
+                                                            <input
+                                            hidden
+                                            type="text"
+                                            id="seccion"
+                                            name="seccion"
+                                            class="form-control"
+                                            placeholder="2"
+                                            value="{{ old('seccion') }}">
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
 
@@ -597,20 +406,21 @@
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                                <button id="divbtns" type="submit" class="btn btn-warning">Register</button>
-                                                <br>
-                                            </div>
+                                            
                                         </div>
+                                        
 
                                     </div>
-
-                                </div>
+                                    <div align="center">
+                                        <button id="updateaddress" class="btn btn-success">Update</button>
+                                    </div>
+                                    
+                                </form>
 
                             </div>
-                        </div>
 
-                    
+                        </div>
+                    </div>                    
                 </div>
             </div>
 

@@ -9,7 +9,7 @@
             type="image/png"
             sizes="16x16"
             href="../assets/images/favicon.png">
-        <title>@yield('title' ,'WDLicensiamiento')</title>
+        <title>@yield('title' ,'WDLicenciamiento')</title>
         <link
             href="{{ asset('bundle/assets/plugins/bootstrap/css/bootstrap.min.css') }}"
             rel="stylesheet">

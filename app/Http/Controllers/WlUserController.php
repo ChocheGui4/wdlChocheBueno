@@ -12,7 +12,7 @@ class WlUserController extends Controller
         $this->middleware('auth');
     }
     public function showWlUsers(){
-        $usuarios=User::where("role","<>",'user')->paginate(6);
+        $usuarios=User::orderBy('id','ASC')->where("role","<>",'Super')->paginate(6);
         //$usuarios= User::orderBy('id','ASC')->paginate(5);
         return view('super.wlUser', compact('usuarios'))
             ->with('i',(request()->input('page',1)-1)*6);
@@ -90,6 +90,7 @@ class WlUserController extends Controller
     public function wluserDelete($id)
     {
         //$direccion=Direccion::find(11);
+        
         $group = User::find($id)->delete();
         /*$res=Direccion::where("usuarios_id","=",$id);
         $res->delete();

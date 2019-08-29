@@ -1,13 +1,8 @@
 $(document).ready(function() {
     var title=$('#seccion').val();
-    if(title=="Company"){
-        $('#profile').hide();
-        $('#contact').show();
-        $('#information').hide();
-        $('#showprofile').css('text-decoration', '');
-        $('#showcompany').css('text-decoration', 'underline');
-        $('#showinformation').css('text-decoration', '');
-    }else if(title=="Information"){
+    var title2=$('#seccioncompany').val();
+
+    if(title=="Information"){
         $('#profile').hide();
         $('#contact').hide();
         $('#information').show();
@@ -15,12 +10,22 @@ $(document).ready(function() {
         $('#showcompany').css('text-decoration', '');
         $('#showinformation').css('text-decoration', 'underline');
     }else{
-        $('#profile').show();
-        $('#contact').hide();
-        $('#information').hide();
-        $('#showprofile').css('text-decoration', 'underline');
-        $('#showcompany').css('text-decoration', '');
-        $('#showinformation').css('text-decoration', '');
+        if(title2=="Company"){
+            $('#profile').hide();
+            $('#contact').show();
+            $('#information').hide();
+            $('#showprofile').css('text-decoration', '');
+            $('#showcompany').css('text-decoration', 'underline');
+            $('#showinformation').css('text-decoration', '');
+        }else{
+            $('#profile').show();
+            $('#contact').hide();
+            $('#information').hide();
+            $('#showprofile').css('text-decoration', 'underline');
+            $('#showcompany').css('text-decoration', '');
+            $('#showinformation').css('text-decoration', '');
+        }
+        
     }
     
     
@@ -48,6 +53,9 @@ $('#showinformation').on('click', function(){
 
 $('#showprofile').on('click', function(){
     $('#seccion').val("Profile");
+});
+$('#showcompany').on('click', function(){
+    $('#seccioncompany').val("Company");
 });
 $('#showinformation').on('click', function(){
     $('#seccion').val("Information");
