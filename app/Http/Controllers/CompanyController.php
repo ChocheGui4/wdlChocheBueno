@@ -19,6 +19,10 @@ use App\Contact;
 
 class CompanyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function companyShow(){
         $companies = Company::orderBy('id','ASC')->get();
         $peoples = People::orderBy('id','ASC')->get();
@@ -85,6 +89,15 @@ class CompanyController extends Controller
         
         return redirect()->route('companyShow');
         
+    }
+
+    
+    public function companyEdit($id)
+    {
+        $compan = Company::find($id);
+        
+        
+        return view('super.editCompany', compact('compan'));
     }
     public function showBranches($id){
         $company=$id;

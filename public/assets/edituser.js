@@ -23,6 +23,7 @@ $(document).ready(function() {
         $('#showinformation').css('text-decoration', '');
     }
     
+    
 });
 var i=1;
 $('#showprofile').on('click', function(){
@@ -47,9 +48,6 @@ $('#showinformation').on('click', function(){
 
 $('#showprofile').on('click', function(){
     $('#seccion').val("Profile");
-});
-$('#showcompany').on('click', function(){
-    $('#seccion').val("Company");
 });
 $('#showinformation').on('click', function(){
     $('#seccion').val("Information");

@@ -30,7 +30,7 @@
             rel="stylesheet">
         <link href="{{ asset('bundle/css/style.css') }}" rel="stylesheet">
         <link
-            href="{{ asset('bundle/css/colors/blue-dark.css') }}"
+            href="{{ asset('bundle/css/colors/purple-dark.css') }}"
             id="theme"
             rel="stylesheet">
         @yield('file_css')
@@ -318,8 +318,11 @@
         <script
             src="{{ asset('bundle/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script>
         <script src="{{ asset('bundle/assets/plugins/echarts/echarts-all.js') }}"></script>
-        <script
-            src="{{ asset('bundle/assets/plugins/toast-master/js/jquery.toast.js') }}"></script>
+        <script src="{{ asset('bundle/assets/plugins/toast-master/js/jquery.toast.js') }}"></script>
+        <script src="{{ asset('bundle/assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
+        <script src="{{ asset('bundle/assets/plugins/sweetalert/jquery.sweet-alert.custom.js') }}"></script>
+        
+            
         <script src="{{ asset('bundle/js/dashboard1.js') }}"></script>
         <script src="{{ asset('bundle/js/toastr.js') }}"></script>
         <script src="{{ asset('assets/use2.js') }}"></script>

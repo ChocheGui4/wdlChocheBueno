@@ -7,6 +7,10 @@ use App\Http\Requests\WlUserEditCreate;
 
 class WlUserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function showWlUsers(){
         $usuarios=User::where("role","<>",'user')->paginate(6);
         //$usuarios= User::orderBy('id','ASC')->paginate(5);

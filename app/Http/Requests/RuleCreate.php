@@ -37,8 +37,8 @@ class RuleCreate extends FormRequest
             'companytelephone' =>'required|min:10|max:10',
             'companyemail' =>'required|email|max:45|unique:companies',
             'zipcode' =>'required|min:5|max:5|regex:/[0-9]$/',
-            'district' =>'required|min:3|max:35',
-            'street' =>'required|min:3|max:35',
+            'district' =>'required|min:3|max:35|regex:/[A-Za-z]$/',
+            'street' =>'required|min:3|max:35|regex:/[A-Za-z]$/',
             'extnumber' =>'required|min:1|max:5|regex:/[0-9]$/',
             'innumber' =>'required|min:1|max:5|regex:/[0-9]$/'
         ];

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BranchCreate extends FormRequest
+class CustomerEditCreate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,10 @@ class BranchCreate extends FormRequest
     public function rules()
     {
         return [
-            'name' =>'required|min:3|max:50|unique:branches',
-            'zipcode' =>'required|min:5|max:5|regex:/[0-9]$/',
-            'district' =>'required|min:3|max:35|regex:/[A-Za-z]$/',
-            'street' =>'required|min:3|max:35|regex:/[A-Za-z]$/',
-            'extnumber' =>'required|min:1|max:5|regex:/[0-9]$/',
-            'innumber' =>'required|min:1|max:5|regex:/[0-9]$/'
+            'name' => 'required|min:3|max:25|regex:/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/',
+            'lastname' => 'required|min:3|max:35|regex:/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/',
+            'telephone' =>'required|min:10|max:10|regex:/[0-9]$/',
+            'rfc' =>'min:12|max:13'
         ];
     }
 }

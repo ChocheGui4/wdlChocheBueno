@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CustomerCreate;
+use App\Http\Requests\CustomerEditCreate;
+use App\Http\Requests\CustomerAddressEditCreate;
+
 use DB;
 use App\Company;
 use App\Branch;
@@ -13,7 +16,11 @@ use App\Customer;
 
 class CustomController extends Controller
 {
-    public function showCustomers(){
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    public function customerShow(){
         
         $peoples = People::orderBy('id','ASC')->get();
 
@@ -22,6 +29,8 @@ class CustomController extends Controller
         ->join('users','customers.users_id', '=','users.id')
         ->select()
         ->get();
+
+        
                 
         //$usuarios= User::orderBy('id','ASC')->paginate(5);
         return view('super.customer', compact('peoples','usuarios'))
@@ -67,5 +76,48 @@ class CustomController extends Controller
         
         return redirect()->route('showCustomers');
         
+    }
+    public function customerEdit($id)
+    {
+        $customer=$id;
+        $peoples = People::find($id);
+
+        return view('super.editCustomer', compact('peoples','customer'));
+    }
+    public function customerUpdateProfile(CustomerEditCreate $request, $id)
+    {
+
+        $people = People::find($id);
+        
+        $people->name = $request->name;
+        $people->lastname = $request->lastname;
+        $people->telephone = $request->telephone;
+        $people->rfc = $request->rfc;
+
+        //$usuario->email = $request->email;
+        
+        $people->save();
+
+
+        return redirect()->route('customerShow');
+
+    }
+
+    public function customerUpdateAddress(CustomerAddressEditCreate $request, $id)
+    {
+
+        $people = People::find($id);
+        $people->zipcode = $request->zipcode;
+        $people->district = $request->district;
+        $people->street = $request->street;
+        $people->exteriornumber = $request->extnumber;
+        $people->insidenumber = $request->innumber;
+        //$usuario->email = $request->email;
+        
+        $people->save();
+
+
+        return redirect()->route('customerShow');
+
     }
 }

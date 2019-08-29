@@ -57,7 +57,7 @@
                                             <li>
                                                 <a
                                                     class="btn default btn-outline image-popup-vertical-fit"
-                                                    href="../plugins/images/users/1.jpg">
+                                                    href="{{ route('companyEdit',$company->id)}}">
                                                     <i class="mdi mdi-account-edit"></i>
                                                 </a>
                                             </li>

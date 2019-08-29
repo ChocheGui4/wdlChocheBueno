@@ -1,4 +1,4 @@
-@extends('layouts.layout') 
+@extends('layouts.layout')
 
 <div class="wrapper">
     @section('content')
@@ -236,13 +236,13 @@
                                                                     </span>
                                                                 </div>
                                                                 <input
-                                                                            type="text"
-                                                                            hidden
-                                                                            id="kindname"
-                                                                            name="kindname"
-                                                                            class="form-control"
-                                                                            value="{{ old('kindname') }}"
-                                                                            placeholder="kindname">
+                                                                    type="text"
+                                                                    hidden="hidden"
+                                                                    id="kindname"
+                                                                    name="kindname"
+                                                                    class="form-control"
+                                                                    value="{{ old('kindname') }}"
+                                                                    placeholder="kindname">
 
                                                                 <div id="rfcdiv">
                                                                     <strong >
@@ -261,7 +261,7 @@
                                                                             class="form-control {{ $errors->has('rfc') ? ' is-invalid' : '' }}"
                                                                             value="{{ old('rfc') }}"
                                                                             placeholder="RJSU987635HYS87J">
-                                                                        
+
                                                                         <span id="arfc" class="invalid-feedback" role="alert">
                                                                             <strong>{{ $errors->first('rfc') }}
                                                                                 These must contain at least 12-13 characters</strong>

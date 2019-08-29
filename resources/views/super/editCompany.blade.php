@@ -25,15 +25,175 @@
 
     <div class="content">
         <div class="container-fluid">
+            <!---->
+            <div class="row mb-12">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button id="showprofile" class="btn btn-link">
+                                
+                                <h5>Profile<a></a>
+                                </h5>
+                                
+                            </button>
+                        </div>
+                        <div class="col-xl-3">
+                            <button id="showinformation" class="btn btn-link">
+
+                                <h5>Information<a></a>
+                                </h5>
+
+                            </button>
+                        </div>
+                        
+                        
+                    </div>
+
+                </div>
+                    
+            </div>
+            <!---->
             <div class="row">
                 <div class="col-lg-12">
-                    <form class="m-t-40" action="{{ route('companyAdd') }}" method="POST" autocomplete="off" novalidate>
+                    
 
                         <div class="row ">
 
                             <div class="col-md-12">
-                                <div >
-                                    <div >
+                                <!--Comienza el perfil-->
+                                <div id="profile" class="card">
+                                        
+                                        <!---->
+                                        <form action="{{ route('customerUpdateProfile',$peoples->id) }}" method="POST" autocomplete="off">
+                                            <div class="card-block">                                                
+                                            
+                                                <div class="row">
+                                                    <div class="col-xs-3 col-sm-3 col-md-3">
+                                                        <img
+                                                            src="{{ asset('assets/dist/img/HillsongThisisliving1.jpg') }}"
+                                                            class="img-circle elevation-2"
+                                                            alt="User Image">
+
+                                                    </div>
+                                                    
+                                                        @csrf
+
+                                                        <div class="col-xs-9 col-sm-9 col-md-9">
+                                                        
+                                                            <div class="row">
+                                                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                                                    <div class="form-group">
+                                                                        <strong>Name</strong>
+                                                                        <i id="qname" class="fa fa-question-circle"></i>
+                                                                        <div class="input-group mb-3">
+                                                                            <span class="input-group-addon">
+                                                                                <i class="mdi mdi-lead-pencil"></i>
+                                                                            </span>
+                                                                            <input
+                                                                                type="text"
+                                                                                name="name"
+                                                                                class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                                                value={{$peoples->name}}
+                                                                                placeholder="Juana">
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                                                    
+                                                                    <div class="form-group">
+                                                                        <strong>Lastname</strong>
+                                                                        <i id="qlastname" class="fa fa-question-circle"></i>
+                                                                        <!--Se inicia icono con campo de texto-->
+                                                                        <div class="input-group mb-3">
+                                                                            <span class="input-group-addon">
+                                                                                <i class="mdi mdi-lead-pencil"></i>
+                                                                            </span>
+                                                                            <input
+                                                                                type="text"
+                                                                                name="lastname"
+                                                                                class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}"
+                                                                                value={{$peoples->lastname}}
+                                                                                placeholder="Juárez">
+                                                                        </div>
+                                                        <!--Se finaliza icono con campo de texto-->
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                                                    <div class="form-group">
+                                                                        <strong>Telephone</strong>
+                                                                        <i id="qtele" class="fa fa-question-circle"></i>
+
+                                                                        <div class="input-group mb-3">
+                                                                            <span class="input-group-addon">
+                                                                                <i class="fa fa-mobile"></i>
+                                                                            </span>
+                                                                            <input
+                                                                                type="text"
+                                                                                name="telephone"
+                                                                                class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}"
+                                                                                value={{$peoples->telephone}}
+                                                                                placeholder="5523212321"
+                                                                                data-mask="(999) 9999999">
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                                                    <div class="form-group">
+                                                                    <div >
+                                                                        <strong >
+                                                                            RFC</strong>
+                                                                        <i id="qrfc" class="fa fa-question-circle"></i>
+                                                                        <!--Se inicia icono con campo de texto-->
+                                                                        <div class="input-group mb-3">
+                                                                            <span class="input-group-addon">
+                                                                                <i class="fa fa-file"></i>
+                                                                            </span>
+                                                                            <input
+                                                                                type="text"
+                                                                                onkeyup="mayus(this);"
+                                                                                id="rfc"
+                                                                                name="rfc"
+                                                                                class="form-control {{ $errors->has('rfc') ? ' is-invalid' : '' }}"
+                                                                                value={{$peoples->rfc}}
+                                                                                placeholder="RJSU987635HYS87J">
+
+                                                                        </div>
+                                                                <!--Se finaliza icono con campo de texto-->
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                                    
+
+                                                        </div>
+                                                    </div>
+                                                            
+                                                        
+                                                </div>
+                                                <div align="center">
+                                                <button id="updateprofile" class="btn btn-success">Update</button>
+                                            </div>
+                                            </div>
+                                            
+                                        </form>
+
+
+                                </div>
+
+                                <!--Termina el perfil-->
+
+
+
+                                <div class="card">
+                                    <div class="card-block">
                                         @csrf
 
                                         <div class="row">
@@ -450,7 +610,7 @@
                             </div>
                         </div>
 
-                    </form>
+                    
                 </div>
             </div>
 

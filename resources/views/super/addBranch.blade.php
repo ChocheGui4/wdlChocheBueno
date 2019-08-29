@@ -14,13 +14,11 @@
             </ol>
         </div>
         <div class="col-md-6 col-4 align-self-center">
-            <button
-                class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10">
-                <i class="ti-settings text-white"></i>
-            </button>
-            <a href="{{ route('companyCreate')}}"  class="btn pull-right hidden-sm-down btn-success">
-                <i class="mdi mdi-plus-circle"></i>
-                Create</a>
+            
+            <a href="{{ route('showBranches',$company)}}"  
+            class="btn pull-right hidden-sm-down btn-primary">
+                <i class="mdi mdi-arrow-left"></i>
+                Back</a>
             
         </div>
     </div>
@@ -181,7 +179,7 @@
                             
                             <div align="center">
                                 <button type="submit" class="btn btn-success">
-                                    Add user
+                                    Add branch
                                 </button>
                             </div>
                         </form>

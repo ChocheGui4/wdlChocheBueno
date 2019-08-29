@@ -13,8 +13,12 @@ use App\Customer;
 use Redirect;
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function showUsers(){
-        $usuarios=User::where("role","=",'user')->paginate(5);
+        $usuarios=User::where("role","<>",'Super')->paginate(5);
         return view('super.user', compact('usuarios'))
             ->with('i',(request()->input('page',1)-1)*5);
         

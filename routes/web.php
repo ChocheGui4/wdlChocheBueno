@@ -13,30 +13,36 @@
 Route::get('/', function () {
     return view('auth.login');
 });
+
 Auth::routes(['verify' => true]);
 //Home
-Route::get('/home', 'PrincipalController@Home')->name('Home')-> middleware('auth');
+Route::get('/home', 'PrincipalController@Home')->name('Home');
 
 //Companies
-Route::get('/companies', 'CompanyController@companyShow') -> name('companyShow') -> middleware('auth');
-Route::get('/companycreate', 'CompanyController@companyCreate') -> name('companyCreate') -> middleware('auth');
+Route::get('/companies', 'CompanyController@companyShow') -> name('companyShow');
+Route::get('/companycreate', 'CompanyController@companyCreate') -> name('companyCreate');
+Route::get('/companyedit/{id}', 'CompanyController@companyEdit') -> name('companyEdit');
+
 Route::post('/companyadd','CompanyController@companyAdd')->name('companyAdd');
-Route::get('/companybranches/{id}', 'CompanyController@showBranches') ->name('showBranches')-> middleware('auth');
-Route::get('/companycreatebranches/{id}', 'CompanyController@createBranches') ->name('createBranches')-> middleware('auth');
-Route::post('/companyaddbranches/{id}', 'CompanyController@addBranches') ->name('addBranches')-> middleware('auth');
+Route::get('/companybranches/{id}', 'CompanyController@showBranches') ->name('showBranches');
+Route::get('/companycreatebranches/{id}', 'CompanyController@createBranches') ->name('createBranches');
+Route::post('/companyaddbranches/{id}', 'CompanyController@addBranches') ->name('addBranches');
 
 //Customers
-Route::get('/customers', 'CustomController@showCustomers')->name('showCustomers') -> middleware('auth');
-Route::get('/customercreate', 'CustomController@customerCreate') -> name('customerCreate') -> middleware('auth');
+Route::get('/customers', 'CustomController@customerShow')->name('customerShow');
+Route::get('/customercreate', 'CustomController@customerCreate') -> name('customerCreate');
+Route::get('/customeredit/{id}', 'CustomController@customerEdit') -> name('customerEdit');
+Route::post('/customerupdateprofile/{id}', 'CustomController@customerUpdateProfile') -> name('customerUpdateProfile');
+Route::post('/customerupdateaddress/{id}', 'CustomController@customerUpdateAddress') -> name('customerUpdateAddress');
 Route::post('/customeradd','CustomController@customerAdd')->name('customerAdd');
 //Users
 Route::get('/user','UserController@showUsers')->name('showUsers');
 Route::get('/useredit/{id}','UserController@userEdit')->name('userEdit')-> middleware('auth');
-Route::post('/userupdatep/{id}','UserController@userUpdateProfile')->name('userUpdateProfile')-> middleware('auth');
-Route::post('/userupdatea/{id}','UserController@userUpdateAddress')->name('userUpdateAddress')-> middleware('auth');
+Route::post('/userupdatep/{id}','UserController@userUpdateProfile')->name('userUpdateProfile');
+Route::post('/userupdatea/{id}','UserController@userUpdateAddress')->name('userUpdateAddress');
 Route::get('/usercreate','UserController@userCreate')->name('userCreate');
 
-Route::get('/userdelete/{id}','UserController@userDelete')->name('userDelete')-> middleware('auth');
+Route::get('/userdelete/{id}','UserController@userDelete')->name('userDelete');
 //Route::resource('/user','UserController');
 //Route::resource('/wluser','WlUserController');
 //WlUsers
@@ -44,8 +50,8 @@ Route::get('/userdelete/{id}','UserController@userDelete')->name('userDelete')->
 Route::get('/wlusercreate','WlUserController@wluserCreate');
 Route::post('/wluseradd','WlUserController@wluserAdd')->name('wluserAdd');
 Route::post('/wluserupdate/{id}','WlUserController@wluserUpdate')->name('wluserUpdate');
-Route::get('/wluseredit/{id}','WlUserController@wluserEdit')->name('wluserEdit')-> middleware('auth');
-Route::get('/wluserdelete/{id}','WlUserController@wluserDelete')->name('wluserDelete')-> middleware('auth');
+Route::get('/wluseredit/{id}','WlUserController@wluserEdit')->name('wluserEdit');
+Route::get('/wluserdelete/{id}','WlUserController@wluserDelete')->name('wluserDelete');
 Route::get('/wluser','WlUserController@showWlUsers')->name('showWlUsers');
 //Route::post('/wluseradd','WlUserController@wluserAdd')->name('wluserAdd');
 

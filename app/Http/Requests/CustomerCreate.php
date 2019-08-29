@@ -31,8 +31,8 @@ class CustomerCreate extends FormRequest
             'password' => 'required|min:8|max:45|regex: /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,45}$/|confirmed',
             'rfc' =>'min:12|max:13|unique:people',
             'zipcode' =>'required|min:5|max:5|regex:/[0-9]$/',
-            'district' =>'required|min:3|max:35',
-            'street' =>'required|min:3|max:35',
+            'district' =>'required|min:3|max:35|regex:/[A-Za-z]$/',
+            'street' =>'required|min:3|max:35|regex:/[A-Za-z]$/',
             'extnumber' =>'required|min:1|max:5|regex:/[0-9]$/',
             'innumber' =>'required|min:1|max:5|regex:/[0-9]$/'
         ];

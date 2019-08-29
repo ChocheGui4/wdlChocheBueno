@@ -8,32 +8,18 @@
                     <a href="javascript:void(0)">Home</a>
                 </li>
                 <li class="breadcrumb-item active">Customers</li>
+                <img src="../assets/images/alert/alert4.png" alt="alert" class="img-responsive model_img" id="sa-warning">
+                <button id="deletecustomer" class="btn btn-danger">Hola</button>
             </ol>
         </div>
         <div class="col-md-6 col-4 align-self-center">
-            <button
-                class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10">
-                <i class="ti-settings text-white"></i>
-            </button>
-            <a href="{{ route('customerCreate')}}"  class="btn pull-right hidden-sm-down btn-success">
+
+            <a
+                href="{{ route('customerCreate')}}"
+                class="btn pull-right hidden-sm-down btn-success">
                 <i class="mdi mdi-plus-circle"></i>
                 Create</a>
-            <div class="dropdown pull-right m-r-10 hidden-sm-down">
-                <button
-                    class="btn btn-secondary dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-                    January 2017
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">February 2017</a>
-                    <a class="dropdown-item" href="#">March 2017</a>
-                    <a class="dropdown-item" href="#">April 2017</a>
-                </div>
-            </div>
+
         </div>
     </div>
     <!-- Content Wrapper. Contains page content -->
@@ -42,7 +28,7 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
-
+            
                 <!--Inicio de información de la empresa-->
                 <div class="row el-element-overlay">
 
@@ -51,13 +37,15 @@
                         <div class="card">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">
-                                    <img src="{{ asset('bundle/assets/images/users/HillsongThisisliving1.jpg') }}" alt="user">
+                                    <img
+                                        src="{{ asset('bundle/assets/images/users/HillsongThisisliving1.jpg') }}"
+                                        alt="user">
                                     <div class="el-overlay">
                                         <ul class="el-info">
                                             <li>
                                                 <a
                                                     class="btn default btn-outline image-popup-vertical-fit"
-                                                    href="../plugins/images/users/1.jpg">
+                                                    href="{{ route('customerEdit',$people->people_id)}}">
                                                     <i class="mdi mdi-account-edit"></i>
                                                 </a>
                                             </li>
@@ -78,6 +66,7 @@
                                     <h3 class="box-title">{{ $people->name }}
                                     </h3>
                                     <small>{{ $people->email }}</small>
+                                    
                                     <br>
                                 </div>
                             </div>
@@ -87,7 +76,7 @@
 
                 </div>
                 <!--Fin de la información de la empresa-->
-                
+
             </div>
             <!-- /.container-fluid -->
         </div>
@@ -98,4 +87,11 @@
 </div>
 <!-- ./wrapper -->
 <!-- ./wrapper -->
+@endsection
+@section('scripts')
+<script>
+$('#deletecustomer').on('click', function(){
+    swal("Good job!", "You clicked the button!", "success")
+});
+</script>
 @endsection

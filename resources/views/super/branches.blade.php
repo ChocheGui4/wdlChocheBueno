@@ -1,7 +1,7 @@
 @extends('layouts.wdlicenciamiento') @section('content')
 <div class="wrapper">
     <div class="row page-titles">
-        <div class="col-md-6 col-8 align-self-center">
+        <div class="col-md-8  align-self-center">
             <h3 class="text-themecolor m-b-0 m-t-0">Branch</h3>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
@@ -11,18 +11,27 @@
                 <li class="breadcrumb-item active">Branch</li>
             </ol>
         </div>
-        <div class="col-md-6 col-4 align-self-center">
-            <button
-                class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10">
-                <i class="ti-settings text-white"></i>
-            </button>
-            <a
-                href="{{ route('createBranches',$company)}}"
-                class="btn pull-right hidden-sm-down btn-success">
-                <i class="mdi mdi-plus-circle"></i>
-                Create</a>
+
+        <div class="col-md-4 ">
+            <div class="col-md-12 align-self-center">
+                <a
+                    href="{{ route('companyShow')}}"
+                    class="btn pull-right hidden-sm-down btn-primary">
+                    <i class="mdi mdi-arrow-left"></i>
+                    Back</a>
+            </div>
+            <div class="col-md-9 align-self-center">
+
+                <a
+                    href="{{ route('createBranches',$company)}}"
+                    class="btn pull-right hidden-sm-down btn-success">
+                    <i class="mdi mdi-plus-circle"></i>
+                    Create</a>
+
+            </div>
 
         </div>
+
     </div>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -52,9 +61,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a
-                                                    class="btn default btn-outline"
-                                                    href="{{ route('showBranches',$company)}}">
+                                                <a class="btn default btn-outline" href="{{ route('showBranches',$company)}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
                                             </li>
