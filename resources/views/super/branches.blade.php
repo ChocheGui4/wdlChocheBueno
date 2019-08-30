@@ -23,7 +23,7 @@
             <div class="col-md-9 align-self-center">
 
                 <a
-                    href="{{ route('createBranches',$company)}}"
+                    href="{{ route('createBranches',[$company,$branch1])}}"
                     class="btn pull-right hidden-sm-down btn-success">
                     <i class="mdi mdi-plus-circle"></i>
                     Create</a>

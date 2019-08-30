@@ -105,19 +105,27 @@ class CompanyController extends Controller
     }
     public function showBranches($id){
         $company=$id;
-        $branches = Branch::where("companies_id","=",$id)->get();     
-        return view('super.branches',compact('branches','company'));
-    }
-
-
-    public function createBranches($id){
-        $company=$id;
+        $branches = Branch::join('customers', 'customers.branches_id', '=', 'branches.id')
+                ->join('companies', 'companies.id', '=', 'customers.companies_id')
+                ->where('customers.companies_id', '=', $id)
+                ->get();
+        foreach ($branches as $branch ) {
+            $branch1 = $branch->id;
+        }                
         
-        return view('super.addBranch',compact('company'));
+        //$branches = Branch::join("companies_id","=",$id)->get();     
+        return view('super.branches',compact('branches','company','branch1'));
     }
 
 
-    public function addBranches(BranchCreate $request,$id){
+    public function createBranches($id,$branch){
+        $company=$id;
+        $branch=$branch;
+        return view('super.addBranch',compact('company','branch'));
+    }
+
+
+    public function addBranches(BranchCreate $request,$id, $branches){
         
         $branch = new Branch;
         $branch ->name= $request->name;
@@ -126,8 +134,13 @@ class CompanyController extends Controller
         $branch ->street= $request->street;
         $branch ->insidenumber= $request->innumber;
         $branch ->exteriornumber= $request->extnumber;
-        $branch ->companies_id= $id;
         $branch->save();
+
+        $customer = new Customer;
+        $customer->companies_id = $id;
+        $customer->branches_id = $branches;
+        $customer->save();
+
         
         $company=$id;
         

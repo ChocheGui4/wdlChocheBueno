@@ -52,7 +52,6 @@ class CompaniesTableSeeders extends Seeder
         $branch->street = "Anacahuita";
         $branch->insidenumber = 12;
         $branch->exteriornumber = 10;
-        $branch->companies_id= 1;
         $branch->save();
 
         
@@ -85,6 +84,7 @@ class CompaniesTableSeeders extends Seeder
         $customer->users_id = 2;
         $customer->acquisitions_id = 1;
         $customer->companies_id = 1;
+        $customer->branches_id = 1;
         $customer->save();
         
 

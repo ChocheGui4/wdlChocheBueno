@@ -21,12 +21,6 @@ class CreateBranchesTable extends Migration
             $table->string('street',35);
             $table->integer('insidenumber');
             $table->integer('exteriornumber');
-            $table->integer('companies_id');
-            $table->foreign('companies_id')
-            ->references('id')
-            ->on('companies')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
             $table->timestamps();
         });
     }

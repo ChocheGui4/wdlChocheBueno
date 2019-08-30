@@ -29,8 +29,8 @@ Route::post('/companyupdatecompany/{id}','CompanyController@companyUpdateCompany
 Route::post('/companyupdateaddress/{id}','CompanyController@companyUpdateAddress')->name('companyUpdateAddress');
 Route::get('/companybranches/{id}', 'CompanyController@showBranches') ->name('showBranches');
 Route::get('/companybranchesproducts/{id}/{branch}', 'ProductController@showBranchesProducts') ->name('showBranchesProducts');
-Route::get('/companycreatebranches/{id}', 'CompanyController@createBranches') ->name('createBranches');
-Route::post('/companyaddbranches/{id}', 'CompanyController@addBranches') ->name('addBranches');
+Route::get('/companycreatebranches/{id}/{branch}', 'CompanyController@createBranches') ->name('createBranches');
+Route::post('/companyaddbranches/{id}/{branches}', 'CompanyController@addBranches') ->name('addBranches');
 
 //Customers
 Route::get('/customers', 'CustomController@customerShow')->name('customerShow');

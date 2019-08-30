@@ -12,6 +12,6 @@ class Branch extends Model
     }
     protected $fillable = [
         'name','zipcode','district','street', 'insideNumber',
-        'exteriornumber', 'companies_id'
+        'exteriornumber'
     ];
 }

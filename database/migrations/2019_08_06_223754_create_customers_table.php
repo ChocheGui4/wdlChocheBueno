@@ -19,6 +19,7 @@ class CreateCustomersTable extends Migration
             $table->integer('people_id')->nullable();
             $table->integer('acquisitions_id')->nullable();
             $table->integer('companies_id')->nullable();
+            $table->integer('branches_id')->nullable();
             $table->foreign('users_id')
             ->references('id')
             ->on('users')
@@ -37,6 +38,11 @@ class CreateCustomersTable extends Migration
             $table->foreign('companies_id')
             ->references('id')
             ->on('companies')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->foreign('branches_id')
+            ->references('id')
+            ->on('branches')
             ->onDelete('cascade')
             ->onUpdate('cascade');
             $table->timestamps();
