@@ -24,7 +24,7 @@
             <div class="col-md-9 align-self-center">
 
                 <a
-                    href="{{ route('createBranches',$company)}}"
+                    href="{{ route('showBranchesCreateProduct',[$company,$branches])}}"
                     class="btn pull-right hidden-sm-down btn-success">
                     <i class="mdi mdi-plus-circle"></i>
                     Create</a>
@@ -74,10 +74,7 @@
                                 <div class="el-card-content">
                                     <h3 class="box-title">{{ $product->name }}
                                     </h3>
-                                    <small>{{ $product->street }},
-                                        {{ $product->exteriornumber }}-{{ $product->insidenumber }},
-                                        {{ $product->zipcode }},
-                                        {{ $product->district }}</small>
+                                    
                                     <br>
                                 </div>
                             </div>

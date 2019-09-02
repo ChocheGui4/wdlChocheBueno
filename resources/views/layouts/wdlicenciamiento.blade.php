@@ -13,6 +13,7 @@
         <link
             href="{{ asset('bundle/assets/plugins/bootstrap/css/bootstrap.min.css') }}"
             rel="stylesheet">
+        
         <link
             href="{{ asset('bundle/assets/plugins/chartist-js/dist/chartist.min.css') }}"
             rel="stylesheet">
@@ -327,12 +328,11 @@
         <script src="{{ asset('bundle/js/toastr.js') }}"></script>
         <script src="{{ asset('assets/use2.js') }}"></script>
         <script src="{{ asset('assets/edituser.js') }}"></script>
-        <script
-            src="{{ asset('bundle/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-            <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-            <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-            <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-            <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+        <script src="{{ asset('bundle/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
         @yield('file_js')
         
         

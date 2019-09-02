@@ -54,6 +54,7 @@
                                                 <a id="deletecustomer" data-toggle="modal" data-target="#myModal" class="btn default btn-outline" >
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>
+                                                
                                             </li>
                                             <li>
                                                 <a class="btn default btn-outline" href="javascript:void(0);">
@@ -116,8 +117,27 @@
 </div>
 <!-- ./wrapper -->
 <!-- ./wrapper -->
+
+
 @endsection
 @section('scripts')
 <script>
+function Sweetal() {
+    Swal.fire({
+        position: 'top-end',
+        type: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500
+    })
+}
+$("#alertt").click(function(){
+swal({
+title:’Hola mundo!’,
+text:"Hola, estamos probando Sweet Alert 2",
+type:’success’
+})
+
+});
 </script>
 @endsection

@@ -33,7 +33,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="{{ route('addBranches',[$company,$branch]) }}" method="POST" autocomplete="off">
+                        <form action="{{ route('addBranches',$company) }}" method="POST" autocomplete="off">
                             @csrf
                             
                                 

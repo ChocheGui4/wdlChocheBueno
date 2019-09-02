@@ -109,23 +109,24 @@ class CompanyController extends Controller
                 ->join('companies', 'companies.id', '=', 'customers.companies_id')
                 ->where('customers.companies_id', '=', $id)
                 ->get();
+        $branch1 = null;
         foreach ($branches as $branch ) {
-            $branch1 = $branch->id;
-        }                
+            $branch1 = $branch->branches_id;
+        }
+        
         
         //$branches = Branch::join("companies_id","=",$id)->get();     
         return view('super.branches',compact('branches','company','branch1'));
     }
 
 
-    public function createBranches($id,$branch){
+    public function createBranches($id){
         $company=$id;
-        $branch=$branch;
-        return view('super.addBranch',compact('company','branch'));
+        return view('super.addBranch',compact('company'));
     }
 
 
-    public function addBranches(BranchCreate $request,$id, $branches){
+    public function addBranches(BranchCreate $request,$id){
         
         $branch = new Branch;
         $branch ->name= $request->name;
@@ -136,9 +137,10 @@ class CompanyController extends Controller
         $branch ->exteriornumber= $request->extnumber;
         $branch->save();
 
+        $ided= Branch::latest('id')->first();
         $customer = new Customer;
         $customer->companies_id = $id;
-        $customer->branches_id = $branches;
+        $customer->branches_id = $ided->id;
         $customer->save();
 
         

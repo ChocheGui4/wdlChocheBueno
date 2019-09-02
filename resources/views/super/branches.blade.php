@@ -23,7 +23,7 @@
             <div class="col-md-9 align-self-center">
 
                 <a
-                    href="{{ route('createBranches',[$company,$branch1])}}"
+                    href="{{ route('createBranches',$company)}}"
                     class="btn pull-right hidden-sm-down btn-success">
                     <i class="mdi mdi-plus-circle"></i>
                     Create</a>
@@ -45,7 +45,7 @@
                         <div class="card">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">
-                                    <img src="{{ asset('bundle/assets/images/users/company.png') }}" alt="user">
+                                    <img src="{{ asset('bundle/assets/images/users/sucursal.jpeg') }}" alt="user">
                                     <div class="el-overlay">
                                         <ul class="el-info">
                                             <li>
@@ -63,7 +63,7 @@
                                             <li>
                                                 <a
                                                     class="btn default btn-outline"
-                                                    href="{{ route('showBranchesProducts',[$company,$branch->id])}}">
+                                                    href="{{ route('showBranchesProducts',[$company,$branch->branches_id])}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
                                             </li>
