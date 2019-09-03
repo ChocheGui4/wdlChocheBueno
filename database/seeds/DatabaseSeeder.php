@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         $user->save();
 
         $this->call(
-            //CompaniesTableSeeders::class
+            CompaniesTableSeeders::class
         );
     }
 }

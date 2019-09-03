@@ -219,14 +219,17 @@
                                     <span class="hide-menu">Companies</span>
                                 </a>
                             </li>
-
                             <li class="nav-item">
-
                                 <a href="/customers">
                                     <i class="mdi mdi-account-multiple"></i>
                                     <span class="hide-menu">Customers</span>
                                 </a>
-
+                            </li>
+                            <li class="nav-item">
+                                <a href="/products">
+                                    <i class="mdi mdi-account-multiple"></i>
+                                    <span class="hide-menu">Productos</span>
+                                </a>
                             </li>
                             <li>
                                 <a href="/user">
@@ -327,6 +330,7 @@
         <script src="{{ asset('bundle/js/dashboard1.js') }}"></script>
         <script src="{{ asset('bundle/js/toastr.js') }}"></script>
         <script src="{{ asset('assets/use2.js') }}"></script>
+        <script src="{{ asset('assets/product.js') }}"></script>
         <script src="{{ asset('assets/edituser.js') }}"></script>
         <script src="{{ asset('bundle/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>

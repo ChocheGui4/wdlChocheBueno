@@ -1,4 +1,5 @@
 @extends('layouts.wdlicenciamiento') @section('content')
+
 <div class="wrapper">
     <div class="row page-titles">
         <div class="col-md-8  align-self-center">
@@ -28,12 +29,13 @@
 
     </div>
     <!-- Content Wrapper. Contains page content -->
+
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row el-element-overlay">
-                    <div class="col-lg-2 col-md-6">
+                    <div class="col-md-6">
                         <div class="card">
                             <img
                                 class="card-img-top img-responsive"
@@ -44,13 +46,14 @@
 
                                 <a
                                     href="#"
+                                    id="wdngbutton"
                                     class="btn btn-primary"
                                     data-toggle="modal"
                                     data-target="#WDNGmodal">Go</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-6">
+                    <div class="col-md-6">
                         <div class="card">
                             <img
                                 class="card-img-top img-responsive"
@@ -61,6 +64,7 @@
 
                                 <a
                                     href="#"
+                                    id="wdfbutton"
                                     class="btn btn-primary"
                                     data-toggle="modal"
                                     data-target="#WDNGmodal">Go</a>
@@ -78,6 +82,7 @@
 
                                 <a
                                     href="#"
+                                    id="wdcpbutton"
                                     class="btn btn-primary"
                                     data-toggle="modal"
                                     data-target="#WDNGmodal">Go</a>
@@ -95,6 +100,7 @@
 
                                 <a
                                     href="#"
+                                    id="wdipsbutton"
                                     class="btn btn-primary"
                                     data-toggle="modal"
                                     data-target="#WDNGmodal">Go</a>
@@ -193,65 +199,65 @@
                     <h5 class="modal-title">WDNG</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
+
                 <form
-                    class="m-t-40"
                     action="{{ route('showBranchesAddProduct',[$company,$branch])}}"
                     method="POST"
-                    autocomplete="off"
-                    novalidate="novalidate">
+                    autocomplete="off">
+                    @csrf
+
                     <div class="modal-body">
-
-                        <div align="center">
-                            <h3 class="modal-title">Warriors Defender Firewall New Generate</h3>
-                            <br>
-                            <small>Little description: Lorem, ipsum dolor sit amet consectetur adipisicing
-                                elit. Non eveniet quibusdam hic temporibus itaque minus cupiditate suscipit odio
-                                sed fugit quas, qui ex repellat a, ratione sint provident minima facere.</small>
-                        </div>
-
-                        
-                            <div class="container col-md-12">
-                                <div clas="row">
-                                    <div class="col-xs-4 col-sm-4 col-md-4">
-                                        <p>Acquisiton time</p>
-                                        <div class="form-group">
-                                            <select class="form-control" name="years">
-                                                <option >1</option>
-                                                <option >2</option>
-                                                <option >3</option>
-                                                <option >4</option>
-                                                <option >5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-4 col-sm-4 col-md-4">
-                                        <p>Users number</p>
-                                        <div class="form-group">
-                                            <select class="form-control" name="years">
-                                                <option >15</option>
-                                                <option >100</option>
-                                                <option >200</option>
-                                                <option >300</option>
-                                                <option >400</option>
-                                                <option >500</option>
-                                                <option >600</option>
-                                                <option >700</option>
-                                                <option >800</option>
-                                                <option >900</option>
-                                                <option >1000</option>
-                                            </select>
-
-                                        </div>
-                                    </div>
+                        <div class="row">
+                            <div align="center">
+                                <h3 id="name1" class="modal-title">fff</h3>
+                                <br>
+                                <input hidden="hidden" type="text" id="name" name="name">
+                                <input hidden="hidden" type="text" name="description" value="Hola">
+                                <small value="Hola">Little description: Lorem, ipsum dolor sit amet consectetur
+                                    adipisicing elit. Sed fugit quas, qui ex repellat a, ratione sint provident
+                                    minima facere.</small>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <p>Acquisiton time</p>
+                                <div class="form-group">
+                                    <select name="time" class="form-control">
+                                        <option >1</option>
+                                        <option >2</option>
+                                        <option >3</option>
+                                        <option >4</option>
+                                        <option >5</option>
+                                    </select>
                                 </div>
                             </div>
 
-                        
+                            <div class="col-md-4 col-xs-4 col-sm-4">
+                                <p>Users number</p>
+                                <div class="form-group">
+                                    <select name="years" class="form-control">
+                                        <option >15</option>
+                                        <option >100</option>
+                                        <option >200</option>
+                                        <option >300</option>
+                                        <option >400</option>
+                                        <option >500</option>
+                                        <option >600</option>
+                                        <option >700</option>
+                                        <option >800</option>
+                                        <option >900</option>
+                                        <option >1000</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger waves-effect waves-light">Save changes</button>
+                        <button
+                            id="click"
+                            type="submit"
+                            class="btn btn-danger waves-effect waves-light">Save changes</button>
                     </div>
                 </form>
             </div>

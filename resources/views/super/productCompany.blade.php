@@ -7,7 +7,8 @@
                 <li class="breadcrumb-item">
                     <a href="javascript:void(0)">Home</a>
                 </li>
-                
+                <li class="breadcrumb-item active">Company</li>
+                <li class="breadcrumb-item active">Branch</li>
                 <li class="breadcrumb-item active">Product</li>
             </ol>
         </div>
@@ -15,7 +16,7 @@
         <div class="col-md-4 ">
             <div class="col-md-12 align-self-center">
                 <a
-                    href="#"
+                    href="{{ route('showBranches',$company)}}"
                     class="btn pull-right hidden-sm-down btn-primary">
                     <i class="mdi mdi-arrow-left"></i>
                     Back</a>
@@ -23,7 +24,7 @@
             <div class="col-md-9 align-self-center">
 
                 <a
-                    href="#"
+                    href="{{ route('showBranchesCreateProduct',[$company,$branches])}}"
                     class="btn pull-right hidden-sm-down btn-success">
                     <i class="mdi mdi-plus-circle"></i>
                     Create</a>
@@ -63,7 +64,7 @@
                                             <li>
                                                 <a
                                                     class="btn default btn-outline"
-                                                    href="#">
+                                                    href="{{ route('showBranchesProducts',[$company,$branches])}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
                                             </li>

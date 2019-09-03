@@ -9,6 +9,7 @@ use App\User;
 use App\Customer;
 use App\Acquisition;
 use App\Product;
+use App\Characteristic;
 use App\License;
 use App\AcquisitionType;
 
@@ -61,10 +62,52 @@ class CompaniesTableSeeders extends Seeder
         $user->password = bcrypt("Hol@mundo1");
         $user->save();
 
+        //WDNG
+        $product = new Product;
+        $product->name = "Warriors Defender New Generate Firewall";
+        $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
+        $product->save();
+
+        //WDF
         $product = new Product;
         $product->name = "Warriors Defender Firewall";
         $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
         $product->save();
+        //WDM
+        $product = new Product;
+        $product->name = "Warriors Defender Mail";
+        $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
+        $product->save();
+        //WDCP
+        $product = new Product;
+        $product->name = "Warriors Defender Captive Portal";
+        $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
+        $product->save();
+        //WDS
+        $product = new Product;
+        $product->name = "Warriors Defender Storage";
+        $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
+        $product->save();
+        //WDIPS/IDS
+        $product = new Product;
+        $product->name = "Warriors Defender IPS/IDS";
+        $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
+        $product->save();
+        //WDCC
+        $product = new Product;
+        $product->name = "Warriors Defender Central Console";
+        $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
+        $product->save();
+        //WDR
+        $product = new Product;
+        $product->name = "Warriors Defender Reporter";
+        $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
+        $product->save();
+
+        $charac = new Characteristic;
+        $charac->time = 5;
+        $charac->numberusers = 5;
+        $charac->save();
 
         $licence = new License;
         $licence->serialkey = "HUYT-23ED-6TH7-7YHJ-2WDE-MODE-L87Y";
@@ -78,6 +121,7 @@ class CompaniesTableSeeders extends Seeder
         $acq->products_id = 1;
         $acq->acquisition_types_id = 1;
         $acq->licenses_id = 1;
+        $acq->characteristics_id = 1;
         $acq->save();
 
         $customer = new Customer;
