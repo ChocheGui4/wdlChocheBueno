@@ -81,12 +81,24 @@ class CompanyController extends Controller
         $company->contacts_id = $id;
         $company->save();
 
+        //Branch
+        $branch = new Branch;
+        $branch ->name= "Own";
+        $branch ->zipcode= $request->zipcode;
+        $branch ->district= $request->district;
+        $branch ->street= $request->street;
+        $branch ->insidenumber= $request->innumber;
+        $branch ->exteriornumber= $request->extnumber;
+        $branch->save();
+
         //Customer
         $com= Company::latest('id')->first();
+        $br= Branch::latest('id')->first();
         $us= User::latest('id')->first();
         $customers = new Customer;
         $customers->users_id=$us->id;
         $customers->companies_id=$com->id;
+        $customers->branches_id=$br->id;
         $customers->save();
         
         
@@ -109,6 +121,7 @@ class CompanyController extends Controller
                 ->join('companies', 'companies.id', '=', 'customers.companies_id')
                 ->where('customers.companies_id', '=', $id)
                 ->get();
+        dd($branches);
         $branch1 = null;
         foreach ($branches as $branch ) {
             $branch1 = $branch->branches_id;

@@ -18,15 +18,15 @@
                     href="#"
                     class="btn pull-right hidden-sm-down btn-primary">
                     <i class="mdi mdi-arrow-left"></i>
-                    Back</a>
+                    Dashboard</a>
             </div>
-            <div class="col-md-9 align-self-center">
+            <div class="col-md-7 align-self-center">
 
                 <a
                     href="#"
                     class="btn pull-right hidden-sm-down btn-success">
                     <i class="mdi mdi-plus-circle"></i>
-                    Create</a>
+                    Add product</a>
 
             </div>
 
@@ -41,7 +41,7 @@
                 <div class="row el-element-overlay">
 
                     @foreach ($products as $product)
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-md-3 col-sm-3 col-xs-3">
                         <div class="card">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">

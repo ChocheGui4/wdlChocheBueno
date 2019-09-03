@@ -27,7 +27,7 @@
                     href="{{ route('showBranchesCreateProduct',[$company,$branches])}}"
                     class="btn pull-right hidden-sm-down btn-success">
                     <i class="mdi mdi-plus-circle"></i>
-                    Create</a>
+                    Add product</a>
 
             </div>
 

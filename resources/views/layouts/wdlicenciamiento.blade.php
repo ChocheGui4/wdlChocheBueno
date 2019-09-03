@@ -227,7 +227,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="/products">
-                                    <i class="mdi mdi-account-multiple"></i>
+                                    <i class="fa fa-product-hunt"></i>
                                     <span class="hide-menu">Productos</span>
                                 </a>
                             </li>

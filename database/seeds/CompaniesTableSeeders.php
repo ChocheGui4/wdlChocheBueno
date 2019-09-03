@@ -64,7 +64,7 @@ class CompaniesTableSeeders extends Seeder
 
         //WDNG
         $product = new Product;
-        $product->name = "Warriors Defender New Generate Firewall";
+        $product->name = "Warriors Defender Firewall New Generate";
         $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
         $product->save();
 
@@ -114,7 +114,11 @@ class CompaniesTableSeeders extends Seeder
         $licence->save();
 
         $type = new AcquisitionType;
-        $type->type = "Buy";
+        $type->type = "Sale";
+        $type->save();
+
+        $type = new AcquisitionType;
+        $type->type = "Demo";
         $type->save();
 
         $acq = new Acquisition;
