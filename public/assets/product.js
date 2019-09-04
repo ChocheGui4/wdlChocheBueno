@@ -1,4 +1,4 @@
-$('#wdngbutton0').on('click', function(){
+/*$('#wdngbutton0').on('click', function(){
     $('#name1').text("Warriors Defender Firewall New Generate");
     $('#name').val("Warriors Defender Firewall New Generate");
 });
@@ -29,15 +29,20 @@ $('#wdngbutton6').on('click', function(){
 $('#wdngbutton7').on('click', function(){
     $('#name1').text("Warriors Defender Reporter");
     $('#name').val("Warriors Defender Reporter");
-});
+});*/
 
 //Función para llamar acciones de un botón automáticamente 
 
-function button(Hola) {
-    $('#wdngbutton7').on('click', function(){
-        $('#name1').text("Warriors Defender Reporter");
-        $('#name').val("Warriors Defender Reporter");
-    });    
+function button( Hola, desc, name) {
+    //alert("Ya entró a la función con botton");
+    alert(name);
+    alert($(name).val());
+    
+    $('#name1').text($(name).val());
+    alert($('#name1').text());
+    //$('#name').val("Warriors Defender Central Console");
+    alert($(desc).val());
+    
 }//Pendiente
 $('#type').on('click', function(){
     

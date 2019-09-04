@@ -40,14 +40,17 @@
                                     alt="Card image cap">
                                 <div class="card-block">
                                     <h4 class="card-title">{{ $product->name}}</h4>
-
+                                    <input  type="text" id="name{{ $i }}" name="name" value="{{$product->name}}">
+                                    <input hidden="hidden" type="text" id="description{{ $i }}" name="description" value="{{ $product->description }}">
                                     <a
                                         href="#"
                                         id="wdngbutton{{ $i++ }}"
                                         class="btn btn-primary"
+                                        onClick="button('#wdngbutton{{ $i }}','#description{{ $i }}','#name{{ $i++ }}')"
                                         data-toggle="modal"
                                         data-target="#WDNGmodal"
                                         >Go</a>
+                                        
                                 </div>
                             </div>
                         </div>
@@ -86,8 +89,7 @@
                                     <div align="center">
                                         <h3 id="name1" class="modal-title">fff</h3>
                                         <br>
-                                        <input hidden="hidden" type="text" id="name" name="name">
-                                        <input hidden="hidden" type="text" name="description" value="Hola">
+                                        
                                         <small value="Hola">Little description: Lorem, ipsum dolor sit amet consectetur
                                             adipisicing elit. Sed fugit quas, qui ex repellat a, ratione sint provident
                                             minima facere.</small>            
@@ -131,6 +133,7 @@
                                 <div class="col-md-1 col-sm-1 col-xs-1"></div>
                                 <div class="col-md-1 col-sm-1 col-xs-1">
                                     <br>
+                                    <button id="Hola" type="button" >Click</button>
                                     <strong>Number users</strong>
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-2">
