@@ -464,6 +464,7 @@ class ComposerStaticInit555245e103f30d83f259f3e5d7c820d5
         'App\\AcquisitionType' => __DIR__ . '/../..' . '/app/AcquisitionType.php',
         'App\\Area' => __DIR__ . '/../..' . '/app/Area.php',
         'App\\Branch' => __DIR__ . '/../..' . '/app/Branch.php',
+        'App\\Characteristic' => __DIR__ . '/../..' . '/app/Characteristic.php',
         'App\\Company' => __DIR__ . '/../..' . '/app/Company.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Contact' => __DIR__ . '/../..' . '/app/Contact.php',

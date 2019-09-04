@@ -10,6 +10,7 @@ return array(
     'App\\AcquisitionType' => $baseDir . '/app/AcquisitionType.php',
     'App\\Area' => $baseDir . '/app/Area.php',
     'App\\Branch' => $baseDir . '/app/Branch.php',
+    'App\\Characteristic' => $baseDir . '/app/Characteristic.php',
     'App\\Company' => $baseDir . '/app/Company.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Contact' => $baseDir . '/app/Contact.php',

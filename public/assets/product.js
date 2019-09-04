@@ -30,6 +30,15 @@ $('#wdngbutton7').on('click', function(){
     $('#name1').text("Warriors Defender Reporter");
     $('#name').val("Warriors Defender Reporter");
 });
+
+//Función para llamar acciones de un botón automáticamente 
+
+function button(Hola) {
+    $('#wdngbutton7').on('click', function(){
+        $('#name1').text("Warriors Defender Reporter");
+        $('#name').val("Warriors Defender Reporter");
+    });    
+}//Pendiente
 $('#type').on('click', function(){
     
     if($('#type').val()=="Sale"){
@@ -61,7 +70,38 @@ $('#type').on('click', function(){
     }
     
 });
-$('#users').on('click', function(){
-    alert($('#users').val());
-    
+
+//Products id
+$('#edit0').on('click', function(){
+    $('#name').val($('#h30').text());
+    $('#description').val($('#sm0').text());    
 });
+$('#edit1').on('click', function(){
+    $('#name').val($('#h31').text());
+    $('#description').val($('#sm1').text());    
+});
+$('#edit2').on('click', function(){
+    $('#name').val($('#h32').text());
+    $('#description').val($('#sm2').text());    
+});
+$('#edit3').on('click', function(){
+    $('#name').val($('#h33').text());
+    $('#description').val($('#sm3').text());    
+});
+$('#edit4').on('click', function(){
+    $('#name').val($('#h34').text());
+    $('#description').val($('#sm4').text());    
+});
+$('#edit5').on('click', function(){
+    $('#name').val($('#h35').text());
+    $('#description').val($('#sm5').text());    
+});
+$('#edit6').on('click', function(){
+    $('#name').val($('#h36').text());
+    $('#description').val($('#sm6').text());    
+});
+$('#edit7').on('click', function(){
+    $('#name').val($('#h37').text());
+    $('#description').val($('#sm7').text());    
+});
+

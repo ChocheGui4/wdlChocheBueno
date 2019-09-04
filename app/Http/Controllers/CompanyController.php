@@ -119,9 +119,14 @@ class CompanyController extends Controller
         $company=$id;
         $branches = Branch::join('customers', 'customers.branches_id', '=', 'branches.id')
                 ->join('companies', 'companies.id', '=', 'customers.companies_id')
+                //->groupBy('branches.id','customers.branches_id','companies.id')
+                ->select('branches.id','branches.name',
+                'branches.zipcode','branches.district','branches.street',
+                'branches.insidenumber','branches.exteriornumber')
+                ->groupBy('branches.id')
                 ->where('customers.companies_id', '=', $id)
                 ->get();
-        dd($branches);
+        
         $branch1 = null;
         foreach ($branches as $branch ) {
             $branch1 = $branch->branches_id;

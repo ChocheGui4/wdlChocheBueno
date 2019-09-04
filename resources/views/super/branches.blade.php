@@ -63,7 +63,7 @@
                                             <li>
                                                 <a
                                                     class="btn default btn-outline"
-                                                    href="{{ route('showBranchesProducts',[$company,$branch->branches_id])}}">
+                                                    href="{{ route('showBranchesProducts',[$company,$branch->id])}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
                                             </li>

@@ -29,6 +29,10 @@ Route::post('/companyupdatecompany/{id}','CompanyController@companyUpdateCompany
 Route::post('/companyupdateaddress/{id}','CompanyController@companyUpdateAddress')->name('companyUpdateAddress');
 Route::get('/companybranches/{id}', 'CompanyController@showBranches') ->name('showBranches');
 Route::get('/products', 'ProductController@productsShow') ->name('productsShow');
+Route::post('/productcreate', 'ProductController@productCreate') ->name('productCreate');
+Route::post('/productedit', 'ProductController@productEdit') ->name('productEdit');
+Route::get('/productdelete/{id}', 'ProductController@productDelete') ->name('productDelete');
+
 Route::get('/companyproducts/{id}/{branch}', 'ProductController@showBranchesProducts') ->name('showBranchesProducts');
 Route::get('/companycreateproducts/{id}/{branch}', 'ProductController@showBranchesCreateProduct') ->name('showBranchesCreateProduct');
 Route::post('/companyaddproduct/{id}/{branch}', 'ProductController@showBranchesAddProduct') ->name('showBranchesAddProduct');
