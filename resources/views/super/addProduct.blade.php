@@ -40,135 +40,143 @@
                                     alt="Card image cap">
                                 <div class="card-block">
                                     <h4 class="card-title">{{ $product->name}}</h4>
-                                    <input  type="text" id="name{{ $i }}" name="name" value="{{$product->name}}">
+                                    
+                                    <input hidden="hidden" type="textarea" id="name{{ $i }}" name="name" value="{{$product->name}}">
                                     <input hidden="hidden" type="text" id="description{{ $i }}" name="description" value="{{ $product->description }}">
+                                    <input hidden="hidden" type="text" id="t1{{ $i }}" name="t1" value="{{ $product->time }}">
+                                    <input hidden="hidden" type="text" id="p1{{ $i }}" name="p1" value="{{ $product->period }}">
+                                    <input hidden="hidden" type="text" id="s1{{ $i }}" name="s1" value="{{ $product->storage }}">
+                                    <input hidden="hidden" type="text" id="us1{{ $i }}" name="us1" value="{{ $product->unitstorage }}">
                                     <a
                                         href="#"
-                                        id="wdngbutton{{ $i++ }}"
+                                        id="wdngbutton{{ $i }}"
                                         class="btn btn-primary"
-                                        onClick="button('#wdngbutton{{ $i }}','#description{{ $i }}','#name{{ $i++ }}')"
+                                        onClick="button('#description{{$i}}','#name{{$i}}')"
                                         data-toggle="modal"
                                         data-target="#WDNGmodal"
                                         >Go</a>
+                                        <label hidden>{{$i++}}</label> 
                                         
                                 </div>
                             </div>
                         </div>
+                        
                         @endforeach
                     </div>
                 </div>
             </div>
         </div>
         <!-- /.content-wrapper -->
-        <!--Inicia la ventana modal-->
-        <div
-            id="WDNGmodal"
-            class="modal fade"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="myModalLabel"
-            style="display: none;"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
+    </div>
+    <!--Inicia la ventana modal-->
+    <div
+        id="WDNGmodal"
+        class="modal fade"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        style="display: none;"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
 
-                        <h5 class="modal-title">WDNG</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    </div>
-
-                    <form
-                        action="{{ route('showBranchesAddProduct',[$company,$branch])}}"
-                        method="POST"
-                        autocomplete="off">
-                        @csrf
-
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <div align="center">
-                                        <h3 id="name1" class="modal-title">fff</h3>
-                                        <br>
-                                        
-                                        <small value="Hola">Little description: Lorem, ipsum dolor sit amet consectetur
-                                            adipisicing elit. Sed fugit quas, qui ex repellat a, ratione sint provident
-                                            minima facere.</small>            
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-
-                                <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <br>
-                                    <strong>Type</strong> 
-                                </div>
-                                <div class="col-lg-2 col-sm-2 col-xs-2">
-                                    <br>
-                                    <div class="form-group">
-                                        <select id="type" name="type" class="form-control">
-                                            @foreach ($atypes as $type)
-                                                <option >{{ $type->type}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <br>
-                                    <strong>Time</strong> 
-                                </div>
-                                <div class="col-md-2 col-sm-2 col-xs-2">
-                                    <br>
-                                    <div class="form-group">
-                                        <select id="time" name="time" class="form-control">
-                                            <option >1</option>
-                                            <option >2</option>
-                                            <option >3</option>
-                                            <option >4</option>
-                                            <option >5</option>
-                                        </select>
-                                    </div>
-                                </div>   
-                                <div class="col-md-1 col-sm-1 col-xs-1"> <br> <strong id="dm">years</strong></div>
-                                <div class="col-md-1 col-sm-1 col-xs-1"></div>
-                                <div class="col-md-1 col-sm-1 col-xs-1">
-                                    <br>
-                                    <button id="Hola" type="button" >Click</button>
-                                    <strong>Number users</strong>
-                                </div>
-                                <div class="col-md-2 col-sm-2 col-xs-2">
-                                    <br>
-                                    <div class="form-group">
-                                        <select id="users" name="numberusers" class="form-control">
-                                            <option >15</option>
-                                            <option >100</option>
-                                            <option >200</option>
-                                            <option >300</option>
-                                            <option >400</option>
-                                            <option >500</option>
-                                            <option >600</option>
-                                            <option >700</option>
-                                            <option >800</option>
-                                            <option >900</option>
-                                            <option >1000</option>
-                                        </select>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                            <button
-                                id="click"
-                                type="submit"
-                                class="btn btn-danger waves-effect waves-light">Save changes</button>
-                        </div>
-                    </form>
+                    <h5 class="modal-title">WDNG</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
+
+                <form
+                    action="{{ route('showBranchesAddProduct',[$company,$branch])}}"
+                    method="POST"
+                    autocomplete="off">
+                    @csrf
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div align="center">
+                                    <h3 id="title" class="modal-title">fff</h3>
+                                    <input hidden id="namename" name="name" type="text">
+                                    <input hidden id="desc1" name="description" type="text">
+                                    <br>
+                                </div>
+                                <div>
+                                    <small id="desc" value="Hola">Little description: Lorem, ipsum dolor sit amet consectetur
+                                        adipisicing elit. Sed fugit quas, qui ex repellat a, ratione sint provident
+                                        minima facere.</small>            
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                <br>
+                                <strong>Type</strong> 
+                            </div>
+                            <div class="col-lg-2 col-sm-2 col-xs-2">
+                                <br>
+                                <div class="form-group">
+                                    <select id="type" name="type" class="form-control">
+                                        @foreach ($atypes as $type)
+                                            <option >{{ $type->type}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                <br>
+                                <strong>Time</strong> 
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                <br>
+                                <div class="form-group">
+                                    <select id="time" name="time" class="form-control">
+                                        <option >1</option>
+                                        <option >2</option>
+                                        <option >3</option>
+                                        <option >4</option>
+                                        <option >5</option>
+                                    </select>
+                                </div>
+                            </div>   
+                            <div class="col-md-1 col-sm-1 col-xs-1"> <br> <strong id="dm">years</strong></div>
+                            <div class="col-md-1 col-sm-1 col-xs-1"></div>
+                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                <br>
+                                <strong>Number users</strong>
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                <br>
+                                <div class="form-group">
+                                    <select id="users" name="numberusers" class="form-control">
+                                        <option >15</option>
+                                        <option >100</option>
+                                        <option >200</option>
+                                        <option >300</option>
+                                        <option >400</option>
+                                        <option >500</option>
+                                        <option >600</option>
+                                        <option >700</option>
+                                        <option >800</option>
+                                        <option >900</option>
+                                        <option >1000</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                        <button
+                            id="click"
+                            type="submit"
+                            class="btn btn-danger waves-effect waves-light">Save changes</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <!--Termina la ventana modal-->
-
     </div>
+    <!--Termina la ventana modal-->
 @endsection

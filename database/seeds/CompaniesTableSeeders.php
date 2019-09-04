@@ -66,42 +66,70 @@ class CompaniesTableSeeders extends Seeder
         $product = new Product;
         $product->name = "Warriors Defender Firewall New Generate";
         $product->description = "Se Obtiene el producto WDNG para el uso más conveniente del cliente";
+        $product->time = 5;
+        $product->period = "years";
+        $product->users = 1000;
         $product->save();
 
         //WDF
         $product = new Product;
         $product->name = "Warriors Defender Firewall";
         $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
+        $product->time = 5;
+        $product->period = "years";
+        $product->users = 1000;
         $product->save();
         //WDM
         $product = new Product;
         $product->name = "Warriors Defender Mail";
         $product->description = "Se Obtiene el producto WDM para el uso más conveniente del cliente";
+        $product->time = 5;
+        $product->period = "years";
+        $product->users = 1000;
+        $product->storage = 5;
+        $product->unitstorage = "GB";
         $product->save();
         //WDCP
         $product = new Product;
         $product->name = "Warriors Defender Captive Portal";
         $product->description = "Se Obtiene el producto WDCP para el uso más conveniente del cliente";
+        $product->time = 5;
+        $product->period = "years";
+        $product->users = 1000;
         $product->save();
         //WDS
         $product = new Product;
         $product->name = "Warriors Defender Storage";
         $product->description = "Se Obtiene el producto WDS para el uso más conveniente del cliente";
+        $product->time = 36;
+        $product->period = "months";
+        $product->users = 1000;
+        $product->storage = 5;
+        $product->unitstorage = "TB";
         $product->save();
         //WDIPS/IDS
         $product = new Product;
         $product->name = "Warriors Defender IPS/IDS";
         $product->description = "Se Obtiene el producto WDIPS/IDS para el uso más conveniente del cliente";
+        $product->time = 5;
+        $product->period = "years";
+        $product->users = 1000;
         $product->save();
         //WDCC
         $product = new Product;
         $product->name = "Warriors Defender Central Console";
         $product->description = "Se Obtiene el producto WDCCpara el uso más conveniente del cliente";
+        $product->time = 5;
+        $product->period = "years";
+        $product->users = 1000;
         $product->save();
         //WDR
         $product = new Product;
         $product->name = "Warriors Defender Reporter";
         $product->description = "Se Obtiene el producto WDR para el uso más conveniente del cliente";
+        $product->time = 5;
+        $product->period = "years";
+        $product->users = 1000;
         $product->save();
 
         $charac = new Characteristic;

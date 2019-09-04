@@ -17,6 +17,7 @@ class CreateCharacteristicsTable extends Migration
             $table->increments('id');
             $table->integer('time');
             $table->integer('numberusers');
+            $table->integer('storage')->nullable();
             $table->timestamps();          
         });
     }

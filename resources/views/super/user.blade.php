@@ -48,8 +48,6 @@
 
                     <div class="table-responsive m-t-40">
                         <div id="example23_wrapper" class="dataTables_wrapper">
-                            
-                            
                             <table
                                 
                                 id="table"

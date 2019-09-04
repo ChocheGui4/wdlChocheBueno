@@ -11,6 +11,6 @@ class Characteristic extends Model
         return $this->hasMany('App\Acquisition');
     }
     protected $fillable = [
-        'time', 'numberusers'
+        'time', 'numberusers','storage'
     ];
 }

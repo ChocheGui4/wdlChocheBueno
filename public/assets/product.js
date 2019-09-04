@@ -1,49 +1,35 @@
-/*$('#wdngbutton0').on('click', function(){
-    $('#name1').text("Warriors Defender Firewall New Generate");
-    $('#name').val("Warriors Defender Firewall New Generate");
-});
-$('#wdngbutton1').on('click', function(){
-    $('#name1').text("Warriors Defender Firewall");
-    $('#name').val("Warriors Defender Firewall");
-});
-$('#wdngbutton2').on('click', function(){
-    $('#name1').text("Warriors Defender Mail");
-    $('#name').val("Warriors Defender Mail");
-});
-$('#wdngbutton3').on('click', function(){
-    $('#name1').text("Warriors Defender Captive Portal");
-    $('#name').val("Warriors Defender Captive Portal");
-});
-$('#wdngbutton4').on('click', function(){
-    $('#name1').text("Warriors Defender Storage");
-    $('#name').val("Warriors Defender Storage");
-});
-$('#wdngbutton5').on('click', function(){
-    $('#name1').text("Warriors Defender IPS/IDS");
-    $('#name').val("Warriors Defender IPS/IDS");
-});
-$('#wdngbutton6').on('click', function(){
-    $('#name1').text("Warriors Defender Central Console");
-    $('#name').val("Warriors Defender Central Console");
-});
-$('#wdngbutton7').on('click', function(){
-    $('#name1').text("Warriors Defender Reporter");
-    $('#name').val("Warriors Defender Reporter");
-});*/
-
 //Función para llamar acciones de un botón automáticamente 
 
-function button( Hola, desc, name) {
-    //alert("Ya entró a la función con botton");
-    alert(name);
-    alert($(name).val());
-    
-    $('#name1').text($(name).val());
-    alert($('#name1').text());
-    //$('#name').val("Warriors Defender Central Console");
-    alert($(desc).val());
-    
-}//Pendiente
+function button(desc, name) {
+    $('#title').text($(name).val());
+    $('#namename').val($(name).val());
+    $('#desc').val($(desc).val());    
+    $('#desc').text($(desc).val());
+}
+
+function selectedcheck(){
+    if ($('#check').prop('checked') ) {
+        $('#storage1').prop('disabled',true);
+        $('#unitstorage1').prop('disabled',true);
+        $("#storage").val(0);
+        if($('#unitstorage1').val()=="GB"){
+            $("#unitstorage").val("GB");
+        }else{
+            $("#unitstorage").val("TB");
+        }
+        
+    }else{
+        $("#storage1").prop('disabled',false);
+        //$("#storage").val('');
+        $('#unitstorage1').prop('disabled',false);
+    }
+}
+$("#storage1").keyup(function() {
+    $('#storage').val($('#storage1').val());    
+});
+$('#unitstorage1').on('click', function(){
+    $('#unitstorage').val($('#unitstorage1').val());
+});
 $('#type').on('click', function(){
     
     if($('#type').val()=="Sale"){
@@ -109,4 +95,6 @@ $('#edit7').on('click', function(){
     $('#name').val($('#h37').text());
     $('#description').val($('#sm7').text());    
 });
+
+
 

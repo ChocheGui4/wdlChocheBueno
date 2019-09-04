@@ -24,8 +24,13 @@ class ProductAddCreate extends FormRequest
     public function rules()
     {
         return [
-            'name' =>'required',
-            'description' =>'required',
+            'name' =>'required|min:3|max:60',
+            'description' =>'required|min:10|max:255',
+            'time' =>'required|regex:/^[+]?([0-9]){1,4}$/',
+            'period' =>'required',
+            'users' =>'required|regex:/^[+]?([0-9]){1,4}$/',
+            'storage' =>'required|regex:/^[+]?([0-9]){1,4}$/',
+            'unitstorage' =>'required',
         ];
     }
 }

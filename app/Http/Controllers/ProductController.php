@@ -32,6 +32,7 @@ class ProductController extends Controller
         
         $products=Product::orderBy('id','ASC')->get();
         $i=0;
+        
         return view('super.product', compact('products','i'));
         
     }
@@ -59,7 +60,8 @@ class ProductController extends Controller
         $products=Product::orderBy('id','ASC')->get();
         $i=0;
         $atypes = AcquisitionType::orderBy('id','ASC')->get();
-
+        //dd($products);
+        
         return view('super.addProduct',compact('company','branch','products','i','atypes'));
     }
     
@@ -147,11 +149,19 @@ class ProductController extends Controller
 
         return redirect()->route('showBranchesProducts',compact('company','branch'));
         
+        
     }
     function productCreate(ProductAddCreate $request){
         $producto = new Product;
         $producto->name = $request->name;
         $producto->description = $request->description;
+        $producto->time = $request->time;
+        $producto->period = $request->period;
+        $producto->users = $request->users;
+        if($request->storage!=0){
+            $producto->storage = $request->storage;
+            $producto->unitstorage = $request->unitstorage;
+        }
         $producto->save();
         
         return redirect()->route('productsShow');
