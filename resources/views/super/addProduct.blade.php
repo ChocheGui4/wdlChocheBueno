@@ -40,7 +40,8 @@
                                     alt="Card image cap">
                                 <div class="card-block">
                                     <h4 class="card-title">{{ $product->name}}</h4>
-                                    
+                                    <input hidden="hidden" id="valcompany" type="text" value="{{$company}}">
+                                    <input hidden="hidden" id="valbranch" type="text" value="{{$branch}}">
                                     <input hidden="hidden" type="textarea" id="name{{ $i }}" value="{{$product->name}}">
                                     <input hidden="hidden" type="text" id="description{{ $i }}" name="description" value="{{ $product->description }}">
                                     <input hidden="hidden" type="text" id="t1{{ $i }}" name="t1" value="{{$product->time}}">
@@ -52,7 +53,11 @@
                                         href="#"
                                         id="wdngbutton{{ $i }}"
                                         class="btn btn-primary"
-                                        onClick="button('#description{{$i}}','#name{{$i}}','#t1{{$i}}','#p1{{$i}}','#user{{$i}}','#s1{{$i}}','#us1{{$i}}','{{$product->acquisition_types_id}}','{{$product->id}}')"
+                                        onClick="button('#description{{$i}}','#name{{$i}}',
+                                        '#t1{{$i}}','#p1{{$i}}','#user{{$i}}','#s1{{$i}}',
+                                        '#us1{{$i}}','{{$product->acquisition_types_id}}',
+                                        '{{$product->id}}','{{$product->companies_id}}',
+                                        '{{$product->branches_id}}','','')"
                                         data-toggle="modal"
                                         data-target="#WDNGmodal"
                                         >Go</a>

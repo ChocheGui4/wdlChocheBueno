@@ -67,9 +67,9 @@ $('#edit7').on('click', function(){
 
 
 //Mostrar opción de storage
-var d, n, ti1, per1, us1, sto1, unit1, ty, pro;
-function button(desc, name, time, period, users, storage, unitstorage, type, prod) {
-    
+var d, n, ti1, per1, us1, sto1, unit1, ty, pro, company, branch;
+function button(desc, name, time, period, users, storage, unitstorage, type, prod, comp, br) {
+    console.log(comp+" ------ "+br);
     d=desc;
     n=name;
     ti1 = time;
@@ -77,21 +77,32 @@ function button(desc, name, time, period, users, storage, unitstorage, type, pro
     us1 = users;
     sto1 = storage;
     unit1 = unitstorage;
-    ty=type;
-    pro=prod;
+    ty = type;
+    pro = prod;
+    company = comp;
+    branch = br;
     ti = $(time).val();
     per = $(period).val();
     us = $(users).val();
     sto = $(storage).val();
     unit = $(unitstorage).val();
-
-    $('#type').empty();
-    if(type==1|type==2){
-        $('#type').append('<option>Sale</option>');
-    }else if(type==""){
+    valcom=$('#valcompany').val();
+    valbranch=$('#valbranch').val();
+    console.log(valcom+"........."+valbranch);
+    if((valcom==company) && (valbranch==branch)){
+        $('#type').empty();
+        if(type==1|type==2){
+            $('#type').append('<option>Sale</option>');
+        }else if(type==""){
+            $('#type').append('<option>Sale</option>');
+            $('#type').append('<option>Demo</option>');
+        }
+    }else{
+        $('#type').empty();
         $('#type').append('<option>Sale</option>');
         $('#type').append('<option>Demo</option>');
     }
+    
 
     if(per=="years"){
         $('#time').empty();
@@ -149,7 +160,7 @@ $('#type').on('click', function(){
     //alert($('#type').val());
     if($('#type').val()=="Sale"){
         //alert(ti+" "+per);
-        button(d, n, ti1, per1, us1, sto1, unit1, ty, pro);
+        button(d, n, ti1, per1, us1, sto1, unit1, ty, pro, company, branch);
         $('#dm').text("years");
     }else{
         $('#users').empty();

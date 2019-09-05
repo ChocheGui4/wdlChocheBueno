@@ -58,11 +58,12 @@ class ProductController extends Controller
         $company = $id;
         $branch = $branch;
         $products= Product::leftJoin('acquisitions', 'products.id', '=', 'acquisitions.products_id')
+        ->leftJoin('customers', 'customers.acquisitions_id', '=', 'acquisitions.id')
         ->select("products.id","products.name","products.description",
         "products.time","products.period","products.users",
         "products.storage","products.unitstorage","acquisitions.products_id",
         "acquisitions.acquisition_types_id","acquisitions.licenses_id",
-        "acquisitions.characteristics_id")
+        "acquisitions.characteristics_id", "customers.companies_id","customers.branches_id")
         ->orderBy('products.id','ASC')
         ->get();
         $i=0;
