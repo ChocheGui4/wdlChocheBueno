@@ -43,15 +43,16 @@
                                     
                                     <input hidden="hidden" type="textarea" id="name{{ $i }}" name="name" value="{{$product->name}}">
                                     <input hidden="hidden" type="text" id="description{{ $i }}" name="description" value="{{ $product->description }}">
-                                    <input hidden="hidden" type="text" id="t1{{ $i }}" name="t1" value="{{ $product->time }}">
-                                    <input hidden="hidden" type="text" id="p1{{ $i }}" name="p1" value="{{ $product->period }}">
-                                    <input hidden="hidden" type="text" id="s1{{ $i }}" name="s1" value="{{ $product->storage }}">
-                                    <input hidden="hidden" type="text" id="us1{{ $i }}" name="us1" value="{{ $product->unitstorage }}">
+                                    <input type="text" id="t1{{ $i }}" name="t1" value="{{$product->time}}">
+                                    <input type="text" id="p1{{ $i }}" name="p1" value="{{$product->period}}">
+                                    <input type="text" id="user{{ $i }}" name="p1" value="{{$product->users}}">
+                                    <input type="text" id="s1{{ $i }}" name="s1" value="{{$product->storage}}">
+                                    <input type="text" id="us1{{ $i }}" name="us1" value="{{$product->unitstorage}}">
                                     <a
                                         href="#"
                                         id="wdngbutton{{ $i }}"
                                         class="btn btn-primary"
-                                        onClick="button('#description{{$i}}','#name{{$i}}')"
+                                        onClick="button('#description{{$i}}','#name{{$i}}','#t1{{$i}}','#p1{{$i}}','#user{{$i}}','#s1{{$i}}','#us1{{$i}}')"
                                         data-toggle="modal"
                                         data-target="#WDNGmodal"
                                         >Go</a>
@@ -108,7 +109,6 @@
                             </div>
                         </div>
                         <div class="row">
-
                             <div class="col-md-1 col-sm-1 col-xs-1">
                                 <br>
                                 <strong>Type</strong> 
@@ -164,6 +164,25 @@
                                     </select>
 
                                 </div>
+                            </div>
+                        </div>
+                        <div id="sto" class="row">
+                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                <br>
+                                <strong>Storage</strong> 
+                            </div>
+                            <div class="col-lg-2 col-sm-2 col-xs-2">
+                                <br>
+                                <div class="form-group">
+                                    <select id="storage1" class="form-control">
+                                        <option >Nuevo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                <br>
+                                <strong id="storage2" >GB</strong> 
                             </div>
                         </div>
                     </div>
