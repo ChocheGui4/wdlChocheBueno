@@ -252,37 +252,12 @@
                                     <span class="hide-menu">Generate reports</span>
                                 </a>
 
-                            </li>
-                            
-
-                            <li class="nav-item">
-
-                                <a
-                                    href="{{ route('logout') }}"
-                                    class="nav-link"
-                                    onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                    <i class="mdi mdi-logout"></i>
-                                    <span class="hide-menu">Sign out</span>
-                                    
-
-                                </a>
-
-                                <form
-                                    id="logout-form"
-                                    action="{{ route('logout') }}"
-                                    method="POST"
-                                    style="display: none;">
-                                    @csrf
-                                </form>
-
-                            </li>
-                           
+                            </li>                           
                             <li>
                                 <a
                                     href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <i class="mdi mdi-power"></i>Logout</a>
+                                    <i class="mdi mdi-logout"></i>Logout</a>
                             </li>
                             <form
                                 id="logout-form"

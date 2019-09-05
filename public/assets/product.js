@@ -17,7 +17,6 @@ function selectedcheck(){
         }else{
             $("#unitstorage").val("TB");
         }
-        
     }else{
         $("#storage1").prop('disabled',false);
         //$("#storage").val('');
@@ -30,20 +29,7 @@ $("#storage1").keyup(function() {
 $('#unitstorage1').on('click', function(){
     $('#unitstorage').val($('#unitstorage1').val());
 });
-$('#type').on('click', function(){
-    
-    if($('#type').val()=="Sale"){
-        alert(ti+" "+per);
-        $('#dm').text("years");
-    }else{
-        $('#users').empty();
-        $('#time').empty();
-        $('#users').append('<option>30</option>');
-        $('#time').append('<option>5</option>');
-        $('#dm').text("days");
-    }
-    
-});
+
 
 //Products id
 $('#edit0').on('click', function(){
@@ -81,16 +67,32 @@ $('#edit7').on('click', function(){
 
 
 //Mostrar opción de storage
-var ti, per, us, sto, unit;
-function button(desc, name, time, period, users, storage, unitstorage) {
-
+var d, n, ti1, per1, us1, sto1, unit1, ty, pro;
+function button(desc, name, time, period, users, storage, unitstorage, type, prod) {
+    
+    d=desc;
+    n=name;
+    ti1 = time;
+    per1 = period;
+    us1 = users;
+    sto1 = storage;
+    unit1 = unitstorage;
+    ty=type;
+    pro=prod;
     ti = $(time).val();
     per = $(period).val();
     us = $(users).val();
     sto = $(storage).val();
     unit = $(unitstorage).val();
-    //alert(ti+" "+per+" "+sto+" "+unit);
-    //Calcular el tiempo 
+
+    $('#type').empty();
+    if(type==1|type==2){
+        $('#type').append('<option>Sale</option>');
+    }else if(type==""){
+        $('#type').append('<option>Sale</option>');
+        $('#type').append('<option>Demo</option>');
+    }
+
     if(per=="years"){
         $('#time').empty();
         for (let i = 0; i < ti; i++) {
@@ -106,7 +108,7 @@ function button(desc, name, time, period, users, storage, unitstorage) {
         $('#dm').text(per);
     }
     $('#users').empty();
-    for (let i = 1; i < us; i++) {
+    for (let i = 1; i <= us; i++) {
         num = i*100;
         if(num==us){
             $('#users').append('<option>'+num+'</option>');
@@ -137,11 +139,29 @@ function button(desc, name, time, period, users, storage, unitstorage) {
     }
     $('#title').text($(name).val());
     $('#namename').val($(name).val());
+    $('#desc1').val($(desc).val());    
     $('#desc').val($(desc).val());    
     $('#desc').text($(desc).val());
 }
 
 //Termina mostrar opción de storage
-
+$('#type').on('click', function(){
+    //alert($('#type').val());
+    if($('#type').val()=="Sale"){
+        //alert(ti+" "+per);
+        button(d, n, ti1, per1, us1, sto1, unit1, ty, pro);
+        $('#dm').text("years");
+    }else{
+        $('#users').empty();
+        $('#time').empty();
+        $('#storage1').empty();
+        $('#users').append('<option>30</option>');
+        $('#time').append('<option>15</option>');
+        $('#dm').text("days");
+        $('#storage1').append('<option>10</option>');
+        $('#storage2').text("GB");
+    }
+    
+});
 
 

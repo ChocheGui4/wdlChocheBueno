@@ -28,7 +28,8 @@ class ProductCreate extends FormRequest
             'type' =>'required',
             'time' =>'required',
             'numberusers' =>'required',
-            'description' =>'required'
+            'description' =>'required',
+            'storage' =>'required'
         ];
     }
 }

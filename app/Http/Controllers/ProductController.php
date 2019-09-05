@@ -57,19 +57,26 @@ class ProductController extends Controller
         
         $company = $id;
         $branch = $branch;
-        $products=Product::orderBy('id','ASC')->get();
+        $products= Product::leftJoin('acquisitions', 'products.id', '=', 'acquisitions.products_id')
+        ->select("products.id","products.name","products.description",
+        "products.time","products.period","products.users",
+        "products.storage","products.unitstorage","acquisitions.products_id",
+        "acquisitions.acquisition_types_id","acquisitions.licenses_id",
+        "acquisitions.characteristics_id")
+        ->orderBy('products.id','ASC')
+        ->get();
         $i=0;
-        $atypes = AcquisitionType::orderBy('id','ASC')->get();
         //dd($products);
-        
-        return view('super.addProduct',compact('company','branch','products','i','atypes'));
+
+        return view('super.addProduct',compact('company','branch','products','i'));
     }
     
     public function showBranchesAddProduct(ProductCreate $request, $id, $branch){
-        
         $company = $id;
         $branch = $branch;
-        $aleatoria="";
+        //dd($id, $branch);
+        //dd($request->storage);
+        //$aleatoria="";
         $caracteres = '-ABCDEF-GHIJKLMNOP-QRSTU-VWXYZ-';
         $aleatoria = substr(str_shuffle($caracteres), 0, 45);
         
@@ -95,6 +102,9 @@ class ProductController extends Controller
             $charac = Characteristic::find($char);
             $charac->time=$request->time;
             $charac->numberusers =  $request->numberusers;
+            if($request->storage!=0){
+                $charac->storage =  $request->storage;
+            }
             $charac->save();
 
             $acqui = Acquisition::find($acq);
@@ -112,6 +122,9 @@ class ProductController extends Controller
             $charac = new Characteristic;
             $charac->time = $request->time;
             $charac->numberusers =  $request->numberusers;
+            if($request->storage!=0){
+                $charac->storage =  $request->storage;
+            }
             $charac->save();
 
 

@@ -41,18 +41,18 @@
                                 <div class="card-block">
                                     <h4 class="card-title">{{ $product->name}}</h4>
                                     
-                                    <input hidden="hidden" type="textarea" id="name{{ $i }}" name="name" value="{{$product->name}}">
+                                    <input hidden="hidden" type="textarea" id="name{{ $i }}" value="{{$product->name}}">
                                     <input hidden="hidden" type="text" id="description{{ $i }}" name="description" value="{{ $product->description }}">
-                                    <input type="text" id="t1{{ $i }}" name="t1" value="{{$product->time}}">
-                                    <input type="text" id="p1{{ $i }}" name="p1" value="{{$product->period}}">
-                                    <input type="text" id="user{{ $i }}" name="p1" value="{{$product->users}}">
-                                    <input type="text" id="s1{{ $i }}" name="s1" value="{{$product->storage}}">
-                                    <input type="text" id="us1{{ $i }}" name="us1" value="{{$product->unitstorage}}">
+                                    <input hidden="hidden" type="text" id="t1{{ $i }}" name="t1" value="{{$product->time}}">
+                                    <input hidden="hidden" type="text" id="p1{{ $i }}" name="p1" value="{{$product->period}}">
+                                    <input hidden="hidden" type="text" id="user{{ $i }}" name="p1" value="{{$product->users}}">
+                                    <input hidden="hidden" type="text" id="s1{{ $i }}" name="s1" value="{{$product->storage}}">
+                                    <input hidden="hidden" type="text" id="us1{{ $i }}" name="us1" value="{{$product->unitstorage}}">
                                     <a
                                         href="#"
                                         id="wdngbutton{{ $i }}"
                                         class="btn btn-primary"
-                                        onClick="button('#description{{$i}}','#name{{$i}}','#t1{{$i}}','#p1{{$i}}','#user{{$i}}','#s1{{$i}}','#us1{{$i}}')"
+                                        onClick="button('#description{{$i}}','#name{{$i}}','#t1{{$i}}','#p1{{$i}}','#user{{$i}}','#s1{{$i}}','#us1{{$i}}','{{$product->acquisition_types_id}}','{{$product->id}}')"
                                         data-toggle="modal"
                                         data-target="#WDNGmodal"
                                         >Go</a>
@@ -117,9 +117,7 @@
                                 <br>
                                 <div class="form-group">
                                     <select id="type" name="type" class="form-control">
-                                        @foreach ($atypes as $type)
-                                            <option >{{ $type->type}}</option>
-                                        @endforeach
+                                        
                                     </select>
                                 </div>
                             </div>
@@ -174,8 +172,8 @@
                             <div class="col-lg-2 col-sm-2 col-xs-2">
                                 <br>
                                 <div class="form-group">
-                                    <select id="storage1" class="form-control">
-                                        <option >Nuevo</option>
+                                    <select id="storage1" name="storage" class="form-control">
+                                        <option >0</option>
                                     </select>
                                 </div>
                             </div>
