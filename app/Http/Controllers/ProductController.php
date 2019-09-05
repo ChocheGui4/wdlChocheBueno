@@ -41,11 +41,12 @@ class ProductController extends Controller
     public function showBranchesProducts($id, $branch){
         $company=$id;
         $branches=$branch;
+        //dd($company,$branches);
         
         $products = Company::join('customers', 'customers.companies_id', '=', 'companies.id')
                 ->join('acquisitions', 'acquisitions.id', '=', 'customers.acquisitions_id')
                 ->join('products', 'products.id', '=', 'acquisitions.products_id')
-                ->where('customers.branches_id', '=', $branch)
+                ->where('customers.branches_id', '=', $branches)
                 ->get();
         
         //$branches = Branch::where("companies_id","=",$id)->get();     
@@ -56,7 +57,8 @@ class ProductController extends Controller
     public function showBranchesCreateProduct($id,$branch){
         
         $company = $id;
-        $branch = $branch;
+        $branches = $branch;
+        //dd($company, $branch);
         $products= Product::leftJoin('acquisitions', 'products.id', '=', 'acquisitions.products_id')
         ->leftJoin('customers', 'customers.acquisitions_id', '=', 'acquisitions.id')
         ->select("products.id","products.name","products.description",
@@ -65,17 +67,18 @@ class ProductController extends Controller
         "acquisitions.acquisition_types_id","acquisitions.licenses_id",
         "acquisitions.characteristics_id", "customers.companies_id","customers.branches_id")
         ->orderBy('products.id','ASC')
+        
         ->get();
         $i=0;
         //dd($products);
-
-        return view('super.addProduct',compact('company','branch','products','i'));
+        
+        return view('super.addProduct',compact('company','branches','products','i'));
     }
     
     public function showBranchesAddProduct(ProductCreate $request, $id, $branch){
         $company = $id;
         $branch = $branch;
-        //dd($id, $branch);
+        //dd($company, $branch);
         //dd($request->storage);
         //$aleatoria="";
         $caracteres = '-ABCDEF-GHIJKLMNOP-QRSTU-VWXYZ-';

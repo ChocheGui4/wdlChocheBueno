@@ -17,7 +17,7 @@
             <div class="col-md-4 ">
                 <div class="col-md-12 align-self-center">
                     <a
-                        href="{{ route('showBranchesProducts',[$company,$branch])}}"
+                        href="{{ route('showBranchesProducts',[$company,$branches])}}"
                         class="btn pull-right hidden-sm-down btn-primary">
                         <i class="mdi mdi-arrow-left"></i>
                         Back</a>
@@ -32,41 +32,81 @@
                 <div class="container-fluid">
                     <div class="row el-element-overlay">
                         @foreach ($products as $product)
-                        <div class="col-md-3">
-                            <div class="card">
-                                <img
-                                    class="card-img-top img-responsive"
-                                    src="{{ asset('bundle/assets/images/users/antivirus.png') }}"
-                                    alt="Card image cap">
-                                <div class="card-block">
-                                    <h4 class="card-title">{{ $product->name}}</h4>
-                                    <input hidden="hidden" id="valcompany" type="text" value="{{$company}}">
-                                    <input hidden="hidden" id="valbranch" type="text" value="{{$branch}}">
-                                    <input hidden="hidden" type="textarea" id="name{{ $i }}" value="{{$product->name}}">
-                                    <input hidden="hidden" type="text" id="description{{ $i }}" name="description" value="{{ $product->description }}">
-                                    <input hidden="hidden" type="text" id="t1{{ $i }}" name="t1" value="{{$product->time}}">
-                                    <input hidden="hidden" type="text" id="p1{{ $i }}" name="p1" value="{{$product->period}}">
-                                    <input hidden="hidden" type="text" id="user{{ $i }}" name="p1" value="{{$product->users}}">
-                                    <input hidden="hidden" type="text" id="s1{{ $i }}" name="s1" value="{{$product->storage}}">
-                                    <input hidden="hidden" type="text" id="us1{{ $i }}" name="us1" value="{{$product->unitstorage}}">
-                                    <a
-                                        href="#"
-                                        id="wdngbutton{{ $i }}"
-                                        class="btn btn-primary"
-                                        onClick="button('#description{{$i}}','#name{{$i}}',
-                                        '#t1{{$i}}','#p1{{$i}}','#user{{$i}}','#s1{{$i}}',
-                                        '#us1{{$i}}','{{$product->acquisition_types_id}}',
-                                        '{{$product->id}}','{{$product->companies_id}}',
-                                        '{{$product->branches_id}}','','')"
-                                        data-toggle="modal"
-                                        data-target="#WDNGmodal"
-                                        >Go</a>
-                                        <label hidden>{{$i++}}</label> 
-                                        
-                                </div>
-                            </div>
-                        </div>
-                        
+                            @switch(true)
+                                @case($product->branches_id==$branches)
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <img
+                                                class="card-img-top img-responsive"
+                                                src="{{ asset('bundle/assets/images/users/antivirus.png') }}"
+                                                alt="Card image cap">
+                                            <div class="card-block">
+                                                <h4 class="card-title">{{ $product->name}}</h4>
+                                                <input hidden="hidden" id="valcompany" type="text" value="{{$company}}">
+                                                <input hidden="hidden" id="valbranch" type="text" value="{{$branches}}">
+                                                <input hidden="hidden" type="textarea" id="name{{ $i }}" value="{{$product->name}}">
+                                                <input hidden="hidden" type="text" id="description{{ $i }}" name="description" value="{{ $product->description }}">
+                                                <input hidden="hidden" type="text" id="t1{{ $i }}" name="t1" value="{{$product->time}}">
+                                                <input hidden="hidden" type="text" id="p1{{ $i }}" name="p1" value="{{$product->period}}">
+                                                <input hidden="hidden" type="text" id="user{{ $i }}" name="p1" value="{{$product->users}}">
+                                                <input hidden="hidden" type="text" id="s1{{ $i }}" name="s1" value="{{$product->storage}}">
+                                                <input hidden="hidden" type="text" id="us1{{ $i }}" name="us1" value="{{$product->unitstorage}}">
+                                                <a
+                                                    href="#"
+                                                    id="wdngbutton{{ $i }}"
+                                                    class="btn btn-primary"
+                                                    onClick="button('#description{{$i}}','#name{{$i}}',
+                                                    '#t1{{$i}}','#p1{{$i}}','#user{{$i}}','#s1{{$i}}',
+                                                    '#us1{{$i}}','{{$product->acquisition_types_id}}',
+                                                    '{{$product->id}}','{{$product->companies_id}}',
+                                                    '{{$product->branches_id}}','','')"
+                                                    data-toggle="modal"
+                                                    data-target="#WDNGmodal"
+                                                    >Go</a>
+                                                    <label hidden>{{$i++}}</label> 
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @break
+
+                                @case($product->acquisition_types_id=="")
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <img
+                                                class="card-img-top img-responsive"
+                                                src="{{ asset('bundle/assets/images/users/antivirus.png') }}"
+                                                alt="Card image cap">
+                                            <div class="card-block">
+                                                <h4 class="card-title">{{ $product->name}}</h4>
+                                                <input hidden="hidden" id="valcompany" type="text" value="{{$company}}">
+                                                <input hidden="hidden" id="valbranch" type="text" value="{{$branches}}">
+                                                <input hidden="hidden" type="textarea" id="name{{ $i }}" value="{{$product->name}}">
+                                                <input hidden="hidden" type="text" id="description{{ $i }}" name="description" value="{{ $product->description }}">
+                                                <input hidden="hidden" type="text" id="t1{{ $i }}" name="t1" value="{{$product->time}}">
+                                                <input hidden="hidden" type="text" id="p1{{ $i }}" name="p1" value="{{$product->period}}">
+                                                <input hidden="hidden" type="text" id="user{{ $i }}" name="p1" value="{{$product->users}}">
+                                                <input hidden="hidden" type="text" id="s1{{ $i }}" name="s1" value="{{$product->storage}}">
+                                                <input hidden="hidden" type="text" id="us1{{ $i }}" name="us1" value="{{$product->unitstorage}}">
+                                                <a
+                                                    href="#"
+                                                    id="wdngbutton{{ $i }}"
+                                                    class="btn btn-primary"
+                                                    onClick="button('#description{{$i}}','#name{{$i}}',
+                                                    '#t1{{$i}}','#p1{{$i}}','#user{{$i}}','#s1{{$i}}',
+                                                    '#us1{{$i}}','{{$product->acquisition_types_id}}',
+                                                    '{{$product->id}}','{{$product->companies_id}}',
+                                                    '{{$product->branches_id}}','','')"
+                                                    data-toggle="modal"
+                                                    data-target="#WDNGmodal"
+                                                    >Go</a>
+                                                    <label hidden>{{$i++}}</label> 
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @break
+                            @endswitch
                         @endforeach
                     </div>
                 </div>
@@ -92,7 +132,7 @@
                 </div>
 
                 <form
-                    action="{{ route('showBranchesAddProduct',[$company,$branch])}}"
+                    action="{{ route('showBranchesAddProduct',[$company,$branches])}}"
                     method="POST"
                     autocomplete="off">
                     @csrf
