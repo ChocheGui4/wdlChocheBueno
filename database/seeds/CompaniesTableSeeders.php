@@ -86,7 +86,7 @@ class CompaniesTableSeeders extends Seeder
         $product->time = 5;
         $product->period = "years";
         $product->users = 1000;
-        $product->storage = 5;
+        $product->storage = 500;
         $product->unitstorage = "GB";
         $product->save();
         //WDCP
@@ -104,7 +104,7 @@ class CompaniesTableSeeders extends Seeder
         $product->time = 36;
         $product->period = "months";
         $product->users = 1000;
-        $product->storage = 5;
+        $product->storage = 20;
         $product->unitstorage = "TB";
         $product->save();
         //WDIPS/IDS
@@ -112,7 +112,7 @@ class CompaniesTableSeeders extends Seeder
         $product->name = "Warriors Defender IPS/IDS";
         $product->description = "Se Obtiene el producto WDIPS/IDS para el uso más conveniente del cliente";
         $product->time = 5;
-        $product->period = "years";
+        $product->period = "year";
         $product->users = 1000;
         $product->save();
         //WDCC
