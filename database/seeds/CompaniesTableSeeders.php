@@ -112,7 +112,7 @@ class CompaniesTableSeeders extends Seeder
         $product->name = "Warriors Defender IPS/IDS";
         $product->description = "Se Obtiene el producto WDIPS/IDS para el uso más conveniente del cliente";
         $product->time = 5;
-        $product->period = "year";
+        $product->period = "years";
         $product->users = 1000;
         $product->save();
         //WDCC
