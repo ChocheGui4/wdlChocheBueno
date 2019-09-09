@@ -24,6 +24,9 @@
             href="{{ asset('bundle/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css') }}"
             rel="stylesheet">
         <link
+            href="{{ asset('bundle/assets/plugins/wizard/steps.css') }}"
+            rel="stylesheet">
+        <link
             href="{{ asset('bundle/assets/plugins/css-chart/css-chart.css') }}"
             rel="stylesheet">
         <link
@@ -288,6 +291,8 @@
         <script src="{{ asset('bundle/js/sidebarmenu.js') }}"></script>
         
         <script src="{{ asset('bundle/assets/plugins/wizard/jquery.steps.min.js') }}"></script>
+        <script src="{{ asset('bundle/assets/plugins/wizard/steps.js') }}"></script>
+        <script src="{{ asset('bundle/assets/plugins/wizard/jquery.validate.min.js') }}"></script>
 
         <script
             src="{{ asset('bundle/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js') }}"></script>
@@ -300,6 +305,7 @@
         <script src="{{ asset('bundle/assets/plugins/toast-master/js/jquery.toast.js') }}"></script>
         <script src="{{ asset('bundle/assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
         <script src="{{ asset('bundle/assets/plugins/sweetalert/jquery.sweet-alert.custom.js') }}"></script>
+        <!-- <script src="{{ asset('bundle/js/validation.js') }}"></script> -->
         
             
         <script src="{{ asset('bundle/js/dashboard1.js') }}"></script>
