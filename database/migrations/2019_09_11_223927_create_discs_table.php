@@ -15,8 +15,8 @@ class CreateDiscsTable extends Migration
     {
         Schema::create('discs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type',20);
-            $table->integer('value');
+            $table->string('typed',20);
+            $table->integer('valued');
             $table->timestamps();
         });
     }

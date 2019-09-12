@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMakersTable extends Migration
+class CreateNumberUserStoragesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateMakersTable extends Migration
      */
     public function up()
     {
-        Schema::create('makers', function (Blueprint $table) {
+        Schema::create('number_user_storages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('namem',30);
-            $table->char('valuem',3);
+            $table->integer('userstorage');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateMakersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('makers');
+        Schema::dropIfExists('number_user_storages');
     }
 }

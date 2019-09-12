@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Disc extends Model
 {
     protected $fillable = [
-        'type', 'value'
+        'typed', 'valued'
     ];
 }

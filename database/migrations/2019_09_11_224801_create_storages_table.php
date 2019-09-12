@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMemoirsTable extends Migration
+class CreateStoragesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateMemoirsTable extends Migration
      */
     public function up()
     {
-        Schema::create('memoirs', function (Blueprint $table) {
+        Schema::create('storages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('size');
-            $table->char('value',3);
+            $table->integer('storage');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateMemoirsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('memoirs');
+        Schema::dropIfExists('storages');
     }
 }

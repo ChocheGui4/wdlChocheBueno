@@ -11,8 +11,10 @@ use App\Customer;
 use App\Disc;
 use App\License;
 use App\Maker;
+use App\MailService;
 use App\Memory;
 use App\NumberUser;
+use App\NumberUserStorage;
 use App\People;
 use App\Period;
 use App\Processor;
@@ -21,6 +23,7 @@ use App\Storage;
 use App\UnitStorage;
 use App\User;
 use App\Year;
+
 
 class CompaniesTableSeeders extends Seeder
 {
@@ -93,6 +96,7 @@ class CompaniesTableSeeders extends Seeder
         $product = new Product;
         $product->name = "Warriors Defender Firewall New Generate";
         $product->description = "Se Obtiene el producto WDNG para el uso más conveniente del cliente";
+        $product->offer = "Site";
         $product->save();
         // $product->time = 5;
         // $product->period = "years";
@@ -103,41 +107,276 @@ class CompaniesTableSeeders extends Seeder
         $product = new Product;
         $product->name = "Warriors Defender Firewall";
         $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
+        $product->offer = "Site";
         $product->save();
         //WDM
         $product = new Product;
         $product->name = "Warriors Defender Mail";
         $product->description = "Se Obtiene el producto WDM para el uso más conveniente del cliente";
+        $product->offer = "Cloud";
         $product->save();
         //WDCP
         $product = new Product;
         $product->name = "Warriors Defender Captive Portal";
         $product->description = "Se Obtiene el producto WDCP para el uso más conveniente del cliente";
+        $product->offer = "Site";
         $product->save();
         //WDS
         $product = new Product;
         $product->name = "Warriors Defender Storage";
         $product->description = "Se Obtiene el producto WDS para el uso más conveniente del cliente";
+        $product->offer = "Cloud";
         $product->save();
         //WDIPS/IDS
         $product = new Product;
         $product->name = "Warriors Defender IPS/IDS";
         $product->description = "Se Obtiene el producto WDIPS/IDS para el uso más conveniente del cliente";
+        $product->offer = "Site";
         $product->save();
         //WDCC
         $product = new Product;
         $product->name = "Warriors Defender Central Console";
         $product->description = "Se Obtiene el producto WDCCpara el uso más conveniente del cliente";
+        $product->offer = "Cloud";
         $product->save();
 
         //WDR
         $product = new Product;
         $product->name = "Warriors Defender Reporter";
         $product->description = "Se Obtiene el producto WDR para el uso más conveniente del cliente";
-        // $product->time = 5;
-        // $product->period = "years";
-        // $product->users = 1000;
+        $product->offer = "Cloud";
         $product->save();
+
+        //Maker
+        $maker = new Maker;
+        $maker->namem = "Intel";
+        $maker->valuem = "A";
+        $maker->save();
+        $maker = new Maker;
+        $maker->namem = "Lanner";
+        $maker->valuem = "B";
+        $maker->save();
+        $maker = new Maker;
+        $maker->namem = "Nexcom";
+        $maker->valuem = "C";
+        $maker->save();
+        $maker = new Maker;
+        $maker->namem = "Milogo";
+        $maker->valuem = "D";
+        $maker->save();
+        $maker = new Maker;
+        $maker->namem = "Axiomtek";
+        $maker->valuem = "E";
+        $maker->save();
+        $maker = new Maker;
+        $maker->namem = "Lenovo";
+        $maker->valuem = "F";
+        $maker->save();
+
+        //Porcessor
+        $process = new Processor;
+        $process->namep = "Intel Atom";
+        $process->valuep = "A";
+        $process->save();
+        $process = new Processor;
+        $process->namep = "Intel Pentium";
+        $process->valuep = "A";
+        $process->save();
+        $process = new Processor;
+        $process->namep = "Dual Core 2.5 ghz";
+        $process->valuep = "B";
+        $process->save();
+        $process = new Processor;
+        $process->namep = "Core 2 duo";
+        $process->valuep = "B";
+        $process->save();
+        $process = new Processor;
+        $process->namep = "Intel Xeon";
+        $process->valuep = "C";
+        $process->save();
+        $process = new Processor;
+        $process->namep = "Intel Quad Core";
+        $process->valuep = "D";
+        $process->save();
+        $process = new Processor;
+        $process->namep = "Intel Celeron M";
+        $process->valuep = "E";
+        $process->save();
+        $process = new Processor;
+        $process->namep = "Intel Dual Core Doble";
+        $process->valuep = "F";
+        $process->save();
+        $process = new Processor;
+        $process->namep = "Intel Quad Core Doble";
+        $process->valuep = "G";
+        $process->save();
+        $process = new Processor;
+        $process->namep = "Core i3";
+        $process->valuep = "H";
+        $process->save();
+        $process = new Processor;
+        $process->namep = "Core i5";
+        $process->valuep = "I";
+        $process->save();
+        $process = new Processor;
+        $process->namep = "Core i7";
+        $process->valuep = "J";
+        $process->save();
+        $process = new Processor;
+        $process->namep = "Intel Celeron J";
+        $process->valuep = "K";
+        $process->save();
+        //Memory
+        $memory = new Memory;
+        $memory->sizem = "1";
+        $memory->valueme = "A";
+        $memory->save();
+        $memory = new Memory;
+        $memory->sizem = "2";
+        $memory->valueme = "B";
+        $memory->save();
+        $memory = new Memory;
+        $memory->sizem = "4";
+        $memory->valueme = "C";
+        $memory->save();
+        $memory = new Memory;
+        $memory->sizem = "8";
+        $memory->valueme = "D";
+        $memory->save();
+        $memory = new Memory;
+        $memory->sizem = "16";
+        $memory->valueme = "E";
+        $memory->save();
+        $memory = new Memory;
+        $memory->sizem = "32";
+        $memory->valueme = "F";
+        $memory->save();
+        $memory = new Memory;
+        $memory->sizem = "64";
+        $memory->valueme = "G";
+        $memory->save();
+        $memory = new Memory;
+        $memory->sizem = "Otro";
+        $memory->valueme = "H";
+        $memory->save();
+        //Disc
+        $disc = new Disc;
+        $disc->typed = "Hard Disk";
+        $disc->valued = 0;
+        $disc->save();
+        $disc = new Disc;
+        $disc->typed = "Compact Flash";
+        $disc->valued = 1;
+        $disc->save();
+        $disc = new Disc;
+        $disc->typed = "Solid Drive";
+        $disc->valued = 2;
+        $disc->save();
+        
+        //Year
+        $year = new Year;
+        $year->year = 1;
+        $year->save();
+        $year = new Year;
+        $year->year = 2;
+        $year->save();
+        $year = new Year;
+        $year->year = 3;
+        $year->save();
+        $year = new Year;
+        $year->year = 4;
+        $year->save();
+        $year = new Year;
+        $year->year = 5;
+        $year->save();
+
+        //Period
+        $period = new Period;
+        $period->period = "years";
+        $period->save();
+
+        //Number_users
+        $numuser = new NumberUser;
+        $numuser->user = 10;
+        $numuser->save();
+        $numuser = new NumberUser;
+        $numuser->user = 20;
+        $numuser->save();
+        $numuser = new NumberUser;
+        $numuser->user = 30;
+        $numuser->save();
+        $numuser = new NumberUser;
+        $numuser->user = 40;
+        $numuser->save();
+        $numuser = new NumberUser;
+        $numuser->user = 50;
+        $numuser->save();
+        $numuser = new NumberUser;
+        $numuser->user = 60;
+        $numuser->save();
+        $numuser = new NumberUser;
+        $numuser->user = 80;
+        $numuser->save();
+        $numuser = new NumberUser;
+        $numuser->user = 100;
+        $numuser->save();
+        $numuser = new NumberUser;
+        $numuser->user = 200;
+        $numuser->save();
+        $numuser = new NumberUser;
+        $numuser->user = 400;
+        $numuser->save();
+        $numuser = new NumberUser;
+        $numuser->user = 500;
+        $numuser->save();
+        $numuser = new NumberUser;
+        $numuser->user = 1000;
+        $numuser->save();
+
+        //storage
+        $storage = new Storage;
+        $storage->storage = 2;
+        $storage->save();
+        $storage = new Storage;
+        $storage->storage = 4;
+        $storage->save();
+        $storage = new Storage;
+        $storage->storage = 6;
+        $storage->save();
+        $storage = new Storage;
+        $storage->storage = 8;
+        $storage->save();
+        $storage = new Storage;
+        $storage->storage = 10;
+        $storage->save();
+
+        //Unit_storage
+        $unitstorage = new UnitStorage;
+        $unitstorage->unit = "TB";
+        $unitstorage->save();
+
+        //NumberUserStorage
+        $nstorage = new NumberUserStorage;
+        $nstorage->userstorage = 30;
+        $nstorage->save();
+        $nstorage = new NumberUserStorage;
+        $nstorage->userstorage = 50;
+        $nstorage->save();
+        $nstorage = new NumberUserStorage;
+        $nstorage->userstorage = 100;
+        $nstorage->save();
+        $nstorage = new NumberUserStorage;
+        $nstorage->userstorage = 150;
+        $nstorage->save();
+        $nstorage = new NumberUserStorage;
+        $nstorage->userstorage = 200;
+        $nstorage->save();
+        $nstorage = new NumberUserStorage;
+        $nstorage->userstorage = 500;
+        $nstorage->save();
+        $nstorage = new NumberUserStorage;
+        $nstorage->userstorage = 1000;
+        $nstorage->save();
 
         //License
         $licence = new License;
@@ -153,6 +392,7 @@ class CompaniesTableSeeders extends Seeder
         $type->save();
 
         $acq = new Acquisition;
+        $acq->salenumber = 1;
         $acq->products_id = 1;
         $acq->acquisition_types_id = 1;
         $acq->licenses_id = 1;

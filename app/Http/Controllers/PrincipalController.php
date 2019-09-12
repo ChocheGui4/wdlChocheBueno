@@ -17,6 +17,7 @@ use App\Characteristic;
 use App\Product;
 use App\License;
 use App\AcquisitionType;
+use DB;
 
 class PrincipalController extends Controller
 {
@@ -54,12 +55,8 @@ class PrincipalController extends Controller
         // ‘title’ => "Hola como esta",
         // ‘is3D’ => true
         // ]);
-        // $products = Company::join('customers', 'customers.companies_id', '=', 'companies.id')
-        //         ->join('acquisitions', 'acquisitions.id', '=', 'customers.acquisitions_id')
-        //         ->join('products', 'products.id', '=', 'acquisitions.products_id')
-        //         ->join('characteristics', 'characteristics.id', '=', 'acquisitions.characteristics_id')
-        //         ->get();
-        // dd($products);
+        $products = DB::select("select * from makers, processors");
+        dd($products);
         return view('super.principal');
     }
     

@@ -15,6 +15,7 @@ class CreateAcquisitionsTable extends Migration
     {
         Schema::create('acquisitions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('salenumber');
             $table->integer('products_id');
             $table->integer('acquisition_types_id');
             $table->integer('licenses_id');

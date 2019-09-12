@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Maker extends Model
 {
     protected $fillable = [
-        'name', 'value'
+        'namem', 'valuem'
     ];
 }

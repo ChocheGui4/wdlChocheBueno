@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Processor extends Model
+class MailService extends Model
 {
     protected $fillable = [
-        'name', 'valuep'
+        'storagem','acquisition'
     ];
 }

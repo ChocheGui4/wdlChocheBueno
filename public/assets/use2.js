@@ -4,11 +4,9 @@ $(document).ready(function () {
     $("#rfcdiv").hide();
     $("#scd").hide();
     $("#sca1").hide();
-    
-    
+
     $("#areas").val($("#areainput").val());
-    
-    
+
 });
 
 function mayus(e) {
@@ -17,9 +15,8 @@ function mayus(e) {
         .toUpperCase();
 }
 
-//Do visible forms End visible forms Show regex Physical person
-
-// Terminan funciones jquery para formulario de usuarios de warriors Visualizar
+// Do visible forms End visible forms Show regex Physical person Terminan
+// funciones jquery para formulario de usuarios de warriors Visualizar
 // contraseña
 var i = 1;
 $('#showpass').click(function () {
@@ -48,5 +45,5 @@ $('#deleteuser').on('click', function (e) {
 // -------------
 $('#divbtns').on('click', function (e) {
     alert($('[name="telephone"]').val());
-    
+
 });

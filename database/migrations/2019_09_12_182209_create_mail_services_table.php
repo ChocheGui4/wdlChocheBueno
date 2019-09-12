@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnitStorageTable extends Migration
+class CreateMailServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateUnitStorageTable extends Migration
      */
     public function up()
     {
-        Schema::create('unit_storage', function (Blueprint $table) {
+        Schema::create('mail_services', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('unit',2);
+            $table->integer('storagem');
+            $table->integer('acquisition');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateUnitStorageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unit_storage');
+        Schema::dropIfExists('mail_services');
     }
 }

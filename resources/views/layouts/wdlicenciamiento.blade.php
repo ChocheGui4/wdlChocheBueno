@@ -9,7 +9,7 @@
             type="image/png"
             sizes="16x16"
             href="{{ asset('bundle/assets/images/iconowdl.png') }}">
-        <title>@yield('title' ,'WDLicenciamiento')</title>
+        <title>@yield('title' ,'WDLicense')</title>
         <link
             href="{{ asset('bundle/assets/plugins/bootstrap/css/bootstrap.min.css') }}"
             rel="stylesheet">
