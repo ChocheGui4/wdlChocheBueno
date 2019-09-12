@@ -15,16 +15,10 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('users_id')->nullable();
             $table->integer('people_id')->nullable();
             $table->integer('acquisitions_id')->nullable();
             $table->integer('companies_id')->nullable();
             $table->integer('branches_id')->nullable();
-            $table->foreign('users_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
             $table->foreign('people_id')
             ->references('id')
             ->on('people')

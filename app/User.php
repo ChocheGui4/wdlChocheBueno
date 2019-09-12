@@ -15,13 +15,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-
-    public function customer()
-    {
-        return $this->hasMany('App\Customer');
-    }
     protected $fillable = [
-        'role', 'email', 'password','password_encrypt',
+        'role', 'email', 'password',
     ];
 
     /**
@@ -29,11 +24,11 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    // protected $hidden = [
+    //     'password', 'remember_token',
+    // ];
     
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
 }

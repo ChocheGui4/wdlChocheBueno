@@ -70,7 +70,7 @@ class ProductController extends Controller
         
         ->get();
         $i=0;
-        //dd($products);
+        // dd($products);
         
         return view('super.addProduct',compact('company','branches','products','i'));
     }

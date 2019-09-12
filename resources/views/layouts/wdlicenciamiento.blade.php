@@ -8,12 +8,14 @@
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="../assets/images/favicon.png">
+            href="{{ asset('bundle/assets/images/iconowdl.png') }}">
         <title>@yield('title' ,'WDLicenciamiento')</title>
         <link
             href="{{ asset('bundle/assets/plugins/bootstrap/css/bootstrap.min.css') }}"
             rel="stylesheet">
-        
+        <link
+            href="{{ asset('bundle/assets/plugins/sweetalert/sweetalert.css') }}"
+            rel="stylesheet">
         <link
             href="{{ asset('bundle/assets/plugins/chartist-js/dist/chartist.min.css') }}"
             rel="stylesheet">
@@ -56,23 +58,20 @@
         <div id="main-wrapper">
             <header class="topbar" >
                 <nav class="navbar top-navbar navbar-toggleable-sm navbar-light" >
-                
+
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="/home">
                             <b>
                                 <img
-                                    src="{{ asset('bundle/assets/images/logo-light-icon.png') }}"
+                                    src="{{ asset('bundle/assets/images/Warriorslicenciamiento.png') }}"
                                     alt="homepage"
                                     class="light-logo"/>
                             </b>
-                            <span>
-                                <img
-                                    src="{{ asset('bundle/assets/images/logo-light-text.png') }}"
-                                    alt="homepage"
-                                    class="light-logo"/>
-                            </span>
+                            
                         </a>
                     </div>
+
+
                     <div class="navbar-collapse">
                         <ul class="navbar-nav mr-auto mt-md-0 ">
                             <li class="nav-item">
@@ -213,49 +212,63 @@
                                     <span class="hide-menu">Dashboard</span>
                                 </a>
                             </li>
+                            @if( Auth::user()->role =="Super" )
                             
+                                <li class="nav-item">
 
-                            <li class="nav-item">
+                                    <a href="/companies">
+                                        <i class="mdi mdi-domain"></i>
+                                        <span class="hide-menu">Companies</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/customers">
+                                        <i class="mdi mdi-account-multiple"></i>
+                                        <span class="hide-menu">Customers</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/products">
+                                        <i class="fa fa-product-hunt"></i>
+                                        <span class="hide-menu">Productos</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/user">
+                                        <i class="mdi mdi-account"></i>
+                                        <span class="hide-menu">Users</span>
+                                    </a>
 
-                                <a href="/companies">
-                                    <i class="mdi mdi-domain"></i>
-                                    <span class="hide-menu">Companies</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/customers">
-                                    <i class="mdi mdi-account-multiple"></i>
-                                    <span class="hide-menu">Customers</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/products">
-                                    <i class="fa fa-product-hunt"></i>
-                                    <span class="hide-menu">Productos</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/user">
-                                    <i class="mdi mdi-account"></i>
-                                    <span class="hide-menu">Users</span>
-                                </a>
+                                </li>
+                                <li class="nav-item has-treeview">
 
-                            </li>
-                            <li class="nav-item has-treeview">
+                                    <a href="/wluser">
+                                        <i class="mdi mdi-account-multiple"></i>
+                                        <span class="hide-menu">Wl Users</span>
+                                    </a>
 
-                                <a href="/wluser">
-                                    <i class="mdi mdi-account-multiple"></i>
-                                    <span class="hide-menu">Wl Users</span>
-                                </a>
+                                </li>
+                                <li class="nav-item has-treeview">
+                                    <a href="#">
+                                        <i class="mdi mdi-file-document-box"></i>
+                                        <span class="hide-menu">Generate reports</span>
+                                    </a>
 
-                            </li>
-                            <li class="nav-item has-treeview">
-                                <a href="#">
-                                    <i class="mdi mdi-file-document-box"></i>
-                                    <span class="hide-menu">Generate reports</span>
-                                </a>
-
-                            </li>                           
+                                </li>                           
+                                <li>
+                                    <a
+                                        href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="mdi mdi-logout"></i>Logout</a>
+                                </li>
+                                <form
+                                    id="logout-form"
+                                    action="{{ route('logout') }}"
+                                    method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            @endif
                             <li>
                                 <a
                                     href="{{ route('logout') }}"
@@ -305,7 +318,7 @@
         <script src="{{ asset('bundle/assets/plugins/toast-master/js/jquery.toast.js') }}"></script>
         <script src="{{ asset('bundle/assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
         <script src="{{ asset('bundle/assets/plugins/sweetalert/jquery.sweet-alert.custom.js') }}"></script>
-        <!-- <script src="{{ asset('bundle/js/validation.js') }}"></script> -->
+        <script src="{{ asset('bundle/js/validation.js') }}"></script>
         
             
         <script src="{{ asset('bundle/js/dashboard1.js') }}"></script>
@@ -314,10 +327,24 @@
         <script src="{{ asset('assets/product.js') }}"></script>
         <script src="{{ asset('assets/edituser.js') }}"></script>
         <script src="{{ asset('bundle/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+
+        <!-- Chart Flot -->
+        <script src="{{ asset('bundle/assets/plugins/flot/excanvas.js') }}"></script>
+        <script src="{{ asset('bundle/assets/plugins/flot/jquery.flot.js') }}"></script>
+        <script src="{{ asset('bundle/assets/plugins/flot/jquery.flot.pie.js') }}"></script>
+        <script src="{{ asset('bundle/assets/plugins/flot/jquery.flot.time.js') }}"></script>
+        <script src="{{ asset('bundle/assets/plugins/flot/jquery.flot.stack.js') }}"></script>
+        <script src="{{ asset('bundle/assets/plugins/flot/jquery.flot.crosshair.js') }}"></script>
+        <script src="{{ asset('bundle/assets/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
+
+        <!-- Chart Flot -->
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        
         @yield('file_js')
         
         

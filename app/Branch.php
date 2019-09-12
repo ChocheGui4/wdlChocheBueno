@@ -11,7 +11,8 @@ class Branch extends Model
         return $this->belongsTo('App\Company');
     }
     protected $fillable = [
-        'name','zipcode','district','street', 'insideNumber',
-        'exteriornumber'
+        'name','branchtelephone1','branchtelephone2','branchemail1',
+        'branchtelephone2','zipcode','district','street', 'insidenumber',
+        'exteriornumber','contact_branches_id'
     ];
 }

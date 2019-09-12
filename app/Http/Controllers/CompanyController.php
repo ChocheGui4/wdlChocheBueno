@@ -22,16 +22,29 @@ use App\Contact;
 
 class CompanyController extends Controller
 {
+    
+    
     public function __construct()
     {
         $this->middleware('auth');
     }
     public function companyShow(){
-        $companies = Company::orderBy('id','ASC')->get();
-        $peoples = People::orderBy('id','ASC')->get();
+        $role= \Auth::user()->role;
+        if($role === 'Super'){
+            $companies = Company::orderBy('id','ASC')->get();
+            $peoples = People::orderBy('id','ASC')->get();
         
         
-        return view('super.company',compact('companies','peoples'));
+            return view('super.company',compact('companies','peoples'));
+        } else{
+            
+            return redirect()->route('Home');
+        }
+        // $companies = Company::orderBy('id','ASC')->get();
+        // $peoples = People::orderBy('id','ASC')->get();
+        
+        
+        // return view('super.company',compact('companies','peoples'));
     }
     public function companyCreate()
     {
