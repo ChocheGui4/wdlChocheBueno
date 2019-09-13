@@ -25,12 +25,7 @@ class CreateBranchesTable extends Migration
             $table->string('street',35);
             $table->integer('insidenumber');
             $table->integer('exteriornumber');
-            $table->integer('contact_branches_id');
-            $table->foreign('contact_branches_id')
-            ->references('id')
-            ->on('contact_branches')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+            $table->boolean('branchstatus');
             $table->timestamps();
         });
     }

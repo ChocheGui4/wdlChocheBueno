@@ -11,6 +11,8 @@ class ContactBranch extends Model
         return $this->hasMany('App\Branch');
     }
     protected $fillable = [
-        'name', 'lastname','telephone1','telephone2','email1','email2','area'
+        'name', 'lastname','telephone1','telephone2','email1','email2','area',
+        'cbstatus','branches_id'
+
     ];
 }

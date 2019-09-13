@@ -38,18 +38,19 @@ class CompaniesTableSeeders extends Seeder
         $contactc = new ContactCompany;
         $contactc->name = "Liliana";
         $contactc->lastname = "Linares";
-        $contactc->telephone1 = 123-456-7890;
-        $contactc->telephone2 = 541-453-1237;
-        $contactc->email1 = "lili@hotmail.com";
+        $contactc->telephone1 = "123-456-7890";
+        $contactc->telephone2 = "541-453-1237";
+        $contactc->email = "lili@hotmail.com";
         $contactc->email2 = "lili@gmail.com";
         $contactc->area = "Recursos humano";
+        $contactc->ccstatus = 1;
         $contactc->save();
 
         $compan = new Company;
         $compan->companyrfc = "HYTG652534R65";
         $compan->companyname = "Salvatori";
-        $compan->companytelephone1 = 248-564-8720;
-        $compan->companytelephone2 = 246-176-1729;
+        $compan->companytelephone1 = "248-564-8720";
+        $compan->companytelephone2 = "246-176-1729";
         $compan->companyemail1 = "Sal_va@hotmail.com";
         $compan->companyemail2 = "Sal_va@gmail.com";
         $compan->zipcode = 10912;
@@ -57,24 +58,15 @@ class CompaniesTableSeeders extends Seeder
         $compan->street = "Abasolo";
         $compan->insidenumber = 101;
         $compan->exteriornumber = 2;
+        $compan->companystatus = 1;
         $compan->contact_companies_id = 1;
         $compan->save();
 
-        //Branch data
-        $contactb = new ContactBranch;
-        $contactb->name = "Isa";
-        $contactb->lastname = "Barrera";
-        $contactb->telephone1 = 123-456-7890;
-        $contactb->telephone2 = 541-453-1237;
-        $contactb->email1 = "Isa@hotmail.com";
-        $contactb->email2 = "Isa@gmail.com";
-        $contactb->area = "Marketing";
-        $contactb->save();
-
+        //Branch
         $branch = new Branch;
         $branch->name = "Own";
-        $branch->branchtelephone1 = 231-234-5671;
-        $branch->branchtelephone2 = 904-200-5273;
+        $branch->branchtelephone1 = "231-234-5671";
+        $branch->branchtelephone2 = "904-200-5273";
         $branch->branchemail1 = "Own@hotmail.com";
         $branch->branchemail2 = "Own@gmail.com";
         $branch->zipcode = 12365;
@@ -82,14 +74,26 @@ class CompaniesTableSeeders extends Seeder
         $branch->street = "Anacahuita";
         $branch->insidenumber = 12;
         $branch->exteriornumber = 10;
-        $branch->contact_branches_id = 1;
+        $branch->branchstatus = 1;
         $branch->save();
+        //Contact branch data
+        $contactb = new ContactBranch;
+        $contactb->name = "Isa";
+        $contactb->lastname = "Barrera";
+        $contactb->telephone1 = "123-456-7890";
+        $contactb->telephone2 = "541-453-1237";
+        $contactb->email = "Isa@hotmail.com";
+        $contactb->email2 = "Isa@gmail.com";
+        $contactb->area = "Marketing";
+        $contactb->cbstatus = 1;
+        $contactb->branches_id = 1;
+        $contactb->save();
 
-        
         $user = new User;
         $user->role = "user";
         $user->email = "admin@admin.com";
         $user->password = bcrypt("Hol@mundo1");
+        $user->usstatus = 1;
         $user->save();
 
         //WDNG

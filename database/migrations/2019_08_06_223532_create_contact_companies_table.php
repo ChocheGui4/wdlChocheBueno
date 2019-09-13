@@ -19,9 +19,10 @@ class CreateContactCompaniesTable extends Migration
             $table->string('lastname',35);
             $table->string('telephone1',12);
             $table->string('telephone2',12);
-            $table->string('email1',45);
+            $table->string('email',45);
             $table->string('email2',45);
             $table->string('area',30);
+            $table->boolean('ccstatus');
             $table->timestamps();
         });
     }

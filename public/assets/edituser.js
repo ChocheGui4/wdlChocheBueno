@@ -38,6 +38,7 @@ $('#showprofile').on('click', function(){
     i=1;
 });
 
+
 $('#showcompany').on('click', function(){
     $('#profile').hide();
     $('#contact').show();

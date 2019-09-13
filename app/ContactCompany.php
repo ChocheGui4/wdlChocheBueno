@@ -11,7 +11,8 @@ class ContactCompany extends Model
         return $this->hasMany('App\Company');
     }
     protected $fillable = [
-        'name', 'lastname','telephone1','telephone2','email1','email2','area'
+        'name', 'lastname','telephone1','telephone2','email1','email2',
+        'area','ccstatus'
     ];
 }
 

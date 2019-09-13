@@ -19,9 +19,16 @@ class CreateContactBranchesTable extends Migration
             $table->string('lastname',35);
             $table->string('telephone1',12);
             $table->string('telephone2',12);
-            $table->string('email1',45);
+            $table->string('email',45);
             $table->string('email2',45);
             $table->string('area',30);
+            $table->boolean('cbstatus');
+            $table->integer('branches_id');
+            $table->foreign('branches_id')
+            ->references('id')
+            ->on('branches')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
             $table->timestamps();
         });
     }

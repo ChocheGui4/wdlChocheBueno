@@ -11,13 +11,13 @@ use App\Http\Requests\UserAddressEditCreate;
 use App\Http\Requests\CompanyEditProfileCreate;
 use App\Http\Requests\CompanyEditCompanyCreate;
 use App\Http\Requests\CompanyEditAddressCreate;
-use App\Company;
 use App\Branch;
+use App\Company;
+use App\ContactCompany;
 use App\People;
 use App\User;
-use App\Area;
 use App\Customer;
-use App\Contact;
+
 
 
 class CompanyController extends Controller
@@ -56,65 +56,73 @@ class CompanyController extends Controller
         
         //Insert users
         $users = new User;
-        
         $users ->role= "user";
         $users ->email= $request->email;
         $users ->password= bcrypt($request->password);
+        $users ->usstatus= 1;
         $users->save();
+        //dd("Ya agregó al usuario, checar en la db otra vez");
 
-        //Insert area
-        $area = new Area;
-        $areaoption=$request->area;
-        $area->name = $request->area;
-        $area->save();
         
         //Insert contact
-        $ided= Area::latest('id')->first();
-        $contact = new Contact;
-        $contact->name = $request->name;
-        $contact->lastname = $request->lastname;
-        $contact->telephone = $request->telephone;
-        $contact->areas_id = $ided->id;
-        $contact->save();   
+        $contactcc = new ContactCompany;
+        $contactcc->name = $request->name;
+        $contactcc->lastname = $request->lastname;
+        $contactcc->telephone1 = $request->telephone1;
+        $contactcc->telephone2 = $request->telephone2;
+        $contactcc->email = $request->email;
+        $contactcc->email2 = $request->email2;
+        $contactcc->area = $request->area;
+        $contactcc->ccstatus = 1;
+        $contactcc->save();   
+        
         //Get contact id
-        $ided= Contact::latest('id')->first();
-        $id=$ided->id;
+        $ccs= ContactCompany::latest('id')->first();
+        $id=$ccs->id;
         
         //Insert company
         $company = new Company;
         $company->companyrfc = $request->companyrfc;
         $company->companyname = $request->companyname;
-        $company->companytelephone = $request->companytelephone;
-        $company->companyemail = $request->companyemail;
+        $company->companytelephone1 = $request->companytelephone1;
+        $company->companytelephone2 = $request->companytelephone2;
+        $company->companyemail1 = $request->companyemail1;
+        $company->companyemail2 = $request->companyemail2;
         $company->zipcode = $request->zipcode;
         $company->district = $request->district;
         $company->street = $request->street;
         $company->insidenumber = $request->innumber;
         $company->exteriornumber = $request->extnumber;
-        $company->contacts_id = $id;
+        $company->companystatus = 1;
+        $company->contact_companies_id = $id;
         $company->save();
 
         //Branch
         $branch = new Branch;
         $branch ->name= "Own";
+        $branch ->branchtelephone1= $request->companytelephone1;
+        $branch ->branchtelephone2= $request->companytelephone2;
+        $branch ->branchemail1= $request->companyemail1;
+        $branch ->branchemail2= $request->companyemail2;
         $branch ->zipcode= $request->zipcode;
         $branch ->district= $request->district;
         $branch ->street= $request->street;
         $branch ->insidenumber= $request->innumber;
         $branch ->exteriornumber= $request->extnumber;
+        $branch ->branchstatus= 1;
         $branch->save();
 
         //Customer
-        $com= Company::latest('id')->first();
-        $br= Branch::latest('id')->first();
-        $us= User::latest('id')->first();
-        $customers = new Customer;
-        $customers->users_id=$us->id;
-        $customers->companies_id=$com->id;
-        $customers->branches_id=$br->id;
-        $customers->save();
+        // $com= Company::latest('id')->first();
+        // $br= Branch::latest('id')->first();
+        // $us= User::latest('id')->first();
+        // $customers = new Customer;
+        // $customers->users_id=$us->id;
+        // $customers->companies_id=$com->id;
+        // $customers->branches_id=$br->id;
+        // $customers->save();
         
-        
+        // dd("Se agregaron: usuario login, contacto y empresa");
         return redirect()->route('companyShow');
         
     }
@@ -123,7 +131,7 @@ class CompanyController extends Controller
     public function companyEdit($id)
     {
         $compan = Company::find($id);
-        $contact = Contact::find($id);
+        $contact = ContactCompany::find($id);
         
         
         return view('super.editCompany', compact('compan','contact'));

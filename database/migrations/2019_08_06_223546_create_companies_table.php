@@ -26,6 +26,7 @@ class CreateCompaniesTable extends Migration
             $table->string('street',35);
             $table->integer('insidenumber');
             $table->integer('exteriornumber');
+            $table->boolean('companystatus');
             $table->integer('contact_companies_id');
             $table->foreign('contact_companies_id')
             ->references('id')

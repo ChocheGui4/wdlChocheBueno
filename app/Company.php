@@ -22,6 +22,6 @@ class Company extends Model
     protected $fillable = [
         'companyrfc', 'companyname','companytelephone1','companytelephone2',
         'companyemail1','companyemail2','zipcode','district','street', 
-        'insidenumber','exteriornumber', 'contact_companies_id'
+        'insidenumber','exteriornumber','companystatus', 'contact_companies_id'
     ];
 }

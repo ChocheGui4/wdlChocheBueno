@@ -55,8 +55,10 @@ class PrincipalController extends Controller
         // ‘title’ => "Hola como esta",
         // ‘is3D’ => true
         // ]);
-        $products = DB::select("select * from makers, processors");
-        dd($products);
+        $products = DB::select("select * from products, makers, processors where products.id = ?",[1]);
+        // ->where("")
+
+        //dd($products);
         return view('super.principal');
     }
     
