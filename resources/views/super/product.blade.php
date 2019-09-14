@@ -49,11 +49,18 @@
                     <div class="row el-element-overlay">
                         @csrf
                         @foreach ($products as $product)
-                        <div class="col-md-3 col-sm-3 col-xs-3">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
                             <div class="card">
-                                <div class="el-card-item">
+                                <!-- <div class="el-card-item" style="background: #D7FFBF;" > -->
+                                <!-- <div class="el-card-item" style="background: #FFCBCB;" > -->
+                                <div class="el-card-item" style="background: #FFD3D3;" >
+                                <!-- <div class="el-card-item" style="background: #DFD8F8;" style="border-color:#876FD1; border-style:solid; border-width:1px;"> -->
                                     <div class="el-card-avatar el-overlay-1">
-                                        <img src="{{ asset('bundle/assets/images/users/antivirus.png') }}" alt="user">
+                                        <img
+                                            class="card-img-top img-responsive"
+                                            src="{{ $product->urlimg }}"
+                                            alt="Card image cap">
+                                        <!-- <img src="{{ asset('bundle/assets/images/users/antivirus.png') }}" alt="user"> -->
                                         <div class="el-overlay">
                                             <ul class="el-info">
                                                 <li>
@@ -74,7 +81,7 @@
                                                 <li>
                                                     <a
                                                         class="btn default btn-outline"
-                                                        href="#">
+                                                        href="{{ route('productsShowSpecific',$product->id)}}">
                                                         <i class="mdi mdi-arrow-right-bold"></i>
                                                     </a>
                                                 </li>

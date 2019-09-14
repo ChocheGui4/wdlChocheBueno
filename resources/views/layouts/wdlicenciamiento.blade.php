@@ -16,6 +16,9 @@
         <link
             href="{{ asset('bundle/assets/plugins/sweetalert/sweetalert.css') }}"
             rel="stylesheet">
+        <!-- <link
+            href="{{ asset('bundle/assets/plugins/datatables/jquery.dataTables.min.css') }}"
+            rel="stylesheet"> -->
         <link
             href="{{ asset('bundle/assets/plugins/chartist-js/dist/chartist.min.css') }}"
             rel="stylesheet">

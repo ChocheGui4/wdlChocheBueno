@@ -113,14 +113,13 @@ class CompanyController extends Controller
         $branch->save();
 
         //Customer
-        // $com= Company::latest('id')->first();
-        // $br= Branch::latest('id')->first();
-        // $us= User::latest('id')->first();
-        // $customers = new Customer;
-        // $customers->users_id=$us->id;
-        // $customers->companies_id=$com->id;
-        // $customers->branches_id=$br->id;
-        // $customers->save();
+        $com= Company::latest('id')->first();
+        $br= Branch::latest('id')->first();
+        $us= User::latest('id')->first();
+        $customers = new Customer;
+        $customers->companies_id=$com->id;
+        $customers->branches_id=$br->id;
+        $customers->save();
         
         // dd("Se agregaron: usuario login, contacto y empresa");
         return redirect()->route('companyShow');

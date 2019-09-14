@@ -31,83 +31,142 @@
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row el-element-overlay">
-                        @foreach ($products as $product)
-                            @switch(true)
-                                @case($product->branches_id==$branches)
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <img
-                                                class="card-img-top img-responsive"
-                                                src="{{ asset('bundle/assets/images/users/antivirus.png') }}"
-                                                alt="Card image cap">
-                                            <div class="card-block">
-                                                <h4 class="card-title">{{ $product->name}}</h4>
-                                                <input hidden="hidden" id="valcompany" type="text" value="{{$company}}">
-                                                <input hidden="hidden" id="valbranch" type="text" value="{{$branches}}">
-                                                <input hidden="hidden" type="textarea" id="name{{ $i }}" value="{{$product->name}}">
-                                                <input hidden="hidden" type="text" id="description{{ $i }}" name="description" value="{{ $product->description }}">
-                                                <input hidden="hidden" type="text" id="t1{{ $i }}" name="t1" value="{{$product->time}}">
-                                                <input hidden="hidden" type="text" id="p1{{ $i }}" name="p1" value="{{$product->period}}">
-                                                <input hidden="hidden" type="text" id="user{{ $i }}" name="p1" value="{{$product->users}}">
-                                                <input hidden="hidden" type="text" id="s1{{ $i }}" name="s1" value="{{$product->storage}}">
-                                                <input hidden="hidden" type="text" id="us1{{ $i }}" name="us1" value="{{$product->unitstorage}}">
-                                                <a
-                                                    href="#"
-                                                    id="wdngbutton{{ $i }}"
-                                                    class="btn btn-primary"
-                                                    onClick="button('#description{{$i}}','#name{{$i}}',
-                                                    '#t1{{$i}}','#p1{{$i}}','#user{{$i}}','#s1{{$i}}',
-                                                    '#us1{{$i}}','{{$product->acquisition_types_id}}',
-                                                    '{{$product->id}}','{{$product->companies_id}}',
-                                                    '{{$product->branches_id}}','','')"
-                                                    data-toggle="modal"
-                                                    data-target="#WDNGmodal"
-                                                    >Go</a>
-                                                    <label hidden>{{$i++}}</label> 
-                                                    
-                                            </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="card" style="background: #89CBB8;">
+                                <div class="card-block">
+                                    <div class="table-responsive">
+                                        <div id="example23_wrapper" class="dataTables_wrapper">
+                                            <table
+                                                id="table"
+                                                class="display nowrap table table-hover table-striped table-bordered dataTable
+                                                cellspacing="0"
+                                                width="100%"
+                                                role="grid"
+                                                aria-describedby="example23_info"
+                                                style="width: 100%;">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th
+                                                            class="sorting_asc"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-sort="ascending"
+                                                            aria-label="Name: activate to sort column descending"
+                                                            style="width: 140px;">product</th>
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Position: activate to sort column ascending"
+                                                            style="width: 206px;">Maker</th>
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 105px;">Processor</th>
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 105px;">Memory</th>
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 105px;">Disc</th>
+                                                        <th
+                                                            style="width: 51px;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($products as $product)
+                                                        @switch(true)
+                                                            @case($product->idp == 1) 
+                                                                <div>
+                                                                    <tr role="row" class="odd">
+                                                                        
+                                                                        <td><strong> {{ $product->name }} </strong></td>
+                                                                        <td><strong> {{ $product->namem }} </strong></td>
+                                                                        <td><strong> {{ $product->namep }} </strong></td>
+                                                                        <td><strong> {{ $product->sizem }} GB</strong></td>
+                                                                        <td><strong> {{ $product->typed }} </strong></td>
+                                                                        <td>
+                                                                            <a class="btn btn-warning" href="#">
+                                                                                <i class="fa fa-edit"></i>
+                                                                            </a>
+                                                                            @csrf @method('DELETE')
+                                                                            <!--<button class="btn btn-danger" data-toggle="modal"
+                                                                            data-target="#exampleModalLong">Eliminar</button>-->
+                                                                        </td>
+                                                                        
+                                                                    </tr>
+                                                                </div>
+                                                                @break
+                                                        @endswitch
+                                                    @endforeach 
+                                                </tbody>
+                                            </table>                            
                                         </div>
                                     </div>
-                                    @break
-
-                                @case($product->acquisition_types_id=="")
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <img
-                                                class="card-img-top img-responsive"
-                                                src="{{ asset('bundle/assets/images/users/antivirus.png') }}"
-                                                alt="Card image cap">
-                                            <div class="card-block">
-                                                <h4 class="card-title">{{ $product->name}}</h4>
-                                                <input hidden="hidden" id="valcompany" type="text" value="{{$company}}">
-                                                <input hidden="hidden" id="valbranch" type="text" value="{{$branches}}">
-                                                <input hidden="hidden" type="textarea" id="name{{ $i }}" value="{{$product->name}}">
-                                                <input hidden="hidden" type="text" id="description{{ $i }}" name="description" value="{{ $product->description }}">
-                                                <input hidden="hidden" type="text" id="t1{{ $i }}" name="t1" value="{{$product->time}}">
-                                                <input hidden="hidden" type="text" id="p1{{ $i }}" name="p1" value="{{$product->period}}">
-                                                <input hidden="hidden" type="text" id="user{{ $i }}" name="p1" value="{{$product->users}}">
-                                                <input hidden="hidden" type="text" id="s1{{ $i }}" name="s1" value="{{$product->storage}}">
-                                                <input hidden="hidden" type="text" id="us1{{ $i }}" name="us1" value="{{$product->unitstorage}}">
-                                                <a
-                                                    href="#"
-                                                    id="wdngbutton{{ $i }}"
-                                                    class="btn btn-primary"
-                                                    onClick="button('#description{{$i}}','#name{{$i}}',
-                                                    '#t1{{$i}}','#p1{{$i}}','#user{{$i}}','#s1{{$i}}',
-                                                    '#us1{{$i}}','{{$product->acquisition_types_id}}',
-                                                    '{{$product->id}}','{{$product->companies_id}}',
-                                                    '{{$product->branches_id}}','','')"
-                                                    data-toggle="modal"
-                                                    data-target="#WDNGmodal"
-                                                    >Go</a>
-                                                    <label hidden>{{$i++}}</label> 
-                                                    
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @break
-                            @endswitch
-                        @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-3 col-sm-3 col-xs-3">
+                            <div class="card">
+                                @if($product->idp==1)
+                                    {{$product->idp}}, {{$product->idm}}, {{$product->idpr}}
+                                    <img
+                                        class="card-img-top img-responsive"
+                                        src="{{ asset('bundle/assets/images/LogosWD/WDNG.png') }}"
+                                        alt="Card image cap">
+                                @endif
+                                @if($product->idp==2)
+                                    {{$product->idp}}, {{$product->idm}}, {{$product->idpr}}
+                                    <img
+                                        class="card-img-top img-responsive"
+                                        src="{{ asset('bundle/assets/images/LogosWD/WDF.png') }}"
+                                        alt="Card image cap">
+                                @endif
+                                <div class="card-block">
+                                    <p class="card-text">
+                                        {{ $product->namem}} <strong>|</strong> {{ $product->namep}}
+                                    </p>
+                                    
+                                    <input hidden="hidden" id="valcompany" type="text" value="{{$company}}">
+                                    <input hidden="hidden" id="valbranch" type="text" value="{{$branches}}">
+                                    <input hidden="hidden" type="textarea" id="name{{ $i }}" value="{{$product->name}}">
+                                    <input hidden="hidden" type="text" id="description{{ $i }}" name="description" value="{{ $product->description }}">
+                                    <input hidden="hidden" type="text" id="t1{{ $i }}" name="t1" value="{{$product->description}}">
+                                    <input hidden="hidden" type="text" id="p1{{ $i }}" name="p1" value="{{$product->offer}}">
+                                    <input hidden="hidden" type="text" id="user{{ $i }}" name="p1" value="{{$product->namem}}">
+                                    <input hidden="hidden" type="text" id="s1{{ $i }}" name="s1" value="{{$product->valuem}}">
+                                    <input hidden="hidden" type="text" id="us1{{ $i }}" name="us1" value="{{$product->namep}}">
+                                    <a
+                                        href="#"
+                                        id="wdngbutton{{ $i }}"
+                                        class="btn btn-primary"
+                                        
+                                        data-toggle="modal"
+                                        data-target="#WDNGmodal"
+                                        >Go</a>
+                                        <label hidden>{{$i++}}</label> 
+                                        
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -241,4 +300,12 @@
         </div>
     </div>
     <!--Termina la ventana modal-->
+@endsection
+@section('file_js')
+
+<script>
+    $(document).ready(function() {
+        $('#table').DataTable();
+    });
+ </script>
 @endsection

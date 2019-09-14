@@ -19,6 +19,7 @@ use App\Characteristic;
 use App\Product;
 use App\License;
 use App\AcquisitionType;
+use DB;
 
 
 class ProductController extends Controller
@@ -36,6 +37,16 @@ class ProductController extends Controller
         return view('super.product', compact('products','i'));
         
     }
+    public function productsShowSpecific($id){
+        
+        $products = DB::select("select *, products.id as idp, makers.id as idm, 
+        processors.id as idpr from products, makers, processors, memories, discs where products.id = ?",[$id]);
+        $i=0;
+        // dd($products);
+        return view('super.showProduct', compact('products','i'));
+        
+    }
+    
 
 
     public function showBranchesProducts($id, $branch){
@@ -59,18 +70,22 @@ class ProductController extends Controller
         $company = $id;
         $branches = $branch;
         //dd($company, $branch);
-        $products= Product::leftJoin('acquisitions', 'products.id', '=', 'acquisitions.products_id')
-        ->leftJoin('customers', 'customers.acquisitions_id', '=', 'acquisitions.id')
-        ->select("products.id","products.name","products.description",
-        "products.time","products.period","products.users",
-        "products.storage","products.unitstorage","acquisitions.products_id",
-        "acquisitions.acquisition_types_id","acquisitions.licenses_id",
-        "acquisitions.characteristics_id", "customers.companies_id","customers.branches_id")
-        ->orderBy('products.id','ASC')
-        
-        ->get();
+        // $products= Product::leftJoin('acquisitions', 'products.id', '=', 'acquisitions.products_id')
+        // ->leftJoin('customers', 'customers.acquisitions_id', '=', 'acquisitions.id')
+        // ->select("products.id","products.name","products.description",
+        // "products.time","products.period","products.users",
+        // "products.storage","products.unitstorage","acquisitions.products_id",
+        // "acquisitions.acquisition_types_id","acquisitions.licenses_id",
+        // "acquisitions.characteristics_id", "customers.companies_id","customers.branches_id")
+        // ->orderBy('products.id','ASC')
+        // ->get();
+        // $i=0;
+        // return view('super.addProduct',compact('company','branches','products','i'));
+        $products = DB::select("select *, products.id as idp, makers.id as idm, 
+        processors.id as idpr from products, makers, processors, memories, discs order by products.id");
         $i=0;
         // dd($products);
+        
         
         return view('super.addProduct',compact('company','branches','products','i'));
     }
