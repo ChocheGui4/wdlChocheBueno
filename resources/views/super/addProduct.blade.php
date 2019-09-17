@@ -34,7 +34,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="card" style="background: #89CBB8;">
                                 <div class="card-block">
-                                    <div class="table-responsive">
+                                    <!-- <div class="table-responsive">
                                         <div id="example23_wrapper" class="dataTables_wrapper">
                                             <table
                                                 id="table"
@@ -108,10 +108,7 @@
                                                                                 <i class="fa fa-edit"></i>
                                                                             </a>
                                                                             @csrf @method('DELETE')
-                                                                            <!--<button class="btn btn-danger" data-toggle="modal"
-                                                                            data-target="#exampleModalLong">Eliminar</button>-->
                                                                         </td>
-                                                                        
                                                                     </tr>
                                                                 </div>
                                                                 @break
@@ -120,7 +117,7 @@
                                                 </tbody>
                                             </table>                            
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

@@ -17,9 +17,11 @@ use App\Contact;
 use App\Acquisition;
 use App\Characteristic;
 use App\Product;
+use App\ProductList;
 use App\License;
 use App\AcquisitionType;
 use DB;
+use Yajra\Datatables\Datatables;
 
 
 class ProductController extends Controller
@@ -37,13 +39,47 @@ class ProductController extends Controller
         return view('super.product', compact('products','i'));
         
     }
-    public function productsShowSpecific($id){
-        
+    // protected $prodid=3;
+    public function productsShowSpecific($id){    
         $products = DB::select("select *, products.id as idp, makers.id as idm, 
-        processors.id as idpr from products, makers, processors, memories, discs where products.id = ?",[$id]);
+        processors.id as idpr from products, makers, processors, memories, discs
+        where products.id = ?",[$id]);
         $i=0;
+        $prodid = $id;
+        // $tasks = DB::select("select *, products.id as idp, makers.id as idm, 
+        // processors.id as idpr from products, makers, processors, memories, discs
+        // where products.id = ?",[$id]);
+        // return Datatables::of($tasks)
+        // ->make(true);    
         // dd($products);
-        return view('super.showProduct', compact('products','i'));
+        return view('super.showProduct', compact('products','i','prodid'));
+        
+    }
+
+    //Datatable products
+    public function datatableproducts($id){
+        // $tasks = Product::orderBy('id','ASC')->get();
+        if($id==1 | $id==2 | $id==3 | $id==4 | $id==6){
+            // $tasks = DB::select("select * from productlist where idp = ?",[$id]);
+            // // $tasks = DB::select("select *, products.id as idp, makers.id as idm, 
+            // // processors.id as idpr from products, makers, processors, memories, discs,
+            // // years where products.id = ?",[$id]);
+            // return Datatables::of($tasks)
+            // ->addColumn('btn','<button id="sa-title" alt="alert" class="btn btn-warning" >Buy</button>')
+            // ->rawColumns(['btn'])
+            // ->make(true);  
+            return Datatables()     
+            ->eloquent(ProductList::query())
+            ->toJson();
+        }else{
+            $tasks = DB::select("select *, products.id as idp, makers.id as idm, 
+            processors.id as idpr from products, makers, processors, memories, discs
+            where products.id = ?",[$id]);
+            return Datatables::of($tasks)
+            ->addColumn('btn','<button id="sa-title" alt="alert" class="btn btn-warning" >Buy</button>')
+            ->rawColumns(['btn'])
+            ->make(true); 
+        }
         
     }
     

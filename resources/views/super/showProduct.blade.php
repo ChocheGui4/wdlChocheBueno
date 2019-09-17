@@ -30,10 +30,35 @@
                 <div class="container-fluid">
                     <div class="row el-element-overlay">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="card" style="background: #89CBB8;">
+                            <!-- <div class="container">
+                                <table id="task" class="table table-hover table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Maker</th>
+                                        
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div> -->
+                            <div class="card" style="background: #FFDCDC;">
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <div id="example23_wrapper" class="dataTables_wrapper">
+                                        <table id="task" class="table table-hover table-condensed">
+                                            <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Maker</th>
+                                                <th>Processor</th>
+                                                <th>Memory (GB)</th>
+                                                <th>Disc</th>
+                                                <th>users</th>
+                                                
+                                                
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                        <!-- <div id="example23_wrapper" class="dataTables_wrapper">
                                             <table
                                                 id="table"
                                                 class="display nowrap table table-hover table-striped table-bordered dataTable
@@ -91,7 +116,6 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($products as $product)
-                                                         
                                                         <div>
                                                             <tr role="row" class="odd">
                                                                 
@@ -105,17 +129,13 @@
                                                                         <i class="fa fa-edit"></i>
                                                                     </a>
                                                                     @csrf @method('DELETE')
-                                                                    <!--<button class="btn btn-danger" data-toggle="modal"
-                                                                    data-target="#exampleModalLong">Eliminar</button>-->
                                                                 </td>
-                                                                
                                                             </tr>
                                                         </div>
-                                                                
                                                     @endforeach 
                                                 </tbody>
                                             </table>                            
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -126,16 +146,71 @@
             </div>
         </div>
         <!-- /.content-wrapper -->
+        <button id="sa-title" alt="alert" class="btn btn-danger">New</button>
     </div>
     <!--Inicia la ventana modal-->
-   
+    <div class="sweet-overlay" tabindex="-1" style="opacity: -0.01; display: none;"></div>
+    <div class="sweet-alert hideSweetAlert" data-custom-class="" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-outside-click="false" data-has-done-function="false" data-animation="pop" data-timer="null" style="display: none; margin-top: -128px; opacity: -0.05;"><div class="sa-icon sa-error" style="display: none;">
+      <span class="sa-x-mark">
+        <span class="sa-line sa-left"></span>
+        <span class="sa-line sa-right"></span>
+      </span>
+    </div><div class="sa-icon sa-warning" style="display: none;">
+      <span class="sa-body"></span>
+      <span class="sa-dot"></span>
+    </div><div class="sa-icon sa-info" style="display: none;"></div><div class="sa-icon sa-success" style="display: none;">
+      <span class="sa-line sa-tip"></span>
+      <span class="sa-line sa-long"></span>
+
+      <div class="sa-placeholder"></div>
+      <div class="sa-fix"></div>
+    </div><div class="sa-icon sa-custom" style="display: none;"></div><h2>Here's a message!</h2>
+    <p style="display: block;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.</p>
+    <fieldset>
+      <input type="text" tabindex="3" placeholder="">
+      <div class="sa-input-error"></div>
+    </fieldset><div class="sa-error-container">
+      <div class="icon">!</div>
+      <p>Not valid!</p>
+    </div><div class="sa-button-container">
+      <button class="cancel" tabindex="2" style="display: none; box-shadow: none;">Cancel</button>
+      <div class="sa-confirm-button-container">
+        <button class="confirm" tabindex="1" style="display: inline-block; background-color: rgb(140, 212, 245); box-shadow: rgba(140, 212, 245, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset;">OK</button><div class="la-ball-fall">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div></div>
     <!--Termina la ventana modal-->
 @endsection
 @section('file_js')
 
 <script>
     $(document).ready(function() {
-        $('#table').DataTable();
+
+        // var hola=$('#idprod').val();
+        
+        // var hola="{{ route('datatableproducts',"$prodid") }}";
+        // alert(hola);
+        oTable = $('#task').DataTable({
+            "serverSide": true,
+            "ajax": "{{ route('datatableproducts',"$prodid") }}",
+            "columns": [
+                {data: 'name'},
+                {data: 'namem'},
+                {data: 'namep'},
+                {data: 'sizem' },
+                {data: 'typed' },
+                {data: 'user' },
+                
+                
+                
+            ]
+        });
     });
+    // $(document).ready(function() {
+    //     $('#table').DataTable();
+    // });
  </script>
 @endsection
