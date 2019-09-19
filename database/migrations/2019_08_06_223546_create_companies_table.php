@@ -17,6 +17,7 @@ class CreateCompaniesTable extends Migration
             $table->increments('id');
             $table->string('companyrfc',13);
             $table->string('companyname',50);
+            $table->string('companyimg',255);
             $table->string('companytelephone1',12);
             $table->string('companytelephone2',12);
             $table->string('companyemail1',45);

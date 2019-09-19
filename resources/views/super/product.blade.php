@@ -2,7 +2,7 @@
 @section('content')
     <div class="wrapper">
         <div class="row page-titles">
-            <div class="col-md-8  align-self-center">
+            <div class="col-md-7  align-self-center">
                 <h3 class="text-themecolor m-b-0 m-t-0">Products</h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -12,29 +12,24 @@
                     <li class="breadcrumb-item active">Product</li>
                 </ol>
             </div>
-
-            <div class="col-md-4 col-sm-4 col-xs-4">
-                <div class="col-md-12 col-sm-12 col-xs-12 ">
-                    <a
-                        href="/home"
-                        class="btn pull-right hidden-sm-down btn-primary">
-                        <i class="mdi mdi-arrow-left"></i>
-                        Dashboard</a>
-                </div>
-                <div class="col-md-7 col-sm-7 col-xs-7">
-
-                    <a
-                        href="#"
-                        data-toggle="modal"
-                        data-target="#WDNGcreate"
-                        class="btn pull-right hidden-sm-down btn-success">
-                        <i class="mdi mdi-plus-circle"></i>
-                        Add product</a>
-
-                </div>
-
+            <div class="col-md-3 col-sm-3 col-xs-3 align-self-center">
+                <a
+                    href="#"
+                    data-toggle="modal"
+                    data-target="#WDNGcreate"
+                    class="btn pull-right hidden-sm-down float-right"
+                    style="background: #31B90C; color: white;">
+                    <i class="mdi mdi-plus-circle"></i>
+                    Add product</a>
             </div>
-
+            <div class="col-md-2 col-sm-2 col-xs-2 align-self-center">
+                <a
+                    href="/home"
+                    class="btn pull-right hidden-sm-down btn-primary float-left"
+                    style="background: #383F49; color: white">
+                    <i class="mdi mdi-arrow-left"></i>
+                    Dashboard</a>
+            </div>
         </div>
         <!--Notificación-->
         <div class="jq-toast-wrap top-right">

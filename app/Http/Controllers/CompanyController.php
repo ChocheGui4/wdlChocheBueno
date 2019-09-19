@@ -131,7 +131,7 @@ class CompanyController extends Controller
     {
         $compan = Company::find($id);
         $contact = ContactCompany::find($id);
-        
+        // dd($contact->email);
         
         return view('super.editCompany', compact('compan','contact'));
     }
@@ -168,11 +168,17 @@ class CompanyController extends Controller
         
         $branch = new Branch;
         $branch ->name= $request->name;
+        $branch ->branchtelephone1= $request->branchtelephone1;
+        $branch ->branchtelephone2= $request->branchtelephone2;
+        $branch ->branchemail1= $request->branchemail1;
+        $branch ->branchemail2= $request->branchemail2;
         $branch ->zipcode= $request->zipcode;
         $branch ->district= $request->district;
         $branch ->street= $request->street;
         $branch ->insidenumber= $request->innumber;
         $branch ->exteriornumber= $request->extnumber;
+        $branch ->branchstatus= 1;
+        dd("Se guardaron");
         $branch->save();
 
         $ided= Branch::latest('id')->first();
@@ -192,10 +198,14 @@ class CompanyController extends Controller
     }
     public function companyUpdateProfile(CompanyEditProfileCreate $request, $id)
     {
-        $contact = Contact::find($id);
+        $contact = ContactCompany::find($id);
         $contact->name = $request->name;
         $contact->lastname = $request->lastname;
-        $contact->telephone = $request->telephone;
+        $contact->telephone1 = $request->telephone1;
+        $contact->telephone2 = $request->telephone2;
+        $contact->email = $request->email;
+        $contact->email2 = $request->email2;
+        // dd("Ya se gaurdaron");
         $contact->save();
         return redirect()->route('companyShow');
 
@@ -205,7 +215,11 @@ class CompanyController extends Controller
         $company = Company::find($id);
         $company->companyname = $request->companyname;
         $company->companyrfc = $request->companyrfc;
-        $company->companytelephone = $request->companytelephone;
+        $company->companytelephone1 = $request->companytelephone1;
+        $company->companytelephone2 = $request->companytelephone2;
+        $company->companyemail1 = $request->companyemail1;
+        $company->companyemail2 = $request->companyemail2;
+        // dd("Entro a la compania editar");
         $company->save();
         return redirect()->route('companyShow');
 

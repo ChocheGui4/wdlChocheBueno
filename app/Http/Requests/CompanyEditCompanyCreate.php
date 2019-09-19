@@ -26,7 +26,10 @@ class CompanyEditCompanyCreate extends FormRequest
         return [
             'companyname' =>'required|min:3|max:50',
             'companyrfc' =>'required|min:12|max:13',
-            'companytelephone' =>'required|min:10|max:10'
+            'companytelephone1' =>'required|min:12|max:12',
+            'companytelephone2' =>'required|min:12|max:12',
+            'companyemail1' =>'required|max:45',
+            'companyemail2' =>'required|max:45'
         ];
     }
 }

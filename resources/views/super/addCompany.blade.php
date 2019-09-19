@@ -6,20 +6,21 @@
             <h3 class="text-themecolor m-b-0 m-t-0">Company</h3>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="javascript:void(0)">Home</a>
+                    <a href="/home">Home</a>
                 </li>
-                <li class="breadcrumb-item active">Company</li>
+                <li class="breadcrumb-item active">
+                    <a href="/companies">Company</a>
+                </li>
                 <li class="breadcrumb-item active">Create</li>
             </ol>
         </div>
         <div class="col-md-6 col-4 align-self-center">
-
             <a
                 href="{{ route('companyShow')}}"
-                class="btn pull-right hidden-sm-down btn-primary">
+                class="btn pull-right hidden-sm-down btn-primary"
+                style="background: #383F49; color: white">
                 <i class="mdi mdi-arrow-left"></i>
                 Back</a>
-
         </div>
     </div>
 
@@ -57,6 +58,7 @@
                                                                         </span>
                                                                         <input
                                                                             type="text"
+                                                                            onkeyup="ucwords(this);"
                                                                             name="name"
                                                                             class="form-control required"
                                                                             value="{{ old('name') }}"
@@ -64,7 +66,7 @@
                                                                             required
                                                                             maxlength="25"
                                                                             pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                            data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras">
+                                                                            data-validation-pattern-message="The own names must have at least 3 letters">
                                                                     </div>
                                                                     <span class="invalid-feedback" role="alert" style="color:red;">
                                                                         <strong>{{ $errors->first('name') }}</strong>
@@ -91,7 +93,7 @@
                                                                         placeholder="Example: Juárez"
                                                                         maxlength="25"
                                                                         pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                        data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras"
+                                                                        data-validation-pattern-message="The own lastname must have at least 3 letters"
                                                                         required>
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
@@ -121,7 +123,7 @@
                                                                         required
                                                                         placeholder="Example: 5523212321"
                                                                         pattern="[0-9].{11}" 
-                                                                        data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras">
+                                                                        data-validation-pattern-message="The telephone number must have 10 digits">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('telephone1') }}</strong>
@@ -146,10 +148,8 @@
                                                                         name="telephone2"
                                                                         class="form-control required"
                                                                         value="{{ old('telephone2') }}"
-                                                                        required
                                                                         placeholder="Example: 5523212321"
-                                                                        pattern="[0-9].{11}" 
-                                                                        data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras">
+                                                                        >
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('telephone2') }}</strong>
@@ -177,7 +177,7 @@
                                                                         required
                                                                         maxlength="45"
                                                                         pattern="^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$"
-                                                                        data-validation-pattern-message="No concuerda">
+                                                                        data-validation-pattern-message="This is not a valid email">
                                                                         
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
@@ -201,10 +201,7 @@
                                                                         class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                                                         value="{{ old('email2') }}"
                                                                         placeholder="Example: user@exam.com"
-                                                                        required
-                                                                        maxlength="45"
-                                                                        pattern="^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$"
-                                                                        data-validation-pattern-message="No concuerda x2">
+                                                                        maxlength="45">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('email2') }}</strong>
@@ -230,11 +227,11 @@
                                                                         name="password"
                                                                         class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
                                                                         value="{{ old('password') }}"
-                                                                        placeholder="Example: Secret@password1"
+                                                                        placeholder="Example: Secr3t@1"
                                                                         required
                                                                         maxlength="45"
                                                                         pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,45}$" 
-                                                                        data-validation-pattern-message="No concuerda con el patrón">
+                                                                        data-validation-pattern-message="the password must contain 1 capital letter, 1 lowercase letter,1 alphanumeric or special character, 1 number and must be at least 8 characters">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('password') }}</strong>
@@ -315,6 +312,7 @@
                                                                         </span>
                                                                         <input
                                                                             type="text"
+                                                                            onkeyup="MaysPrimera(this);"
                                                                             name="companyname"
                                                                             class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
                                                                             value="{{ old('companyname') }}"
@@ -322,7 +320,7 @@
                                                                             placeholder="The beauty S.A. de C.V."
                                                                             maxlength="50"
                                                                             pattern=".{2,}"
-                                                                            data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras">
+                                                                            data-validation-pattern-message="The name company must have at least 3 letters">
                                                                     </div>
                                                                     <span class="invalid-feedback" role="alert" style="color:red;">
                                                                         <strong>{{ $errors->first('companyname') }}</strong>
@@ -351,7 +349,7 @@
                                                                         maxlength="13"
                                                                         pattern="[A-Z0-9].{12}"
                                                                         placeholder="Example: FTGY568765H78"
-                                                                        data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras">
+                                                                        data-validation-pattern-message="The RFC must have 13 characters">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('companyrfc') }}</strong>
@@ -381,7 +379,7 @@
                                                                         placeholder="Example: 5523212321"
                                                                         required
                                                                         pattern="[0-9].{11}" 
-                                                                        data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras">
+                                                                        data-validation-pattern-message="The telephone number must have 10 digits">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('companytelephone1') }}</strong>
@@ -406,10 +404,7 @@
                                                                         name="companytelephone2"
                                                                         class="form-control {{ $errors->has('companytelephone') ? ' is-invalid' : '' }}"
                                                                         value="{{ old('companytelephone2') }}"
-                                                                        placeholder="Example: 5523212321"
-                                                                        required
-                                                                        pattern="[0-9].{11}" 
-                                                                        data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras">
+                                                                        placeholder="Example: 5523212321">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('companytelephone2') }}</strong>
@@ -436,7 +431,7 @@
                                                                         required
                                                                         maxlength="45"
                                                                         pattern="^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$"
-                                                                        data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras">
+                                                                        data-validation-pattern-message="This is not a valid email">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('companyemail1') }}</strong>
@@ -459,10 +454,7 @@
                                                                         class="form-control {{ $errors->has('companyemail2') ? ' is-invalid' : '' }}"
                                                                         value="{{ old('companyemail2') }}"
                                                                         placeholder="company@exam.com"
-                                                                        required
-                                                                        maxlength="45"
-                                                                        pattern="^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$"
-                                                                        data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras">
+                                                                        maxlength="45">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('companyemail2') }}</strong>
@@ -511,7 +503,7 @@
                                                                         required
                                                                         maxlength="5"
                                                                         pattern="[0-9].{4}"
-                                                                        data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras">
+                                                                        data-validation-pattern-message="This field must have 5 digits">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('zipcode') }}</strong>
@@ -540,7 +532,7 @@
                                                                         required
                                                                         maxlength="35"
                                                                         pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                        data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras">
+                                                                        data-validation-pattern-message="The Districts must have at least 3 letters">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('district') }}</strong>
@@ -569,7 +561,7 @@
                                                                         required
                                                                         maxlength="35"
                                                                         pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                        data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras">
+                                                                        data-validation-pattern-message="The Streets must have at least 3 letters">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('street') }}</strong>
@@ -600,7 +592,7 @@
                                                                         placeholder="Example: 1"
                                                                         required
                                                                         maxlength="4"
-                                                                        data-validation-required-message="Los nombres propios deben contener al menos 3 letras">
+                                                                        data-validation-required-message="This field must have digits">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('extnumber') }}</strong>
@@ -624,12 +616,12 @@
                                                                         type="text"
                                                                         data-mask="0000"
                                                                         name="innumber"
-                                                                        class="form-control required"
+                                                                        class="form-control "
                                                                         value="{{ old('innumber') }}"
                                                                         placeholder="Example: 2"
                                                                         required
                                                                         maxlength="4"
-                                                                        data-validation-required-message="Los nombres propios deben contener al menos 3 letras">
+                                                                        data-validation-required-message="This field must have digits">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('innumber') }}</strong>

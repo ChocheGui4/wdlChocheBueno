@@ -25,6 +25,10 @@ class BranchCreate extends FormRequest
     {
         return [
             'name' =>'required|min:3|max:50|unique:branches',
+            'branchtelephone1' =>'required|min:12|max:12|regex:/[0-9]$/|unique:branches',
+            'branchtelephone2' =>'required|min:12|max:12|regex:/[0-9]$/|unique:branches',
+            'branchemail1' => 'required|email|max:45|unique:branches',
+            'branchemail2' => 'required|email|max:45|unique:branches',
             'zipcode' =>'required|min:5|max:5|regex:/[0-9]$/',
             'district' =>'required|min:3|max:35|regex:/[A-Za-z]$/',
             'street' =>'required|min:3|max:35|regex:/[A-Za-z]$/',

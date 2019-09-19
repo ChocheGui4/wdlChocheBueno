@@ -18,6 +18,7 @@ class CreatePeopleTable extends Migration
             $table->string('rfc',13);
             $table->string('name',25);
             $table->string('lastname',35);
+            $table->string('img',255);
             $table->string('telephone1',12);
             $table->string('telephone2',12);
             $table->string('email1',5);

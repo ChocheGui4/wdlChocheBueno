@@ -26,8 +26,8 @@ class CompanyCreate extends FormRequest
         return [
             'name' => 'required|min:3|max:25|regex:/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/',
             'lastname' => 'required|min:3|max:35|regex:/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/',
-            'telephone1' =>'required|min:10|max:12|regex:/[0-9]$/|unique:contact_companies',
-            'telephone2' =>'required|min:10|max:12|regex:/[0-9]$/|unique:contact_companies',
+            'telephone1' =>'required|min:12|max:12|regex:/[0-9]$/|unique:contact_companies',
+            'telephone2' =>'required|min:12|max:12|regex:/[0-9]$/|unique:contact_companies',
             'email' => 'required|email|max:45|unique:users',
             'email2' => 'required|email|max:45|unique:contact_companies',
             'password' => 'required|min:8|max:45|regex: /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,45}$/|confirmed',
