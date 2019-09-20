@@ -15,9 +15,8 @@
             </ol>
         </div>
         <div class="col-md-6 col-4 align-self-center">
-
             <a
-                href="{{ route('companyShow')}}"
+                href="{{ route('showBranches',$Company)}}"
                 class="btn pull-right hidden-sm-down"
                 style="background: #383F49; color: white">
                 <i class="mdi mdi-arrow-left"></i>
@@ -71,7 +70,7 @@
 
                             <div id="contact" class="card">
 
-                                <form action="{{ route('companyUpdateCompany',$compan->id) }}" 
+                                <form action="{{ route('branchUpdateCompany',$branch->id) }}" 
                                     method="POST" 
                                     enctype="multipart/form-data"
                                     autocomplete="off" 
@@ -85,22 +84,22 @@
                                                 <br><br>
                                                 <div class="el-card-avatar el-overlay-1">
                                                     <img
-                                                        src="{{ Storage::url($compan->companyimg) }}"
+                                                        src="{{ Storage::url($branch->branchimg) }}"
                                                         style="width:200px;height: 190px;"
                                                         class="img-circle elevation-2"
                                                         alt="User Image">
                                                 </div>
                                                 <br><br>
-                                                <input type="file" name="companyimg">
+                                                <input type="file" name="branchimg">
                                                 <span class="invalid-feedback" role="alert" style="color:red;">
-                                                    <strong>{{ $errors->first('companyimg') }}</strong>
+                                                    <strong>{{ $errors->first('branchimg') }}</strong>
                                                 </span>
                                             </div>
                                             <div class=" col-md-9 col-sm-9 col-xs-9">
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                                         <div class="form-group">
-                                                        <strong>Company name</strong>
+                                                        <strong>Branch name</strong>
                                                         <!--Se inicia icono con campo de texto-->
                                                         <div class="controls">
                                                             <div class="input-group mb-3">
@@ -110,9 +109,9 @@
                                                                 <input
                                                                     type="text"
                                                                     id="companyname"
-                                                                    name="companyname"
+                                                                    name="branchname"
                                                                     class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
-                                                                    value="{{$compan->companyname}}"
+                                                                    value="{{$branch->branchname}}"
                                                                     placeholder="The beauty S.A. de C.V."
                                                                     required
                                                                     maxlength="50"
@@ -121,43 +120,12 @@
 
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
-                                                                    <strong>{{ $errors->first('companyname') }}</strong>
+                                                                    <strong>{{ $errors->first('branchname') }}</strong>
                                                                 </span>
                                                             </div>
                                                             <!--Se finaliza icono con campo de texto-->
 
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                                        <!--  -->
-                                                        <div class="form-group">
-                                                            <strong>RFC</strong>
-                                                            <!--Se inicia icono con campo de texto-->
-                                                            <div class="controls">
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-addon">
-                                                                        <i class="fa fa-file"></i>
-                                                                    </span>
-                                                                    <input
-                                                                        type="text"
-                                                                        onkeyup="mayus(this);"
-                                                                        id="companyrfc"
-                                                                        name="companyrfc"
-                                                                        class="form-control {{ $errors->has('companyrfc') ? ' is-invalid' : '' }}"
-                                                                        value="{{$compan->companyrfc}}"
-                                                                        required
-                                                                        maxlength="13"
-                                                                        pattern="[A-Z0-9].{12}"
-                                                                        placeholder="Example: FTGY568765H78"
-                                                                        data-validation-pattern-message="The RFC must have 13 characters">
-                                                                </div>
-                                                                <span class="invalid-feedback" role="alert" style="color:red;">
-                                                                    <strong>{{ $errors->first('companyrfc') }}</strong>
-                                                                </span>
-                                                            </div>
-                                                            <!--Se finaliza icono con campo de texto-->
-                                                        </div>
-                                                        <!--  -->
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -175,10 +143,10 @@
                                                                         type="text"
                                                                         data-mask="000-000-0000"
                                                                         id="companytelephone"
-                                                                        name="companytelephone1"
+                                                                        name="branchtelephone1"
                                                                         required
                                                                         class="form-control {{ $errors->has('companytelephone') ? ' is-invalid' : '' }}"
-                                                                        value="{{$compan->companytelephone1}}"
+                                                                        value="{{$branch->branchtelephone1}}"
                                                                         placeholder="5523212321"
                                                                         required
                                                                         pattern="[0-9].{11}" 
@@ -193,7 +161,7 @@
                                                                         value="{{ old('seccioncompany') }}">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
-                                                                    <strong>{{ $errors->first('companytelephone1') }}</strong>
+                                                                    <strong>{{ $errors->first('branchtelephone1') }}</strong>
                                                                 </span>
                                                             </div>
                                                     <!--Se finaliza icono con campo de texto-->
@@ -215,13 +183,13 @@
                                                                         type="text"
                                                                         data-mask="000-000-0000"
                                                                         id="companyname"
-                                                                        name="companytelephone2"
+                                                                        name="branchtelephone2"
                                                                         class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
-                                                                        value="{{$compan->companytelephone2}}"
+                                                                        value="{{$branch->branchtelephone2}}"
                                                                         placeholder="The beauty S.A. de C.V.">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
-                                                                    <strong>{{ $errors->first('companytelephone2') }}</strong>
+                                                                    <strong>{{ $errors->first('branchtelephone2') }}</strong>
                                                                 </span>
                                                             </div>
                                                             <!--Se finaliza icono con campo de texto-->
@@ -243,9 +211,9 @@
                                                                     </span>
                                                                     <input
                                                                         type="text"
-                                                                        name="companyemail1"
+                                                                        name="branchemail1"
                                                                         class="form-control{{ $errors->has('email1') ? ' is-invalid' : '' }}"
-                                                                        value="{{$compan->companyemail1}}"
+                                                                        value="{{$branch->branchemail1}}"
                                                                         placeholder="Example: user@exam.com"
                                                                         required
                                                                         maxlength="45"
@@ -254,7 +222,7 @@
                                                                         
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
-                                                                    <strong>{{ $errors->first('email1') }}</strong>
+                                                                    <strong>{{ $errors->first('branchemail1') }}</strong>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -272,14 +240,14 @@
                                                                     <input
                                                                         type="text"
                                                                         id="companytelephone"
-                                                                        name="companyemail2"
+                                                                        name="branchemail2"
                                                                         class="form-control "
-                                                                        value="{{$compan->companyemail2}}"
+                                                                        value="{{$branch->branchemail2}}"
                                                                         placeholder="example: example@exam.com">
                                                                         
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
-                                                                    <strong>{{ $errors->first('companyemail2') }}</strong>
+                                                                    <strong>{{ $errors->first('branchemail2') }}</strong>
                                                                 </span>
                                                             </div>
                                                             <!--Se finaliza icono con campo de texto-->
@@ -308,6 +276,7 @@
                             <!--Comienza el perfil-->
                             <div id="profile" class="card">
                                     <!---->
+                                @foreach ($contacts as $contact)
                                 <form action="{{ route('companyUpdateProfile',$contact->id) }}"
                                     method="POST" 
                                     enctype="multipart/form-data"
@@ -472,6 +441,7 @@
                                     </div>
                                     
                                 </form>
+                                @endforeach
 
 
                             </div>
@@ -481,7 +451,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div id="information" class="card">
-                                <form action="{{ route('companyUpdateAddress',$compan->id)}}" method="POST" autocomplete="off">
+                                <form action="{{ route('companyUpdateAddress',$branch->id)}}" method="POST" autocomplete="off">
                                     <div id="bodyaddress" class="card-block">
                                         @csrf
                                         <div class="row">
@@ -500,7 +470,7 @@
                                                                 type="text"
                                                                 name="zipcode"
                                                                 class="form-control {{ $errors->has('zipcode') ? ' is-invalid' : '' }}"
-                                                                value="{{$compan->zipcode}}"
+                                                                value="{{$branch->zipcode}}"
                                                                 placeholder="03231">
                                                         </div>
                                                     </div>
@@ -523,7 +493,7 @@
                                                                 type="text"
                                                                 name="district"
                                                                 class="form-control {{ $errors->has('district') ? ' is-invalid' : '' }}"
-                                                                value="{{$compan->district}}"
+                                                                value="{{$branch->district}}"
                                                                 placeholder="Benito Juárez">
                                                         </div>
                                                     </div>
@@ -545,7 +515,7 @@
                                                                 type="text"
                                                                 name="street"
                                                                 class="form-control {{ $errors->has('street') ? ' is-invalid' : '' }}"
-                                                                value="{{$compan->street}}"
+                                                                value="{{$branch->street}}"
                                                                 placeholder="Pedro Santacilia">
                                                         </div>
                                                     </div>
@@ -569,7 +539,7 @@
                                                                 type="text"
                                                                 name="extnumber"
                                                                 class="form-control {{ $errors->has('extnumber') ? ' is-invalid' : '' }}"
-                                                                value="{{$compan->exteriornumber}}"
+                                                                value="{{$branch->exteriornumber}}"
                                                                 placeholder="1">
                                                         </div>
                                                     </div>
@@ -591,7 +561,7 @@
                                                                 type="text"
                                                                 name="innumber"
                                                                 class="form-control {{ $errors->has('innumber') ? ' is-invalid' : '' }}"
-                                                                value="{{$compan->insidenumber}}"
+                                                                value="{{$branch->insidenumber}}"
                                                                 placeholder="2">
                                                         </div>
                                                     </div>

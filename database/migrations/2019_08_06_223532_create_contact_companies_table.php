@@ -18,7 +18,7 @@ class CreateContactCompaniesTable extends Migration
             $table->string('name',25);
             $table->string('lastname',35);
             $table->string('telephone1',12);
-            $table->string('telephone2',12);
+            $table->string('telephone2',12)->nullable();
             $table->string('email',45);
             $table->string('email2',45);
             $table->string('area',30);

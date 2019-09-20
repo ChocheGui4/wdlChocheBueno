@@ -24,7 +24,14 @@ class BranchCreate extends FormRequest
     public function rules()
     {
         return [
-            'name' =>'required|min:3|max:50|unique:branches',
+            'name' => 'required|min:3|max:25|regex:/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/',
+            'lastname' => 'required|min:3|max:35|regex:/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/',
+            'telephone1' =>'required|min:12|max:12|regex:/[0-9]$/|unique:contact_branches',
+            'telephone2' =>'required|min:12|max:12|regex:/[0-9]$/|unique:contact_branches',
+            'email' => 'required|email|max:45|unique:contact_branches',
+            'email2' => 'required|email|max:45|unique:contact_branches',
+            'area' =>'required',
+            'branchname' =>'required|min:3|max:50|unique:branches',
             'branchtelephone1' =>'required|min:12|max:12|regex:/[0-9]$/|unique:branches',
             'branchtelephone2' =>'required|min:12|max:12|regex:/[0-9]$/|unique:branches',
             'branchemail1' => 'required|email|max:45|unique:branches',

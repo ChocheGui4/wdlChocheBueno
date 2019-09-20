@@ -20,9 +20,9 @@ class CreatePeopleTable extends Migration
             $table->string('lastname',35);
             $table->string('img',255);
             $table->string('telephone1',12);
-            $table->string('telephone2',12);
+            $table->string('telephone2',12)->nullable();
             $table->string('email1',5);
-            $table->string('email2',5);
+            $table->string('email2',5)->nullable();
             $table->integer('zipcode');
             $table->string('district',35);
             $table->string('street',35);

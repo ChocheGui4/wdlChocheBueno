@@ -57,13 +57,15 @@
                         <div class="card">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">
-                                    <img src="{{ asset('bundle/assets/images/customers/sucursal.jpg') }}" alt="user">
+                                    <img src="{{ Storage::url($branch->branchimg) }}" 
+                                    style="width:230px;height:230px;"
+                                    alt="user">
                                     <div class="el-overlay">
                                         <ul class="el-info">
                                             <li>
                                                 <a
                                                     class="btn default btn-outline image-popup-vertical-fit"
-                                                    href="../plugins/images/users/1.jpg">
+                                                    href="{{ route('branchEdit',[$branch->id,$company])}}">
                                                     <i class="mdi mdi-account-edit"></i>
                                                 </a>
                                             </li>
@@ -83,7 +85,7 @@
                                     </div>
                                 </div>
                                 <div class="el-card-content">
-                                    <h3 class="box-title">{{ $branch->name }}
+                                    <h3 class="box-title">{{ $branch->branchname }}
                                     </h3>
                                     <small>{{ $branch->street }},
                                         {{ $branch->exteriornumber }}-{{ $branch->insidenumber }},

@@ -39,7 +39,7 @@ class CompaniesTableSeeders extends Seeder
         $contactc->name = "Liliana";
         $contactc->lastname = "Linares";
         $contactc->telephone1 = "123-456-7890";
-        $contactc->telephone2 = "541-453-1237";
+        // $contactc->telephone2 = "541-453-1237";
         $contactc->email = "lili@hotmail.com";
         $contactc->email2 = "lili@gmail.com";
         $contactc->area = "Recursos humano";
@@ -49,7 +49,7 @@ class CompaniesTableSeeders extends Seeder
         $compan = new Company;
         $compan->companyrfc = "HYTG652534R65";
         $compan->companyname = "Salvatori";
-        $compan->companyimg = "bundle/assets/images/customers/company.png";
+        $compan->companyimg = "company.png";
         $compan->companytelephone1 = "248-564-8720";
         $compan->companytelephone2 = "246-176-1729";
         $compan->companyemail1 = "Sal_va@hotmail.com";
@@ -65,7 +65,8 @@ class CompaniesTableSeeders extends Seeder
 
         //Branch
         $branch = new Branch;
-        $branch->name = "Own";
+        $branch->branchname = "Own";
+        $branch->branchimg = "sucursal.jpg";
         $branch->branchtelephone1 = "231-234-5671";
         $branch->branchtelephone2 = "904-200-5273";
         $branch->branchemail1 = "Own@hotmail.com";

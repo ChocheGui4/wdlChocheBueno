@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CompanyEditCompanyCreate extends FormRequest
+class BranchEdit extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,12 @@ class CompanyEditCompanyCreate extends FormRequest
     public function rules()
     {
         return [
-            'companyname' =>'required|min:3|max:50',
-            'companyrfc' =>'required|min:12|max:13',
-            'companytelephone1' =>'required|min:12|max:12',
-            'companytelephone2' =>'required|min:12|max:12',
-            'companyemail1' =>'required|max:45',
-            'companyemail2' =>'required|max:45',
-            'companyimg' =>'image',
+            'branchname' =>'required|min:3|max:50',
+            'branchtelephone1' =>'required|min:12|max:12',
+            'branchtelephone2' =>'required|min:12|max:12',
+            'branchemail1' =>'required|max:45',
+            'branchemail2' =>'required|max:45',
+            'branchimg' =>'image',
         ];
     }
 }

@@ -33,8 +33,11 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1">
-                                    <img src="{{ $company->companyimg }}" alt="user">
+                                <div class="el-card-avatar el-overlay-1" >
+                                    <img 
+                                        src="{{ Storage::url($company->companyimg)}}"
+                                        style="width:230px;height:230px;"
+                                        alt="user">
                                     <!-- <img src="{{ asset('bundle/assets/images/customers/HillsongThisisliving1.jpg') }}" alt="user"> -->
                                     <div class="el-overlay">
                                         <ul class="el-info">

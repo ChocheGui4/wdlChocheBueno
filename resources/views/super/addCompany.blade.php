@@ -17,7 +17,7 @@
         <div class="col-md-6 col-4 align-self-center">
             <a
                 href="{{ route('companyShow')}}"
-                class="btn pull-right hidden-sm-down btn-primary"
+                class="btn pull-right hidden-sm-down"
                 style="background: #383F49; color: white">
                 <i class="mdi mdi-arrow-left"></i>
                 Back</a>
@@ -91,10 +91,11 @@
                                                                         class="form-control required"
                                                                         value="{{ old('lastname') }}"
                                                                         placeholder="Example: Juárez"
+                                                                        required
                                                                         maxlength="25"
                                                                         pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
                                                                         data-validation-pattern-message="The own lastname must have at least 3 letters"
-                                                                        required>
+                                                                        >
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('lastname') }}</strong>
@@ -319,7 +320,7 @@
                                                                             required
                                                                             placeholder="The beauty S.A. de C.V."
                                                                             maxlength="50"
-                                                                            pattern=".{2,}"
+                                                                            pattern=".{3,}"
                                                                             data-validation-pattern-message="The name company must have at least 3 letters">
                                                                     </div>
                                                                     <span class="invalid-feedback" role="alert" style="color:red;">
