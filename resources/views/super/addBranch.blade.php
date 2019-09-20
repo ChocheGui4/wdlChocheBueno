@@ -856,7 +856,7 @@
 
 </div>
 @endsection
-@section('file_js')
+<!-- @section('file_js')
 <script>
     ! function(window, document, $) {
         "use strict";
@@ -866,4 +866,4 @@
         }), $(".touchspin").TouchSpin(), $(".switchBootstrap").bootstrapSwitch();
     }(window, document, jQuery);
 </script>
-@endsection
+@endsection -->

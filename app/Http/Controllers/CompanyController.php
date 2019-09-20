@@ -12,6 +12,8 @@ use App\Http\Requests\CompanyEditProfileCreate;
 use App\Http\Requests\CompanyEditCompanyCreate;
 use App\Http\Requests\CompanyEditAddressCreate;
 use App\Http\Requests\BranchEdit;
+use App\Http\Requests\BranchEditProfile;
+
 use App\Branch;
 use App\Company;
 use App\ContactCompany;
@@ -33,8 +35,9 @@ class CompanyController extends Controller
     public function companyShow(){
         $role= \Auth::user()->role;
         if($role === 'Super'){
-            $companies = Company::orderBy('id','ASC')->get();
+            $companies = Company::orderBy('id','ASC')->where("companystatus",TRUE)->get();
             $peoples = People::orderBy('id','ASC')->get();
+            
         
         
             return view('super.company',compact('companies','peoples'));
@@ -101,7 +104,7 @@ class CompanyController extends Controller
 
         //Branch
         $branch = new Branch;
-        $branch ->name= "Own";
+        $branch ->branchname= "Own";
         $branch ->branchimg= "sucursal.jpg";
         $branch ->branchtelephone1= $request->companytelephone1;
         $branch ->branchtelephone2= $request->companytelephone2;
@@ -118,7 +121,7 @@ class CompanyController extends Controller
         //Customer
         $com= Company::latest('id')->first();
         $br= Branch::latest('id')->first();
-        $us= User::latest('id')->first();
+        // $us= User::latest('id')->first();
         $customers = new Customer;
         $customers->companies_id=$com->id;
         $customers->branches_id=$br->id;
@@ -165,11 +168,12 @@ class CompanyController extends Controller
         $company=$id;
         return view('super.addBranch',compact('company'));
     }
+
     public function branchEdit($id, $compan){
         $Company = $compan;
         $branch = Branch::find($id);
         $contacts = ContactBranch::where("branches_id",$id)->get();
-        
+        // dd($contacts);
         
         
         return view('super.editBranch', compact('branch','contacts','Company'));
@@ -221,27 +225,29 @@ class CompanyController extends Controller
         $branches = Branch::where("companies_id","=",$id)->get();     
         return view('super.branches',compact('branches','company'));*/
     }
-    public function companyUpdateProfile(CompanyEditProfileCreate $request, $id)
+    public function companyUpdateProfile(CompanyEditProfileCreate $request, $id, $compan)
     {
         // dd($idc);
         // dd($request->file('companyimg')->store('public'));
         // return redirect()->route('companyShow');
-        $contact = ContactCompany::find($id);
+        $contact = ContactBranch::find($id);
         $contact->name = $request->name;
         $contact->lastname = $request->lastname;
         $contact->telephone1 = $request->telephone1;
         $contact->telephone2 = $request->telephone2;
         $contact->email = $request->email;
         $contact->email2 = $request->email2;
+        $contact->area = $request->area;
         // dd("Ya se gaurdaron");
         $contact->save();
-        return redirect()->route('companyShow');
+        return redirect()->route('companyEdit',compact('compan'));
 
     }
     public function companyUpdateCompany(CompanyEditCompanyCreate $request, $id)
     {
         // return $request->all();
         // return $request->file('companyimg')->store('public');
+        $compan = $id;
         $company = Company::find($id);
         $img = $company->companyimg;
         if($request->companyimg!=""){
@@ -257,11 +263,12 @@ class CompanyController extends Controller
         $company->companyemail2 = $request->companyemail2;
         // dd("Entro a la compania editar");
         $company->save();
-        return redirect()->route('companyShow');
+        return redirect()->route('companyEdit',compact('compan'));
 
     }
     public function companyUpdateAddress(CompanyEditAddressCreate $request, $id)
     {
+        $compan = $id;
         $company = Company::find($id);
         $company->zipcode = $request->zipcode;
         $company->district = $request->district;
@@ -269,33 +276,28 @@ class CompanyController extends Controller
         $company->exteriornumber = $request->extnumber;
         $company->insidenumber = $request->innumber;
         $company->save();
-        return redirect()->route('companyShow');
+        return redirect()->route('companyEdit',compact('compan'));
 
     }
 
     //Editar branches------------------------------------Branches------------
-    public function branchUpdateProfile(CompanyEditProfileCreate $request, $id)
+    public function branchUpdateProfile(BranchEditProfile $request,$contact, $id, $company)
     {
-        // dd($idc);
-        // dd($request->file('companyimg')->store('public'));
-        // return redirect()->route('companyShow');
-        $contact = ContactCompany::find($id);
+        $contact = ContactBranch::find($contact);
         $contact->name = $request->name;
         $contact->lastname = $request->lastname;
         $contact->telephone1 = $request->telephone1;
         $contact->telephone2 = $request->telephone2;
         $contact->email = $request->email;
         $contact->email2 = $request->email2;
+        $contact->area = $request->area;
         // dd("Ya se gaurdaron");
         $contact->save();
-        return redirect()->route('companyShow');
+        return redirect()->route('branchEdit',compact('id','company'));
 
     }
-    public function branchUpdateCompany(BranchEdit $request, $id)
+    public function branchUpdateCompany(BranchEdit $request, $id,$company)
     {
-        // return $request->all();
-        // return $request->file('companyimg')->store('public');
-        
         $br = $id;
         $branch = Branch::find($id);
         $img = $branch->branchimg;
@@ -310,19 +312,21 @@ class CompanyController extends Controller
         $branch->branchemail2 = $request->branchemail2;
         // dd("Entro a la compania editar");
         $branch->save();
-        return redirect()->route('showBranches',compact('br'));
+        // return redirect()->route('showBranches',compact('br'));
+        return redirect()->route('branchEdit',compact('id','company'));
+        
 
     }
-    public function branchUpdateAddress(CompanyEditAddressCreate $request, $id)
+    public function branchUpdateAddress(CompanyEditAddressCreate $request, $id, $company)
     {
-        $company = Company::find($id);
-        $company->zipcode = $request->zipcode;
-        $company->district = $request->district;
-        $company->street = $request->street;
-        $company->exteriornumber = $request->extnumber;
-        $company->insidenumber = $request->innumber;
-        $company->save();
-        return redirect()->route('companyShow');
+        $branch = Branch::find($id);
+        $branch->zipcode = $request->zipcode;
+        $branch->district = $request->district;
+        $branch->street = $request->street;
+        $branch->exteriornumber = $request->extnumber;
+        $branch->insidenumber = $request->innumber;
+        $branch->save();
+        return redirect()->route('branchEdit',compact('id','company'));
 
     }
 

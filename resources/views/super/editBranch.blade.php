@@ -3,13 +3,16 @@
     
     <div class="row page-titles">
         <div class="col-md-6 col-8 align-self-center">
-            <h3 class="text-themecolor m-b-0 m-t-0">Company</h3>
+            <h3 class="text-themecolor m-b-0 m-t-0">Branch</h3>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="/home">Home</a>
                 </li>
                 <li class="breadcrumb-item active">
                     <a href="/companies">Company</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <a href="/companies">Branch</a>
                 </li>
                 <li class="breadcrumb-item active">Edit</li>
             </ol>
@@ -70,7 +73,7 @@
 
                             <div id="contact" class="card">
 
-                                <form action="{{ route('branchUpdateCompany',$branch->id) }}" 
+                                <form action="{{ route('branchUpdateCompany',[$branch->id,$Company]) }}" 
                                     method="POST" 
                                     enctype="multipart/form-data"
                                     autocomplete="off" 
@@ -256,7 +259,6 @@
                                                     </div>
                                                     
                                                 </div>
-                                                
                                             </div>
                                         </div>
                                         <div align="center">
@@ -277,7 +279,7 @@
                             <div id="profile" class="card">
                                     <!---->
                                 @foreach ($contacts as $contact)
-                                <form action="{{ route('companyUpdateProfile',$contact->id) }}"
+                                <form action="{{ route('branchUpdateProfile',[$contact->id,$branch->id,$Company]) }}"
                                     method="POST" 
                                     enctype="multipart/form-data"
                                     autocomplete="off"
@@ -435,6 +437,23 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                                <div class="form-group">                                                        
+                                                <textarea hidden type="text" id="area1" class="form-control" cols="30" rows="10">{{$contact->area}}</textarea>
+                                                    <strong >Area</strong>
+                                                    <select id="area" class="form-control" name="area">
+                                                        <option>Dirección general</option>
+                                                        <option>Auxiliar administrativo</option>
+                                                        <option>Administración y Recursos Humanos</option>
+                                                        <option>Finanzas y Contabilidad</option>
+                                                        <option>Publicidad y Mercadotecnia</option>
+                                                        <option>Informática</option>
+                                                        <option>Marketing</option>
+                                                    </select>
+                                                </div>
+                                            </div>    
+                                        </div>
                                         <div align="center">
                                             <button id="updateprofile" class="btn btn-success">Update</button>
                                         </div>
@@ -451,7 +470,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div id="information" class="card">
-                                <form action="{{ route('companyUpdateAddress',$branch->id)}}" method="POST" autocomplete="off">
+                                <form action="{{ route('branchUpdateAddress',[$branch->id,$Company]) }}" 
+                                    method="POST" autocomplete="off" novalidate>
                                     <div id="bodyaddress" class="card-block">
                                         @csrf
                                         <div class="row">
@@ -471,7 +491,11 @@
                                                                 name="zipcode"
                                                                 class="form-control {{ $errors->has('zipcode') ? ' is-invalid' : '' }}"
                                                                 value="{{$branch->zipcode}}"
-                                                                placeholder="03231">
+                                                                placeholder="03231"
+                                                                required
+                                                                maxlength="5"
+                                                                pattern="[0-9].{4}"
+                                                                data-validation-pattern-message="This field must have 5 digits">
                                                         </div>
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
@@ -494,7 +518,11 @@
                                                                 name="district"
                                                                 class="form-control {{ $errors->has('district') ? ' is-invalid' : '' }}"
                                                                 value="{{$branch->district}}"
-                                                                placeholder="Benito Juárez">
+                                                                placeholder="Benito Juárez"
+                                                                required
+                                                                maxlength="35"
+                                                                pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
+                                                                data-validation-pattern-message="The Districts must have at least 3 letters">
                                                         </div>
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
@@ -516,7 +544,11 @@
                                                                 name="street"
                                                                 class="form-control {{ $errors->has('street') ? ' is-invalid' : '' }}"
                                                                 value="{{$branch->street}}"
-                                                                placeholder="Pedro Santacilia">
+                                                                placeholder="Pedro Santacilia"
+                                                                required
+                                                                maxlength="35"
+                                                                pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
+                                                                data-validation-pattern-message="The Streets must have at least 3 letters">
                                                         </div>
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
@@ -540,7 +572,10 @@
                                                                 name="extnumber"
                                                                 class="form-control {{ $errors->has('extnumber') ? ' is-invalid' : '' }}"
                                                                 value="{{$branch->exteriornumber}}"
-                                                                placeholder="1">
+                                                                placeholder="1"
+                                                                required
+                                                                maxlength="4"
+                                                                data-validation-required-message="This field must have digits">
                                                         </div>
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
@@ -562,7 +597,10 @@
                                                                 name="innumber"
                                                                 class="form-control {{ $errors->has('innumber') ? ' is-invalid' : '' }}"
                                                                 value="{{$branch->insidenumber}}"
-                                                                placeholder="2">
+                                                                placeholder="2"
+                                                                required
+                                                                maxlength="4"
+                                                                data-validation-required-message="This field must have digits">
                                                         </div>
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
@@ -621,7 +659,7 @@
 
 @endsection
 
-@section('file_js')
+<!-- @section('file_js')
 <script>
     ! function(window, document, $) {
         "use strict";
@@ -631,4 +669,4 @@
         }), $(".touchspin").TouchSpin(), $(".switchBootstrap").bootstrapSwitch();
     }(window, document, jQuery);
 </script>
-@endsection
+@endsection -->

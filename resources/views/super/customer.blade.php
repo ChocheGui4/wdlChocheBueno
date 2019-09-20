@@ -17,7 +17,8 @@
 
             <a
                 href="{{ route('customerCreate')}}"
-                class="btn pull-right hidden-sm-down btn-success">
+                class="btn pull-right hidden-sm-down"
+                style="background: #31B90C; color: white;">
                 <i class="mdi mdi-plus-circle"></i>
                 Create</a>
 
@@ -39,7 +40,8 @@
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">
                                     <img
-                                        src="{{ asset('bundle/assets/images/users/HillsongThisisliving1.jpg') }}"
+                                        src="{{ Storage::url($people->img)}}"
+                                        style="width:230px;height:230px;"
                                         alt="user">
                                     <div class="el-overlay">
                                         <ul class="el-info">

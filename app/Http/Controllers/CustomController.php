@@ -26,7 +26,6 @@ class CustomController extends Controller
 
         $usuarios = DB::table('people')
         ->join('customers','people.id', '=','customers.people_id')
-        ->join('users','customers.users_id', '=','users.id')
         ->select()
         ->get();
         //dd($usuarios);
@@ -51,26 +50,30 @@ class CustomController extends Controller
         $users ->role= "user";
         $users ->email= $request->email;
         $users ->password= bcrypt($request->password);
+        $users ->usstatus= 1;
         $users->save();
 
         //Insert people
         $person = new People;
         $person->rfc = $request->rfc;
         $person->name = $request->name;
+        $person->img = "contact.png";
         $person->lastname = $request->lastname;
-        $person->telephone = $request->telephone;
+        $person->telephone1 = $request->telephone1;
+        $person->telephone2 = $request->telephone2;
+        $person->email = $request->email;
+        $person->email2 = $request->email2;
         $person->zipcode = $request->zipcode;
         $person->district = $request->district;
         $person->street = $request->street;
         $person->insidenumber = $request->innumber;
         $person->exteriornumber = $request->extnumber;
+        $person->pstatus = 1;
         $person->save();
 
         //Customer
-        $us= User::latest('id')->first();
         $peo= People::latest('id')->first();
         $customers = new Customer;
-        $customers->users_id=$us->id;
         $customers->people_id=$peo->id;
         $customers->save();
         

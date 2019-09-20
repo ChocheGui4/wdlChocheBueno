@@ -95,7 +95,7 @@ class ProductController extends Controller
                 ->join('products', 'products.id', '=', 'acquisitions.products_id')
                 ->where('customers.branches_id', '=', $branches)
                 ->get();
-        
+        // dd($products);
         //$branches = Branch::where("companies_id","=",$id)->get();     
         
         return view('super.productCompany',compact('company','branches','products'));

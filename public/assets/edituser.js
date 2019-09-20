@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var title=$('#seccion').val();
     var title2=$('#seccioncompany').val();
-
+    // $('#areaset').val($('#area').val());
     if(title=="Information"){
         $('#profile').hide();
         $('#contact').hide();

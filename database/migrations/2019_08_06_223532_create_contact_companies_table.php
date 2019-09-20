@@ -21,7 +21,7 @@ class CreateContactCompaniesTable extends Migration
             $table->string('telephone2',12)->nullable();
             $table->string('email',45);
             $table->string('email2',45);
-            $table->string('area',30);
+            $table->string('area',40);
             $table->boolean('ccstatus');
             $table->timestamps();
         });

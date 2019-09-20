@@ -46,14 +46,15 @@
                         @foreach ($products as $product)
                         <div class="col-md-4 col-sm-4 col-xs-4">
                             <div class="card">
-                                <div class="el-card-item" style="background: #D7FFBF;" >
+                                <div class="el-card-item">
                                 <!-- <div class="el-card-item" style="background: #FFCBCB;" > -->
                                 <!-- <div class="el-card-item" style="background: #FFD3D3;" > -->
                                 <!-- <div class="el-card-item" style="background: #DFD8F8;" style="border-color:#876FD1; border-style:solid; border-width:1px;"> -->
                                     <div class="el-card-avatar el-overlay-1">
                                         <img
                                             class="card-img-top img-responsive"
-                                            src="{{ $product->urlimg }}"
+                                            src="{{ Storage::url($product->urlimg)}}"
+                                            
                                             alt="Card image cap">
                                         <!-- <img src="{{ asset('bundle/assets/images/users/antivirus.png') }}" alt="user"> -->
                                         <div class="el-overlay">
@@ -64,7 +65,7 @@
                                                         class="btn default btn-outline image-popup-vertical-fit"  
                                                         data-toggle="modal"
                                                         data-target="#WDNGmodal">
-                                                        <i class="mdi mdi-account-edit"></i>
+                                                        <i class="mdi mdi-plus-circle"></i>
                                                     </a>
                                                 </li>
                                                 <li>

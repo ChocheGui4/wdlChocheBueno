@@ -41,15 +41,8 @@
                                                 @csrf
                                                 <div class="row">
                                                     <div class=" col-sm-4 col-md-4">
-                                                        <!-- <div class="form-group">
-                                                            <h5>Pattern <span class="text-danger">*</span> <small><i>Must stah 'a' and end with 'z'</i></small></h5>
-                                                            <div class="controls">
-                                                                <input type="text" name="pattern" pattern="^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$" data-validation-pattern-message="Los nombres propios deben contener al menos 3 letras" class="form-control" required>
-                                                            </div>
-                                                        </div> -->
                                                         <div class="controls ">
                                                             <div class="form-group">
-
                                                                 <strong>Name</strong><span class="text-danger">*</span>
                                                                 <div class="controls">
                                                                     <div class="input-group mb-3">
@@ -281,7 +274,6 @@
 
                                                         </div>
                                                     </div>
-
                                                 </div>
 
                                             </div>
@@ -672,7 +664,7 @@
 
 @endsection
 
-@section('file_js')
+<!-- @section('file_js')
 <script>
     ! function(window, document, $) {
         "use strict";
@@ -682,4 +674,4 @@
         }), $(".touchspin").TouchSpin(), $(".switchBootstrap").bootstrapSwitch();
     }(window, document, jQuery);
 </script>
-@endsection
+@endsection -->

@@ -26,8 +26,10 @@ Route::get('/companycreate', 'CompanyController@companyCreate') -> name('company
 Route::get('/companyedit/{id}', 'CompanyController@companyEdit') -> name('companyEdit');
 
 Route::post('/companyadd','CompanyController@companyAdd')->name('companyAdd');
-Route::post('/companyupdateprofile/{id}','CompanyController@companyUpdateProfile')->name('companyUpdateProfile');
-Route::post('/companyupdatebranch/{id}','CompanyController@branchUpdateCompany')->name('branchUpdateCompany');
+Route::post('/companyupdateprofile/{id}/{compan}','CompanyController@companyUpdateProfile')->name('companyUpdateProfile');
+Route::post('/branchupdatecompany/{id}/{compan}','CompanyController@branchUpdateCompany')->name('branchUpdateCompany');
+Route::post('/branchupdateprofile/{contact}/{id}/{compan}','CompanyController@branchUpdateProfile')->name('branchUpdateProfile');
+Route::post('/branchupdateaddress/{id}/{compan}','CompanyController@branchUpdateAddress')->name('branchUpdateAddress');
 
 Route::post('/companyupdateaddress/{id}','CompanyController@companyUpdateAddress')->name('companyUpdateAddress');
 Route::get('/companybranches/{id}', 'CompanyController@showBranches') ->name('showBranches');

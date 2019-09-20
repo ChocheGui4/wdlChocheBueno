@@ -30,7 +30,7 @@ class CompanyEditCompanyCreate extends FormRequest
             'companytelephone2' =>'required|min:12|max:12',
             'companyemail1' =>'required|max:45',
             'companyemail2' =>'required|max:45',
-            'companyimg' =>'image',
+            'companyimg' =>'image|max:3072',
         ];
     }
 }

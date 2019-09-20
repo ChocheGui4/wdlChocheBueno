@@ -42,7 +42,7 @@ class CompaniesTableSeeders extends Seeder
         // $contactc->telephone2 = "541-453-1237";
         $contactc->email = "lili@hotmail.com";
         $contactc->email2 = "lili@gmail.com";
-        $contactc->area = "Recursos humano";
+        $contactc->area = "Administración y Recursos Humanos";
         $contactc->ccstatus = 1;
         $contactc->save();
 
@@ -103,7 +103,7 @@ class CompaniesTableSeeders extends Seeder
         $product->name = "Warriors Defender Firewall New Generate";
         $product->description = "Se Obtiene el producto WDNG para el uso más conveniente del cliente";
         $product->offer = "Site";
-        $product->urlimg = "bundle/assets/images/LogosWD/WDNG.png";
+        $product->urlimg = "WDNG.png";
         $product->save();
         // $product->time = 5;
         // $product->period = "years";
@@ -115,7 +115,7 @@ class CompaniesTableSeeders extends Seeder
         $product->name = "Warriors Defender Firewall";
         $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
         $product->offer = "Site";
-        $product->urlimg = "bundle/assets/images/LogosWD/WDF.png";
+        $product->urlimg = "WDF.png";
         
         $product->save();
         //WDM
@@ -123,35 +123,35 @@ class CompaniesTableSeeders extends Seeder
         $product->name = "Warriors Defender Mail";
         $product->description = "Se Obtiene el producto WDM para el uso más conveniente del cliente";
         $product->offer = "Cloud";
-        $product->urlimg = "bundle/assets/images/LogosWD/WDM.png";
+        $product->urlimg = "WDM.png";
         $product->save();
         //WDCP
         $product = new Product;
         $product->name = "Warriors Defender Captive Portal";
         $product->description = "Se Obtiene el producto WDCP para el uso más conveniente del cliente";
         $product->offer = "Site";
-        $product->urlimg = "bundle/assets/images/LogosWD/WDPC.png";
+        $product->urlimg = "WDCP.png";
         $product->save();
         //WDS
         $product = new Product;
         $product->name = "Warriors Defender Storage";
         $product->description = "Se Obtiene el producto WDS para el uso más conveniente del cliente";
         $product->offer = "Cloud";
-        $product->urlimg = "bundle/assets/images/LogosWD/WDS.png";
+        $product->urlimg = "WDS.png";
         $product->save();
         //WDIPS/IDS
         $product = new Product;
         $product->name = "Warriors Defender IPS/IDS";
         $product->description = "Se Obtiene el producto WDIPS/IDS para el uso más conveniente del cliente";
         $product->offer = "Site";
-        $product->urlimg = "bundle/assets/images/LogosWD/WDIDS.png";
+        $product->urlimg = "IDS.png";
         $product->save();
         //WDCC
         $product = new Product;
         $product->name = "Warriors Defender Central Console";
         $product->description = "Se Obtiene el producto WDCCpara el uso más conveniente del cliente";
         $product->offer = "Cloud";
-        $product->urlimg = "bundle/assets/images/LogosWD/WDCC.png";
+        $product->urlimg = "IDS.png";
         $product->save();
 
         //WDR
@@ -159,14 +159,14 @@ class CompaniesTableSeeders extends Seeder
         $product->name = "Warriors Defender Reporter";
         $product->description = "Se Obtiene el producto WDR para el uso más conveniente del cliente";
         $product->offer = "Cloud";
-        $product->urlimg = "bundle/assets/images/LogosWD/WDL.png";
+        $product->urlimg = "WLicenciamiento.png";
         $product->save();
 
         $product = new Product;
         $product->name = "Warriors Defender license";
         $product->description = "Se Obtiene el producto WDL para el uso más conveniente del cliente";
         $product->offer = "Cloud";
-        $product->urlimg = "bundle/assets/images/LogosWD/WDL.png";
+        $product->urlimg = "WLicenciamiento.png";
         $product->save();
 
         //Maker

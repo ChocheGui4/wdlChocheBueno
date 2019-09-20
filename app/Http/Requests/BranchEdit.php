@@ -29,7 +29,7 @@ class BranchEdit extends FormRequest
             'branchtelephone2' =>'required|min:12|max:12',
             'branchemail1' =>'required|max:45',
             'branchemail2' =>'required|max:45',
-            'branchimg' =>'image',
+            'branchimg' =>'image|max:3072',
         ];
     }
 }

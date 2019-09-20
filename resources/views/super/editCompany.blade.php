@@ -91,7 +91,7 @@
                                                         alt="User Image">
                                                 </div>
                                                 <br><br>
-                                                <input type="file" name="companyimg">
+                                                <input type="file" name="companyimg" accept="image/jpeg,.png">
                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                     <strong>{{ $errors->first('companyimg') }}</strong>
                                                 </span>
@@ -308,7 +308,7 @@
                             <!--Comienza el perfil-->
                             <div id="profile" class="card">
                                     <!---->
-                                <form action="{{ route('companyUpdateProfile',$contact->id) }}"
+                                <form action="{{ route('companyUpdateProfile',[$contact->id, $compan->id]) }}"
                                     method="POST" 
                                     enctype="multipart/form-data"
                                     autocomplete="off"
@@ -343,7 +343,6 @@
                                                 
                                             </div>
                                             <div class="col-xs-4 col-sm-4 col-md-4">
-                                                
                                                 <div class="form-group">
                                                     <strong>Lastname</strong>
                                                     <!--Se inicia icono con campo de texto-->
@@ -466,6 +465,24 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-xs-5 col-sm-5 col-md-5">
+                                                <div class="form-group">
+                                                <!-- <input id="area" type="textarea" value="{{$contact->area}}"> -->
+                                                <textarea hidden type="text" id="area1" class="form-control" cols="30" rows="10">{{$contact->area}}</textarea>        
+                                                
+                                                    <strong >Area</strong>
+                                                    <select id="area" class="form-control" name="area">
+                                                        <option>Dirección general</option>
+                                                        <option>Auxiliar administrativo</option>
+                                                        <option>Administración y Recursos Humanos</option>
+                                                        <option>Finanzas y Contabilidad</option>
+                                                        <option>Publicidad y Mercadotecnia</option>
+                                                        <option>Informática</option>
+                                                    </select>
+                                                </div>
+                                            </div>    
+                                        </div>
                                         <div align="center">
                                             <button id="updateprofile" class="btn btn-success">Update</button>
                                         </div>
@@ -481,16 +498,13 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div id="information" class="card">
-                                <form action="{{ route('companyUpdateAddress',$compan->id)}}" method="POST" autocomplete="off">
+                                <form action="{{ route('companyUpdateAddress',$compan->id)}}" method="POST" autocomplete="off" novalidate>
                                     <div id="bodyaddress" class="card-block">
                                         @csrf
                                         <div class="row">
                                             <div class=" col-sm-4 col-md-4">
                                                 <div class="form-group">
                                                     <strong>Zip code</strong>
-                                                    <i id="qzip" class="fa fa-question-circle"></i>
-
-                                                    <!--Se inicia icono con campo de texto-->
                                                     <div class="controls">
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-addon">
@@ -498,11 +512,19 @@
                                                             </span>
                                                             <input
                                                                 type="text"
+                                                                data-mask="00000"
                                                                 name="zipcode"
                                                                 class="form-control {{ $errors->has('zipcode') ? ' is-invalid' : '' }}"
                                                                 value="{{$compan->zipcode}}"
-                                                                placeholder="03231">
+                                                                placeholder="Example: 03231"
+                                                                required
+                                                                maxlength="5"
+                                                                pattern="[0-9].{4}"
+                                                                data-validation-pattern-message="This field must have 5 digits">
                                                         </div>
+                                                        <span class="invalid-feedback" role="alert" style="color:red;">
+                                                            <strong>{{ $errors->first('zipcode') }}</strong>
+                                                        </span>
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
 
@@ -511,9 +533,6 @@
                                             <div class="col-xs-4 col-sm-4 col-md-4">
                                                 <div class="form-group">
                                                     <strong>District</strong>
-                                                    <i id="qdistrict" class="fa fa-question-circle"></i>
-
-                                                    <!--Se inicia icono con campo de texto-->
                                                     <div class="controls">
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-addon">
@@ -524,8 +543,15 @@
                                                                 name="district"
                                                                 class="form-control {{ $errors->has('district') ? ' is-invalid' : '' }}"
                                                                 value="{{$compan->district}}"
-                                                                placeholder="Benito Juárez">
+                                                                placeholder="Example: Benito Juárez"
+                                                                required
+                                                                maxlength="35"
+                                                                pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
+                                                                data-validation-pattern-message="The Districts must have at least 3 letters">
                                                         </div>
+                                                        <span class="invalid-feedback" role="alert" style="color:red;">
+                                                            <strong>{{ $errors->first('district') }}</strong>
+                                                        </span>
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
 
@@ -534,8 +560,6 @@
                                             <div class="col-xs-4 col-sm-4 col-md-4">
                                                 <div class="form-group">
                                                     <strong>Street</strong>
-                                                    <i id="qstreet" class="fa fa-question-circle"></i>
-                                                    <!--Se inicia icono con campo de texto-->
                                                     <div class="controls">
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-addon">
@@ -546,8 +570,15 @@
                                                                 name="street"
                                                                 class="form-control {{ $errors->has('street') ? ' is-invalid' : '' }}"
                                                                 value="{{$compan->street}}"
-                                                                placeholder="Pedro Santacilia">
+                                                                placeholder="Example: Pedro Santacilia" 
+                                                                required
+                                                                maxlength="35"
+                                                                pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
+                                                                data-validation-pattern-message="The Streets must have at least 3 letters">
                                                         </div>
+                                                        <span class="invalid-feedback" role="alert" style="color:red;">
+                                                            <strong>{{ $errors->first('street') }}</strong>
+                                                        </span>
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
 
@@ -558,8 +589,6 @@
                                             <div class="col-xs-4 col-sm-4 col-md-4">
                                                 <div class="form-group">
                                                     <strong>Ext. number</strong>
-                                                    <i id="qextnumber" class="fa fa-question-circle"></i>
-                                                    <!--Se inicia icono con campo de texto-->
                                                     <div class="controls">
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-addon">
@@ -568,10 +597,17 @@
                                                             <input
                                                                 type="text"
                                                                 name="extnumber"
+                                                                data-mask="0000"
                                                                 class="form-control {{ $errors->has('extnumber') ? ' is-invalid' : '' }}"
                                                                 value="{{$compan->exteriornumber}}"
-                                                                placeholder="1">
+                                                                placeholder="Example: 1"
+                                                                required
+                                                                maxlength="4"
+                                                                data-validation-required-message="This field must have digits">
                                                         </div>
+                                                        <span class="invalid-feedback" role="alert" style="color:red;">
+                                                            <strong>{{ $errors->first('extnumber') }}</strong>
+                                                        </span>
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
 
@@ -580,8 +616,6 @@
                                             <div class="col-xs-4 col-sm-4 col-md-4">
                                                 <div class="form-group">
                                                     <strong>In. number</strong>
-                                                    <i id="qinnumber" class="fa fa-question-circle"></i>
-                                                    <!--Se inicia icono con campo de texto-->
                                                     <div class="controls">
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-addon">
@@ -589,11 +623,18 @@
                                                             </span>
                                                             <input
                                                                 type="text"
+                                                                data-mask="0000"
                                                                 name="innumber"
-                                                                class="form-control {{ $errors->has('innumber') ? ' is-invalid' : '' }}"
+                                                                class="form-control "
                                                                 value="{{$compan->insidenumber}}"
-                                                                placeholder="2">
+                                                                placeholder="Example: 2"
+                                                                required
+                                                                maxlength="4"
+                                                                data-validation-required-message="This field must have digits">
                                                         </div>
+                                                        <span class="invalid-feedback" role="alert" style="color:red;">
+                                                            <strong>{{ $errors->first('innumber') }}</strong>
+                                                        </span>
                                                     </div>
                                                     <!--Se finaliza icono con campo de texto-->
 
@@ -601,11 +642,6 @@
                                             </div>
 
                                         </div>
-                                        <div class="row">
-                                            
-                                        </div>
-                                        
-
                                     </div>
                                     <div align="center">
                                         <button id="updateaddress" class="btn btn-success">Update</button>
@@ -651,7 +687,7 @@
 
 @endsection
 
-@section('file_js')
+<!-- @section('file_js')
 <script>
     ! function(window, document, $) {
         "use strict";
@@ -661,4 +697,4 @@
         }), $(".touchspin").TouchSpin(), $(".switchBootstrap").bootstrapSwitch();
     }(window, document, jQuery);
 </script>
-@endsection
+@endsection -->

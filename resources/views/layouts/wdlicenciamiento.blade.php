@@ -320,6 +320,7 @@
         <script src="{{ asset('assets/use2.js') }}"></script>
         <script src="{{ asset('assets/product.js') }}"></script>
         <script src="{{ asset('assets/edituser.js') }}"></script>
+        <script src="{{ asset('assets/valid.js') }}"></script>
         <script src="{{ asset('bundle/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 
         <!-- Chart Flot -->
