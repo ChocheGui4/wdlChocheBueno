@@ -53,8 +53,9 @@
                                                                                     <i class="mdi mdi-lead-pencil"></i>
                                                                                 </span>
                                                                                 <input
+                                                                                    id="nameuc" 
+                                                                                    onkeyup="ucwords(this,'#nameuc');"
                                                                                     type="text"
-                                                                                    onkeyup="ucwords(this);"
                                                                                     name="name"
                                                                                     class="form-control required"
                                                                                     value="{{ old('name') }}"
@@ -82,6 +83,8 @@
                                                                                 <i class="mdi mdi-lead-pencil"></i>
                                                                             </span>
                                                                             <input
+                                                                                id="lastnameuc" 
+                                                                                onkeyup="ucwords(this,'#lastnameuc');"
                                                                                 type="text"
                                                                                 name="lastname"
                                                                                 class="form-control required"
@@ -142,11 +145,23 @@
                                                                             <input
                                                                                 type="text"
                                                                                 data-mask="000-000-0000"
-                                                                                name="telephone2"
+                                                                                id="tele"
                                                                                 class="form-control required"
-                                                                                value="{{ old('telephone2') }}"
+                                                                                placeholder="Example: 5523212321">
+                                                                            <input
+                                                                                hidden
+                                                                                type="text"
+                                                                                data-mask="000-000-0000"
+                                                                                id="tele2"
+                                                                                name="telephone2"
+                                                                                class="form-control "
+                                                                                value="0000000000"
+                                                                                required
                                                                                 placeholder="Example: 5523212321"
-                                                                                >
+                                                                                pattern="[0-9].{11}" 
+                                                                                data-validation-pattern-message="The telephone number must have 10 digits">
+                                                                            
+                                                                            
                                                                         </div>
                                                                         <span class="invalid-feedback" role="alert" style="color:red;">
                                                                             <strong>{{ $errors->first('telephone2') }}</strong>
@@ -169,7 +184,7 @@
                                                                                 type="text"
                                                                                 name="email"
                                                                                 class="form-control{{ $errors->has('email1') ? ' is-invalid' : '' }}"
-                                                                                value="{{ old('email1') }}"
+                                                                                value="{{ old('email') }}"
                                                                                 placeholder="Example: user@exam.com"
                                                                                 required
                                                                                 maxlength="45"
@@ -194,11 +209,21 @@
                                                                             </span>
                                                                             <input
                                                                                 type="text"
+                                                                                id="em2"
+                                                                                class="form-control"
+                                                                                placeholder="Example: user@exam.com">
+                                                                            <input
+                                                                                hidden
+                                                                                type="text"
+                                                                                id="ema2"
                                                                                 name="email2"
-                                                                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                                                                value="{{ old('email2') }}"
-                                                                                placeholder="Example: user@exam.com"
-                                                                                maxlength="45">
+                                                                                class="form-control "
+                                                                                value="default@default.com"
+                                                                                required
+                                                                                placeholder="example@exam.com"
+                                                                                maxlength="45"
+                                                                                pattern="^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$"
+                                                                                data-validation-pattern-message="This is not a valid email">
                                                                         </div>
                                                                         <span class="invalid-feedback" role="alert" style="color:red;">
                                                                             <strong>{{ $errors->first('email2') }}</strong>

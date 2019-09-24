@@ -23,7 +23,7 @@ class CreatePeopleTable extends Migration
             $table->string('telephone2',12)->nullable();
             $table->string('email',45);
             $table->string('email2',45)->nullable();
-            $table->integer('zipcode');
+            $table->string('zipcode',5);
             $table->string('district',35);
             $table->string('street',35);
             $table->integer('exteriornumber');

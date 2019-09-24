@@ -43,7 +43,6 @@ class CustomController extends Controller
 
     public function customerAdd(CustomerCreate $request)
     {
-        
         //Insert users
         $users = new User;
         
@@ -54,15 +53,24 @@ class CustomController extends Controller
         $users->save();
 
         //Insert people
+        $tel2 = $request->telephone2;
+        
+        // if($tel2=="000-000-0000"){
+        //     $tel2 = null;
+        // }
+        $ema2 = $request->email2;
+        // if($ema2=="default@default.com"){
+        //     $ema2 = "";
+        // }
         $person = new People;
         $person->rfc = $request->rfc;
         $person->name = $request->name;
         $person->img = "contact.png";
         $person->lastname = $request->lastname;
         $person->telephone1 = $request->telephone1;
-        $person->telephone2 = $request->telephone2;
+        $person->telephone2 = $tel2;
         $person->email = $request->email;
-        $person->email2 = $request->email2;
+        $person->email2 = $ema2;
         $person->zipcode = $request->zipcode;
         $person->district = $request->district;
         $person->street = $request->street;
@@ -83,30 +91,36 @@ class CustomController extends Controller
     public function customerEdit($id)
     {
         $customer=$id;
-        $peoples = People::find($id);
-
-        return view('super.editCustomer', compact('peoples','customer'));
-    }
-    public function customerUpdateProfile(CustomerEditCreate $request, $id)
-    {
-
         $people = People::find($id);
-        
+
+        return view('super.editCustomer', compact('people','customer'));
+    }
+    public function customerUpdateProfile(CustomerEditCreate $request, $id, $customer)
+    {
+        // dd("Entro a editar perfil de customer");
+        // return $request->all();
+        $people = People::find($id);
+        $image = $people->img;
+        if($request->img!=""){
+            $image = $request->file('img')->store('public');
+        }
         $people->name = $request->name;
         $people->lastname = $request->lastname;
-        $people->telephone = $request->telephone;
         $people->rfc = $request->rfc;
-
-        //$usuario->email = $request->email;
-        
+        $people->img = $image;
+        $people->telephone1 = $request->telephone1;
+        $people->telephone2 = $request->telephone2;
+        $people->email = $request->email;
+        $people->email2 = $request->email2;
+        $people->pstatus = 1;
         $people->save();
 
-
-        return redirect()->route('customerShow');
+        // return view('super.editCustomer', compact('people','customer'));
+        return redirect()->route('customerEdit', compact('customer'));
 
     }
 
-    public function customerUpdateAddress(CustomerAddressEditCreate $request, $id)
+    public function customerUpdateAddress(CustomerAddressEditCreate $request, $id, $customer)
     {
 
         $people = People::find($id);
@@ -120,14 +134,17 @@ class CustomController extends Controller
         $people->save();
 
 
-        return redirect()->route('customerShow');
+        return redirect()->route('customerEdit', compact('customer'));
 
     }
     
     public function customerDelete($id)
     {
         //$direccion=Direccion::find(11);
-        //dd($id);
+        // dd($id);
+        // delete('Warning!', 'Article successfully deleted!');
+        dd("by");
+        dd("Entrar");
         
         $deleteuser = People::join('customers', 'customers.people_id', '=', 'people.id')
                 ->join('users', 'users.id', '=', 'customers.users_id')->get();

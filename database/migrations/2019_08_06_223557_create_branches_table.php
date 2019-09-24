@@ -21,7 +21,7 @@ class CreateBranchesTable extends Migration
             $table->string('branchtelephone2',12)->nullable();
             $table->string('branchemail1',45);
             $table->string('branchemail2',45)->nullable();
-            $table->integer('zipcode');
+            $table->string('zipcode',5);
             $table->string('district',35);
             $table->string('street',35);
             $table->integer('insidenumber');

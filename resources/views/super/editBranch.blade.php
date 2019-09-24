@@ -110,8 +110,9 @@
                                                                     <i class="fa fa-building"></i>
                                                                 </span>
                                                                 <input
+                                                                    id="branchnameuc" 
+                                                                    onkeyup="ucwords(this,'#branchnameuc');"
                                                                     type="text"
-                                                                    id="companyname"
                                                                     name="branchname"
                                                                     class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
                                                                     value="{{$branch->branchname}}"
@@ -182,14 +183,38 @@
                                                                     <span class="input-group-addon">
                                                                         <i class="fa fa-mobile"></i>
                                                                     </span>
+                                                                    @switch(true)
+                                                                        @case($branch->branchtelephone2=="000-000-0000")
+                                                                            <input
+                                                                                type="text"
+                                                                                data-mask="000-000-0000"
+                                                                                id="ctele"
+                                                                                class="form-control "
+                                                                                placeholder="Example: 5543454323">
+                                                                            @break
+                                                                        @case($branch->branchtelephone2!="000-000-0000")
+                                                                            <input
+                                                                                type="text"
+                                                                                data-mask="000-000-0000"
+                                                                                id="ctele"
+                                                                                class="form-control "
+                                                                                value="{{$branch->branchtelephone2}}"
+                                                                                placeholder="5523212321">
+                                                                            @break
+                                                                    @endswitch
                                                                     <input
+                                                                        hidden
                                                                         type="text"
                                                                         data-mask="000-000-0000"
-                                                                        id="companyname"
+                                                                        id="ctele2"
                                                                         name="branchtelephone2"
-                                                                        class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
+                                                                        class="form-control "
                                                                         value="{{$branch->branchtelephone2}}"
-                                                                        placeholder="The beauty S.A. de C.V.">
+                                                                        required
+                                                                        placeholder="Example: 5523212321"
+                                                                        pattern="[0-9].{11}" 
+                                                                        data-validation-pattern-message="The telephone number must have 10 digits">
+                                                                    
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('branchtelephone2') }}</strong>
@@ -240,14 +265,37 @@
                                                                     <span class="input-group-addon">
                                                                         <i class="fa fa-envelope"></i>
                                                                     </span>
+                                                                    @switch(true)
+                                                                        @case($branch->branchemail2=="default@default.com")
+                                                                            <input
+                                                                                type="text"
+                                                                                id="cem2"    
+                                                                                class="form-control "
+                                                                                placeholder="example: example@exam.com">
+                                                                            
+                                                                            @break
+                                                                        @case($branch->branchemail2!="default@default.com")
+                                                                            <input
+                                                                                type="text"
+                                                                                id="cem2"
+                                                                                class="form-control "
+                                                                                value="{{$branch->branchemail2}}"
+                                                                                placeholder="example: example@exam.com">
+                                                                            
+                                                                            @break
+                                                                    @endswitch
                                                                     <input
+                                                                        hidden
                                                                         type="text"
-                                                                        id="companytelephone"
+                                                                        id="cema2"
                                                                         name="branchemail2"
                                                                         class="form-control "
                                                                         value="{{$branch->branchemail2}}"
-                                                                        placeholder="example: example@exam.com">
-                                                                        
+                                                                        required
+                                                                        placeholder="example@exam.com"
+                                                                        maxlength="45"
+                                                                        pattern="^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$"
+                                                                        data-validation-pattern-message="This is not a valid email">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('branchemail2') }}</strong>
@@ -296,6 +344,8 @@
                                                                 <i class="mdi mdi-lead-pencil"></i>
                                                             </span>
                                                             <input
+                                                                id="nameuc" 
+                                                                onkeyup="ucwords(this,'#nameuc');"
                                                                 type="text"
                                                                 name="name"
                                                                 class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
@@ -324,6 +374,8 @@
                                                                 <i class="mdi mdi-lead-pencil"></i>
                                                             </span>
                                                             <input
+                                                                id="lastnameuc" 
+                                                                onkeyup="ucwords(this,'#lastnameuc');"
                                                                 type="text"
                                                                 name="lastname"
                                                                 class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}"
@@ -376,13 +428,38 @@
                                                             <span class="input-group-addon">
                                                                 <i class="fa fa-mobile"></i>
                                                             </span>
+                                                            @switch(true)
+                                                                @case($contact->telephone2=="000-000-0000")
+                                                                    <input
+                                                                        type="text"
+                                                                        data-mask="000-000-0000"
+                                                                        id="tele"
+                                                                        name="telephone2"
+                                                                        class="form-control"
+                                                                        placeholder="5523212321">
+                                                                    @break
+                                                                @case($contact->telephone2!="000-000-0000")
+                                                                    <input
+                                                                        type="text"
+                                                                        data-mask="000-000-0000"
+                                                                        id="tele"
+                                                                        class="form-control"
+                                                                        placeholder="5523212321"
+                                                                        value="{{$contact->telephone2}}">
+                                                                    @break
+                                                            @endswitch
                                                             <input
+                                                                hidden  
                                                                 type="text"
                                                                 data-mask="000-000-0000"
+                                                                id="tele2"
                                                                 name="telephone2"
-                                                                class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}"
-                                                                placeholder="5523212321"
-                                                                value={{$contact->telephone2}}>
+                                                                class="form-control "
+                                                                value="{{$contact->telephone2}}"
+                                                                required
+                                                                placeholder="Example: 5523212321"
+                                                                pattern="[0-9].{11}" 
+                                                                data-validation-pattern-message="The telephone number must have 10 digits">
                                                         </div>
                                                         <span class="invalid-feedback" role="alert" style="color:red;">
                                                             <strong>{{ $errors->first('telephone2') }}</strong>
@@ -423,12 +500,35 @@
                                                             <span class="input-group-addon">
                                                                 <i class="fa fa-envelope"></i>
                                                             </span>
+                                                            @switch(true)
+                                                                @case($contact->email2=="default@default.com")
+                                                                    <input
+                                                                        type="text"
+                                                                        id="em2"
+                                                                        class="form-control"
+                                                                        placeholder="example: example@exam.com">
+                                                                    @break
+                                                                @case($contact->email2!="default@default.com")
+                                                                    <input
+                                                                        type="text"
+                                                                        id="em2"
+                                                                        class="form-control"
+                                                                        placeholder="example: example@exam.com"
+                                                                        value="{{$contact->email2}}">
+                                                                    @break
+                                                            @endswitch
                                                             <input
+                                                                hidden
                                                                 type="text"
+                                                                id="ema2"
                                                                 name="email2"
-                                                                class="form-control"
-                                                                placeholder="example: example@exam.com"
-                                                                value={{$contact->email2}}>
+                                                                required
+                                                                class="form-control "
+                                                                value="{{$contact->email2}}"
+                                                                placeholder="example@exam.com"
+                                                                maxlength="45"
+                                                                pattern="^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$"
+                                                                data-validation-pattern-message="This is not a valid email">
                                                         </div>
                                                         <span class="invalid-feedback" role="alert" style="color:red;">
                                                             <strong>{{ $errors->first('email2') }}</strong>
@@ -488,6 +588,7 @@
                                                             </span>
                                                             <input
                                                                 type="text"
+                                                                data-mask="00000"
                                                                 name="zipcode"
                                                                 class="form-control {{ $errors->has('zipcode') ? ' is-invalid' : '' }}"
                                                                 value="{{$branch->zipcode}}"
@@ -569,6 +670,7 @@
                                                             </span>
                                                             <input
                                                                 type="text"
+                                                                data-mask="0000"
                                                                 name="extnumber"
                                                                 class="form-control {{ $errors->has('extnumber') ? ' is-invalid' : '' }}"
                                                                 value="{{$branch->exteriornumber}}"
@@ -594,6 +696,7 @@
                                                             </span>
                                                             <input
                                                                 type="text"
+                                                                data-mask="00000"
                                                                 name="innumber"
                                                                 class="form-control {{ $errors->has('innumber') ? ' is-invalid' : '' }}"
                                                                 value="{{$branch->insidenumber}}"

@@ -54,8 +54,8 @@ Route::get('/customers', 'CustomController@customerShow')->name('customerShow');
 Route::get('/customercreate', 'CustomController@customerCreate') -> name('customerCreate');
 Route::get('/customeredit/{id}', 'CustomController@customerEdit') -> name('customerEdit');
 Route::get('/customerdeletet/{id}', 'CustomController@customerDelete') -> name('customerDelete');
-Route::post('/customerupdateprofile/{id}', 'CustomController@customerUpdateProfile') -> name('customerUpdateProfile');
-Route::post('/customerupdateaddress/{id}', 'CustomController@customerUpdateAddress') -> name('customerUpdateAddress');
+Route::post('/customerupdateprofile/{id}/{customer}', 'CustomController@customerUpdateProfile') -> name('customerUpdateProfile');
+Route::post('/customerupdateaddress/{id}/{customer}', 'CustomController@customerUpdateAddress') -> name('customerUpdateAddress');
 Route::post('/customeradd','CustomController@customerAdd')->name('customerAdd');
 //Users
 Route::get('/user','UserController@showUsers')->name('showUsers');

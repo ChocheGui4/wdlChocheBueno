@@ -25,10 +25,10 @@ class BranchEdit extends FormRequest
     {
         return [
             'branchname' =>'required|min:3|max:50',
-            'branchtelephone1' =>'required|min:12|max:12',
-            'branchtelephone2' =>'required|min:12|max:12',
-            'branchemail1' =>'required|max:45',
-            'branchemail2' =>'required|max:45',
+            'branchtelephone1' =>'required|min:12|max:12|regex:/[0-9]$/',
+            'branchtelephone2' =>'required|min:12|max:12|regex:/[0-9]$/',
+            'branchemail1' =>'required|email|max:45',
+            'branchemail2' =>'required|email|max:45',
             'branchimg' =>'image|max:3072',
         ];
     }

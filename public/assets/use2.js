@@ -16,16 +16,10 @@ function mayus(e) {
         .value
         .toUpperCase();
 }
-function MaysPrimera(e){
-    // var str = $('ul.dropdown-menu > li.dropdown-submenu > a');
-    e.each(function() {
-        $(this).text($(this).text().charAt(0).toUpperCase() + $(this).text().slice(1).toLowerCase());
-    });
-}
-function ucwords(oracion){
-    return oracion.replace(/^([a-z\u00E0-\u00FC])|\s+([a-z\u00E0-\u00FC])/g, function($1){
-       return $1.toUpperCase(); 
-    });
+
+function ucwords(e, string){
+    var val = e.value.replace(/\b[a-z]/g,c=>c.toUpperCase());
+    $(string).val(val);
 }
 
 

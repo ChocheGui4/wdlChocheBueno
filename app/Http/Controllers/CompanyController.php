@@ -230,7 +230,7 @@ class CompanyController extends Controller
         // dd($idc);
         // dd($request->file('companyimg')->store('public'));
         // return redirect()->route('companyShow');
-        $contact = ContactBranch::find($id);
+        $contact = ContactCompany::find($id);
         $contact->name = $request->name;
         $contact->lastname = $request->lastname;
         $contact->telephone1 = $request->telephone1;

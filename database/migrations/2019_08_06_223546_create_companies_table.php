@@ -22,7 +22,7 @@ class CreateCompaniesTable extends Migration
             $table->string('companytelephone2',12)->nullable();
             $table->string('companyemail1',45);
             $table->string('companyemail2',45)->nullable();
-            $table->integer('zipcode');
+            $table->string('zipcode',5);
             $table->string('district',35);
             $table->string('street',35);
             $table->integer('insidenumber');
