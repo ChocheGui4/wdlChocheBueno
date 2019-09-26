@@ -152,7 +152,7 @@
                                                         <div>
                                                             <tr role="row" class="odd">
                                                                 
-                                                                <td><strong> {{ $product->maker }} </strong></td>
+                                                                <td id="hu{{$i}}"><strong> {{ $product->maker }} </strong></td>
                                                                 <td><strong> {{ $product->processor }} </strong></td>
                                                                 <td><strong> {{ $product->memory }} </strong></td>
                                                                 <td><strong> {{ $product->disc }}</strong></td>
@@ -170,7 +170,7 @@
                                                                 <td><strong> {{ $product->year }}</strong></td>
                                                                 <td><strong> {{ $product->offer }}</strong></td>
                                                                 <td>
-                                                                    <a style="background: #DD1E00; color: white;" class="btn" href="#">
+                                                                    <a id="delete" style="background: #DD1E00; color: white;" class="btn" href="{{ route('productDelete',$product->id)}}">
                                                                         <i class="fa fa-trash"></i>
                                                                     </a>
                                                                     @csrf @method('DELETE')
@@ -191,42 +191,9 @@
             </div>
         </div>
         <!-- /.content-wrapper -->
-        <button id="sa-title" alt="alert" class="btn btn-danger">New</button>
+        <button id="sa-warning"  class="btn btn-danger">New</button>
     </div>
-    <!--Inicia la ventana modal-->
-    <div class="sweet-overlay" tabindex="-1" style="opacity: -0.01; display: none;"></div>
-    <div class="sweet-alert hideSweetAlert" data-custom-class="" data-has-cancel-button="false" data-has-confirm-button="true" data-allow-outside-click="false" data-has-done-function="false" data-animation="pop" data-timer="null" style="display: none; margin-top: -128px; opacity: -0.05;"><div class="sa-icon sa-error" style="display: none;">
-      <span class="sa-x-mark">
-        <span class="sa-line sa-left"></span>
-        <span class="sa-line sa-right"></span>
-      </span>
-    </div><div class="sa-icon sa-warning" style="display: none;">
-      <span class="sa-body"></span>
-      <span class="sa-dot"></span>
-    </div><div class="sa-icon sa-info" style="display: none;"></div><div class="sa-icon sa-success" style="display: none;">
-      <span class="sa-line sa-tip"></span>
-      <span class="sa-line sa-long"></span>
-
-      <div class="sa-placeholder"></div>
-      <div class="sa-fix"></div>
-    </div><div class="sa-icon sa-custom" style="display: none;"></div><h2>Here's a message!</h2>
-    <p style="display: block;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.</p>
-    <fieldset>
-      <input type="text" tabindex="3" placeholder="">
-      <div class="sa-input-error"></div>
-    </fieldset><div class="sa-error-container">
-      <div class="icon">!</div>
-      <p>Not valid!</p>
-    </div><div class="sa-button-container">
-      <button class="cancel" tabindex="2" style="display: none; box-shadow: none;">Cancel</button>
-      <div class="sa-confirm-button-container">
-        <button class="confirm" tabindex="1" style="display: inline-block; background-color: rgb(140, 212, 245); box-shadow: rgba(140, 212, 245, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px inset;">OK</button><div class="la-ball-fall">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-    </div></div>
+ 
     <!--Termina la ventana modal-->
 @endsection
 @section('file_js')

@@ -131,27 +131,27 @@ class ProductController extends Controller
         return Datatables()     
             ->eloquent(Category::where("id",$id))
             ->toJson();
-        if($id==1 | $id==2 | $id==3 | $id==4 | $id==6){
-            // $tasks = DB::select("select * from productlist where idp = ?",[$id]);
-            // // $tasks = DB::select("select *, products.id as idp, makers.id as idm, 
-            // // processors.id as idpr from products, makers, processors, memories, discs,
-            // // years where products.id = ?",[$id]);
-            // return Datatables::of($tasks)
-            // ->addColumn('btn','<button id="sa-title" alt="alert" class="btn btn-warning" >Buy</button>')
-            // ->rawColumns(['btn'])
-            // ->make(true);  
-            return Datatables()     
-            ->eloquent(ProductList::query())
-            ->toJson();
-        }else{
-            $tasks = DB::select("select *, products.id as idp, makers.id as idm, 
-            processors.id as idpr from products, makers, processors, memories, discs
-            where products.id = ?",[$id]);
-            return Datatables::of($tasks)
-            ->addColumn('btn','<button id="sa-title" alt="alert" class="btn btn-warning" >Buy</button>')
-            ->rawColumns(['btn'])
-            ->make(true); 
-        }
+        // if($id==1 | $id==2 | $id==3 | $id==4 | $id==6){
+        //     // $tasks = DB::select("select * from productlist where idp = ?",[$id]);
+        //     // // $tasks = DB::select("select *, products.id as idp, makers.id as idm, 
+        //     // // processors.id as idpr from products, makers, processors, memories, discs,
+        //     // // years where products.id = ?",[$id]);
+        //     // return Datatables::of($tasks)
+        //     // ->addColumn('btn','<button id="sa-title" alt="alert" class="btn btn-warning" >Buy</button>')
+        //     // ->rawColumns(['btn'])
+        //     // ->make(true);  
+        //     return Datatables()     
+        //     ->eloquent(ProductList::query())
+        //     ->toJson();
+        // }else{
+        //     $tasks = DB::select("select *, products.id as idp, makers.id as idm, 
+        //     processors.id as idpr from products, makers, processors, memories, discs
+        //     where products.id = ?",[$id]);
+        //     return Datatables::of($tasks)
+        //     ->addColumn('btn','<button id="sa-title" alt="alert" class="btn btn-warning" >Buy</button>')
+        //     ->rawColumns(['btn'])
+        //     ->make(true); 
+        // }
         
     }
     
@@ -307,7 +307,7 @@ class ProductController extends Controller
     }
     function productDelete($id){
         
-        $product = Product::find($id);
+        $product = Category::find($id);
         $product->delete();
         return redirect()->route('productsShow');
     }

@@ -56,6 +56,82 @@ function newmetod(param1,param2,param3){
     }
 }
 
+//Add product especific
+$('#productadd-form').on('submit',function(e) {  //Don't foget to change the id form
+console.log($(this).serialize());
+  $.ajax({
+      url:'productaddspecific', //===PHP file name====
+      data:$(this).serialize(),
+      type:'POST',
+      success:function(data){
+        console.log(data);
+        $("#WDNGcreate").modal('hide');//ocultamos el modal
+        $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+        $('.modal-backdrop').remove();
+        //Success Message == 'Title', 'Message body', Last one leave as it is
+        swal({   
+            title: "Success!",   
+            text: "Product add!",   
+            type:"success",
+            timer: 2000,   
+            showConfirmButton: false 
+        });
+	    // swal("¡Success!", "Message sent!", "success");
+      },
+      error:function(data){
+        //Error Message == 'Title', 'Message body', Last one leave as it is
+	    swal("Oops...", "Something went wrong :(", "error");
+      }
+    });
+    e.preventDefault(); //This is to Avoid Page Refresh and Fire the Event "Click"
+});
+
+//Add general product
+
+$('body').on('click','#delete', function(event){
+    event.preventDefault();
+    var me = $(this),
+        url = me.attr("href"),
+        title = me.attr("title"),
+        csrf_token = $('meta[name="csrf-token"]').attr("content");
+    swal({   
+        title: url +"?",   
+        text: "You will not be able to recover this imaginary file!",   
+        type: "warning",   
+        showCancelButton: true,   
+        confirmButtonColor: "#C52300",   
+        confirmButtonText: "Yes, delete it!",   
+        closeOnConfirm: false 
+    }, function(){   
+        alert("Se borró");
+        $.ajax({
+            url:url, //===PHP file name====
+            data:{
+                '_method':'GET',
+                'token':csrf_token
+            },
+            type:'POST',
+            success:function(data){              
+                $('#table').DataTable().ajax.reload();
+                swal({   
+                    title: "Success!",   
+                    text: "Product add!",   
+                    type:"success",
+                    timer: 2000,   
+                    showConfirmButton: false 
+                });
+              
+              // swal("¡Success!", "Message sent!", "success");
+            },
+            error:function(data){
+              //Error Message == 'Title', 'Message body', Last one leave as it is
+              swal("Oops...", "Something went wrong :(", "error");
+            }
+          });
+        // swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
+    }); 
+    
+});
 //Mostrar opción de storage
 // var d, n, ti1, per1, us1, sto1, unit1, ty, pro, company, branch;
 // function button(desc, name, time, period, users, storage, unitstorage, type, prod, comp, br) {

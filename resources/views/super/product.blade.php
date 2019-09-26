@@ -131,6 +131,7 @@
                 </div>
 
                 <form
+                    id="productcreate-form"
                     action="{{ route('productCreate')}}"
                     method="POST"
                     autocomplete="off"
@@ -169,6 +170,7 @@
                                 <div class="form-group">
                                     <div class="controls">
                                         <textarea 
+                                            id="description"
                                             name="description" 
                                             class="form-control" 
                                             rows="5" 
@@ -190,7 +192,7 @@
                                 <h3>Add image</h3> 
                                 <div class="form-group">
                                     <div class="controls">
-                                    <input type="file" name="urlimg" required accept="image/jpeg,.png">
+                                    <input type="file" id="urlimg" name="urlimg" required accept="image/jpeg,.png">
                                     </div>
                                     <span class="invalid-feedback" role="alert" style="color:red;">
                                         <strong>{{ $errors->first('companyimg') }}</strong>
@@ -233,6 +235,7 @@
                 </div>
 
                 <form
+                    id="productadd-form"
                     action="{{ route('productAddSpecific')}}"
                     method="POST"
                     autocomplete="off">
@@ -430,7 +433,6 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
                         <button
-                            id="click"
                             type="submit"
                             style="background: #b60303; color: white;"
                             class="btn waves-effect waves-light">Save product</button>
