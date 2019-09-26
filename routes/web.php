@@ -37,6 +37,8 @@ Route::get('/products', 'ProductController@productsShow') ->name('productsShow')
 Route::get('/productsshow/{id}', 'ProductController@productsShowSpecific') ->name('productsShowSpecific');
 Route::get('datatableproducts/{id}', 'ProductController@datatableproducts')->name('datatableproducts'); 
 Route::post('/productcreate', 'ProductController@productCreate') ->name('productCreate');
+Route::post('/productaddspecific', 'ProductController@productAddSpecific') ->name('productAddSpecific');
+
 Route::post('/productedit', 'ProductController@productEdit') ->name('productEdit');
 Route::get('/productdelete/{id}', 'ProductController@productDelete') ->name('productDelete');
 

@@ -102,7 +102,6 @@ class CompaniesTableSeeders extends Seeder
         $product = new Product;
         $product->name = "Warriors Defender Firewall New Generate";
         $product->description = "Se Obtiene el producto WDNG para el uso más conveniente del cliente";
-        $product->offer = "Site";
         $product->urlimg = "WDNG.png";
         $product->save();
         // $product->time = 5;
@@ -114,7 +113,6 @@ class CompaniesTableSeeders extends Seeder
         $product = new Product;
         $product->name = "Warriors Defender Firewall";
         $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
-        $product->offer = "Site";
         $product->urlimg = "WDF.png";
         
         $product->save();
@@ -122,35 +120,30 @@ class CompaniesTableSeeders extends Seeder
         $product = new Product;
         $product->name = "Warriors Defender Mail";
         $product->description = "Se Obtiene el producto WDM para el uso más conveniente del cliente";
-        $product->offer = "Cloud";
         $product->urlimg = "WDM.png";
         $product->save();
         //WDCP
         $product = new Product;
         $product->name = "Warriors Defender Captive Portal";
         $product->description = "Se Obtiene el producto WDCP para el uso más conveniente del cliente";
-        $product->offer = "Site";
         $product->urlimg = "WDCP.png";
         $product->save();
         //WDS
         $product = new Product;
         $product->name = "Warriors Defender Storage";
         $product->description = "Se Obtiene el producto WDS para el uso más conveniente del cliente";
-        $product->offer = "Cloud";
         $product->urlimg = "WDS.png";
         $product->save();
         //WDIPS/IDS
         $product = new Product;
         $product->name = "Warriors Defender IPS/IDS";
         $product->description = "Se Obtiene el producto WDIPS/IDS para el uso más conveniente del cliente";
-        $product->offer = "Site";
         $product->urlimg = "IDS.png";
         $product->save();
         //WDCC
         $product = new Product;
         $product->name = "Warriors Defender Central Console";
         $product->description = "Se Obtiene el producto WDCCpara el uso más conveniente del cliente";
-        $product->offer = "Cloud";
         $product->urlimg = "IDS.png";
         $product->save();
 
@@ -158,14 +151,6 @@ class CompaniesTableSeeders extends Seeder
         $product = new Product;
         $product->name = "Warriors Defender Reporter";
         $product->description = "Se Obtiene el producto WDR para el uso más conveniente del cliente";
-        $product->offer = "Cloud";
-        $product->urlimg = "WLicenciamiento.png";
-        $product->save();
-
-        $product = new Product;
-        $product->name = "Warriors Defender license";
-        $product->description = "Se Obtiene el producto WDL para el uso más conveniente del cliente";
-        $product->offer = "Cloud";
         $product->urlimg = "WLicenciamiento.png";
         $product->save();
 
@@ -312,6 +297,42 @@ class CompaniesTableSeeders extends Seeder
         $year->year = 5;
         $year->save();
 
+        $mail = new MailService;
+        $mail->storagem = 1;
+        $mail->save();
+        $mail = new MailService;
+        $mail->storagem = 2;
+        $mail->save();
+        $mail = new MailService;
+        $mail->storagem = 3;
+        $mail->save();
+        $mail = new MailService;
+        $mail->storagem = 4;
+        $mail->save();
+        $mail = new MailService;
+        $mail->storagem = 5;
+        $mail->save();
+        $mail = new MailService;
+        $mail->storagem = 10;
+        $mail->save();
+        $mail = new MailService;
+        $mail->storagem = 15;
+        $mail->save();
+        $mail = new MailService;
+        $mail->storagem = 20;
+        $mail->save();
+        $mail = new MailService;
+        $mail->storagem = 30;
+        $mail->save();
+        $mail = new MailService;
+        $mail->storagem = 40;
+        $mail->save();
+        $mail = new MailService;
+        $mail->storagem = 50;
+        $mail->save();
+        $mail = new MailService;
+        $mail->storagem = 100;
+        $mail->save();
         //Period
         $period = new Period;
         $period->period = "years";

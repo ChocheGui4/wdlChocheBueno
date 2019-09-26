@@ -6,20 +6,32 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProductCreate;
 use App\Http\Requests\ProductEditCreate;
 use App\Http\Requests\ProductAddCreate;
+use App\Http\Requests\ProductAddSpecific;
 
-use App\Company;
-use App\Branch;
-use App\People;
-use App\User;
-use App\Area;
-use App\Customer;
-use App\Contact;
+
 use App\Acquisition;
+use App\AcquisitionType;
+use App\Area;
+use App\Branch;
+use App\Category;
 use App\Characteristic;
+use App\Company;
+use App\Customer;
+use App\Disc;
+use App\License;
+use App\Maker;
+use App\MailService;
+use App\Memory;
+use App\NumberUser;
+use App\NumberUserStorage;
+use App\People;
+use App\Processor;
 use App\Product;
 use App\ProductList;
-use App\License;
-use App\AcquisitionType;
+use App\Storage;
+use App\UnitStorage;
+use App\User;
+use App\Year;
 use DB;
 use Yajra\Datatables\Datatables;
 
@@ -35,30 +47,90 @@ class ProductController extends Controller
         
         $products=Product::orderBy('id','ASC')->get();
         $i=0;
+        $makers = Maker::orderBy('id','ASC')->get();
+        $processors = Processor::orderBy('id','ASC')->get();
+        $memories = Memory::orderBy('id','ASC')->get();
+        $discs = Disc::orderBy('id','ASC')->get();
+        $numberusers = NumberUser::orderBy('id','ASC')->get();
+        $numberuserstorage = NumberUserStorage::orderBy('id','ASC')->get();
+        $years = Year::orderBy('id','ASC')->get();
+        $mails = MailService::orderBy('id','ASC')->get();
+        $storage = Storage::orderBy('id','ASC')->get();
+        // $unitstorage = UnitStorage::orderBy('id','ASC')->get();
+        $nus = NumberUserStorage::orderBy('id','ASC')->get();
         
-        return view('super.product', compact('products','i'));
+        return view('super.product', compact('products',
+        'i','makers','processors','memories','discs',
+        'numberusers','mails','years','storage',/*'unitstorage',*/'nus'));
         
     }
+    
+    function productCreate(ProductAddCreate $request){
+        $producto = new Product;
+        $producto->name = $request->name;
+        $producto->description = $request->description;
+        $producto->urlimg = $request->file('urlimg')->store('public');
+        $producto->save();        
+        return redirect()->route('productsShow');
+    }
+
+    function productAddSpecific(ProductAddSpecific $request){
+        
+        $mail = null;
+        $umail = null;
+        $storage = null;
+        $ustorage = null;
+        $nstorage = null;
+        $product = Product::where("name",$request->name)->get();
+        foreach ($product as $prod) {
+            $ided = $prod->id;
+        }
+        if($request->name=="Warriors Defender Mail"){
+            $mail = $request->storagem;
+            $umail = "GB";
+        }
+        if($request->name=="Warriors Defender Storage"){
+            $storage = $request->storage;
+            $ustorage = "TB";
+            $nstorage = $request->numberstorage;
+        }
+        $category = new Category;
+        $category->maker = $request->maker;
+        $category->processor = $request->processor;
+        $category->memory = $request->memory;
+        $category->disc = $request->disc;
+        $category->storagem = $mail;
+        $category->unitstoragemail = $umail;
+        $category->storage = $storage;
+        $category->unitstorage = $ustorage;
+        $category->numberstorage = $nstorage;
+        $category->year = $request->year;
+        $category->period = "Year";
+        $category->numberuser = $request->numberuser;
+        $category->offer = $request->offer;
+        $category->cstatus = 1;
+        $category->products_id = $ided;
+        $category->save();        
+        return redirect()->route('productsShow');
+    }
+
+
     // protected $prodid=3;
     public function productsShowSpecific($id){    
-        $products = DB::select("select *, products.id as idp, makers.id as idm, 
-        processors.id as idpr from products, makers, processors, memories, discs
-        where products.id = ?",[$id]);
+        $products = Category::where("products_id",$id)->where("cstatus",true)->get();
+        $name = Product::find($id);
+        // dd($names->id);
         $i=0;
         $prodid = $id;
-        // $tasks = DB::select("select *, products.id as idp, makers.id as idm, 
-        // processors.id as idpr from products, makers, processors, memories, discs
-        // where products.id = ?",[$id]);
-        // return Datatables::of($tasks)
-        // ->make(true);    
-        // dd($products);
-        return view('super.showProduct', compact('products','i','prodid'));
-        
+        return view('super.showProduct', compact('products','i','prodid','name'));
     }
 
     //Datatable products
     public function datatableproducts($id){
         // $tasks = Product::orderBy('id','ASC')->get();
+        return Datatables()     
+            ->eloquent(Category::where("id",$id))
+            ->toJson();
         if($id==1 | $id==2 | $id==3 | $id==4 | $id==6){
             // $tasks = DB::select("select * from productlist where idp = ?",[$id]);
             // // $tasks = DB::select("select *, products.id as idp, makers.id as idm, 
@@ -219,21 +291,7 @@ class ProductController extends Controller
         
         
     }
-    function productCreate(ProductAddCreate $request){
-        $producto = new Product;
-        $producto->name = $request->name;
-        $producto->description = $request->description;
-        $producto->time = $request->time;
-        $producto->period = $request->period;
-        $producto->users = $request->users;
-        if($request->storage!=0){
-            $producto->storage = $request->storage;
-            $producto->unitstorage = $request->unitstorage;
-        }
-        $producto->save();
-        
-        return redirect()->route('productsShow');
-    }
+    
 
     function productEdit(ProductEditCreate $request){
         $productos = Product::where("name","=",$request->name)->get();
@@ -258,4 +316,5 @@ class ProductController extends Controller
     
     
 }
+
 

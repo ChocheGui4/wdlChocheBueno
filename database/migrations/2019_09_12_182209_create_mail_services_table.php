@@ -16,7 +16,6 @@ class CreateMailServicesTable extends Migration
         Schema::create('mail_services', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('storagem');
-            $table->integer('acquisition');
             $table->timestamps();
         });
     }

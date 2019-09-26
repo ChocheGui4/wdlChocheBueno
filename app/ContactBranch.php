@@ -13,6 +13,5 @@ class ContactBranch extends Model
     protected $fillable = [
         'name', 'lastname','telephone1','telephone2','email1','email2','area',
         'cbstatus','branches_id'
-
     ];
 }

@@ -17,7 +17,6 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name',60);
             $table->text('description');  
-            $table->string('offer',5);
             $table->string('urlimg',255)->nullable();
             $table->timestamps();          
         });

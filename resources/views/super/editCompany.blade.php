@@ -100,26 +100,26 @@
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                                         <div class="form-group">
-                                                        <strong>Company name</strong>
-                                                        <!--Se inicia icono con campo de texto-->
-                                                        <div class="controls">
-                                                            <div class="input-group mb-3">
-                                                                <span class="input-group-addon">
-                                                                    <i class="fa fa-building"></i>
-                                                                </span>
-                                                                <input
-                                                                    id="compannameuc"
-                                                                    onkeyup="ucwords(this,'#compannameuc');"
-                                                                    type="text"
-                                                                    id="companyname"
-                                                                    name="companyname"
-                                                                    class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
-                                                                    value="{{$compan->companyname}}"
-                                                                    placeholder="The beauty S.A. de C.V."
-                                                                    required
-                                                                    maxlength="50"
-                                                                    pattern=".{2,50}" 
-                                                                    data-validation-pattern-message="The name company must have at least 3 letters">
+                                                            <strong>Company name</strong>
+                                                            <!--Se inicia icono con campo de texto-->
+                                                            <div class="controls">
+                                                                <div class="input-group mb-3">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-building"></i>
+                                                                    </span>
+                                                                    <input
+                                                                        id="compannameuc"
+                                                                        onkeyup="ucwords(this,'#compannameuc');"
+                                                                        type="text"
+                                                                        id="companyname"
+                                                                        name="companyname"
+                                                                        class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
+                                                                        value="{{$compan->companyname}}"
+                                                                        placeholder="The beauty S.A. de C.V."
+                                                                        required
+                                                                        maxlength="50"
+                                                                        pattern=".{2,50}" 
+                                                                        data-validation-pattern-message="The name company must have at least 3 letters">
 
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
@@ -127,7 +127,6 @@
                                                                 </span>
                                                             </div>
                                                             <!--Se finaliza icono con campo de texto-->
-
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-sm-6 col-xs-6">

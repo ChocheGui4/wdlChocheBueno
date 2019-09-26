@@ -16,7 +16,8 @@
                 <div class="col-md-12 align-self-center">
                     <a
                         href="/products"
-                        class="btn pull-right hidden-sm-down btn-primary">
+                        class="btn pull-right hidden-sm-down "
+                        style="background: #383F49; color: white">
                         <i class="mdi mdi-arrow-left"></i>
                         Back</a>
                 </div>
@@ -41,27 +42,23 @@
                                     </thead>
                                 </table>
                             </div> -->
-                            <div class="card" style="background: #FFDCDC;">
+                            <div class="card">
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <table id="task" class="table table-hover table-condensed">
+                                        <!-- <table id="task" class="table table-hover table-condensed">
                                             <thead>
                                             <tr>
-                                                <th>Name</th>
                                                 <th>Maker</th>
                                                 <th>Processor</th>
                                                 <th>Memory (GB)</th>
                                                 <th>Disc</th>
-                                                <th>users</th>
-                                                
-                                                
                                             </tr>
                                             </thead>
-                                        </table>
-                                        <!-- <div id="example23_wrapper" class="dataTables_wrapper">
+                                        </table> -->
+                                        <div id="example23_wrapper" class="dataTables_wrapper">
                                             <table
                                                 id="table"
-                                                class="display nowrap table table-hover table-striped table-bordered dataTable
+                                                class="display nowrap table table-hover table-striped table-bordered dataTable table-sm"
                                                 cellspacing="0"
                                                 width="100%"
                                                 role="grid"
@@ -70,22 +67,13 @@
                                                 <thead>
                                                     <tr role="row">
                                                         <th
-                                                            class="sorting_asc"
-                                                            tabindex="0"
-                                                            aria-controls="example23"
-                                                            rowspan="1"
-                                                            colspan="1"
-                                                            aria-sort="ascending"
-                                                            aria-label="Name: activate to sort column descending"
-                                                            style="width: 140px;">product</th>
-                                                        <th
                                                             class="sorting"
                                                             tabindex="0"
                                                             aria-controls="example23"
                                                             rowspan="1"
                                                             colspan="1"
                                                             aria-label="Position: activate to sort column ascending"
-                                                            style="width: 206px;">Maker</th>
+                                                            style="width: 106px;">Maker</th>
                                                         <th
                                                             class="sorting"
                                                             tabindex="0"
@@ -110,6 +98,51 @@
                                                             colspan="1"
                                                             aria-label="Office: activate to sort column ascending"
                                                             style="width: 105px;">Disc</th>
+                                                        @if($name->name=="Warriors Defender Mail")
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 105px;">Storage mail</th>
+                                                        @endif
+                                                        @if($name->name=="Warriors Defender Storage")
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 105px;">Storage</th>
+                                                        @endif
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 205px;">Number users </th>
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 105px;">Years</th>
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 105px;">Offer</th>
+                                                        
                                                         <th
                                                             style="width: 51px;"></th>
                                                     </tr>
@@ -119,14 +152,26 @@
                                                         <div>
                                                             <tr role="row" class="odd">
                                                                 
-                                                                <td><strong> {{ $product->name }} </strong></td>
-                                                                <td><strong> {{ $product->namem }} </strong></td>
-                                                                <td><strong> {{ $product->namep }} </strong></td>
-                                                                <td><strong> {{ $product->sizem }} GB</strong></td>
-                                                                <td><strong> {{ $product->typed }} </strong></td>
+                                                                <td><strong> {{ $product->maker }} </strong></td>
+                                                                <td><strong> {{ $product->processor }} </strong></td>
+                                                                <td><strong> {{ $product->memory }} </strong></td>
+                                                                <td><strong> {{ $product->disc }}</strong></td>
+                                                                @if($name->name=="Warriors Defender Mail")
+                                                                <td><strong> {{ $product->storagem }}</strong></td>
+                                                                <td><strong> {{ $product->numberuser }}</strong></td>
+                                                                @endif
+                                                                @if($name->name=="Warriors Defender Storage")
+                                                                <td><strong> {{ $product->storage }}</strong></td>
+                                                                <td><strong> {{ $product->numberstorage }}</strong></td>
+                                                                @endif
+                                                                @if($name->name!="Warriors Defender Mail" & $name->name!="Warriors Defender Storage")
+                                                                <td><strong> {{ $product->numberuser }}</strong></td>
+                                                                @endif
+                                                                <td><strong> {{ $product->year }}</strong></td>
+                                                                <td><strong> {{ $product->offer }}</strong></td>
                                                                 <td>
-                                                                    <a class="btn btn-warning" href="#">
-                                                                        <i class="fa fa-edit"></i>
+                                                                    <a style="background: #DD1E00; color: white;" class="btn" href="#">
+                                                                        <i class="fa fa-trash"></i>
                                                                     </a>
                                                                     @csrf @method('DELETE')
                                                                 </td>
@@ -135,7 +180,7 @@
                                                     @endforeach 
                                                 </tbody>
                                             </table>                            
-                                        </div> -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -193,21 +238,7 @@
         
         // var hola="{{ route('datatableproducts',"$prodid") }}";
         // alert(hola);
-        oTable = $('#task').DataTable({
-            "serverSide": true,
-            "ajax": "{{ route('datatableproducts',"$prodid") }}",
-            "columns": [
-                {data: 'name'},
-                {data: 'namem'},
-                {data: 'namep'},
-                {data: 'sizem' },
-                {data: 'typed' },
-                {data: 'user' },
-                
-                
-                
-            ]
-        });
+        $('#table').DataTable();
     });
     // $(document).ready(function() {
     //     $('#table').DataTable();
