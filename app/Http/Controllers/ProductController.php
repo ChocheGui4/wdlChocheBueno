@@ -45,7 +45,7 @@ class ProductController extends Controller
     
     public function productsShow(){
         
-        $products=Product::orderBy('id','ASC')->get();
+        $products=Product::orderBy('id','ASC')->where("productstatus",true)->get();
         $i=0;
         $makers = Maker::orderBy('id','ASC')->get();
         $processors = Processor::orderBy('id','ASC')->get();
@@ -81,6 +81,7 @@ class ProductController extends Controller
         $storage = null;
         $ustorage = null;
         $nstorage = null;
+        $nu = $request->numberuser;
         $product = Product::where("name",$request->name)->get();
         foreach ($product as $prod) {
             $ided = $prod->id;
@@ -93,6 +94,7 @@ class ProductController extends Controller
             $storage = $request->storage;
             $ustorage = "TB";
             $nstorage = $request->numberstorage;
+            $nu = null;
         }
         $category = new Category;
         $category->maker = $request->maker;
@@ -106,7 +108,7 @@ class ProductController extends Controller
         $category->numberstorage = $nstorage;
         $category->year = $request->year;
         $category->period = "Year";
-        $category->numberuser = $request->numberuser;
+        $category->numberuser = $nu;
         $category->offer = $request->offer;
         $category->cstatus = 1;
         $category->products_id = $ided;
@@ -129,30 +131,17 @@ class ProductController extends Controller
     public function datatableproducts($id){
         // $tasks = Product::orderBy('id','ASC')->get();
         return Datatables()     
-            ->eloquent(Category::where("id",$id))
+            ->eloquent(Category::where("products_id",$id)->where("cstatus",true))
+            ->addColumn('btn','<a 
+                id="delete" 
+                style="background: #DD1E00; color: white;" 
+                href="{{ route("productDelete",$id)}}" 
+                alt="alert" 
+                class="btn" >
+                <i class="fa fa-trash"></i>
+            </a>')
+            ->rawColumns(['btn'])
             ->toJson();
-        // if($id==1 | $id==2 | $id==3 | $id==4 | $id==6){
-        //     // $tasks = DB::select("select * from productlist where idp = ?",[$id]);
-        //     // // $tasks = DB::select("select *, products.id as idp, makers.id as idm, 
-        //     // // processors.id as idpr from products, makers, processors, memories, discs,
-        //     // // years where products.id = ?",[$id]);
-        //     // return Datatables::of($tasks)
-        //     // ->addColumn('btn','<button id="sa-title" alt="alert" class="btn btn-warning" >Buy</button>')
-        //     // ->rawColumns(['btn'])
-        //     // ->make(true);  
-        //     return Datatables()     
-        //     ->eloquent(ProductList::query())
-        //     ->toJson();
-        // }else{
-        //     $tasks = DB::select("select *, products.id as idp, makers.id as idm, 
-        //     processors.id as idpr from products, makers, processors, memories, discs
-        //     where products.id = ?",[$id]);
-        //     return Datatables::of($tasks)
-        //     ->addColumn('btn','<button id="sa-title" alt="alert" class="btn btn-warning" >Buy</button>')
-        //     ->rawColumns(['btn'])
-        //     ->make(true); 
-        // }
-        
     }
     
 
@@ -308,9 +297,17 @@ class ProductController extends Controller
     function productDelete($id){
         
         $product = Category::find($id);
-        $product->delete();
+        $product->cstatus=0;
+        $product->save();
         return redirect()->route('productsShow');
     }
+    function productDeleteGeneral($id){
+        $product = Product::find($id);
+        $product->productstatus=0;
+        $product->save();
+        return redirect()->route('productsShow');
+    }
+    
     
     
     

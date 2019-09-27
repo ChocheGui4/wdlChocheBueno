@@ -20,21 +20,12 @@ class CustomController extends Controller
     {
         $this->middleware('auth');
     }
-    public function customerShow(){
-        
-        $peoples = People::orderBy('id','ASC')->get();
 
-        $usuarios = DB::table('people')
-        ->join('customers','people.id', '=','customers.people_id')
-        ->select()
-        ->get();
-        //dd($usuarios);
-        
-                
-        //$usuarios= User::orderBy('id','ASC')->paginate(5);
-        return view('super.customer', compact('peoples','usuarios'))
+    public function customerShow(){
+        $peoples = People::orderBy('id','ASC')->where("pstatus",true)->get();
+
+        return view('super.customer', compact('peoples'))
             ->with('i',(request()->input('page',1)-1)*5);
-        //return view('super.users');
     }
     public function customerCreate()
     {
@@ -83,6 +74,7 @@ class CustomController extends Controller
         $peo= People::latest('id')->first();
         $customers = new Customer;
         $customers->people_id=$peo->id;
+        $customers->customstatus=1;
         $customers->save();
         
         return redirect()->route('customerShow');
@@ -143,16 +135,22 @@ class CustomController extends Controller
         //$direccion=Direccion::find(11);
         // dd($id);
         // delete('Warning!', 'Article successfully deleted!');
-        dd("by");
-        dd("Entrar");
+        // dd("by");
+        // dd("Entrar");
         
-        $deleteuser = People::join('customers', 'customers.people_id', '=', 'people.id')
-                ->join('users', 'users.id', '=', 'customers.users_id')->get();
+        $deleteuser = People::join('customers', 'people.id', '=', 'customers.people_id')
+        ->get();
+        
         foreach ($deleteuser as $del) {
             $val = $del->id;            
+            $idpeople = $del->people_id;
         }
-        $user = User::find($val)->delete();        
-        $group = People::find($id)->delete();
+        $customer = Customer::find($val);
+        $customer->customstatus = 0;
+        $customer->save();
+        $people = People::find($idpeople);
+        $people->pstatus = 0;
+        $people->save();
         return redirect()->route('customerShow');
     }
 }

@@ -34,7 +34,7 @@
                 <!--Inicio de información de la empresa-->
                 <div class="row el-element-overlay">
 
-                    @foreach ($usuarios as $people)
+                    @foreach ($peoples as $people)
                     <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="el-card-item">
@@ -48,12 +48,12 @@
                                             <li>
                                                 <a
                                                     class="btn default btn-outline image-popup-vertical-fit"
-                                                    href="{{ route('customerEdit',$people->people_id)}}">
+                                                    href="{{ route('customerEdit',$people->id)}}">
                                                     <i class="mdi mdi-account-edit"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('customerDelete',$people->people_id)}}" class="btn default btn-outline" >
+                                                <a id="down" href="{{ route('customerDelete',$people->id)}}" class="btn default btn-outline" >
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>                                                
                                             </li>

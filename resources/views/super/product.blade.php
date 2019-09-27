@@ -39,7 +39,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <div class="content-header">
+            <div id="update" class="content-header">
                 <div class="container-fluid">
                     <div class="row el-element-overlay">
                         @csrf
@@ -70,8 +70,10 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="btn default btn-outline" 
-                                                    href="{{ route('productDelete',$product->id)}}">
+                                                    <a 
+                                                        id="down"
+                                                        class="btn default btn-outline" 
+                                                        href="{{ route('productDeleteGeneral',$product->id)}}">
                                                         <i class="mdi mdi-close-circle"></i>
                                                     </a>
                                                 </li>

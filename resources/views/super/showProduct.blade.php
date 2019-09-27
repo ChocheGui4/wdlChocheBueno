@@ -16,7 +16,7 @@
                 <div class="col-md-12 align-self-center">
                     <a
                         href="/products"
-                        class="btn pull-right hidden-sm-down "
+                        class="btn pull-right hidden-sm-down"
                         style="background: #383F49; color: white">
                         <i class="mdi mdi-arrow-left"></i>
                         Back</a>
@@ -42,20 +42,132 @@
                                     </thead>
                                 </table>
                             </div> -->
-                            <div class="card">
+                            
+                            <div class="card" >
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <!-- <table id="task" class="table table-hover table-condensed">
+                                        <table id="task" class="display nowrap table table-hover table-striped table-bordered dataTable table-sm"
+                                                cellspacing="0"
+                                                width="100%"
+                                                role="grid"
+                                                aria-describedby="example23_info"
+                                                style="width: 100%;">
                                             <thead>
                                             <tr>
+                                                
                                                 <th>Maker</th>
                                                 <th>Processor</th>
                                                 <th>Memory (GB)</th>
                                                 <th>Disc</th>
+                                                @if($name->name=="Warriors Defender Mail")
+                                                    <th
+                                                        class="sorting"
+                                                        tabindex="0"
+                                                        aria-controls="example23"
+                                                        rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 105px;">Storage mail</th>
+                                                @endif
+                                                @if($name->name=="Warriors Defender Storage")
+                                                    <th
+                                                        class="sorting"
+                                                        tabindex="0"
+                                                        aria-controls="example23"
+                                                        rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Office: activate to sort column ascending"
+                                                        style="width: 105px;">Storage</th>
+                                                @endif
+                                                <th>Number users</th>
+                                                <th>Year</th>
+                                                <th>Offer</th>
+                                                <th>&nbsp</th>
+                                                
+                                                
                                             </tr>
                                             </thead>
-                                        </table> -->
-                                        <div id="example23_wrapper" class="dataTables_wrapper">
+                                        </table>
+                                        <input hidden type="text" id="mail" value="{{$name->name}}">
+                                        <!-- <div id="example23_wrapper" class="dataTables_wrapper">
+                                            <table
+                                                id="table"
+                                                class="display nowrap table table-hover table-striped table-bordered dataTable
+                                                cellspacing="0"
+                                                width="100%"
+                                                role="grid"
+                                                aria-describedby="example23_info"
+                                                style="width: 100%;">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th
+                                                            class="sorting_asc"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-sort="ascending"
+                                                            aria-label="Name: activate to sort column descending"
+                                                            style="width: 140px;">product</th>
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Position: activate to sort column ascending"
+                                                            style="width: 206px;">Maker</th>
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 105px;">Processor</th>
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 105px;">Memory</th>
+                                                        <th
+                                                            class="sorting"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-label="Office: activate to sort column ascending"
+                                                            style="width: 105px;">Disc</th>
+                                                        <th
+                                                            style="width: 51px;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($products as $product)
+                                                        <div>
+                                                            <tr role="row" class="odd">
+                                                                
+                                                                <td><strong> {{ $product->name }} </strong></td>
+                                                                <td><strong> {{ $product->namem }} </strong></td>
+                                                                <td><strong> {{ $product->namep }} </strong></td>
+                                                                <td><strong> {{ $product->sizem }} GB</strong></td>
+                                                                <td><strong> {{ $product->typed }} </strong></td>
+                                                                <td>
+                                                                    <a class="btn btn-warning" href="#">
+                                                                        <i class="fa fa-edit"></i>
+                                                                    </a>
+                                                                    @csrf @method('DELETE')
+                                                                </td>
+                                                            </tr>
+                                                        </div>
+                                                    @endforeach 
+                                                </tbody>
+                                            </table>                            
+                                        </div> -->
+                                        <!-- <div id="example23_wrapper" class="dataTables_wrapper">
                                             <table
                                                 id="table"
                                                 class="display nowrap table table-hover table-striped table-bordered dataTable table-sm"
@@ -180,7 +292,7 @@
                                                     @endforeach 
                                                 </tbody>
                                             </table>                            
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -191,21 +303,66 @@
             </div>
         </div>
         <!-- /.content-wrapper -->
-        <button id="sa-warning"  class="btn btn-danger">New</button>
     </div>
- 
-    <!--Termina la ventana modal-->
 @endsection
 @section('file_js')
 
 <script>
     $(document).ready(function() {
-
-        // var hola=$('#idprod').val();
+        var mail = $('#mail').val();
         
-        // var hola="{{ route('datatableproducts',"$prodid") }}";
-        // alert(hola);
-        $('#table').DataTable();
+        if(mail=="Warriors Defender Mail"){
+            oTable = $('#task').DataTable({
+                // processing: true,
+                serverSide: true,
+                ajax: "{{ route('datatableproducts',"$prodid") }}",
+                columns: [
+                    {data: 'maker'},
+                    {data: 'processor'},
+                    {data: 'memory'},
+                    {data: 'disc' },
+                    {data: 'storagem' },
+                    {data: 'numberuser' },
+                    {data: 'year' },
+                    {data: 'offer' },
+                    {data: 'btn' },
+                ]
+            });
+        }else if(mail=="Warriors Defender Storage"){
+            oTable = $('#task').DataTable({
+                // processing: true,
+                serverSide: true,
+                ajax: "{{ route('datatableproducts',"$prodid") }}",
+                columns: [
+                    {data: 'maker'},
+                    {data: 'processor'},
+                    {data: 'memory'},
+                    {data: 'disc' },
+                    {data: 'storage' },
+                    {data: 'numberstorage' },
+                    {data: 'year' },
+                    {data: 'offer' },
+                    {data: 'btn' },
+                ]
+            });
+        }else{
+            oTable = $('#task').DataTable({
+                // processing: true,
+                serverSide: true,
+                ajax: "{{ route('datatableproducts',"$prodid") }}",
+                columns: [
+                    {data: 'maker'},
+                    {data: 'processor'},
+                    {data: 'memory'},
+                    {data: 'disc' },
+                    {data: 'numberuser' },
+                    {data: 'year' },
+                    {data: 'offer' },
+                    {data: 'btn' },
+                ]
+            });
+        }
+        
     });
     // $(document).ready(function() {
     //     $('#table').DataTable();

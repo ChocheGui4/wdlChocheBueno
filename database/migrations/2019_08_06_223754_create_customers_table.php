@@ -19,6 +19,7 @@ class CreateCustomersTable extends Migration
             $table->integer('acquisitions_id')->nullable();
             $table->integer('companies_id')->nullable();
             $table->integer('branches_id')->nullable();
+            $table->boolean('customstatus');
             $table->foreign('people_id')
             ->references('id')
             ->on('people')

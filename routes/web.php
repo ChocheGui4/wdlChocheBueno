@@ -41,6 +41,7 @@ Route::post('/productaddspecific', 'ProductController@productAddSpecific') ->nam
 
 Route::post('/productedit', 'ProductController@productEdit') ->name('productEdit');
 Route::get('/productdelete/{id}', 'ProductController@productDelete') ->name('productDelete');
+Route::get('/productdeletegeneral/{id}', 'ProductController@productDeleteGeneral') ->name('productDeleteGeneral');
 
 Route::get('/companyproducts/{id}/{branch}', 'ProductController@showBranchesProducts') ->name('showBranchesProducts');
 Route::get('/companycreateproducts/{id}/{branch}', 'ProductController@showBranchesCreateProduct') ->name('showBranchesCreateProduct');

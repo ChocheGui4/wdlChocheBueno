@@ -615,6 +615,8 @@
                                                                 <i class="mdi mdi-city"></i>
                                                             </span>
                                                             <input
+                                                                id="districtuc" 
+                                                                onkeyup="ucwords(this,'#districtuc');"
                                                                 type="text"
                                                                 name="district"
                                                                 class="form-control {{ $errors->has('district') ? ' is-invalid' : '' }}"
@@ -641,6 +643,8 @@
                                                                 <i class="fa fa-road"></i>
                                                             </span>
                                                             <input
+                                                                id="streetuc" 
+                                                                onkeyup="ucwords(this,'#streetuc');"
                                                                 type="text"
                                                                 name="street"
                                                                 class="form-control {{ $errors->has('street') ? ' is-invalid' : '' }}"
