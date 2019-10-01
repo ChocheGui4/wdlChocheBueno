@@ -323,7 +323,7 @@
             oTable = $('#task').DataTable({
                 // processing: true,
                 serverSide: true,
-                ajax: "{{ route('datatableproductsadd',["$prodid","$prodid"]) }}",
+                ajax: "{{ route('datatableproductsadd',[$company,$branch,$prodid,$product->id]) }}",
                 columns: [
                     {data: 'maker'},
                     {data: 'processor'},
@@ -340,7 +340,7 @@
             oTable = $('#task').DataTable({
                 // processing: true,
                 serverSide: true,
-                ajax: "{{ route('datatableproductsadd',["$prodid","$prodid"]) }}",
+                ajax: "{{ route('datatableproductsadd',[$company,$branch,$prodid,$product->id]) }}",
                 columns: [
                     {data: 'maker'},
                     {data: 'processor'},
@@ -357,7 +357,7 @@
             oTable = $('#task').DataTable({
                 // processing: true,
                 serverSide: true,
-                ajax: "{{ route('datatableproductsadd',[$prodid,$company]) }}",
+                ajax: "{{ route('datatableproductsadd',[$company,$branch,$prodid,$product->id]) }}",
                 columns: [
                     {data: 'maker'},
                     {data: 'processor'},

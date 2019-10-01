@@ -124,16 +124,17 @@ class ProductController extends Controller
         // dd($names->id);
         $i=0;
         $prodid = $id;
+        
         return view('super.showProduct', compact('products','i','prodid','name'));
     }
 
-    public function AddCompanyProduct($id, $branch, $idprod){  
-        $company = $id;
+    public function AddCompanyProduct($company, $branch, $id){  
         $products = Category::where("products_id",$id)->where("cstatus",true)->get();
         $name = Product::find($id);
         // dd($names->id);
         $i=0;
-        $prodid = $idprod;
+        $prodid = $id;
+        
         return view('super.addProductCompany', compact('company','branch','products','i','prodid','name'));
     }
     //Datatable products
@@ -152,18 +153,18 @@ class ProductController extends Controller
             ->rawColumns(['btn'])
             ->toJson();
     }
-    public function datatableproductsadd($id, $id1){
+    public function datatableproductsadd($company, $branch, $id, $product){
         // $tasks = Product::orderBy('id','ASC')->get();
         return Datatables()     
             ->eloquent(Category::where("products_id",$id)->where("cstatus",true))
-            ->addColumn('btn','<a 
-                id="delete" 
-                href="{{ route("productDelete2",[$id, $id])}}" 
-                alt="alert" 
-                style="background: #31B90C; color: white;"
-                class="btn" >
-                <i class="fa fa-plus"></i>
-            </a>')
+            ->addColumn('btn',"<a 
+                id='delete' 
+                href='{{ route('productAddCompany',[$company, $branch, $id, $product])}}' 
+                alt='alert' 
+                style='background: #31B90C; color: white;'
+                class='btn' >
+                <i class='fa fa-plus'></i>
+            </a>")
             ->rawColumns(['btn'])
             ->toJson();
     }
@@ -323,7 +324,14 @@ class ProductController extends Controller
         $product->save();
         
     }
-
+    
+    function productAddCompany($company,$branch,$id,$product){
+        
+        $product = Category::find($id);
+        $product->cstatus=0;
+        $product->save();
+        
+    }
     function productDeleteGeneral($id){
         $product = Product::find($id);
         $product->productstatus=0;
