@@ -14,10 +14,12 @@ use App\Http\Requests\CompanyEditAddressCreate;
 use App\Http\Requests\BranchEdit;
 use App\Http\Requests\BranchEditProfile;
 
+use App\Acquisition;
 use App\Branch;
 use App\Company;
 use App\ContactCompany;
 use App\ContactBranch;
+use App\License;
 use App\People;
 use App\User;
 use App\Customer;
@@ -125,6 +127,7 @@ class CompanyController extends Controller
         $customers = new Customer;
         $customers->companies_id=$com->id;
         $customers->branches_id=$br->id;
+        $customers->customstatus=1;
         $customers->save();
         
         // dd("Se agregaron: usuario login, contacto y empresa");
@@ -151,6 +154,7 @@ class CompanyController extends Controller
                 'branches.insidenumber','branches.exteriornumber')
                 ->groupBy('branches.id')
                 ->where('customers.companies_id', '=', $id)
+                ->where('branches.branchstatus', true)
                 ->get();
         
         $branch1 = null;
@@ -172,7 +176,7 @@ class CompanyController extends Controller
     public function branchEdit($id, $compan){
         $Company = $compan;
         $branch = Branch::find($id);
-        $contacts = ContactBranch::where("branches_id",$id)->get();
+        $contacts = ContactBranch::where("branches_id",$id)->orderBy('id','ASC')->get();
         // dd($contacts);
         
         
@@ -214,6 +218,8 @@ class CompanyController extends Controller
         $customer = new Customer;
         $customer->companies_id = $id;
         $customer->branches_id = $ided->id;
+        $customer->customstatus = 1;
+        
         $customer->save();
 
         
@@ -329,6 +335,65 @@ class CompanyController extends Controller
         return redirect()->route('branchEdit',compact('id','company'));
 
     }
+    public function deleteBranch($id)
+    {
+        // dd("ddudn");
+        $branch = Branch::find($id);
+        $branch->branchstatus = 0;
+        $branch->save();
+        $contacts = ContactBranch::where('branches_id',$branch->id)->get();
+        foreach ($contacts as $contact) {
+            $contact->cbstatus = 0;
+            $contact->save();
+        }
+
+        $customers = Customer::where('branches_id',$branch->id)->get();
+        foreach ($customers as $customer) {
+            $customer->customstatus = 0;
+            $customer->save();
+        }
+        // return redirect()->route('branchEdit',compact('id','company'));
+    }
+
+    public function companyDelete($id)
+    {
+        
+        $company = Company::find($id);
+        $company->companystatus = 0;
+        $company->save();
+
+        $contact = ContactCompany::find($id);
+        $contact->ccstatus = 0;
+        $contact->save();
+
+        $customers = Customer::where('companies_id',$company->id)->get();
+        foreach ($customers as $customer) {
+            $customer->customstatus = 0;
+            $valac = $customer->acquisitions_id;
+            $customer->save();
+            $branch = Branch::find($customer->branches_id);
+            $branch->branchstatus = 0;
+            $branch->save();
+            $con = ContactBranch::find($branch->id)->get();
+            foreach ($con as $c) {
+                $c->cbstatus = 0;
+                $c->save();
+            }
+            
+            if($valac!=null){
+                $acquisition = Acquisition::find($valac);
+                $acquisition->astatus = 0;
+                $acquisition->save();
+                $license = License::find($acquisition->licenses_id);
+                $license->sstatus = 0;
+                $license->save();
+            }
+            
+        }
+        
+        // return redirect()->route('branchEdit',compact('id','company'));
+    }
+    
 
     
     

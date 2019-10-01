@@ -9,15 +9,21 @@
                         <a href="/home">Home</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="/products">Product</a>
+                        <a href="/companies">Company</a>
                     </li>
-                    <li class="breadcrumb-item active">Show</li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('showBranches',$company)}}">Branch</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('showBranchesProducts',[$company,$branch])}}">Add product</a>
+                    </li>
+                    <li class="breadcrumb-item active">List</li>
                 </ol>
             </div>
             <div class="col-md-4 ">
                 <div class="col-md-12 align-self-center">
                     <a
-                        href="/products"
+                        href="{{ route('showBranchesProducts',[$company,$branch])}}"
                         class="btn pull-right hidden-sm-down"
                         style="background: #383F49; color: white">
                         <i class="mdi mdi-arrow-left"></i>
@@ -317,7 +323,7 @@
             oTable = $('#task').DataTable({
                 // processing: true,
                 serverSide: true,
-                ajax: "{{ route('datatableproducts',"$prodid") }}",
+                ajax: "{{ route('datatableproductsadd',["$prodid","$prodid"]) }}",
                 columns: [
                     {data: 'maker'},
                     {data: 'processor'},
@@ -334,7 +340,7 @@
             oTable = $('#task').DataTable({
                 // processing: true,
                 serverSide: true,
-                ajax: "{{ route('datatableproducts',"$prodid") }}",
+                ajax: "{{ route('datatableproductsadd',["$prodid","$prodid"]) }}",
                 columns: [
                     {data: 'maker'},
                     {data: 'processor'},
@@ -351,7 +357,7 @@
             oTable = $('#task').DataTable({
                 // processing: true,
                 serverSide: true,
-                ajax: "{{ route('datatableproducts',"$prodid") }}",
+                ajax: "{{ route('datatableproductsadd',[$prodid,$company]) }}",
                 columns: [
                     {data: 'maker'},
                     {data: 'processor'},

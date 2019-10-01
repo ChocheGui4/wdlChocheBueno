@@ -58,7 +58,7 @@
                                                 </a>                                                
                                             </li>
                                             <li>
-                                                <a class="btn default btn-outline" href="javascript:void(0);">
+                                                <a class="btn default btn-outline" href="{{ route('showPeopleProducts',$people->id)}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
                                             </li>

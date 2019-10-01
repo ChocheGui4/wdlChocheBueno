@@ -8,11 +8,14 @@ use App\Http\Requests\CustomerEditCreate;
 use App\Http\Requests\CustomerAddressEditCreate;
 
 use DB;
+use App\Acquisition;
 use App\Company;
+use App\Customer;
 use App\Branch;
+use App\License;
 use App\People;
 use App\User;
-use App\Customer;
+
 
 class CustomController extends Controller
 {
@@ -142,12 +145,25 @@ class CustomController extends Controller
         ->get();
         
         foreach ($deleteuser as $del) {
-            $val = $del->id;            
+            $val = $del->id;
             $idpeople = $del->people_id;
+            $customer = Customer::find($val);
+            $customer->customstatus = 0;
+            $customer->save();
+            $acval = $customer->acquisitions_id;
+            if($acval!=null){
+                $acquisition = Acquisition::find($customer->acquisitions_id);
+                $acquisition->astatus = 0;
+                $acquisition->save();
+                $license = License::find($acquisition->licenses_id);
+                $license->sstatus = 0;
+                $license->save();
+            }
+            
         }
-        $customer = Customer::find($val);
-        $customer->customstatus = 0;
-        $customer->save();
+        
+        // dd($customer->acquisitions_id);
+        // $acquisition = Acquisition::find();
         $people = People::find($idpeople);
         $people->pstatus = 0;
         $people->save();

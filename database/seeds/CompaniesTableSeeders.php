@@ -431,6 +431,7 @@ class CompaniesTableSeeders extends Seeder
         //License
         $licence = new License;
         $licence->serialkey = "*WDCEB2108192-306*";
+        $licence->sstatus = 1;
         $licence->save();
 
         //Acquisition type
@@ -443,6 +444,7 @@ class CompaniesTableSeeders extends Seeder
 
         $acq = new Acquisition;
         $acq->salenumber = 1;
+        $acq->astatus = 1;
         $acq->products_id = 1;
         $acq->acquisition_types_id = 1;
         $acq->licenses_id = 1;
@@ -450,6 +452,12 @@ class CompaniesTableSeeders extends Seeder
 
         $customer = new Customer;
         $customer->acquisitions_id = 1;
+        $customer->companies_id = 1;
+        $customer->branches_id = 1;
+        $customer->customstatus = 1;
+        $customer->save();
+        
+        $customer = new Customer;
         $customer->companies_id = 1;
         $customer->branches_id = 1;
         $customer->customstatus = 1;

@@ -70,7 +70,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="btn default btn-outline" href="javascript:void(0);">
+                                                <a id="down" class="btn default btn-outline" href="{{ route('deleteBranch',$branch->id)}}">
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>
                                             </li>

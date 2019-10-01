@@ -127,6 +127,15 @@ class ProductController extends Controller
         return view('super.showProduct', compact('products','i','prodid','name'));
     }
 
+    public function AddCompanyProduct($id, $branch, $idprod){  
+        $company = $id;
+        $products = Category::where("products_id",$id)->where("cstatus",true)->get();
+        $name = Product::find($id);
+        // dd($names->id);
+        $i=0;
+        $prodid = $idprod;
+        return view('super.addProductCompany', compact('company','branch','products','i','prodid','name'));
+    }
     //Datatable products
     public function datatableproducts($id){
         // $tasks = Product::orderBy('id','ASC')->get();
@@ -143,6 +152,21 @@ class ProductController extends Controller
             ->rawColumns(['btn'])
             ->toJson();
     }
+    public function datatableproductsadd($id, $id1){
+        // $tasks = Product::orderBy('id','ASC')->get();
+        return Datatables()     
+            ->eloquent(Category::where("products_id",$id)->where("cstatus",true))
+            ->addColumn('btn','<a 
+                id="delete" 
+                href="{{ route("productDelete2",[$id, $id])}}" 
+                alt="alert" 
+                style="background: #31B90C; color: white;"
+                class="btn" >
+                <i class="fa fa-plus"></i>
+            </a>')
+            ->rawColumns(['btn'])
+            ->toJson();
+    }
     
 
 
@@ -154,37 +178,35 @@ class ProductController extends Controller
         $products = Company::join('customers', 'customers.companies_id', '=', 'companies.id')
                 ->join('acquisitions', 'acquisitions.id', '=', 'customers.acquisitions_id')
                 ->join('products', 'products.id', '=', 'acquisitions.products_id')
+                ->select('customers.id','products.name','products.urlimg')
                 ->where('customers.branches_id', '=', $branches)
+                ->where('customers.customstatus','=',true)
+                ->get();
+        // dd($products);        
+        return view('super.productCompany',compact('company','branches','products'));
+    }
+    
+    public function showPeopleProducts($id){
+        $people=$id;
+        //dd($company,$branches);
+        
+        $products = People::join('customers', 'customers.people_id', '=', 'people.id')
+                ->join('acquisitions', 'acquisitions.id', '=', 'customers.acquisitions_id')
+                ->join('products', 'products.id', '=', 'acquisitions.products_id')
+                ->where('customers.people_id', '=', $people)
                 ->get();
         // dd($products);
         //$branches = Branch::where("companies_id","=",$id)->get();     
         
-        return view('super.productCompany',compact('company','branches','products'));
+        return view('super.productCustomer',compact('people','products'));
     }
-
     public function showBranchesCreateProduct($id,$branch){
-        
         $company = $id;
-        $branches = $branch;
-        //dd($company, $branch);
-        // $products= Product::leftJoin('acquisitions', 'products.id', '=', 'acquisitions.products_id')
-        // ->leftJoin('customers', 'customers.acquisitions_id', '=', 'acquisitions.id')
-        // ->select("products.id","products.name","products.description",
-        // "products.time","products.period","products.users",
-        // "products.storage","products.unitstorage","acquisitions.products_id",
-        // "acquisitions.acquisition_types_id","acquisitions.licenses_id",
-        // "acquisitions.characteristics_id", "customers.companies_id","customers.branches_id")
-        // ->orderBy('products.id','ASC')
-        // ->get();
-        // $i=0;
-        // return view('super.addProduct',compact('company','branches','products','i'));
-        $products = DB::select("select *, products.id as idp, makers.id as idm, 
-        processors.id as idpr from products, makers, processors, memories, discs order by products.id");
+
+        $products=Product::orderBy('id','ASC')->where("productstatus",true)->get();
         $i=0;
-        // dd($products);
         
-        
-        return view('super.addProduct',compact('company','branches','products','i'));
+        return view('super.productShowCompany', compact('products','company','branch','i'));
     }
     
     public function showBranchesAddProduct(ProductCreate $request, $id, $branch){
@@ -299,12 +321,25 @@ class ProductController extends Controller
         $product = Category::find($id);
         $product->cstatus=0;
         $product->save();
-        return redirect()->route('productsShow');
+        
     }
+
     function productDeleteGeneral($id){
         $product = Product::find($id);
         $product->productstatus=0;
         $product->save();
+        
+    }
+    function deleteProductBranch($id){
+        $customer = Customer::find($id);
+        $customer->customstatus = 0;
+        $customer->save();
+        $acquisition = Acquisition::find($customer->acquisitions_id);
+        $acquisition->astatus=0;
+        $acquisition->save();
+        $license = License::find($acquisition->licenses_id);
+        $license->sstatus = 0;
+        $license->save();
         return redirect()->route('productsShow');
     }
     

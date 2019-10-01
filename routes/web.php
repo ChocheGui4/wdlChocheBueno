@@ -24,6 +24,7 @@ Route::get('/home', 'PrincipalController@Home')->name('Home');
 Route::get('/companies', 'CompanyController@companyShow') -> name('companyShow');
 Route::get('/companycreate', 'CompanyController@companyCreate') -> name('companyCreate');
 Route::get('/companyedit/{id}', 'CompanyController@companyEdit') -> name('companyEdit');
+Route::get('/companydelete/{id}', 'CompanyController@companyDelete') -> name('companyDelete');
 
 Route::post('/companyadd','CompanyController@companyAdd')->name('companyAdd');
 Route::post('/companyupdateprofile/{id}/{compan}','CompanyController@companyUpdateProfile')->name('companyUpdateProfile');
@@ -35,21 +36,32 @@ Route::post('/companyupdateaddress/{id}','CompanyController@companyUpdateAddress
 Route::get('/companybranches/{id}', 'CompanyController@showBranches') ->name('showBranches');
 Route::get('/products', 'ProductController@productsShow') ->name('productsShow');
 Route::get('/productsshow/{id}', 'ProductController@productsShowSpecific') ->name('productsShowSpecific');
+
 Route::get('datatableproducts/{id}', 'ProductController@datatableproducts')->name('datatableproducts'); 
+Route::get('datatableproductscompany/{id}/{id1}', 'ProductController@datatableproductsadd')->name('datatableproductsadd'); 
 Route::post('/productcreate', 'ProductController@productCreate') ->name('productCreate');
 Route::post('/productaddspecific', 'ProductController@productAddSpecific') ->name('productAddSpecific');
 
 Route::post('/productedit', 'ProductController@productEdit') ->name('productEdit');
 Route::get('/productdelete/{id}', 'ProductController@productDelete') ->name('productDelete');
+Route::get('/productdelete2/{id}/{id1}', 'ProductController@productDelete2') ->name('productDelete2');
 Route::get('/productdeletegeneral/{id}', 'ProductController@productDeleteGeneral') ->name('productDeleteGeneral');
+Route::get('/productdeletebranch/{id}', 'ProductController@deleteProductBranch') ->name('deleteProductBranch');
+
 
 Route::get('/companyproducts/{id}/{branch}', 'ProductController@showBranchesProducts') ->name('showBranchesProducts');
+
+Route::get('/customerproducts/{id}', 'ProductController@showPeopleProducts') ->name('showPeopleProducts');
 Route::get('/companycreateproducts/{id}/{branch}', 'ProductController@showBranchesCreateProduct') ->name('showBranchesCreateProduct');
+Route::get('/companyaddproduct/{id}/{branch}/{idprod}', 'ProductController@AddCompanyProduct') ->name('AddCompanyProduct');
+
 Route::post('/companyaddproduct/{id}/{branch}', 'ProductController@showBranchesAddProduct') ->name('showBranchesAddProduct');
 Route::get('/companycreatebranches/{id}', 'CompanyController@createBranches') ->name('createBranches');
 Route::post('/companyupdatecompany/{id}','CompanyController@companyUpdateCompany')->name('companyUpdateCompany');
 Route::post('/companyaddbranches/{id}', 'CompanyController@addBranches') ->name('addBranches');
 Route::get('/companybranchedit/{id}/{Compan}', 'CompanyController@branchEdit') ->name('branchEdit');
+Route::get('/companybranchdelete/{id}', 'CompanyController@deleteBranch') ->name('deleteBranch');
+
 
 
 //Customers

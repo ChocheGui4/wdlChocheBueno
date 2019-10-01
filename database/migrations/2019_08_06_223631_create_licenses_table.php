@@ -16,6 +16,7 @@ class CreateLicensesTable extends Migration
         Schema::create('licenses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('serialkey',60);
+            $table->boolean('sstatus');
             $table->timestamps();
         });
     }
