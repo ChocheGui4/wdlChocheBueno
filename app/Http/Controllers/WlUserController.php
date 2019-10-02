@@ -12,10 +12,9 @@ class WlUserController extends Controller
         $this->middleware('auth');
     }
     public function showWlUsers(){
-        $usuarios=User::orderBy('id','ASC')->where("role","<>",'Super')->paginate(6);
-        //$usuarios= User::orderBy('id','ASC')->paginate(5);
-        return view('super.wlUser', compact('usuarios'))
-            ->with('i',(request()->input('page',1)-1)*6);
+        $usuarios=User::orderBy('id','ASC')->where("role","<>",'user')->get();
+        $i=0;
+        return view('super.wlUser', compact('usuarios','i'));
         //return view('super.wlUsers');
     }
 

@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('maker',20);
             $table->string('processor',25);
-            $table->char('memory',5);
+            $table->string('memory',5);
             $table->string('disc',20);
             $table->integer('storagem')->nullable();
             $table->string('unitstoragemail',3)->nullable();

@@ -16,7 +16,7 @@ class CreateProcessorsTable extends Migration
         Schema::create('processors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('namep',30);
-            $table->char('valuep',3);
+            $table->string('valuep',3);
             $table->timestamps();
         });
     }

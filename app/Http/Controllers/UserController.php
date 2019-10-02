@@ -19,14 +19,10 @@ class UserController extends Controller
     }
     public function showUsers(){
         $usuarios=User::where("role","<>",'Super')->paginate(5);
-        $companies = User::join('customers', 'customers.users_id', '=', 'users.id')
-                ->join('companies', 'companies.id', '=', 'customers.companies_id')
-                ->get();
-        $peoples = User::join('customers', 'customers.users_id', '=', 'users.id')
-                ->join('people', 'people.id', '=', 'customers.people_id')
-                ->get();
+        
+        
                 
-        return view('super.user', compact('usuarios','peoples','companies'))
+        return view('super.user', compact('usuarios'))
             ->with('i',(request()->input('page',1)-1)*5);
         
     }

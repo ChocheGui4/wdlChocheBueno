@@ -68,11 +68,20 @@
                     <div class="navbar-header">
                         <a class="navbar-brand" href="/home">
                             <b>
-                                <img
-                                    src="{{ asset('bundle/assets/images/Warriorslicenciamiento.png') }}"
-                                    alt="homepage"
-                                    class="light-logo"/>
+                            <img
+                                src="{{ asset('bundle/assets/images/iconowdl.png') }}"
+                                style="width: 40px;"
+                                
+                                alt="homepage"
+                                class="light-logo"/>    
                             </b>
+                            <!-- Logo text -->
+                        <span>
+                         <!-- dark Logo text -->
+                            
+
+                         <!-- Light Logo text -->    
+                         
                             
                         </a>
                     </div>
@@ -88,7 +97,6 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                            
                                 <a
                                     class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark"
                                     href="javascript:void(0)">

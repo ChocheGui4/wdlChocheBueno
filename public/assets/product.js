@@ -87,7 +87,6 @@ console.log($(this).serialize());
 });
 
 //Add general product
-
 $('body').on('click','#delete', function(event){
     event.preventDefault();
     var me = $(this),
@@ -169,6 +168,56 @@ $('body').on('click','#down', function(event){
                     
                 });
                 setTimeout("document.location.reload()", 1500);
+              // swal("¡Success!", "Message sent!", "success");
+            },
+            error:function(data){
+              //Error Message == 'Title', 'Message body', Last one leave as it is
+              swal("Oops...", "Something went wrong :(", "error");
+            }
+          });
+        // swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
+    }); 
+    
+});
+
+//Add Company Product
+$('body').on('click','#add', function(event){
+    event.preventDefault();
+    var me = $(this),
+        url = me.attr("href"),
+        title = me.attr("title"),
+        csrf_token = $('meta[name="csrf-token"]').attr("content");
+    swal({   
+        title: "Are you sure add?",   
+        showCancelButton: true,   
+        confirmButtonColor: "#31B90C",   
+        confirmButtonText: "Yes, add it!",   
+        closeOnConfirm: false 
+    }, function(){   
+        $.ajax({
+            url:url, //===PHP file name====
+            data:{
+                '_method':'GET',
+                'token':csrf_token
+            },
+            type:'POST',
+            success:function(data){              
+                $('#task').DataTable().ajax.reload();
+                console.time("t1");
+                swal({   
+                    title: "Product added!",   
+                    text: "",   
+                    type:"success",
+                    timer: 2000,   
+                    showConfirmButton: false 
+                    
+                });
+                
+                console.timeEnd("t1");
+                // window.setInterval(alert("Holaaaaa"),50000);
+
+                
+              
               // swal("¡Success!", "Message sent!", "success");
             },
             error:function(data){

@@ -31,6 +31,7 @@ use App\ProductList;
 use App\Storage;
 use App\UnitStorage;
 use App\User;
+use App\ViewAdd;
 use App\Year;
 use DB;
 use Yajra\Datatables\Datatables;
@@ -70,6 +71,7 @@ class ProductController extends Controller
         $producto->name = $request->name;
         $producto->description = $request->description;
         $producto->urlimg = $request->file('urlimg')->store('public');
+        $producto->productstatus = 1;
         $producto->save();        
         return redirect()->route('productsShow');
     }
@@ -134,6 +136,12 @@ class ProductController extends Controller
         // dd($names->id);
         $i=0;
         $prodid = $id;
+        $view = new ViewAdd;
+        $view->company = $company;
+        $view->branch = $branch;
+        $view->product = $id;
+        $view->save();
+        // dd($products);
         
         return view('super.addProductCompany', compact('company','branch','products','i','prodid','name'));
     }
@@ -153,23 +161,70 @@ class ProductController extends Controller
             ->rawColumns(['btn'])
             ->toJson();
     }
-    public function datatableproductsadd($company, $branch, $id, $product){
+    public function datatableproductsadd($id){
         // $tasks = Product::orderBy('id','ASC')->get();
         return Datatables()     
             ->eloquent(Category::where("products_id",$id)->where("cstatus",true))
-            ->addColumn('btn',"<a 
-                id='delete' 
-                href='{{ route('productAddCompany',[$company, $branch, $id, $product])}}' 
-                alt='alert' 
-                style='background: #31B90C; color: white;'
-                class='btn' >
-                <i class='fa fa-plus'></i>
-            </a>")
+            ->addColumn('btn','<a 
+                id=""
+                href="{{ route("productAddCompany",$id)}}"
+                alt="alert"
+                style="background: #31B90C; color: white;"
+                class="btn" >
+                <i class="fa fa-plus"></i>
+            </a>')
             ->rawColumns(['btn'])
             ->toJson();
     }
     
+    function productAddCompany($id){
+        $cat = Category::find($id);
+        $prrr = Product::orderBy('id','ASC')->get();
+        $ac = Acquisition::orderBy('id','DESC')->latest()->first();
+        $ma = Maker::where("namem",$cat->maker)->first();
+        $pr = Processor::where("namep",$cat->processor)->first();
+        $me = Memory::where("sizem",$cat->memory)->first();
+        $di = Disc::where("typed",$cat->disc)->first();
+        $license = "";
+        $license = "*WD";
+        $license .=$ma->valuem;
+        $license .=$pr->valuep;
+        $license .=$me->valueme;
+        $now = new \DateTime();
+        $license .=$now->format('dmy');
+        $license .=$di->valued."-";
+        $license .=($ac->salenumber + 1)."*";
+        // dd($license);
+        $lic = new License;
+        $lic->serialkey = $license;
+        $lic->sstatus = 1;
+        $lic->save();
+        
+        $view = ViewAdd::orderBy('id','DESC')->latest()->first();
+        $company = $view->company;
+        $branch = $view->branch;
+        $lic = License::orderBy('id','DESC')->latest()->first();
+        $acq = new Acquisition;
+        $acq->salenumber = $ac->salenumber + 1;
+        $acq->astatus = 1;
+        $acq->products_id = $view->product;
+        $acq->acquisition_types_id = 1;
+        $acq->licenses_id = $lic->id;
+        $acq->save();
+        $acq = Acquisition::orderBy('id','DESC')->latest()->first();
 
+        $custom = new Customer;
+        $custom->acquisitions_id = $acq->id;
+        $custom->companies_id = $view->company;
+        $custom->branches_id = $view->branch;
+        $custom->customstatus = 1;
+        $custom->save();
+        
+        return redirect()->route('showBranchesProducts',compact('company','branch'));
+
+        // dd($view->company,$view->branch,$view->product);
+        // $cat->union($prrr)->get();
+    }
 
     public function showBranchesProducts($id, $branch){
         $company=$id;
@@ -324,14 +379,7 @@ class ProductController extends Controller
         $product->save();
         
     }
-    
-    function productAddCompany($company,$branch,$id,$product){
-        
-        $product = Category::find($id);
-        $product->cstatus=0;
-        $product->save();
-        
-    }
+
     function productDeleteGeneral($id){
         $product = Product::find($id);
         $product->productstatus=0;

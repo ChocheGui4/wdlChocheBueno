@@ -209,6 +209,7 @@
                         <button
                             id="click"
                             type="submit"
+                            
                             style="background: #b60303; color: white;"
                             class="btn waves-effect waves-light">Save product</button>
                     </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMakersTable extends Migration
+class CreateViewAddsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateMakersTable extends Migration
      */
     public function up()
     {
-        Schema::create('makers', function (Blueprint $table) {
+        Schema::create('view_adds', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('namem',30);
-            $table->string('valuem',3);
+            $table->string('company')->nullable();
+            $table->string('people')->nullable();
+            $table->string('branch')->nullable();
+            $table->string('product');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateMakersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('makers');
+        Schema::dropIfExists('view_adds');
     }
 }

@@ -38,13 +38,13 @@ Route::get('/products', 'ProductController@productsShow') ->name('productsShow')
 Route::get('/productsshow/{id}', 'ProductController@productsShowSpecific') ->name('productsShowSpecific');
 
 Route::get('datatableproducts/{id}', 'ProductController@datatableproducts')->name('datatableproducts'); 
-Route::get('datatableproductscompany/{company}/{branch}/{id}/{product}', 'ProductController@datatableproductsadd')->name('datatableproductsadd'); 
+Route::get('datatableproductscompany/{id}', 'ProductController@datatableproductsadd')->name('datatableproductsadd'); 
 Route::post('/productcreate', 'ProductController@productCreate') ->name('productCreate');
 Route::post('/productaddspecific', 'ProductController@productAddSpecific') ->name('productAddSpecific');
 
 Route::post('/productedit', 'ProductController@productEdit') ->name('productEdit');
 Route::get('/productdelete/{id}', 'ProductController@productDelete') ->name('productDelete');
-Route::get('/productaddcompany/{company}/{branch}/{id}/{product}', 'ProductController@productAddCompany') ->name('productAddCompany');
+Route::get('/productaddcompany/{id}', 'ProductController@productAddCompany') ->name('productAddCompany');
 Route::get('/productdeletegeneral/{id}', 'ProductController@productDeleteGeneral') ->name('productDeleteGeneral');
 Route::get('/productdeletebranch/{id}', 'ProductController@deleteProductBranch') ->name('deleteProductBranch');
 

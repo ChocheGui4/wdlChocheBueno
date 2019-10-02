@@ -16,7 +16,7 @@
            
 
         </div>
-        <div class="col-sm-2 align-self-center">
+        <!-- <div class="col-sm-2 align-self-center">
             <div class="input-group input-group-sm">
                 <a href="{{ route('customerCreate')}}">
                     <button class="btn btn-danger">
@@ -35,7 +35,7 @@
                     </button>
                 </a>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- iniContent Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -51,7 +51,7 @@
                             <table
                                 
                                 id="table"
-                                class="display nowrap table table-hover table-striped table-bordered dataTable"
+                                class="display nowrap table table-hover table-striped table-bordered dataTable table-sm"
                                 cellspacing="0"
                                 width="100%"
                                 role="grid"
@@ -68,14 +68,6 @@
                                             aria-sort="ascending"
                                             aria-label="Name: activate to sort column descending"
                                             style="width: 10px;">id</th>
-                                        <th
-                                            class="sorting"
-                                            tabindex="0"
-                                            aria-controls="example23"
-                                            rowspan="1"
-                                            colspan="1"
-                                            aria-label="Office: activate to sort column ascending"
-                                            style="width: 105px;">Company</th>
                                         <th
                                             class="sorting"
                                             tabindex="0"
@@ -101,48 +93,22 @@
                                 </thead>
                                 
                                 <tbody>
-                                @foreach ($companies as $usuario)
+                                @foreach ($usuarios as $usuario)
                                     <tr role="row" class="odd">
-                                        <td>{{ ++$i }}</td>
-                                        <td>{{ $usuario->companyname }}</td>
-                                        <td>{{ $usuario->role }}</td>
-                                        <td>{{ $usuario->email }}</td>
+                                        <td><strong>{{ ++$i }}</strong></td>
+                                        <td><strong>{{ $usuario->role }}</strong></td>
+                                        <td><strong>{{ $usuario->email }}</strong></td>
                                         <td>
-                                            <a class="btn btn-warning" href="{{ route('userEdit',$usuario->id) }}">
+                                            <a class="btn"
+                                                href="{{ route('userEdit',$usuario->id) }}"
+                                                style="background: #31B90C; color: white;">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-
                                             <a
                                                 id="deleteuser"
                                                 href="{{ route('userEdit',$usuario->id) }}"
-                                                class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
-
-                                            @csrf @method('DELETE')
-
-                                            <!--<button class="btn btn-danger" data-toggle="modal"
-                                            data-target="#exampleModalLong">Eliminar</button>-->
-
-                                        </td>
-                                        
-                                    </tr>
-                                @endforeach 
-                                @foreach ($peoples as $people)
-                                    <tr role="row" class="odd">
-                                        <td>{{ ++$i }}</td>
-                                        <td>{{ $people->name }}</td>
-                                        <td>{{ $people->role }}</td>
-                                        <td>{{ $people->email }}</td>
-                                        <td>
-                                            <a class="btn btn-warning" href="{{ route('userEdit',$usuario->id) }}">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-
-                                            <a
-                                                id="deleteuser"
-                                                href="{{ route('userEdit',$usuario->id) }}"
-                                                class="btn btn-danger">
+                                                style="background: #DD1E00; color: white;" 
+                                                class="btn">
                                                 <i class="fa fa-trash"></i>
                                             </a>
 
