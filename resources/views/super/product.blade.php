@@ -12,7 +12,7 @@
                     <li class="breadcrumb-item active">Product</li>
                 </ol>
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-3 align-self-center">
+            <div class="col-md-5 col-sm-5 col-xs-5 align-self-center">
                 <a
                     href="#"
                     data-toggle="modal"
@@ -22,14 +22,7 @@
                     <i class="mdi mdi-plus-circle"></i>
                     Add product</a>
             </div>
-            <div class="col-md-2 col-sm-2 col-xs-2 align-self-center">
-                <a
-                    href="/home"
-                    class="btn pull-right hidden-sm-down btn-primary float-left"
-                    style="background: #383F49; color: white">
-                    <i class="mdi mdi-arrow-left"></i>
-                    Dashboard</a>
-            </div>
+            
         </div>
         <!--Notificación-->
         <div class="jq-toast-wrap top-right">
@@ -43,20 +36,17 @@
                 <div class="container-fluid">
                     <div class="row el-element-overlay">
                         @csrf
-                        @foreach ($products as $product)
+                        <!-- @foreach ($products as $product)
                         <div class="col-md-4 col-sm-4 col-xs-4">
                             <div class="card">
                                 <div class="el-card-item">
-                                <!-- <div class="el-card-item" style="background: #FFCBCB;" > -->
-                                <!-- <div class="el-card-item" style="background: #FFD3D3;" > -->
-                                <!-- <div class="el-card-item" style="background: #DFD8F8;" style="border-color:#876FD1; border-style:solid; border-width:1px;"> -->
+                                
                                     <div class="el-card-avatar el-overlay-1">
                                         <img
                                             class="card-img-top img-responsive"
                                             src="{{ Storage::url($product->urlimg)}}"
                                             style="height:190px;"
                                             alt="Card image cap">
-                                        <!-- <img src="{{ asset('bundle/assets/images/users/antivirus.png') }}" alt="user"> -->
                                         <div class="el-overlay">
                                             <ul class="el-info">
                                                 <li>
@@ -90,15 +80,97 @@
                                     <div class="el-card-content">
                                         <h3 id="h3{{ $i }}" class="box-title">{{ $product->name }}</h3>
                                         <small id="sm{{ $i }}">{{ $product->description }}</small>
-                                        {{$i++}}
+                                        
                                         
                                         <br>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
-
+                        @endforeach -->
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="table-responsive">
+                                        <div id="example23_wrapper" class="dataTables_wrapper">
+                                            <table
+                                                id="table"
+                                                class="display nowrap table table-hover table-striped table-bordered dataTable table-sm"
+                                                cellspacing="0"
+                                                width="100%"
+                                                role="grid"
+                                                aria-describedby="example23_info"
+                                                style="width: 100%;">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th
+                                                            class="sorting_asc"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-sort="ascending"
+                                                            aria-label="Name: activate to sort column descending"
+                                                            style="width: 300px;">Name</th>
+                                                        <th
+                                                            class="sorting_asc"
+                                                            tabindex="0"
+                                                            aria-controls="example23"
+                                                            rowspan="1"
+                                                            colspan="1"
+                                                            aria-sort="ascending"
+                                                            aria-label="Name: activate to sort column descending"
+                                                            style="width:400px;">Description</th>
+                                                        <th
+                                                            style="width: 201px;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($products as $product)
+                                                        <div>
+                                                            <tr role="row" class="odd">
+                                                                
+                                                                <td><strong> {{ $product->name }} </strong></td>
+                                                                <td><strong> {{ $product->description }} </strong></td>
+                                                                <td align="center" >
+                                                                    
+                                                                    <a
+                                                                        id="edit{{ $i }}"
+                                                                        class="btn image-popup-vertical-fit"  
+                                                                        style="background: #31B90C; color: white;"
+                                                                        onClick="newmetod('#edit{{$i}}','#h3{{$i}}','#sm{{$i}}');" 
+                                                                        data-toggle="modal"
+                                                                        data-target="#WDNGcreate">
+                                                                        <i class="mdi mdi-plus-circle"></i>
+                                                                    </a>
+                                                                    <a 
+                                                                        id="down"
+                                                                        class="btn" 
+                                                                        style="background: #b60303; color: white;"
+                                                                        href="{{ route('productDeleteGeneral',$product->id)}}">
+                                                                        <i class="mdi mdi-close-circle"></i>
+                                                                    </a>
+                                                                    <a
+                                                                        class="btn"
+                                                                        style="background: #00A7D9; color: white"
+                                                                        href="{{ route('productsShowSpecific',$product->id)}}">
+                                                                        <i class="mdi mdi-arrow-right-bold"></i>
+                                                                    </a>
+                                                                    @csrf @method('DELETE')
+                                                                </td>
+                                                            </tr>
+                                                        </div>
+                                                        <h3 hidden id="h3{{ $i }}" class="box-title">{{ $product->name }}</h3>
+                                                        <small hidden id="sm{{ $i }}">{{ $product->description }}</small>
+                                                        <p hidden>{{$i++}}</p>
+                                                    @endforeach 
+                                                </tbody>
+                                            </table>                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- /.row -->

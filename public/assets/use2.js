@@ -26,6 +26,7 @@ function ucwords(e, string){
 // Do visible forms End visible forms Show regex Physical person Terminan
 // funciones jquery para formulario de usuarios de warriors Visualizar
 // contraseña
+
 var i = 1;
 $('#showpass').click(function () {
     i++;
@@ -55,3 +56,27 @@ $('#divbtns').on('click', function (e) {
     alert($('[name="telephone"]').val());
 
 });
+
+
+
+$('#cargar').on('click', function (e) {
+    // $('#upload').load('/companybranches/{id}');
+    // $('#upload').load('/companybranches/1');
+    $.ajax({
+        url: "/companybranches/1",
+        type: 'get',
+        success: function(response) {
+        //   alert(response);
+          console.log(response[0].branchname);
+        },
+        error: function() {
+          console.log("No se ha podido obtener la información");
+          alert("Noooooooo salio");
+        }
+      });
+});
+
+// $('#bajar').on('click', function (e) {
+//     // $('#upload').load('/companybranches/{id}');
+//     $('#upload').remove('/companybranches/1');
+// });

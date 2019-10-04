@@ -1,4 +1,5 @@
-@extends('layouts.wdlicenciamiento') @section('content')
+@extends('layouts.wdlicenciamiento') 
+@section('content')
 <div class="wrapper">
     <div class="row page-titles">
         <div class="col-md-8  align-self-center">

@@ -5,7 +5,9 @@
     $('#desc').val($(desc).val());    
     $('#desc').text($(desc).val());
 }*/
-
+$(document).ready(function() {
+    $('#table').DataTable();
+});
 //Método para agregar storage ne la creación de nuevos productos
 function selectedcheck(){
     if ($('#check').prop('checked') ) {

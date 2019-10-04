@@ -57,6 +57,7 @@
                                                 <a class="btn default btn-outline" href="{{ route('showBranches',$company->id)}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
+                                                
                                             </li>
                                         </ul>
                                     </div>
@@ -68,15 +69,43 @@
                                         {{ $company->exteriornumber }}-{{ $company->insidenumber }},
                                         {{ $company->zipcode }},
                                         {{ $company->district }}</small>
+                                        <div class="btn-group dropright">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Example
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="btn-group dropright">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Branch Office
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                @foreach ($customers as $customer)
+
+                                                    <a class="dropdown-item" href="#">{{$customer->branchname}}</a>
+                                                    
+                                                @endforeach
+                                                {{$i++}}
+                                            </div>
+                                        </div>
                                     <br>
                                 </div>
                             </div>
                         </div>
                     </div>
                     @endforeach
-
+                    
                 </div>
                 <!--Fin de la información de la empresa-->
+                <button id="cargar" class="btn btn-warning">Cargar</button>
+                <button id="bajar" class="btn btn-warning">Bajar</button>
+                <div id="upload">s</div>
+                
                 
             </div>
             <!-- /.container-fluid -->

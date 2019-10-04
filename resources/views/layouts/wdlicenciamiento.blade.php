@@ -115,7 +115,7 @@
                                         <span class="heartbit"></span>
                                         <span class="point"></span></div>
                                 </a>
-                                <div class="dropdown-menu mailbox animated bounceInDown">
+                                <!-- <div class="dropdown-menu mailbox animated bounceInDown">
                                     <ul>
                                         <li>
                                             <div class="drop-title">Notifications</div>
@@ -171,7 +171,7 @@
                                             </a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
                             </li>
                         </ul>
                     </div>

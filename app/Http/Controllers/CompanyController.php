@@ -38,11 +38,15 @@ class CompanyController extends Controller
         $role= \Auth::user()->role;
         if($role === 'Super'){
             $companies = Company::orderBy('id','ASC')->where("companystatus",TRUE)->get();
-            $peoples = People::orderBy('id','ASC')->get();
-            
+            $customers = Customer::join("companies","customers.companies_id","=","companies.id")
+            ->join("branches","customers.branches_id","=","branches.id")
+            ->select('branches.id',"branches.branchname",'customers.id as idcustom')
+            ->groupBy('branches.id','idcustom')
+            ->get();
+            $i = 1;
+            // dd($customers);
         
-        
-            return view('super.company',compact('companies','peoples'));
+            return view('super.company',compact('companies','customers','i'));
         } else{
             return redirect()->route('Home');
         }
@@ -161,7 +165,7 @@ class CompanyController extends Controller
         foreach ($branches as $branch ) {
             $branch1 = $branch->branches_id;
         }
-        
+        // return $branches;
         
         //$branches = Branch::join("companies_id","=",$id)->get();     
         return view('super.branches',compact('branches','company','branch1'));
