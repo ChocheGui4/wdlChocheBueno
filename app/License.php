@@ -11,6 +11,6 @@ class License extends Model
         return $this->hasMany('App\Acquisition');
     }
     protected $fillable = [
-        'serialkey'
+        'serialkey','sstatus'
     ];
 }

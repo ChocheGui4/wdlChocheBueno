@@ -11,6 +11,6 @@ class Product extends Model
         return $this->hasMany('App\Acquisition');
     }
     protected $fillable = [
-        'name', 'description','time','period','users','storage','unitstorage'
+        'name', 'description','urlimg','productstatus'
     ];
 }

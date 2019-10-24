@@ -11,29 +11,12 @@
             </ol>
         </div>
         <div class="col-md-6 col-4 align-self-center">
-            <button
-                class="right-side-toggle waves-effect waves-light btn-info btn-circle btn-sm pull-right m-l-10">
-                <i class="ti-settings text-white"></i>
-            </button>
-            <a href="{{ route('companyCreate')}}"  class="btn pull-right hidden-sm-down btn-success">
+            <a 
+            href="{{ route('companyCreate')}}" 
+            class="btn pull-right hidden-sm-down"
+            style="background: #31B90C; color: white;">
                 <i class="mdi mdi-plus-circle"></i>
                 Create</a>
-            <div class="dropdown pull-right m-r-10 hidden-sm-down">
-                <button
-                    class="btn btn-secondary dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false">
-                    January 2017
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">February 2017</a>
-                    <a class="dropdown-item" href="#">March 2017</a>
-                    <a class="dropdown-item" href="#">April 2017</a>
-                </div>
-            </div>
         </div>
     </div>
     <!-- Content Wrapper. Contains page content -->
@@ -50,8 +33,12 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="el-card-item">
-                                <div class="el-card-avatar el-overlay-1">
-                                    <img src="{{ asset('bundle/assets/images/users/company.png') }}" alt="user">
+                                <div class="el-card-avatar el-overlay-1" >
+                                    <img 
+                                        src="{{ Storage::url($company->companyimg)}}"
+                                        style="width:230px;height:230px;"
+                                        alt="user">
+                                    <!-- <img src="{{ asset('bundle/assets/images/customers/HillsongThisisliving1.jpg') }}" alt="user"> -->
                                     <div class="el-overlay">
                                         <ul class="el-info">
                                             <li>
@@ -62,7 +49,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="btn default btn-outline" href="javascript:void(0);">
+                                                <a id="down" class="btn default btn-outline" href="{{ route('companyDelete',$company->id)}}">
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>
                                             </li>
@@ -70,6 +57,7 @@
                                                 <a class="btn default btn-outline" href="{{ route('showBranches',$company->id)}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
+                                                
                                             </li>
                                         </ul>
                                     </div>
@@ -81,15 +69,43 @@
                                         {{ $company->exteriornumber }}-{{ $company->insidenumber }},
                                         {{ $company->zipcode }},
                                         {{ $company->district }}</small>
+                                        <div class="btn-group dropright">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Example
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="btn-group dropright">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Branch Office
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                @foreach ($customers as $customer)
+
+                                                    <a class="dropdown-item" href="#">{{$customer->branchname}}</a>
+                                                    
+                                                @endforeach
+                                                {{$i++}}
+                                            </div>
+                                        </div>
                                     <br>
                                 </div>
                             </div>
                         </div>
                     </div>
                     @endforeach
-
+                    
                 </div>
                 <!--Fin de la información de la empresa-->
+                <button id="cargar" class="btn btn-warning">Cargar</button>
+                <button id="bajar" class="btn btn-warning">Bajar</button>
+                <div id="upload">s</div>
+                
                 
             </div>
             <!-- /.container-fluid -->

@@ -42,7 +42,7 @@ File: scss
   /* FF3.6-15 */
   background: -webkit-linear-gradient(left, #533fd0 0%, #840fb5 100%);
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, #533fd0 0%, #840fb5 100%);
+  background: linear-gradient(to right, #b60303 0%, #b60303 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
@@ -85,8 +85,9 @@ File: scss
 /*******************
 /*General Elements
 *******************/
+/* Texto de rutas */
 a {
-  color: #7460ee;
+  color: #b60303;
 }
 
 a.link:hover, a.link:focus {
@@ -116,7 +117,7 @@ a.link:hover, a.link:focus {
 }
 
 .text-themecolor {
-  color: #7460ee !important;
+  color: #b60303 !important;
 }
 
 .profile-tab li a.nav-link.active,
@@ -178,8 +179,9 @@ a.link:hover, a.link:focus {
   color: #798699;
 }
 
+/* Color de texto del navbar */
 .sidebar-nav ul li a.active, .sidebar-nav ul li a:hover {
-  color: #7460ee;
+  color: #ffffff;
 }
 
 .sidebar-nav ul li a.active {
@@ -203,26 +205,28 @@ a.link:hover, a.link:focus {
   border-left: 3px solid #272c33;
 }
 
+/*Color de barrita a lado de las opciones*/
 .sidebar-nav > ul > li > a.active, .sidebar-nav > ul > li > a:hover {
-  border-left: 3px solid #7460ee;
+  border-left: 3px solid #ca0000;
 }
 
+/* Color de los iconos */
 .sidebar-nav > ul > li > a.active i, .sidebar-nav > ul > li > a:hover i {
-  color: #7460ee;
+  color: #ca0000/*#b60303*/;
 }
 
 .sidebar-nav > ul > li > a i {
-  color: #798699;
+  color: #f0e7e7;
 }
 
 .sidebar-nav > ul > li > a.active {
   font-weight: 400;
   background: #ffffff;
-  color: #7460ee;
+  color: #b60303;
 }
 
 .user-profile .profile-text a {
-  color: #798699 !important;
+  color: #002864 !important;
 }
 
 .card-no-border .sidebar-footer {

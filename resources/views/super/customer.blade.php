@@ -17,7 +17,8 @@
 
             <a
                 href="{{ route('customerCreate')}}"
-                class="btn pull-right hidden-sm-down btn-success">
+                class="btn pull-right hidden-sm-down"
+                style="background: #31B90C; color: white;">
                 <i class="mdi mdi-plus-circle"></i>
                 Create</a>
 
@@ -33,31 +34,31 @@
                 <!--Inicio de información de la empresa-->
                 <div class="row el-element-overlay">
 
-                    @foreach ($usuarios as $people)
+                    @foreach ($peoples as $people)
                     <div class="col-lg-3 col-md-6">
                         <div class="card">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">
                                     <img
-                                        src="{{ asset('bundle/assets/images/users/HillsongThisisliving1.jpg') }}"
+                                        src="{{ Storage::url($people->img)}}"
+                                        style="width:230px;height:230px;"
                                         alt="user">
                                     <div class="el-overlay">
                                         <ul class="el-info">
                                             <li>
                                                 <a
                                                     class="btn default btn-outline image-popup-vertical-fit"
-                                                    href="{{ route('customerEdit',$people->people_id)}}">
+                                                    href="{{ route('customerEdit',$people->id)}}">
                                                     <i class="mdi mdi-account-edit"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a id="deletecustomer" data-toggle="modal" data-target="#myModal" class="btn default btn-outline" >
+                                                <a id="down" href="{{ route('customerDelete',$people->id)}}" class="btn default btn-outline" >
                                                     <i class="mdi mdi-close-circle"></i>
-                                                </a>
-                                                
+                                                </a>                                                
                                             </li>
                                             <li>
-                                                <a class="btn default btn-outline" href="javascript:void(0);">
+                                                <a class="btn default btn-outline" href="{{ route('showPeopleProducts',$people->id)}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
                                             </li>
@@ -75,32 +76,7 @@
                         </div>
                     </div>
                     <!--Inicia la ventana modal-->
-                    <div
-                        class="modal fade"
-                        id="myModal"
-                        style="display: none;"
-                        aria-modal="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    
-                                    <h4 class="modal-title"><i class="fa fa-exclamation-triangle deletet"></i>Delete</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div align="center" class="modal-body">
-                                    <h5>Are you sure?</h5>
-                                </div>
-                                <div class="modal-footer justify-content-between">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    <a class="btn btn-primary" href="{{ route('customerDelete',$people->people_id) }}" >Confirm</a>
-                                </div>
-                            </div>
-                            <!-- /.modal-content -->
-                        </div>
-                        <!-- /.modal-dialog -->
-                    </div>
+                    
                     <!--Termina la ventana modal-->
                     @endforeach
 
@@ -117,27 +93,16 @@
 </div>
 <!-- ./wrapper -->
 <!-- ./wrapper -->
+<!--  Sweet Alert-->
 
+<!-- End Sweet Alert -->
 
 @endsection
 @section('scripts')
 <script>
-function Sweetal() {
-    Swal.fire({
-        position: 'top-end',
-        type: 'success',
-        title: 'Your work has been saved',
-        showConfirmButton: false,
-        timer: 1500
-    })
-}
-$("#alertt").click(function(){
-swal({
-title:’Hola mundo!’,
-text:"Hola, estamos probando Sweet Alert 2",
-type:’success’
-})
-
-});
+    $('#swettb').on('click', function(){
+        alert("adaffd");
+        console.log("1111");
+    });
 </script>
 @endsection

@@ -11,7 +11,7 @@ class People extends Model
         return $this->hasMany('App\Customer');
     }
     protected $fillable = [
-        'rfc', 'name','lastname','telephone','zipcode', 
+        'rfc', 'name','lastname','img','telephone','zipcode', 
         'district','street', 'insidenumber','exteriornumber'
     ];
 }

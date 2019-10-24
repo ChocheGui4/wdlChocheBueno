@@ -1,96 +1,54 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="../assets/images/favicon.png">
+        <title>WDLicense</title>
+        <link
+            href="{{ asset('bundle/assets/plugins/bootstrap/css/bootstrap.min.css') }}"
+            rel="stylesheet">
+        <link href="{{ asset('bundle/css/style.css') }}" rel="stylesheet">
+        <link
+            href="{{ asset('bundle/css/colors/blue.css') }}"
+            id="theme"
+            rel="stylesheet">
     </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
+    <body >
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+        <section id="wrapper">
+            <div
+                class="login-register"
+                style="background-image:url({{ asset('bundle/assets/images/background/login-register.jpg') }});">
+                <div class="form-group text-center m-t-20">
+                    <h1><strong style="color: white;">WDLICENSE</strong></h1>
+                    <br><br>
+                        <div class="col-xs-12">
+                            <a href="/login">
+                                <button class="btn btn-info btn-lg text-uppercase waves-effect waves-light">Log In</button>
+                            </a>
+                        </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <script src="{{ asset('bundle/assets/plugins/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('bundle/assets/plugins/bootstrap/js/tether.min.js') }}"></script>
+        <script
+            src="{{ asset('bundle/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundle/js/jquery.slimscroll.js') }}"></script>
+        <script src="{{ asset('bundle/js/waves.js') }}"></script>
+        <script src="{{ asset('bundle/js/sidebarmenu.js') }}"></script>
+        <script
+            src="{{ asset('bundle/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js') }}"></script>
+        <script src="{{ asset('bundle/js/custom.min.js') }}"></script>
+        <script
+            src="{{ asset('bundle/assets/plugins/styleswitcher/jQuery.style.switcher.js') }}"></script>
     </body>
 </html>

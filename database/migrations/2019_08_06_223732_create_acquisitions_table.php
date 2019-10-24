@@ -15,10 +15,11 @@ class CreateAcquisitionsTable extends Migration
     {
         Schema::create('acquisitions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('salenumber');
+            $table->boolean('astatus');
             $table->integer('products_id');
             $table->integer('acquisition_types_id');
             $table->integer('licenses_id');
-            $table->integer('characteristics_id');
             $table->foreign('products_id')
             ->references('id')
             ->on('products')
@@ -32,11 +33,6 @@ class CreateAcquisitionsTable extends Migration
             $table->foreign('licenses_id')
             ->references('id')
             ->on('licenses')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-            $table->foreign('characteristics_id')
-            ->references('id')
-            ->on('characteristics')
             ->onDelete('cascade')
             ->onUpdate('cascade');
             $table->timestamps();

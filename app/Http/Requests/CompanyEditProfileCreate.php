@@ -26,7 +26,11 @@ class CompanyEditProfileCreate extends FormRequest
         return [
             'name' => 'required|min:3|max:25|regex:/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/',
             'lastname' => 'required|min:3|max:35|regex:/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/',
-            'telephone' =>'required|min:10|max:10|regex:/[0-9]$/'
+            'telephone1' =>'required|min:12|max:12|regex:/[0-9]$/',
+            'telephone2' =>'required|min:12|max:12|regex:/[0-9]$/',
+            'email' =>'required|email|max:45',
+            'email2' =>'required|email|max:45',
+            'area' =>'required',
         ];
     }
 }

@@ -5,11 +5,15 @@
             <h3 class="text-themecolor m-b-0 m-t-0">Products</h3>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="javascript:void(0)">Home</a>
+                    <a href="/home">Home</a>
                 </li>
-                <li class="breadcrumb-item active">Company</li>
-                <li class="breadcrumb-item active">Branch</li>
-                <li class="breadcrumb-item active">Product</li>
+                <li class="breadcrumb-item">
+                    <a href="/companies">Company</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('showBranches',$company)}}">Branch</a>
+                </li>
+                <li class="breadcrumb-item active">Products</li>
             </ol>
         </div>
 
@@ -17,7 +21,8 @@
             <div class="col-md-12 align-self-center">
                 <a
                     href="{{ route('showBranches',$company)}}"
-                    class="btn pull-right hidden-sm-down btn-primary">
+                    class="btn pull-right hidden-sm-down"
+                    style="background: #383F49; color: white">
                     <i class="mdi mdi-arrow-left"></i>
                     Back</a>
             </div>
@@ -25,7 +30,8 @@
 
                 <a
                     href="{{ route('showBranchesCreateProduct',[$company,$branches])}}"
-                    class="btn pull-right hidden-sm-down btn-success">
+                    class="btn pull-right hidden-sm-down"
+                    style="background: #31B90C; color: white;">
                     <i class="mdi mdi-plus-circle"></i>
                     Add product</a>
 
@@ -42,11 +48,14 @@
                 <div class="row el-element-overlay">
 
                     @foreach ($products as $product)
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-3 col-ms-3 col-xs-3">
                         <div class="card">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">
-                                    <img src="{{ asset('bundle/assets/images/users/antivirus.png') }}" alt="user">
+                                    <img 
+                                        src="{{ Storage::url($product->urlimg)}}"
+                                        alt="user">
+                                    
                                     <div class="el-overlay">
                                         <ul class="el-info">
                                             <li>
@@ -57,7 +66,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="btn default btn-outline" href="javascript:void(0);">
+                                                <a id="down" class="btn default btn-outline" href="{{ route('deleteProductBranch', $product->id)}}">
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>
                                             </li>

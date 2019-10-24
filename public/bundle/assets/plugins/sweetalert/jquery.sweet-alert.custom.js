@@ -29,11 +29,11 @@
             text: "You will not be able to recover this imaginary file!",   
             type: "warning",   
             showCancelButton: true,   
-            confirmButtonColor: "#DD6B55",   
+            confirmButtonColor: "#C52300",   
             confirmButtonText: "Yes, delete it!",   
             closeOnConfirm: false 
         }, function(){   
-            swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
+            // swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
         });
     });
 
@@ -72,6 +72,7 @@
          swal({   
             title: "Auto close alert!",   
             text: "I will close in 2 seconds.",   
+            type:"success",
             timer: 2000,   
             showConfirmButton: false 
         });

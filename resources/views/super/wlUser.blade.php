@@ -13,25 +13,7 @@
                 
             </ol>
         </div>
-        <div class="col-md-4 align-self-center">
-
-            <a
-                href="{{ route('Home')}}"
-                class="btn pull-right hidden-sm-down btn-primary">
-                <i class="mdi mdi-arrow-left"></i>
-                Back</a>
-
-        </div>
-        <div class="col-sm-2 align-self-center">
-            <div class="input-group input-group-sm">
-                <a href="/usercreate">
-                    <button class="btn btn-success">
-                        <i class="fa fa-user-plus"></i>
-                        Create user
-                    </button>
-                </a>
-            </div>
-        </div>
+        
     </div>
     <!-- iniContent Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -65,7 +47,7 @@
                                             colspan="1"
                                             aria-sort="ascending"
                                             aria-label="Name: activate to sort column descending"
-                                            style="width: 140px;">id</th>
+                                            style="width: 10px;">id</th>
                                         <th
                                             class="sorting"
                                             tabindex="0"
@@ -73,7 +55,7 @@
                                             rowspan="1"
                                             colspan="1"
                                             aria-label="Position: activate to sort column ascending"
-                                            style="width: 206px;">Role</th>
+                                            style="width: 20px;">Role</th>
                                         <th
                                             class="sorting"
                                             tabindex="0"
@@ -85,18 +67,17 @@
                                         <th
                                             
                                             
-                                            style="width: 51px;"></th>
+                                        style="width: 51px;"></th>
                                         
                                     </tr>
                                 </thead>
                                 
                                 <tbody>
-                                
                                 @foreach ($usuarios as $usuario)
                                     <tr role="row" class="odd">
-                                        <td>{{ ++$i }}</td>
-                                        <td>{{ $usuario->role }}</td>
-                                        <td>{{ $usuario->email }}</td>
+                                        <td><strong>{{ ++$i }}</strong></td>
+                                        <td><strong>{{ $usuario->role }}</strong></td>
+                                        <td><strong>{{ $usuario->email }}</strong></td>
                                         <td>
                                             @if ($usuario->role != "Super")
                                                 <a class="btn btn-warning" href="{{ route('wluserEdit',$usuario->id) }}">

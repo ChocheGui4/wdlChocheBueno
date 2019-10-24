@@ -17,17 +17,21 @@ class CreateCompaniesTable extends Migration
             $table->increments('id');
             $table->string('companyrfc',13);
             $table->string('companyname',50);
-            $table->string('companytelephone',12);
-            $table->string('companyemail',45);
-            $table->integer('zipcode');
+            $table->string('companyimg',255);
+            $table->string('companytelephone1',12);
+            $table->string('companytelephone2',12)->nullable();
+            $table->string('companyemail1',45);
+            $table->string('companyemail2',45)->nullable();
+            $table->string('zipcode',5);
             $table->string('district',35);
             $table->string('street',35);
             $table->integer('insidenumber');
             $table->integer('exteriornumber');
-            $table->integer('contacts_id');
-            $table->foreign('contacts_id')
+            $table->boolean('companystatus');
+            $table->integer('contact_companies_id');
+            $table->foreign('contact_companies_id')
             ->references('id')
-            ->on('contacts')
+            ->on('contact_companies')
             ->onDelete('cascade')
             ->onUpdate('cascade');
             $table->timestamps();

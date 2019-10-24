@@ -17,11 +17,8 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name',60);
             $table->text('description');  
-            $table->integer('time');
-            $table->string('period',6);
-            $table->integer('users');
-            $table->integer('storage')->nullable();
-            $table->string('unitstorage',2)->nullable();
+            $table->string('urlimg',255)->nullable();
+            $table->boolean('productstatus');
             $table->timestamps();          
         });
     }
