@@ -40,10 +40,13 @@ class CompanyController extends Controller
             $companies = Company::orderBy('id','ASC')->where("companystatus",TRUE)->get();
             $customers = Customer::join("companies","customers.companies_id","=","companies.id")
             ->join("branches","customers.branches_id","=","branches.id")
-            ->select('branches.id',"branches.branchname",'customers.id as idcustom')
-            ->groupBy('branches.id','idcustom')
+            ->select('customers.id as idcustom','customers.companies_id','customers.acquisitions_id'
+            ,'branches.id',"branches.branchname")
+            // ->groupBy('idcustom','branches.id')
+            
             ->get();
             $i = 1;
+            // dd($companies);
             // dd($customers);
         
             return view('super.company',compact('companies','customers','i'));

@@ -28,7 +28,57 @@
 
                 <!--Inicio de información de la empresa-->
                 <div class="row el-element-overlay">
+    <!--  -->
+    <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="https://bootstrapthemes.co" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown link
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item dropdown-toggle" href="">Submenu</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Submenu action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another submenu action</a></li>
 
+
+                                        <li><a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Subsubmenu action aa</a></li>
+                                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Subsubmenu action bb</a></li>
+                                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a class="dropdown-item dropdown-toggle" href="#">Submenu 2</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Submenu action 2</a></li>
+                                        <li><a class="dropdown-item" href="#">Another submenu action 2</a></li>
+
+
+                                        <li><a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Subsubmenu action 1 3</a></li>
+                                                <li><a class="dropdown-item" href="#">Another subsubmenu action 2 3</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu 3</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Subsubmenu action 3 </a></li>
+                                                <li><a class="dropdown-item" href="#">Another subsubmenu action 3</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+    <!--  -->
                     @foreach ($companies as $company)
                     <div class="col-lg-3 col-md-6">
                         <div class="card">
@@ -62,6 +112,7 @@
                                         </ul>
                                     </div>
                                 </div>
+                                
                                 <div class="el-card-content">
                                     <h3 class="box-title">{{ $company->companyname }}
                                     </h3>
@@ -69,28 +120,46 @@
                                         {{ $company->exteriornumber }}-{{ $company->insidenumber }},
                                         {{ $company->zipcode }},
                                         {{ $company->district }}</small>
-                                        <div class="btn-group dropright">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Example
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                                
-                                            </div>
-                                        </div>
+                                        
+                                        
                                         <div class="btn-group dropright">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Branch Office
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                 @foreach ($customers as $customer)
+                                                    @if($customer->companies_id == $company->id)
+                                                        @if($customer->acquisitions_id != "")
+                                                            <li><a class="dropdown-item" href="#">{{$customer->branchname}}</a></li>
+                                                            <!-- Level two dropdown-->
+                                                                <li class="dropdown-submenu">
+                                                                    <a id="dropdown-menu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
+                                                                    <ul aria-labelledby="dropdown-menu" class="dropdown-menu border-0 shadow">
+                                                                    <li>
+                                                                        <a tabindex="-1" href="#" class="dropdown-item">level 2</a>
+                                                                    </li>
 
-                                                    <a class="dropdown-item" href="#">{{$customer->branchname}}</a>
+                                                                <!-- Level three dropdown-->
+                                                                <li class="dropdown-submenu">
+                                                                <a id="dropdownMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">level 2</a>
+                                                                <ul aria-labelledby="dropdownMenu3" class="dropdown-menu border-0 shadow">
+                                                                    <li><a href="#" class="dropdown-item">3rd level</a></li>
+                                                                    <li><a href="#" class="dropdown-item">3rd level</a></li>
+                                                                </ul>
+                                                                </li>
+                                                                <!-- End Level three -->
+
+                                                                <li><a href="#" class="dropdown-item">level 2</a></li>
+                                                                <li><a href="#" class="dropdown-item">level 2</a></li>
+                                                            </ul>
+                                                            </li>
+            <!-- End Level two -->
+ 
+                                                        @endif        
+                                                    @endif
                                                     
                                                 @endforeach
-                                                {{$i++}}
+                                                <p hidden>{{$i++}}</p>
                                             </div>
                                         </div>
                                     <br>
@@ -102,9 +171,9 @@
                     
                 </div>
                 <!--Fin de la información de la empresa-->
-                <button id="cargar" class="btn btn-warning">Cargar</button>
+                <!-- <button id="cargar" class="btn btn-warning">Cargar</button>
                 <button id="bajar" class="btn btn-warning">Bajar</button>
-                <div id="upload">s</div>
+                <div id="upload"></div> -->
                 
                 
             </div>

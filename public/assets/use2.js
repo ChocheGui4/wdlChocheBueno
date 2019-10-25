@@ -5,7 +5,6 @@ $(document).ready(function () {
     $("#sca1").hide();
     var val=$("#area1").val();
     $("#area option:contains("+ val +")").attr("selected",true);
-
     // var val=$("#area2").val();
     // $("#areas option:contains("+ val +")").attr("selected",true);
 
