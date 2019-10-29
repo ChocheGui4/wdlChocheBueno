@@ -26,7 +26,10 @@ Route::get('/companycreate', 'CompanyController@companyCreate') -> name('company
 Route::get('/companyedit/{id}', 'CompanyController@companyEdit') -> name('companyEdit');
 Route::get('/companydelete/{id}', 'CompanyController@companyDelete') -> name('companyDelete');
 Route::get('/createcontactcompany', 'CompanyController@contactCompany') -> name('contactCompany');
+Route::get('/createcontactbranch/{id}/{branch}/', 'CompanyController@contactBranch') -> name('contactBranch');
 Route::post('/createcontact', 'CompanyController@contactAddCompany') -> name('contactAddCompany');
+Route::post('/createcontact/{company}/{id}/', 'CompanyController@contactAddBranch') -> name('contactAddBranch');
+
 
 
 Route::post('/companyadd','CompanyController@companyAdd')->name('companyAdd');

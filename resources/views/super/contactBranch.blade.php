@@ -9,7 +9,7 @@
                     <a href="/home">Home</a>
                 </li>
                 <li class="breadcrumb-item active">
-                    <a href="/companies">Contact company</a>
+                    <a href="/companies">Contact Branch</a>
                 </li>
                 <li class="breadcrumb-item active">Create</li>
             </ol>
@@ -30,7 +30,7 @@
             <div class="col-lg-12">
                 <div class="card wizard-content">
                     <div class="card-block">
-                        <form class="" action="{{ route('contactAddCompany') }}" method="POST" autocomplete="off" novalidate>
+                        <form class="" action="{{ route('contactAddBranch',[$company, $branch]) }}" method="POST" autocomplete="off" novalidate>
                             <!-- Step 1 -->
                             <h2>Contact Info</h2>
                             <section>
@@ -242,21 +242,6 @@
                                                                     <option>Finanzas y Contabilidad</option>
                                                                     <option>Publicidad y Mercadotecnia</option>
                                                                     <option>Informática</option>
-
-                                                                </select>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-4 col-sm-4 col-md-4">
-                                                        <div class="form-group">
-                                                            <div id="">
-                                                                <strong >Company</strong>
-                                                                <span class="text-danger">*</span>
-                                                                <select class="form-control" name="companyname" required>
-                                                                    @foreach ($companies as $company)
-                                                                        <option>{{ $company->companyname}}</option>
-                                                                    @endforeach
 
                                                                 </select>
                                                             </div>

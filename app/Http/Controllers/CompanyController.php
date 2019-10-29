@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\BranchCreate;
 use App\Http\Requests\CompanyContact;
+use App\Http\Requests\BranchContact;
 use App\Http\Requests\CompanyCreate;
 use App\Http\Requests\UserEditCreate;
 use App\Http\Requests\UserAddressEditCreate;
@@ -45,9 +46,12 @@ class CompanyController extends Controller
             ->select('customers.id as idcustom','customers.companies_id',
             'customers.acquisitions_id','branches.id as bid',"branches.branchname")
             ->groupBy('bid','idcustom')
-            
-            
             ->get();
+            // $branch = Customer::join("companies","customers.companies_id","=","companies.id")
+            // ->join("branches","customers.branches_id","=","branches.id")
+            // ->select('branches.id as bid',"branches.branchname")
+            // ->groupBy('bid','idcustom')
+            // ->get();
             $i = 1;
             // dd($companies);
             // dd($customers);
@@ -70,6 +74,11 @@ class CompanyController extends Controller
         $companies = Company::orderBy('id','ASC')->where("companystatus",TRUE)->get();
         return view('super.contactCompany', compact('companies'));
     }
+    public function contactBranch($company, $branch){
+        
+        return view('super.contactBranch', compact('company','branch'));
+    }
+
     public function contactAddCompany(CompanyContact $request){
         
         
@@ -101,6 +110,25 @@ class CompanyController extends Controller
 
         
         return redirect()->route('companyShow');
+    }
+    
+    //Agergar contactos a sucursales
+    public function contactAddBranch(BranchContact $request, $company, $branch){
+        // dd($branch);
+        //Insert contact
+        $contactcc = new ContactBranch;
+        $contactcc->name = $request->name;
+        $contactcc->lastname = $request->lastname;
+        $contactcc->telephone1 = $request->telephone1;
+        $contactcc->telephone2 = $request->telephone2;
+        $contactcc->email = $request->email;
+        $contactcc->email2 = $request->email2;
+        $contactcc->area = $request->area;
+        $contactcc->cbstatus = 1;
+        $contactcc->branches_id = $branch;
+        $contactcc->save();
+        
+        return redirect()->route('showBranches', compact('company'));
     }
     public function companyAdd(CompanyCreate $request)
     {
@@ -187,7 +215,7 @@ class CompanyController extends Controller
         
     }
 
-    
+    //Editar compañía
     public function companyEdit($id)
     {
         $compan = Company::find($id);
@@ -196,8 +224,11 @@ class CompanyController extends Controller
         
         return view('super.editCompany', compact('compan','contact'));
     }
+
+    //Mostrar sucursales
     public function showBranches($id){
         $company=$id;
+        $contacts = ContactBranch::orderBy("id","ASC")->get();
         $branches = Branch::join('customers', 'customers.branches_id', '=', 'branches.id')
                 ->join('companies', 'companies.id', '=', 'customers.companies_id')
                 //->groupBy('branches.id','customers.branches_id','companies.id')
@@ -216,7 +247,7 @@ class CompanyController extends Controller
         // return $branches;
         
         //$branches = Branch::join("companies_id","=",$id)->get();     
-        return view('super.branches',compact('branches','company','branch1'));
+        return view('super.branches',compact('branches','company','branch1','contacts'));
     }
 
 
@@ -277,7 +308,7 @@ class CompanyController extends Controller
         
         $company=$id;
         
-        return redirect()->route('showBranches',compact('company'));
+        return redirect()->route('companyShow');
 
         /*$company=$id;
         $branches = Branch::where("companies_id","=",$id)->get();     

@@ -26,11 +26,11 @@
             </div>
             <div class="col-md-9 col-sm-9 col-xs-9 align-self-center">
 
-                <a
+                <!-- <a
                     href="{{ route('createBranches',$company)}}"
                     class="btn pull-right hidden-sm-down btn-success float-right">
                     <i class="mdi mdi-plus-circle"></i>
-                    Create</a>
+                    Create</a> -->
 
             </div>
 
@@ -75,13 +75,13 @@
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>
                                             </li>
-                                            <li>
+                                            <!-- <li>
                                                 <a
                                                     class="btn default btn-outline"
                                                     href="{{ route('showBranchesProducts',[$company,$branch->id])}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                 </div>
@@ -92,6 +92,29 @@
                                         {{ $branch->exteriornumber }}-{{ $branch->insidenumber }},
                                         {{ $branch->zipcode }},
                                         {{ $branch->district }}</small>
+                                    <div class="btn-group dropright">
+                                        &nbsp;&nbsp;&nbsp;
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Contacts
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Actions</h5>
+                                            <li><a class="dropdown-item" href="{{ route('contactBranch',[$company,$branch->id]) }}" style="font-size: 13px;"><i class="fa fa-user-plus"></i> Add contacts</a></li>
+                                            <div class="dropdown-divider"></div>
+                                            <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Contacts</h5>
+                                            <div class="dropdown-divider"></div>
+                                            @foreach ($contacts as $contact)
+                                                @if($branch->id==$contact->branches_id)
+                                                    <li>
+                                                        <a class="dropdown-item" href="#" style="font-size: 13px;">
+                                                            <i class="fa fa-user"></i> {{ $contact->name}} {{ $contact->lastname}}
+                                                        </a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            
+                                        </div>
+                                    </div>
                                     <br>
                                 </div>
                             </div>
