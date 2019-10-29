@@ -23,11 +23,17 @@
             <div class="col-md-4 ">
                 <div class="col-md-12 align-self-center">
                     <a
-                        href="{{ route('showBranchesCreateProduct',[$company,$branch])}}"
+                        href="{{ route('showBranchesProducts',[$company,$branch])}}"
                         class="btn pull-right hidden-sm-down"
                         style="background: #383F49; color: white">
                         <i class="mdi mdi-arrow-left"></i>
                         Back</a>
+                    <!-- <a
+                        href="{{ route('showBranchesCreateProduct',[$company,$branch])}}"
+                        class="btn pull-right hidden-sm-down"
+                        style="background: #383F49; color: white">
+                        <i class="mdi mdi-arrow-left"></i>
+                        Back</a> -->
                 </div>
                 <div class="col-md-9 align-self-center"></div>
             </div>

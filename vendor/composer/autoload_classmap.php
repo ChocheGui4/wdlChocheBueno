@@ -50,6 +50,7 @@ return array(
     'App\\Http\\Requests\\CompanyEditAddressCreate' => $baseDir . '/app/Http/Requests/CompanyEditAddressCreate.php',
     'App\\Http\\Requests\\CompanyEditCompanyCreate' => $baseDir . '/app/Http/Requests/CompanyEditCompanyCreate.php',
     'App\\Http\\Requests\\CompanyEditProfileCreate' => $baseDir . '/app/Http/Requests/CompanyEditProfileCreate.php',
+    'App\\Http\\Requests\\ContactCompany' => $baseDir . '/app/Http/Requests/ContactCompany.php',
     'App\\Http\\Requests\\CustomerAddressEditCreate' => $baseDir . '/app/Http/Requests/CustomerAddressEditCreate.php',
     'App\\Http\\Requests\\CustomerCreate' => $baseDir . '/app/Http/Requests/CustomerCreate.php',
     'App\\Http\\Requests\\CustomerEditCreate' => $baseDir . '/app/Http/Requests/CustomerEditCreate.php',

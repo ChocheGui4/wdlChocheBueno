@@ -28,12 +28,6 @@ class CreateCompaniesTable extends Migration
             $table->integer('insidenumber');
             $table->integer('exteriornumber');
             $table->boolean('companystatus');
-            $table->integer('contact_companies_id');
-            $table->foreign('contact_companies_id')
-            ->references('id')
-            ->on('contact_companies')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
             $table->timestamps();
         });
     }

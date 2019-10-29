@@ -10,6 +10,7 @@
                 <li class="breadcrumb-item active">Companies</li>
             </ol>
         </div>
+        
         <div class="col-md-6 col-4 align-self-center">
             <a 
             href="{{ route('companyCreate')}}" 
@@ -28,57 +29,7 @@
 
                 <!--Inicio de información de la empresa-->
                 <div class="row el-element-overlay">
-    <!--  -->
-    <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="https://bootstrapthemes.co" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown link
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item dropdown-toggle" href="">Submenu</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Submenu action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another submenu action</a></li>
-
-
-                                        <li><a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Subsubmenu action aa</a></li>
-                                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Subsubmenu action bb</a></li>
-                                                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a class="dropdown-item dropdown-toggle" href="#">Submenu 2</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Submenu action 2</a></li>
-                                        <li><a class="dropdown-item" href="#">Another submenu action 2</a></li>
-
-
-                                        <li><a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Subsubmenu action 1 3</a></li>
-                                                <li><a class="dropdown-item" href="#">Another subsubmenu action 2 3</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu 3</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Subsubmenu action 3 </a></li>
-                                                <li><a class="dropdown-item" href="#">Another subsubmenu action 3</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-    <!--  -->
+    
                     @foreach ($companies as $company)
                     <div class="col-lg-3 col-md-6">
                         <div class="card">
@@ -104,11 +55,17 @@
                                                 </a>
                                             </li>
                                             <li>
+                                                <a class="btn default btn-outline" href="#">
+                                                    <i class="fa fa-user-plus"></i>
+                                                </a>
+                                                
+                                            </li>
+                                            <!-- <li>
                                                 <a class="btn default btn-outline" href="{{ route('showBranches',$company->id)}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
                                                 
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                 </div>
@@ -120,8 +77,18 @@
                                         {{ $company->exteriornumber }}-{{ $company->insidenumber }},
                                         {{ $company->zipcode }},
                                         {{ $company->district }}</small>
-                                        
-                                        
+                                        <div class="btn-group dropright">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Contacts
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                <li><a class="dropdown-item" href="{{ route('contactCompany') }}"><i class="fa fa-user-plus"></i> Add contacts</a></li>
+                                                <div class="dropdown-divider"></div>
+                                                <li><a class="dropdown-item" href="#"><i class="fa fa-users"></i> See contacts</a></li>
+                                                
+                                            </div>
+                                        </div>
+                                        <br>
                                         <div class="btn-group dropright">
                                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Branch Office
@@ -129,39 +96,16 @@
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                 @foreach ($customers as $customer)
                                                     @if($customer->companies_id == $company->id)
-                                                        @if($customer->acquisitions_id != "")
-                                                            <li><a class="dropdown-item" href="#">{{$customer->branchname}}</a></li>
-                                                            <!-- Level two dropdown-->
-                                                                <li class="dropdown-submenu">
-                                                                    <a id="dropdown-menu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
-                                                                    <ul aria-labelledby="dropdown-menu" class="dropdown-menu border-0 shadow">
-                                                                    <li>
-                                                                        <a tabindex="-1" href="#" class="dropdown-item">level 2</a>
-                                                                    </li>
-
-                                                                <!-- Level three dropdown-->
-                                                                <li class="dropdown-submenu">
-                                                                <a id="dropdownMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">level 2</a>
-                                                                <ul aria-labelledby="dropdownMenu3" class="dropdown-menu border-0 shadow">
-                                                                    <li><a href="#" class="dropdown-item">3rd level</a></li>
-                                                                    <li><a href="#" class="dropdown-item">3rd level</a></li>
-                                                                </ul>
-                                                                </li>
-                                                                <!-- End Level three -->
-
-                                                                <li><a href="#" class="dropdown-item">level 2</a></li>
-                                                                <li><a href="#" class="dropdown-item">level 2</a></li>
-                                                            </ul>
-                                                            </li>
-            <!-- End Level two -->
- 
-                                                        @endif        
+                                                            <li><a class="dropdown-item" href="{{ route('showBranchesProducts',[$customer->companies_id,$customer->bid])}}">{{$customer->branchname}}</a></li>
                                                     @endif
-                                                    
                                                 @endforeach
+                                                <div class="dropdown-divider"></div>
+                                                <li><a class="dropdown-item" href="{{ route('showBranchesProducts',[$customer->companies_id,$customer->bid])}}"><i class="fa fa-edit"></i> Edit branches</a></li>
                                                 <p hidden>{{$i++}}</p>
                                             </div>
                                         </div>
+                                        
+                                        
                                     <br>
                                 </div>
                             </div>

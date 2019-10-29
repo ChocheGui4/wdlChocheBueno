@@ -5,6 +5,7 @@ use App\Acquisition;
 use App\AcquisitionType;
 use App\Branch;
 use App\Company;
+use App\Contact;
 use App\ContactBranch;
 use App\ContactCompany;
 use App\Customer;
@@ -60,8 +61,12 @@ class CompaniesTableSeeders extends Seeder
         $compan->insidenumber = 101;
         $compan->exteriornumber = 2;
         $compan->companystatus = 1;
-        $compan->contact_companies_id = 1;
         $compan->save();
+        
+        $Cont = new Contact;
+        $Cont->companies_id = 1;
+        $Cont->contact_companies_id = 1;
+        $Cont->save();
 
         //Branch
         $branch = new Branch;

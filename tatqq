@@ -1,0 +1,440 @@
+commit 3df1ff1912f62f0ebe962f2bee6bb91155d672c0
+Author: jose <dsoporte4@warriorslabs.com>
+Date:   Fri Oct 25 16:02:47 2019 -0700
+
+    Se aguardaron cambio 25/10/19
+
+commit d415b23df97c646c9dc98acbc5be12028be83624
+Merge: 5e68a18 f7f0b5b
+Author: jose <dsoporte4@warriorslabs.com>
+Date:   Thu Oct 24 11:09:03 2019 -0700
+
+    Prueba 24/10/19
+
+commit f7f0b5b9844dd0ab60f83ca86d37c71bb4f3b40a
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Oct 3 18:00:46 2019 -0700
+
+    Se muestran en lista los productos y las sucursales en las empresas 3/10/19
+
+commit c8984f9f707d40b434171e1231702e12d2fc9ec4
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Oct 1 18:53:46 2019 -0700
+
+    Se añaden productos específicos a las compañías 1/10/19
+
+commit 88cf0f9bd40741f2673ae64f92bbaf3736b58edb
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Sep 30 21:25:54 2019 -0700
+
+    Se arregló el dilema de la url que no permitía otro dato además del id, ahora con los datos otenidos mediante la url, se debe generar la licencia de acuerdo al estándar dado 30/09/19
+
+commit d110b9a003649b00875e27bee4a087f8f1fce9ea
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Sep 30 18:21:45 2019 -0700
+
+    Se deshabilitaron los datos que se manejan dentro del sistema en lugar de eliminarlos y se trabaja para agregar pos productos generados a la empresas 30/09/19
+
+commit ad07f1ec94731cca71ea2ab0c4a914af545fceb1
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Sep 26 17:56:47 2019 -0700
+
+    Se logra integrar datatable yajra en las tablas de productos, además de eliminar productos generales y específicos, junto con clientes que son personas físicas 26/09/19
+
+commit 7fccfe5f8ee4365d87bc7707dc1bf6a97ef4407e
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Sep 26 12:29:37 2019 -0700
+
+    Se eliminan productos de warriors 26/09/19
+
+commit 71917a8361528caf214feceb2d714873f270a1ad
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Sep 25 17:46:55 2019 -0700
+
+    Se añadieron productos a la tablas de productos, además de agregar productos con diferentes características de estos y poder visualizarlos en un menú 25/09/19
+
+commit 5fa2f6d0826c7c28958b3d4023da7bf341bfa3e1
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Sep 24 15:26:11 2019 -0700
+
+    Se añadieron algunas detalles a los formularios de clientes, empresas y sucursales, solo falta la parte de dar de baja a estos 24/09/19
+
+commit b1013f624c4009e8112309b2bbe5fbfcb19e0fd1
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Fri Sep 20 13:53:19 2019 -0700
+
+    Se añadieron cambios en las pantallas de compañías y sucursales, además de darle funcionalidad al apartado de customers 20/09/19
+
+commit d0d5725946c7b4cf5302e35d923dae793bd6225d
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Sep 19 17:51:53 2019 -0700
+
+    Se dio funcionalidad al botón de editar en la parte de sucursales y ahora también se añaden imágenes de perfil 19/09/19
+
+commit 5e5b3695224406347ee9cd98fb120440ec177c49
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Sep 18 17:59:33 2019 -0700
+
+    Se completaron algunos cambios que se marcaron en el doumento, pero aún no se terminan por completo 18/09/19
+
+commit f68f7188f1a852810239f53cf64f883e95298125
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Sep 17 15:15:45 2019 -0700
+
+    Se optimizó la consulta para mostrar los datos en el datatable 17/09/19
+
+commit 3367bbc4bdb1cd1c60aab7e68f444090298c6d6b
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Fri Sep 13 17:46:09 2019 -0700
+
+    Se añadieron las combinaciones en el sistema y se apartaron por productos existentes 13/09/19
+
+commit 132684bc081ca61a78e90d68ad0e78288954a0a4
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Sep 12 17:49:05 2019 -0700
+
+    Se modificó el registro de la empresa agregando los campos conforme quedaron en la base de datos y validando del lado del cliente y del lado del servidor 12/09/19
+
+commit 9fc56854b3c33dfca0eddcd8c31ee61ba7872036
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Sep 12 11:43:31 2019 -0700
+
+    Se ajustaron los últimos detalles en la base de datos (espero que ya no se mueva) 12/09/19
+
+commit 6bd0017e05148494a996a6220f61670f9ac2a7f6
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Sep 11 17:57:09 2019 -0700
+
+    Se modificaron las migraciones de acuerdo a las actualizaciones de la base de datos 11/09/19
+
+commit a391de97ab994ab7e1a3f07772cd656570e247b9
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Sep 9 13:41:18 2019 -0700
+
+    Se están haciendo pruebas con las librerías de la plantilla 9/09/19
+
+commit e549804b7c81e7d5b7472db5fada14152e6390bc
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Sep 9 11:01:07 2019 -0700
+
+    Se guardó un cambio en la vista principal 9/09/19
+
+commit 5e68a18451f4a42beb92cc4199f9f9ec0a1277a1
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Sep 9 10:59:28 2019 -0700
+
+    Se guardó un cambio en la vista principal 9/09/19
+
+commit f7d0ba443825e3754cecfe947405de3eaad4ec5c
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Sep 9 09:33:10 2019 -0700
+
+    Commit de prueba 9/09/19
+
+commit 982bd2d569a4620f0449f8817396aef539310c2d
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Sep 9 09:25:44 2019 -0700
+
+    Se hizo un commit para verificar si se sube bien a la plataforma tuleap 9/09/19
+
+commit 4d4c7c4cfccfddbccd2d8a0d09c606c81ecb759e
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Sep 5 16:35:03 2019 -0700
+
+    Se arregló un problema de replicación de información en la vista de compañías a la hora de adquirir un producto 5/09/19
+
+commit f3cb6d9ad00ee6a068f34f4f7c836ca5c43441fb
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Sep 5 15:23:04 2019 -0700
+
+    Se arreglaron algunos detalles de las vistas de los productos 05/09/19
+
+commit 384a2b7824c5be8ddacb2413095e8e9b4a5ac0e4
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Sep 5 11:39:11 2019 -0700
+
+    Se agregaron los cambios en la vista de los productos 5/09/19
+
+commit 1a8c16f5ce20f3df267f1e841472a32c1c4a4ec7
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Sep 4 17:57:12 2019 -0700
+
+    Se añadieron los datos de la tabla de productos a la vista de adquirir producto, de tal manera que se utilizan de una manera productiva 4/09/19
+
+commit d1f642603ec592f3505e01ccad40ad9d8959a8b7
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Sep 4 16:33:58 2019 -0700
+
+    Se agregaron las opciones de poder añadir almacenamiento a la hora de crear un nuevo producto y se validan los datos 4/09/19
+
+commit 4c49bf2a57998e84a164d0893b0fc1e258359ac2
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Sep 4 10:01:13 2019 -0700
+
+    Se están añadiendo ventanas modales a la adquisición de productos 4/09/19
+
+commit bb06cd16c5466c3421ca3023d25f2572fe88fecb
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Sep 3 17:52:36 2019 -0700
+
+    Se agregró un nuevo producto y se editaron productos existentes, además de eliminación de ellos 3/09/19
+
+commit 7b7c87b03793c91c0bbe96528c8e25880d221680
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Sep 3 12:21:28 2019 -0700
+
+    Se agregaron los productos a las sucursales de una empresa y se acomodaron 3/09/19
+
+commit 508a19cf351ffe1606dbddba9f911d055b773515
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Sep 2 18:03:27 2019 -0700
+
+    Se añadió una tabla en la db llamada characteristics y se corrigió la manera de mostrar los productos en el role de super usuario 02/09/19
+
+commit 9ff19cc3925be244dcb3f379e7f58c6764d36c48
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Sep 2 13:32:13 2019 -0700
+
+    Se comenzaron a crear los productos para cada empresa y sucursal
+
+commit 2dd496e124c148265af91df121ecde89d6a11304
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Aug 29 17:56:03 2019 -0700
+
+    Se cambiaron algunas relaciones de las tablas customers, branches y companies, además se insertan sucursales y productos 29/08/19
+
+commit f32cf4e8928f324c87b02c5707e9251dda6bbe95
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Aug 29 16:58:34 2019 -0700
+
+    Se Editan los datos de las empresas y clientes, se organizaron mejor los campos para mostrar usuarios de empresas, se modificaron campos de la base de datos y se generó la vista para ver productos de sucursales 29/08/19
+
+commit 3bf7fc41425914cebe174efe01c4a3375292479c
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Aug 28 17:59:20 2019 -0700
+
+    Se agregaron datos de los clientes y se pusieron los usuarios en tablas para visualizarlos 28/08/19
+
+commit 62fc1e81c5d3d52ad73165e64b7011737930d12f
+Merge: 5464aa5 6779a24
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 27 17:53:20 2019 -0700
+
+    Se ajustó el registro de compañías y clientes a la plantilla, además del registro de sucursales y usuarios 27/08/19
+
+commit 5464aa5874fe1815b85553d04f047212b0c69bc8
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 27 10:36:04 2019 -0700
+
+    Se estaban agregando los fomrularios por separado de customers y companys 27/08/19
+
+commit 6779a243becbce62a12a720f6ce65093e5bf2e8a
+Author: CamiloPerezOrtiz <camilo.perez.ort@gmail.com>
+Date:   Tue Aug 27 10:27:08 2019 -0500
+
+    Nueva plantilla
+
+commit a97fa71981b8494b13a80997ff846a040b0dc6a3
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Aug 26 18:03:27 2019 -0700
+
+    Se cambió el cómo mostrar los datos de las tablas para una mayor comprensión de los usuarios 26/08/19
+
+commit 55aec704d9d3b7c2628a279fa025d706df0ed9bc
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Fri Aug 23 13:53:46 2019 -0700
+
+    Se agregó la parte de visualizar a personas físicas y morales, además parte de agregar sucursales en las personas morales 23/08/19
+
+commit e106e0cd3587a84f8e8b49ee65e09aef53f2888d
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Fri Aug 23 00:05:26 2019 -0700
+
+    Se agregó la parte de edición del usuario de la empresa por parte del usuario super junto con expresiones regulares 23/08/19
+
+commit 056185fa60a1a1fe8fb8573dee78750373affd36
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Aug 22 17:52:52 2019 -0700
+
+    Se integraron las actividades: agregar, modificar y eliminar usuarios de warriors, además del registro de usuarios de empresas 22/08/19
+
+commit 1d2fa203556624917f8f55b183c49a504034ebbe
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 20 17:59:40 2019 -0700
+
+    Se añadieron modificaron alguas rutas y se añadieron algunas expresiones a la modificación de usuarios de warriors, además del formulario para usuarios de la empresa en la parte del usuario super 20/08/19
+
+commit de2f6731a848d8f03a8bbbac5a0a51410228179d
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 20 12:45:07 2019 -0700
+
+    Se añadieron expresiones regulares y el registro de usuarios de warriors 20/08/19
+
+commit 76712a7d94e7c519f7885596f90a8404f574a9c2
+Merge: 9128b1b 29d36a5
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Aug 19 17:44:44 2019 -0700
+
+    Se hizo una fusión innecesaria 19/08/19
+
+commit 9128b1b069e24261b2dad00a22dcf76672d4d558
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Aug 19 17:38:07 2019 -0700
+
+    Se agregaron las vistas de usuarios de warriors y las de usuarios de la empresa para que el usuario super las pueda mirar, se agregó parte del formulario para agregar usuarios de warriors en el usuario super 19/08/19
+
+commit 29d36a561b351583fe6b5158b349dac64fb7db7e
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Aug 19 17:38:07 2019 -0700
+
+    Se agrearon las vistas de usuarios de warriors y las de usuarios de la empresa para que el usuario super las pueda mirar, se agregó parte del formulario para agregar usuarios de warriors en el usuario super 19/08/19
+
+commit 78ba607a526322c5cb72c397e0b34ed408fc4f72
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Fri Aug 16 18:31:00 2019 -0700
+
+    Se añadieron iconos al formulario de registro y se colocó que el campo email, rfc, companyrfc y email no se repitieran dentro de la base de datos, además de la confirmación de contraseña 16/08/19
+
+commit 189643431eb8cae0a97d183c8ed00cb1279fa076
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Aug 14 16:28:22 2019 -0700
+
+    Se modificaron campos en la base de datos y se generarons los registros de las tablas companies y people 14/08/19
+
+commit 0c6ce36514aa60babd92e9a6d28208ab477085c3
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 13 16:34:39 2019 -0700
+
+    Se añadieron las expresiones regulares y ya se inserta en las tablas: areas, contacts y users 13/08/19
+
+commit aaa53fc65e1e67937a244b6c06ca1d71cd60bfea
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Mon Aug 12 18:02:33 2019 -0700
+
+    Se completaron los campos de los registros, se craron modelos, controladores y se anexaron expresiones regulares 12/08/19
+
+commit 7d3a015eda0de551e653d1caa2cf3a86666f243b
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Fri Aug 9 13:51:29 2019 -0700
+
+    Se agregaron los registros de compañía y dirección 9/08/19
+
+commit 65d1148743729f991bdbcd629ddfe4c3634ae4ad
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Fri Aug 9 12:36:13 2019 -0700
+
+    Se agregó la primera parte del registro del usuario 9/08/19
+
+commit f783d9ad25a9aa4f77f07aa3ec4e4fcb9c235fcd
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Fri Aug 9 09:24:55 2019 -0700
+
+    Se agregó al login el link para crear una cuenta nueva y al register una campo nuevo 9/08/19
+
+commit a3b33d969e0db91ce452503b6aba9bcb0a3ae26d
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Aug 8 17:30:58 2019 -0700
+
+    Se agregó el logout 8/08/19
+
+commit a8c9055cd7ea9f1b448a979256e009f30d8a8ced
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Aug 8 16:54:09 2019 -0700
+
+    Se añadieron algunos datos del login en la pantalla principal 8/08/19
+
+commit 26c9fcbedc936e2f90fea3bfa22c19da0e5b2f4b
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Aug 8 16:20:59 2019 -0700
+
+    Se creo el login con auth de laravel 8/08/19
+
+commit ccdc8f5d26afdd8e07fb497b006adefc070584e8
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Aug 8 16:18:53 2019 -0700
+
+    Se hicieron cambios al diseño de las vistas y algunas rutas con el login 8/08/19
+
+commit 4ab86399b040f413c9d3dcb0cb17d7d751ae6a87
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Thu Aug 8 12:22:51 2019 -0700
+
+    Se organizó bien el layout, se quitaron los nav bar de las vistas del super y se corrigieron errores de rutas y estilo 8/08/19
+
+commit d89095d4b0fb689a309c639476ae68d25e966eeb
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Aug 7 15:14:03 2019 -0700
+
+    Se agregaron los modals para insertar clientes 7/08/19
+
+commit 621024e98242815b2dabaebecfc0438033094943
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Aug 7 13:43:29 2019 -0700
+
+    Se creo una pantalla para visualizar a los clientes y empresas, hasta el momento solo se han posicionado los componentes 7/08/19
+
+commit 64725e66fb33f05536cec5b4cf6d060bb3aa0cf9
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Aug 7 13:41:57 2019 -0700
+
+    Se añadieron algunas rutas de prueba, algunos elementos en la pantalla principal y pruebas con distintos métodos en el controlador 7/08/19
+
+commit e9ade84f116a8b461d69ea05071b7e6c831668fe
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Wed Aug 7 09:08:03 2019 -0700
+
+    Se subieron todos los archivos para que no haya problema en cuanto a la pantilla que se va a utilizar 7/08/19
+
+commit 49d4c6f1b47fa68121311fa7a980ff42ebb3fbd8
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 18:05:45 2019 -0700
+
+    Se modificaron sentencias en la tabla areas 6/08/19
+
+commit 94da4788dac7fd27b8421cda5ecb5cae84c975ae
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 18:05:03 2019 -0700
+
+    Se añadieron cosas a la parte del perfil del usuario 6/08/19
+
+commit 84e439eb65d5eaec57288eeb4356030d9f978b8f
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 16:33:14 2019 -0700
+
+    Se añadieron las migraciones en el sistema con modificaciones previamente realizadas 6/08/19
+
+commit bd03407321d5d53cedb5fd4c773435c36b962c5e
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 15:17:20 2019 -0700
+
+    Se agregó el menú solo con las opciones que puede hacer el usuario super 6/08/19
+
+commit ca90c05a16d162d12fc54b9f7025c6397d8bacef
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 12:14:02 2019 -0700
+
+    Se creó la vista principal del usuario super 6/08/19
+
+commit 16019a268d59850c675c416b69b24ed460426535
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 12:13:15 2019 -0700
+
+    Se agregaron los estilos con la platilla admin-lte 6/08/19
+
+commit 692812b299bd4748221ec83c40847993c1b360eb
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 12:12:07 2019 -0700
+
+    Se creo la ruta para ir a la página principal del usuario super 6/08/19
+
+commit 8ca78cb8708b0d42c92207cbe73f8bfd51aa8827
+Author: ChocheGui4 <chochej10@gmail.com>
+Date:   Tue Aug 6 12:11:14 2019 -0700
+
+    Se creó el controlador para la página principal del usuario Super 6/08/19
+
+commit 3bdbc224658c24c18fadc7912a9a7cf513daf272
+Author: enriqRosa <enriquez.rosaicela@gmail.com>
+Date:   Wed Jul 24 11:12:25 2019 -0500
+
+    Creación del repositorio 24/07/19

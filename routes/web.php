@@ -25,6 +25,9 @@ Route::get('/companies', 'CompanyController@companyShow') -> name('companyShow')
 Route::get('/companycreate', 'CompanyController@companyCreate') -> name('companyCreate');
 Route::get('/companyedit/{id}', 'CompanyController@companyEdit') -> name('companyEdit');
 Route::get('/companydelete/{id}', 'CompanyController@companyDelete') -> name('companyDelete');
+Route::get('/createcontactcompany', 'CompanyController@contactCompany') -> name('contactCompany');
+Route::post('/createcontact', 'CompanyController@contactAddCompany') -> name('contactAddCompany');
+
 
 Route::post('/companyadd','CompanyController@companyAdd')->name('companyAdd');
 Route::post('/companyupdateprofile/{id}/{compan}','CompanyController@companyUpdateProfile')->name('companyUpdateProfile');

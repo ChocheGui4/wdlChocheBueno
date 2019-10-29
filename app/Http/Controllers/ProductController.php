@@ -229,7 +229,10 @@ class ProductController extends Controller
     public function showBranchesProducts($id, $branch){
         $company=$id;
         $branches=$branch;
+        $brans = Branch::find($branch);
+        
         //dd($company,$branches);
+        $productos = Product::orderBy('id','ASC')->get();
         
         $products = Company::join('customers', 'customers.companies_id', '=', 'companies.id')
                 ->join('acquisitions', 'acquisitions.id', '=', 'customers.acquisitions_id')
@@ -239,7 +242,7 @@ class ProductController extends Controller
                 ->where('customers.customstatus','=',true)
                 ->get();
         // dd($products);        
-        return view('super.productCompany',compact('company','branches','products'));
+        return view('super.productCompany',compact('company','branches','brans','products','productos'));
     }
     
     public function showPeopleProducts($id){

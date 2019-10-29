@@ -1,8 +1,8 @@
 @extends('layouts.wdlicenciamiento') @section('content')
 <div class="wrapper">
     <div class="row page-titles">
-        <div class="col-md-8  align-self-center">
-            <h3 class="text-themecolor m-b-0 m-t-0">Products</h3>
+        <div class="col-md-9  align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">{{$brans->branchname}}</h3>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="/home">Home</a>
@@ -17,23 +17,23 @@
             </ol>
         </div>
 
-        <div class="col-md-4 ">
+        <div class="col-md-3 ">
             <div class="col-md-12 align-self-center">
                 <a
-                    href="{{ route('showBranches',$company)}}"
+                    href="/companies"
                     class="btn pull-right hidden-sm-down"
                     style="background: #383F49; color: white">
                     <i class="mdi mdi-arrow-left"></i>
                     Back</a>
             </div>
-            <div class="col-md-9 align-self-center">
-
-                <a
+            <div class="col-md-12 align-self-center">
+                
+                <!-- <a
                     href="{{ route('showBranchesCreateProduct',[$company,$branches])}}"
                     class="btn pull-right hidden-sm-down"
                     style="background: #31B90C; color: white;">
                     <i class="mdi mdi-plus-circle"></i>
-                    Add product</a>
+                    Add product</a> -->
 
             </div>
 
@@ -58,13 +58,13 @@
                                     
                                     <div class="el-overlay">
                                         <ul class="el-info">
-                                            <li>
+                                            <!-- <li>
                                                 <a
                                                     class="btn default btn-outline image-popup-vertical-fit"
                                                     href="../plugins/images/users/1.jpg">
                                                     <i class="mdi mdi-account-edit"></i>
                                                 </a>
-                                            </li>
+                                            </li> -->
                                             <li>
                                                 <a id="down" class="btn default btn-outline" href="{{ route('deleteProductBranch', $product->id)}}">
                                                     <i class="mdi mdi-close-circle"></i>
@@ -90,6 +90,18 @@
                         </div>
                     </div>
                     @endforeach
+                    <div class="col-lg-3 col-md-3 col-ms-3 col-xs-3">
+                        <div class="btn-group dropleft">
+                        <button class="btn btn-secondary dropdown-toggle pull-right hidden-sm-down" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Add Product
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            @foreach ($productos as $prod)
+                                <li><a class="dropdown-item" href="{{ route('AddCompanyProduct',[$company, $branches,$prod->id])}}">{{$prod->name}}</a></li>                          
+                            @endforeach  
+                        </div>
+                    </div>    
+                </div>
 
                 </div>
 

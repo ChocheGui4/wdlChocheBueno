@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\BranchCreate;
+use App\Http\Requests\CompanyContact;
 use App\Http\Requests\CompanyCreate;
 use App\Http\Requests\UserEditCreate;
 use App\Http\Requests\UserAddressEditCreate;
@@ -17,6 +18,7 @@ use App\Http\Requests\BranchEditProfile;
 use App\Acquisition;
 use App\Branch;
 use App\Company;
+use App\Contact;
 use App\ContactCompany;
 use App\ContactBranch;
 use App\License;
@@ -40,9 +42,10 @@ class CompanyController extends Controller
             $companies = Company::orderBy('id','ASC')->where("companystatus",TRUE)->get();
             $customers = Customer::join("companies","customers.companies_id","=","companies.id")
             ->join("branches","customers.branches_id","=","branches.id")
-            ->select('customers.id as idcustom','customers.companies_id','customers.acquisitions_id'
-            ,'branches.id',"branches.branchname")
-            // ->groupBy('idcustom','branches.id')
+            ->select('customers.id as idcustom','customers.companies_id',
+            'customers.acquisitions_id','branches.id as bid',"branches.branchname")
+            ->groupBy('bid','idcustom')
+            
             
             ->get();
             $i = 1;
@@ -63,7 +66,42 @@ class CompanyController extends Controller
     {
         return view('super.addCompany');
     }
+    public function contactCompany(){
+        $companies = Company::orderBy('id','ASC')->where("companystatus",TRUE)->get();
+        return view('super.contactCompany', compact('companies'));
+    }
+    public function contactAddCompany(CompanyContact $request){
+        
+        
+        // dd($company->id);
+        //Insert contact
+        $contactcc = new ContactCompany;
+        $contactcc->name = $request->name;
+        $contactcc->lastname = $request->lastname;
+        $contactcc->telephone1 = $request->telephone1;
+        $contactcc->telephone2 = $request->telephone2;
+        $contactcc->email = $request->email;
+        $contactcc->email2 = $request->email2;
+        $contactcc->area = $request->area;
+        $contactcc->ccstatus = 1;
+        $contactcc->save();
+        
+        $compan = $request->companyname;
+        $company = Company::where("companyname","$compan")->first();
+        $id2=$company->id;
+        $ccs= ContactCompany::latest('id')->first();
+        $id1=$ccs->id;
+        
 
+        $Cont = new Contact;
+        $Cont->companies_id = $id2;
+        $Cont->contact_companies_id = $id1;
+        $Cont->save();
+
+
+        
+        return redirect()->route('companyShow');
+    }
     public function companyAdd(CompanyCreate $request)
     {
         
@@ -90,8 +128,6 @@ class CompanyController extends Controller
         $contactcc->save();   
         
         //Get contact id
-        $ccs= ContactCompany::latest('id')->first();
-        $id=$ccs->id;
         
         //Insert company
         $company = new Company;
@@ -108,8 +144,17 @@ class CompanyController extends Controller
         $company->insidenumber = $request->innumber;
         $company->exteriornumber = $request->extnumber;
         $company->companystatus = 1;
-        $company->contact_companies_id = $id;
         $company->save();
+
+        $ccs= ContactCompany::latest('id')->first();
+        $id1=$ccs->id;
+        $coms= Company::latest('id')->first();
+        $id2=$coms->id;
+
+        $Cont = new Contact;
+        $Cont->companies_id = $id2;
+        $Cont->contact_companies_id = $id1;
+        $Cont->save();
 
         //Branch
         $branch = new Branch;

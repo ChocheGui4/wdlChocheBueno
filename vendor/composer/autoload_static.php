@@ -521,6 +521,7 @@ class ComposerStaticInit555245e103f30d83f259f3e5d7c820d5
         'App\\Http\\Requests\\CompanyEditAddressCreate' => __DIR__ . '/../..' . '/app/Http/Requests/CompanyEditAddressCreate.php',
         'App\\Http\\Requests\\CompanyEditCompanyCreate' => __DIR__ . '/../..' . '/app/Http/Requests/CompanyEditCompanyCreate.php',
         'App\\Http\\Requests\\CompanyEditProfileCreate' => __DIR__ . '/../..' . '/app/Http/Requests/CompanyEditProfileCreate.php',
+        'App\\Http\\Requests\\ContactCompany' => __DIR__ . '/../..' . '/app/Http/Requests/ContactCompany.php',
         'App\\Http\\Requests\\CustomerAddressEditCreate' => __DIR__ . '/../..' . '/app/Http/Requests/CustomerAddressEditCreate.php',
         'App\\Http\\Requests\\CustomerCreate' => __DIR__ . '/../..' . '/app/Http/Requests/CustomerCreate.php',
         'App\\Http\\Requests\\CustomerEditCreate' => __DIR__ . '/../..' . '/app/Http/Requests/CustomerEditCreate.php',
