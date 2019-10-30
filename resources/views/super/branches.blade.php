@@ -71,7 +71,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a id="down" class="btn default btn-outline" href="{{ route('deleteBranch',$branch->id)}}">
+                                                <a id="down" class="btn default btn-outline" href="{{ route('deleteBranch',[$company, $branch->id])}}">
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>
                                             </li>

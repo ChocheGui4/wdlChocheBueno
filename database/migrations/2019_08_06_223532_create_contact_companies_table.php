@@ -22,7 +22,6 @@ class CreateContactCompaniesTable extends Migration
             $table->string('email',45);
             $table->string('email2',45);
             $table->string('area',40);
-            $table->boolean('ccstatus');
             $table->timestamps();
         });
     }

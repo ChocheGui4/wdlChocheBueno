@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class CategoryCopy extends Model
 {
     protected $fillable = [
         'maker','processor','memory','disc','storagem','unitstoragemail','storage','unitstorage',

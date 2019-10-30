@@ -19,6 +19,6 @@ class Customer extends Model
         return $this->belongsTo('App\People');
     }
     protected $fillable = [
-        'people_id','acquisitions_id', 'companies_id','branches_id','customstatus'
+        'people_id','acquisitions_id', 'companies_id','branches_id'
     ];
 }

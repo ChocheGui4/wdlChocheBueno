@@ -18,10 +18,13 @@ use App\Http\Requests\BranchEditProfile;
 
 use App\Acquisition;
 use App\Branch;
+use App\BranchCopy;
 use App\Company;
 use App\Contact;
 use App\ContactCompany;
 use App\ContactBranch;
+use App\ContactBranchCopy;
+use App\History;
 use App\License;
 use App\People;
 use App\User;
@@ -40,7 +43,7 @@ class CompanyController extends Controller
     public function companyShow(){
         $role= \Auth::user()->role;
         if($role === 'Super'){
-            $companies = Company::orderBy('id','ASC')->where("companystatus",TRUE)->get();
+            $companies = Company::orderBy('id','ASC')->get();
             $customers = Customer::join("companies","customers.companies_id","=","companies.id")
             ->join("branches","customers.branches_id","=","branches.id")
             ->select('customers.id as idcustom','customers.companies_id',
@@ -71,7 +74,7 @@ class CompanyController extends Controller
         return view('super.addCompany');
     }
     public function contactCompany(){
-        $companies = Company::orderBy('id','ASC')->where("companystatus",TRUE)->get();
+        $companies = Company::orderBy('id','ASC')->get();
         return view('super.contactCompany', compact('companies'));
     }
     public function contactBranch($company, $branch){
@@ -92,7 +95,6 @@ class CompanyController extends Controller
         $contactcc->email = $request->email;
         $contactcc->email2 = $request->email2;
         $contactcc->area = $request->area;
-        $contactcc->ccstatus = 1;
         $contactcc->save();
         
         $compan = $request->companyname;
@@ -124,7 +126,6 @@ class CompanyController extends Controller
         $contactcc->email = $request->email;
         $contactcc->email2 = $request->email2;
         $contactcc->area = $request->area;
-        $contactcc->cbstatus = 1;
         $contactcc->branches_id = $branch;
         $contactcc->save();
         
@@ -138,7 +139,6 @@ class CompanyController extends Controller
         $users ->role= "user";
         $users ->email= $request->email;
         $users ->password= bcrypt($request->password);
-        $users ->usstatus= 1;
         $users->save();
         //dd("Ya agregó al usuario, checar en la db otra vez");
 
@@ -152,7 +152,6 @@ class CompanyController extends Controller
         $contactcc->email = $request->email;
         $contactcc->email2 = $request->email2;
         $contactcc->area = $request->area;
-        $contactcc->ccstatus = 1;
         $contactcc->save();   
         
         //Get contact id
@@ -171,7 +170,6 @@ class CompanyController extends Controller
         $company->street = $request->street;
         $company->insidenumber = $request->innumber;
         $company->exteriornumber = $request->extnumber;
-        $company->companystatus = 1;
         $company->save();
 
         $ccs= ContactCompany::latest('id')->first();
@@ -197,7 +195,6 @@ class CompanyController extends Controller
         $branch ->street= $request->street;
         $branch ->insidenumber= $request->innumber;
         $branch ->exteriornumber= $request->extnumber;
-        $branch ->branchstatus= 1;
         $branch->save();
 
         //Customer
@@ -207,7 +204,6 @@ class CompanyController extends Controller
         $customers = new Customer;
         $customers->companies_id=$com->id;
         $customers->branches_id=$br->id;
-        $customers->customstatus=1;
         $customers->save();
         
         // dd("Se agregaron: usuario login, contacto y empresa");
@@ -237,7 +233,6 @@ class CompanyController extends Controller
                 'branches.insidenumber','branches.exteriornumber')
                 ->groupBy('branches.id')
                 ->where('customers.companies_id', '=', $id)
-                ->where('branches.branchstatus', true)
                 ->get();
         
         $branch1 = null;
@@ -281,7 +276,6 @@ class CompanyController extends Controller
         $branch ->street= $request->street;
         $branch ->insidenumber= $request->innumber;
         $branch ->exteriornumber= $request->extnumber;
-        $branch ->branchstatus= 1;        
         $branch->save();
         
         $branch = Branch::latest('id')->first();
@@ -293,16 +287,13 @@ class CompanyController extends Controller
         $contact->email = $request->email;
         $contact->email2 = $request->email2;
         $contact->area = $request->area;
-        $contact->cbstatus = 1;
         $contact->branches_id = $branch->id;
         $contact->save();
 
         $ided= Branch::latest('id')->first();
         $customer = new Customer;
         $customer->companies_id = $id;
-        $customer->branches_id = $ided->id;
-        $customer->customstatus = 1;
-        
+        $customer->branches_id = $ided->id;        
         $customer->save();
 
         
@@ -418,23 +409,71 @@ class CompanyController extends Controller
         return redirect()->route('branchEdit',compact('id','company'));
 
     }
-    public function deleteBranch($id)
+    public function deleteBranch($company, $id)
     {
         // dd("ddudn");
-        $branch = Branch::find($id);
-        $branch->branchstatus = 0;
+        $borg = Branch::find($id);
+        $corg = ContactBranch::where("branches_id",$id)->first();
+        // dd($borg);
+        $query = Branch::join("customers","customers.branches_id","=","branches.id")
+        ->join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
+        ->join("licenses","acquisitions.licenses_id","=","licenses.id")
+        ->join("products","acquisitions.products_id","=","products.id")
+        ->join("categories","categories.products_id","=","products.id")
+        ->get();
+        // $query2 = Branch::join("customers","customers.branches_id","=","branches.id")
+        // ->join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
+        // ->join("licenses","acquisitions.licenses_id","=","licenses.id")
+        // ->get();
+        // dd($query);
+        foreach ($query as $qu1) {
+            $history = new History;
+            $history->product = $qu1->name;
+            $history->serial = $qu1->serialkey;
+            $history->time = $qu1->year;
+            $history->period = "year";
+            $history->storage = $qu1->storage;
+            $history->unitstorage = $qu1->unitstorage;
+            $history->description = "Se dio de baja la sucursal y por tanto el producto";
+            $history->company = $company;
+            $history->branch = $id;
+            $history->save();
+            $ser = License::where("serialkey",$qu1->serialkey)->first();
+            $ser->delete();
+        }
+        
+        $branch = new BranchCopy;
+        $branch ->branchname= $borg->branchname;
+        $branch ->branchimg= $borg->branchimg;
+        $branch ->branchtelephone1= $borg->branchtelephone1;
+        $branch ->branchtelephone2= $borg->branchtelephone2;
+        $branch ->branchemail1= $borg->branchemail1;
+        $branch ->branchemail2= $borg->branchemail2;
+        $branch ->zipcode= $borg->zipcode;
+        $branch ->district= $borg->district;
+        $branch ->street= $borg->street;
+        $branch ->insidenumber= $borg->insidenumber;
+        $branch ->exteriornumber= $borg->exteriornumber;
+        $branch ->companies_id= $company;
         $branch->save();
-        $contacts = ContactBranch::where('branches_id',$branch->id)->get();
-        foreach ($contacts as $contact) {
-            $contact->cbstatus = 0;
-            $contact->save();
-        }
+        $borg->delete();
 
-        $customers = Customer::where('branches_id',$branch->id)->get();
-        foreach ($customers as $customer) {
-            $customer->customstatus = 0;
-            $customer->save();
-        }
+        
+        $contact = new ContactBranchCopy;
+        $contact->name = $corg->name;
+        $contact->lastname = $corg->lastname;
+        $contact->telephone1 = $corg->telephone1;
+        $contact->telephone2 = $corg->telephone2;
+        $contact->email = $corg->email;
+        $contact->email2 = $corg->email2;
+        $contact->area = $corg->area;
+        $contact->branches_id = $corg->branches_id;
+        $contact->save();
+
+        
+        $corg->delete();
+        
+        
         // return redirect()->route('branchEdit',compact('id','company'));
     }
 
@@ -442,33 +481,26 @@ class CompanyController extends Controller
     {
         
         $company = Company::find($id);
-        $company->companystatus = 0;
         $company->save();
 
         $contact = ContactCompany::find($id);
-        $contact->ccstatus = 0;
         $contact->save();
 
         $customers = Customer::where('companies_id',$company->id)->get();
         foreach ($customers as $customer) {
-            $customer->customstatus = 0;
             $valac = $customer->acquisitions_id;
             $customer->save();
             $branch = Branch::find($customer->branches_id);
-            $branch->branchstatus = 0;
             $branch->save();
             $con = ContactBranch::find($branch->id)->get();
             foreach ($con as $c) {
-                $c->cbstatus = 0;
                 $c->save();
             }
             
             if($valac!=null){
                 $acquisition = Acquisition::find($valac);
-                $acquisition->astatus = 0;
                 $acquisition->save();
                 $license = License::find($acquisition->licenses_id);
-                $license->sstatus = 0;
                 $license->save();
             }
             

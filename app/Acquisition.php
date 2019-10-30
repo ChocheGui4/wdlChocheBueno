@@ -26,6 +26,6 @@ class Acquisition extends Model
     }
 
     protected $fillable = [
-        'salenumber','astatus','products_id', 'acquisitiontypes_id','licenses_id'
+        'salenumber','products_id', 'acquisitiontypes_id','licenses_id'
     ];
 }

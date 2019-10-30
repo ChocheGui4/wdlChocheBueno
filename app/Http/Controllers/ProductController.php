@@ -46,7 +46,7 @@ class ProductController extends Controller
     
     public function productsShow(){
         
-        $products=Product::orderBy('id','ASC')->where("productstatus",true)->get();
+        $products=Product::orderBy('id','ASC')->get();
         $i=0;
         $makers = Maker::orderBy('id','ASC')->get();
         $processors = Processor::orderBy('id','ASC')->get();
@@ -71,7 +71,6 @@ class ProductController extends Controller
         $producto->name = $request->name;
         $producto->description = $request->description;
         $producto->urlimg = $request->file('urlimg')->store('public');
-        $producto->productstatus = 1;
         $producto->save();        
         return redirect()->route('productsShow');
     }
@@ -112,7 +111,6 @@ class ProductController extends Controller
         $category->period = "Year";
         $category->numberuser = $nu;
         $category->offer = $request->offer;
-        $category->cstatus = 1;
         $category->products_id = $ided;
         $category->save();        
         return redirect()->route('productsShow');
@@ -121,7 +119,7 @@ class ProductController extends Controller
 
     // protected $prodid=3;
     public function productsShowSpecific($id){    
-        $products = Category::where("products_id",$id)->where("cstatus",true)->get();
+        $products = Category::where("products_id",$id)->get();
         $name = Product::find($id);
         // dd($names->id);
         $i=0;
@@ -131,7 +129,7 @@ class ProductController extends Controller
     }
 
     public function AddCompanyProduct($company, $branch, $id){  
-        $products = Category::where("products_id",$id)->where("cstatus",true)->get();
+        $products = Category::where("products_id",$id)->get();
         $name = Product::find($id);
         // dd($names->id);
         $i=0;
@@ -149,7 +147,7 @@ class ProductController extends Controller
     public function datatableproducts($id){
         // $tasks = Product::orderBy('id','ASC')->get();
         return Datatables()     
-            ->eloquent(Category::where("products_id",$id)->where("cstatus",true))
+            ->eloquent(Category::where("products_id",$id))
             ->addColumn('btn','<a 
                 id="delete" 
                 style="background: #DD1E00; color: white;" 
@@ -164,7 +162,7 @@ class ProductController extends Controller
     public function datatableproductsadd($id){
         // $tasks = Product::orderBy('id','ASC')->get();
         return Datatables()     
-            ->eloquent(Category::where("products_id",$id)->where("cstatus",true))
+            ->eloquent(Category::where("products_id",$id))
             ->addColumn('btn','<a 
                 id=""
                 href="{{ route("productAddCompany",$id)}}"
@@ -193,11 +191,14 @@ class ProductController extends Controller
         $now = new \DateTime();
         $license .=$now->format('dmy');
         $license .=$di->valued."-";
-        $license .=($ac->salenumber + 1)."*";
+        if($ac==null){
+            $license .=(1)."*";
+        }else{
+            $license .=($ac->salenumber + 1)."*";
+        }
         // dd($license);
         $lic = new License;
         $lic->serialkey = $license;
-        $lic->sstatus = 1;
         $lic->save();
         
         $view = ViewAdd::orderBy('id','DESC')->latest()->first();
@@ -205,8 +206,12 @@ class ProductController extends Controller
         $branch = $view->branch;
         $lic = License::orderBy('id','DESC')->latest()->first();
         $acq = new Acquisition;
-        $acq->salenumber = $ac->salenumber + 1;
-        $acq->astatus = 1;
+        if($ac==null){
+            $acq->salenumber = 1;
+        }else{
+            $acq->salenumber = $ac->salenumber + 1;
+        }
+        
         $acq->products_id = $view->product;
         $acq->acquisition_types_id = 1;
         $acq->licenses_id = $lic->id;
@@ -217,7 +222,6 @@ class ProductController extends Controller
         $custom->acquisitions_id = $acq->id;
         $custom->companies_id = $view->company;
         $custom->branches_id = $view->branch;
-        $custom->customstatus = 1;
         $custom->save();
         
         return redirect()->route('showBranchesProducts',compact('company','branch'));
@@ -239,7 +243,6 @@ class ProductController extends Controller
                 ->join('products', 'products.id', '=', 'acquisitions.products_id')
                 ->select('customers.id','products.name','products.urlimg')
                 ->where('customers.branches_id', '=', $branches)
-                ->where('customers.customstatus','=',true)
                 ->get();
         // dd($products);        
         return view('super.productCompany',compact('company','branches','brans','products','productos'));
@@ -262,7 +265,7 @@ class ProductController extends Controller
     public function showBranchesCreateProduct($id,$branch){
         $company = $id;
 
-        $products=Product::orderBy('id','ASC')->where("productstatus",true)->get();
+        $products=Product::orderBy('id','ASC')->get();
         $i=0;
         
         return view('super.productShowCompany', compact('products','company','branch','i'));
@@ -378,26 +381,21 @@ class ProductController extends Controller
     function productDelete($id){
         
         $product = Category::find($id);
-        $product->cstatus=0;
         $product->save();
         
     }
 
     function productDeleteGeneral($id){
         $product = Product::find($id);
-        $product->productstatus=0;
         $product->save();
         
     }
     function deleteProductBranch($id){
         $customer = Customer::find($id);
-        $customer->customstatus = 0;
         $customer->save();
         $acquisition = Acquisition::find($customer->acquisitions_id);
-        $acquisition->astatus=0;
         $acquisition->save();
         $license = License::find($acquisition->licenses_id);
-        $license->sstatus = 0;
         $license->save();
         return redirect()->route('productsShow');
     }

@@ -44,7 +44,6 @@ class CompaniesTableSeeders extends Seeder
         $contactc->email = "lili@hotmail.com";
         $contactc->email2 = "lili@gmail.com";
         $contactc->area = "Administración y Recursos Humanos";
-        $contactc->ccstatus = 1;
         $contactc->save();
 
         $compan = new Company;
@@ -60,7 +59,6 @@ class CompaniesTableSeeders extends Seeder
         $compan->street = "Abasolo";
         $compan->insidenumber = 101;
         $compan->exteriornumber = 2;
-        $compan->companystatus = 1;
         $compan->save();
         
         $Cont = new Contact;
@@ -81,7 +79,6 @@ class CompaniesTableSeeders extends Seeder
         $branch->street = "Anacahuita";
         $branch->insidenumber = 12;
         $branch->exteriornumber = 10;
-        $branch->branchstatus = 1;
         $branch->save();
         //Contact branch data
         $contactb = new ContactBranch;
@@ -92,7 +89,6 @@ class CompaniesTableSeeders extends Seeder
         $contactb->email = "Isa@hotmail.com";
         $contactb->email2 = "Isa@gmail.com";
         $contactb->area = "Marketing";
-        $contactb->cbstatus = 1;
         $contactb->branches_id = 1;
         $contactb->save();
 
@@ -100,7 +96,6 @@ class CompaniesTableSeeders extends Seeder
         $user->role = "user";
         $user->email = "admin@admin.com";
         $user->password = bcrypt("Hol@mundo1");
-        $user->usstatus = 1;
         $user->save();
 
         //WDNG
@@ -108,7 +103,6 @@ class CompaniesTableSeeders extends Seeder
         $product->name = "Warriors Defender Firewall New Generate";
         $product->description = "Se Obtiene el producto WDNG para el uso más conveniente del cliente";
         $product->urlimg = "WDNG.png";
-        $product->productstatus = 1;
         $product->save();
         // $product->time = 5;
         // $product->period = "years";
@@ -120,42 +114,36 @@ class CompaniesTableSeeders extends Seeder
         $product->name = "Warriors Defender Firewall";
         $product->description = "Se Obtiene el producto WDF para el uso más conveniente del cliente";
         $product->urlimg = "WDF.png";
-        $product->productstatus = 1;
         $product->save();
         //WDM
         $product = new Product;
         $product->name = "Warriors Defender Mail";
         $product->description = "Se Obtiene el producto WDM para el uso más conveniente del cliente";
         $product->urlimg = "WDM.png";
-        $product->productstatus = 1;
         $product->save();
         //WDCP
         $product = new Product;
         $product->name = "Warriors Defender Captive Portal";
         $product->description = "Se Obtiene el producto WDCP para el uso más conveniente del cliente";
         $product->urlimg = "WDCP.png";
-        $product->productstatus = 1;
         $product->save();
         //WDS
         $product = new Product;
         $product->name = "Warriors Defender Storage";
         $product->description = "Se Obtiene el producto WDS para el uso más conveniente del cliente";
         $product->urlimg = "WDS.png";
-        $product->productstatus = 1;
         $product->save();
         //WDIPS/IDS
         $product = new Product;
         $product->name = "Warriors Defender IPS/IDS";
         $product->description = "Se Obtiene el producto WDIPS/IDS para el uso más conveniente del cliente";
         $product->urlimg = "IDS.png";
-        $product->productstatus = 1;
         $product->save();
         //WDCC
         $product = new Product;
         $product->name = "Warriors Defender Central Console";
         $product->description = "Se Obtiene el producto WDCCpara el uso más conveniente del cliente";
         $product->urlimg = "IDS.png";
-        $product->productstatus = 1;
         $product->save();
 
         //WDR
@@ -163,7 +151,6 @@ class CompaniesTableSeeders extends Seeder
         $product->name = "Warriors Defender Reporter";
         $product->description = "Se Obtiene el producto WDR para el uso más conveniente del cliente";
         $product->urlimg = "WLicenciamiento.png";
-        $product->productstatus = 1;
         $product->save();
 
         //Maker
@@ -436,7 +423,6 @@ class CompaniesTableSeeders extends Seeder
         //License
         $licence = new License;
         $licence->serialkey = "*WDCEB2108192-306*";
-        $licence->sstatus = 1;
         $licence->save();
 
         //Acquisition type
@@ -447,25 +433,10 @@ class CompaniesTableSeeders extends Seeder
         $type->type = "Demo";
         $type->save();
 
-        $acq = new Acquisition;
-        $acq->salenumber = 1;
-        $acq->astatus = 1;
-        $acq->products_id = 1;
-        $acq->acquisition_types_id = 1;
-        $acq->licenses_id = 1;
-        $acq->save();
-
-        $customer = new Customer;
-        $customer->acquisitions_id = 1;
-        $customer->companies_id = 1;
-        $customer->branches_id = 1;
-        $customer->customstatus = 1;
-        $customer->save();
         
         $customer = new Customer;
         $customer->companies_id = 1;
         $customer->branches_id = 1;
-        $customer->customstatus = 1;
         $customer->save();
         
 

@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
             $table->string('name',60);
             $table->text('description');  
             $table->string('urlimg',255)->nullable();
-            $table->boolean('productstatus');
             $table->timestamps();          
         });
     }

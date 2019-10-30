@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBranchesTable extends Migration
+class CreatePeopleCopiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,21 @@ class CreateBranchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('branches', function (Blueprint $table) {
+        Schema::create('people_copies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('branchname',50);
-            $table->string('branchimg',255);
-            $table->string('branchtelephone1',12);
-            $table->string('branchtelephone2',12)->nullable();
-            $table->string('branchemail1',45);
-            $table->string('branchemail2',45)->nullable();
+            $table->string('rfc',13);
+            $table->string('name',25);
+            $table->string('lastname',35);
+            $table->string('img',255);
+            $table->string('telephone1',12);
+            $table->string('telephone2',12)->nullable();
+            $table->string('email',45);
+            $table->string('email2',45)->nullable();
             $table->string('zipcode',5);
             $table->string('district',35);
             $table->string('street',35);
-            $table->integer('insidenumber');
             $table->integer('exteriornumber');
+            $table->integer('insidenumber');
             $table->timestamps();
         });
     }
@@ -37,6 +39,6 @@ class CreateBranchesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('branches');
+        Schema::dropIfExists('people_copies');
     }
 }

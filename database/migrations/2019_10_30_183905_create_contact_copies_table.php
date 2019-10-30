@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLicensesTable extends Migration
+class CreateContactCopiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateLicensesTable extends Migration
      */
     public function up()
     {
-        Schema::create('licenses', function (Blueprint $table) {
+        Schema::create('contact_copies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('serialkey',60);
+            $table->integer('companies_id');
+            $table->integer('contact_companies_id');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateLicensesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('licenses');
+        Schema::dropIfExists('contact_copies');
     }
 }
