@@ -420,11 +420,6 @@ class CompaniesTableSeeders extends Seeder
         $nstorage->userstorage = 1000;
         $nstorage->save();
 
-        //License
-        $licence = new License;
-        $licence->serialkey = "*WDCEB2108192-306*";
-        $licence->save();
-
         //Acquisition type
         $type = new AcquisitionType;
         $type->type = "Sale";

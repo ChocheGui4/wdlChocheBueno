@@ -67,6 +67,8 @@ Route::post('/companyupdatecompany/{id}','CompanyController@companyUpdateCompany
 Route::post('/companyaddbranches/{id}', 'CompanyController@addBranches') ->name('addBranches');
 Route::get('/companybranchedit/{id}/{Compan}', 'CompanyController@branchEdit') ->name('branchEdit');
 Route::get('/companybranchdelete/{id}/{branch}', 'CompanyController@deleteBranch') ->name('deleteBranch');
+Route::get('/companybranchproductdelete/{id}/{branch}/{product}', 'CompanyController@deleteBranchProduct') ->name('deleteBranchProduct');
+
 
 
 

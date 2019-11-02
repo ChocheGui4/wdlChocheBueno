@@ -416,11 +416,16 @@ class CompanyController extends Controller
         $corg = ContactBranch::where("branches_id",$id)->first();
         // dd($borg);
         $query = Branch::join("customers","customers.branches_id","=","branches.id")
+        ->where("customers.branches_id",$id)
         ->join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
+        ->whereNotNull("customers.acquisitions_id")
         ->join("licenses","acquisitions.licenses_id","=","licenses.id")
         ->join("products","acquisitions.products_id","=","products.id")
         ->join("categories","categories.products_id","=","products.id")
+        
+        
         ->get();
+        dd($query);
         // $query2 = Branch::join("customers","customers.branches_id","=","branches.id")
         // ->join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
         // ->join("licenses","acquisitions.licenses_id","=","licenses.id")
@@ -507,6 +512,37 @@ class CompanyController extends Controller
         }
         
         // return redirect()->route('branchEdit',compact('id','company'));
+    }
+    public function deleteBranchProduct($id, $branch, $product){
+        dd($id,$branch, $product);
+        $query = Branch::join("customers","customers.branches_id","=","branches.id")
+        ->join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
+        ->join("licenses","acquisitions.licenses_id","=","licenses.id")
+        ->join("products","acquisitions.products_id","=","products.id")
+        ->join("categories","categories.products_id","=","products.id")
+        ->get();
+        // $query2 = Branch::join("customers","customers.branches_id","=","branches.id")
+        // ->join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
+        // ->join("licenses","acquisitions.licenses_id","=","licenses.id")
+        // ->get();
+        // dd($query);
+        foreach ($query as $qu1) {
+            $history = new History;
+            $history->product = $qu1->name;
+            $history->serial = $qu1->serialkey;
+            $history->time = $qu1->year;
+            $history->period = "year";
+            $history->storage = $qu1->storage;
+            $history->unitstorage = $qu1->unitstorage;
+            $history->description = "Se dio de baja la sucursal y por tanto el producto";
+            $history->company = $company;
+            $history->branch = $id;
+            $history->save();
+            $ser = License::where("serialkey",$qu1->serialkey)->first();
+            $ser->delete();
+        }
+        
+        return view('super.productCompany',compact('company','branches','brans','products','productos'));
     }
     
 

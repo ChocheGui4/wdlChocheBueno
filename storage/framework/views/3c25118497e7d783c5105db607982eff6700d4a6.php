@@ -71,7 +71,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a id="down" class="btn default btn-outline" href="<?php echo e(route('deleteBranch',[$company, $branch->id])); ?>">
+                                                <a id="dow" class="btn default btn-outline" href="<?php echo e(route('deleteBranch',[$company, $branch->id])); ?>">
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>
                                             </li>

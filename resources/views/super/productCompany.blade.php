@@ -66,14 +66,15 @@
                                                 </a>
                                             </li> -->
                                             <li>
-                                                <a id="down" class="btn default btn-outline" href="{{ route('deleteProductBranch', $product->id)}}">
+                                                <a id="" class="btn default btn-outline" 
+                                                href="{{ route('deleteBranchProduct',[$company,$branches, $product->id])}}">
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a
                                                     class="btn default btn-outline"
-                                                    href="{{ route('showBranchesProducts',[$company,$branches])}}">
+                                                    href="{{ route('deleteBranchProduct',[$company,$branches, $product->id])}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
                                             </li>

@@ -8,6 +8,6 @@ class Category extends Model
 {
     protected $fillable = [
         'maker','processor','memory','disc','storagem','unitstoragemail','storage','unitstorage',
-        'numberstorage','year','period','numberuser','offer','products_id'
+        'numberstorage','year','period','numberuser','offer'
     ];
 }

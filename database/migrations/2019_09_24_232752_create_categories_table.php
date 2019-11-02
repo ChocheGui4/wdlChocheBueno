@@ -28,12 +28,6 @@ class CreateCategoriesTable extends Migration
             $table->string('period',6)->nullable();
             $table->integer('numberuser')->nullable();
             $table->string('offer',6);
-            $table->integer('products_id');
-            $table->foreign('products_id')
-            ->references('id')
-            ->on('products')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
             $table->timestamps();          
         });
     }

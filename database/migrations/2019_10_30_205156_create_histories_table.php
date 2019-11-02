@@ -16,7 +16,7 @@ class CreateHistoriesTable extends Migration
         Schema::create('histories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('product');
-            $table->string('serial');
+            $table->string('serial')->nullable();
             $table->string('time',25)->nullable();
             $table->string('period',6)->nullable();
             $table->integer('storage')->nullable();

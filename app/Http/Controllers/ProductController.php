@@ -14,6 +14,8 @@ use App\AcquisitionType;
 use App\Area;
 use App\Branch;
 use App\Category;
+use App\CategoryCopy;
+use App\CategoryProduct;
 use App\Characteristic;
 use App\Company;
 use App\Customer;
@@ -27,6 +29,7 @@ use App\NumberUserStorage;
 use App\People;
 use App\Processor;
 use App\Product;
+use App\ProductCopy;
 use App\ProductList;
 use App\Storage;
 use App\UnitStorage;
@@ -111,15 +114,23 @@ class ProductController extends Controller
         $category->period = "Year";
         $category->numberuser = $nu;
         $category->offer = $request->offer;
-        $category->products_id = $ided;
-        $category->save();        
+        $category->save();
+        $cat = Category::orderBy('id','DESC')->latest()->first();
+        $catprod = new CategoryProduct;
+        $catprod->products_id = $ided;
+        $catprod->categories_id = $cat->id;
+        $catprod->save();
         return redirect()->route('productsShow');
     }
 
 
     // protected $prodid=3;
     public function productsShowSpecific($id){    
-        $products = Category::where("products_id",$id)->get();
+        $products = Category::join('category_products', 'categories.id', '=',
+        'category_products.categories_id')
+        ->join('products', 'products.id', '=',
+        'category_products.products_id')
+        ->get();
         $name = Product::find($id);
         // dd($names->id);
         $i=0;
@@ -147,7 +158,10 @@ class ProductController extends Controller
     public function datatableproducts($id){
         // $tasks = Product::orderBy('id','ASC')->get();
         return Datatables()     
-            ->eloquent(Category::where("products_id",$id))
+            ->eloquent(Category::join('category_products', 'categories.id', '=',
+            'category_products.categories_id')
+            ->join('products', 'products.id', '=',
+            'category_products.products_id')->where("products_id",$id))
             ->addColumn('btn','<a 
                 id="delete" 
                 style="background: #DD1E00; color: white;" 
@@ -386,8 +400,51 @@ class ProductController extends Controller
     }
 
     function productDeleteGeneral($id){
-        $product = Product::find($id);
-        $product->save();
+
+        $cp = CategoryProduct::where("products_id",$id)->get();
+        if($cp==null){
+            $product = Product::find($id);
+            $prodc = new ProductCopy;
+            $prodc->name = $product->name;
+            $prodc->description = $product->description;
+            $prodc->urlimg = $product->urlimg;
+            $prodc->save();
+            $product->delete();
+        }else{
+            $product = Product::find($id);
+            foreach($cp as $cap){
+                $category = Category::find($cap->categories_id);
+                $cac = new CategoryCopy;
+                $cac->maker = $category->maker;
+                $cac->processor = $category->processor;
+                $cac->memory = $category->memory;
+                $cac->disc = $category->disc;
+                $cac->storagem = $category->storagem;
+                $cac->unitstoragemail = $category->unitstoragemail;
+                $cac->storage = $category->storage;
+                $cac->unitstorage = $category->unitstorage;
+                $cac->numberstorage = $category->numberstorage;
+                $cac->year = $category->year;
+                $cac->period = $category->period;
+                $cac->numberuser = $category->numberuser;
+                $cac->offer = $category->offer;
+                $cac->name_product = $product->name;
+                $cac->save();
+                $category->delete();
+
+                //Falta la opción de cuando el producto fu adquirido 
+                //por empresas y/o sucursales y personas físicas
+            }
+            
+            $prodc = new ProductCopy;
+            $prodc->name = $product->name;
+            $prodc->description = $product->description;
+            $prodc->urlimg = $product->urlimg;
+            $prodc->save();
+            $product->delete();
+        }
+
+        
         
     }
     function deleteProductBranch($id){

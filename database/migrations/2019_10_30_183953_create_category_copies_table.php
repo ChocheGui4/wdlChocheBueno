@@ -15,10 +15,10 @@ class CreateCategoryCopiesTable extends Migration
     {
         Schema::create('category_copies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('maker',20);
-            $table->string('processor',25);
-            $table->string('memory',5);
-            $table->string('disc',20);
+            $table->string('maker',20)->nullable();
+            $table->string('processor',25)->nullable();
+            $table->string('memory',5)->nullable();
+            $table->string('disc',20)->nullable();
             $table->integer('storagem')->nullable();
             $table->string('unitstoragemail',3)->nullable();
             $table->integer('storage')->nullable();
@@ -27,8 +27,8 @@ class CreateCategoryCopiesTable extends Migration
             $table->integer('year')->nullable();
             $table->string('period',6)->nullable();
             $table->integer('numberuser')->nullable();
-            $table->string('offer',6);
-            $table->integer('products_id');
+            $table->string('offer',6)->nullable();
+            $table->string('name_product');
             $table->timestamps();          
         });
     }
