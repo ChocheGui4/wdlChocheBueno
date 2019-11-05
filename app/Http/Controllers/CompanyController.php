@@ -524,14 +524,17 @@ class CompanyController extends Controller
         
         // return redirect()->route('branchEdit',compact('id','company'));
     }
-    public function deleteBranchProduct($id, $branch, $product){
-        dd($id,$branch, $product);
+    public function deleteBranchProduct($id, $branch, $product, $specific){
+        // dd($id,$branch, $product,$specific);
         $query = Branch::join("customers","customers.branches_id","=","branches.id")
         ->join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
         ->join("licenses","acquisitions.licenses_id","=","licenses.id")
         ->join("products","acquisitions.products_id","=","products.id")
-        ->join("categories","categories.products_id","=","products.id")
+        ->join("category_products","category_products.products_id","=","products.id")
+        ->join("categories","category_products.categories_id","=","categories.id")
+        ->where("acquisitions.id",$specific)
         ->get();
+        // dd($query);
         // $query2 = Branch::join("customers","customers.branches_id","=","branches.id")
         // ->join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
         // ->join("licenses","acquisitions.licenses_id","=","licenses.id")
@@ -545,15 +548,15 @@ class CompanyController extends Controller
             $history->period = "year";
             $history->storage = $qu1->storage;
             $history->unitstorage = $qu1->unitstorage;
-            $history->description = "Se dio de baja la sucursal y por tanto el producto";
-            $history->company = $company;
-            $history->branch = $id;
+            $history->description = "Se dio de baja el producto";
+            $history->company = $id;
+            $history->branch = $branch;
             $history->save();
             $ser = License::where("serialkey",$qu1->serialkey)->first();
             $ser->delete();
         }
         
-        return view('super.productCompany',compact('company','branches','brans','products','productos'));
+        return redirect()->route('showBranchesProducts',compact('id','branch'));
     }
     
 

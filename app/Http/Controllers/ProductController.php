@@ -274,10 +274,13 @@ class ProductController extends Controller
         $products = Company::join('customers', 'customers.companies_id', '=', 'companies.id')
                 ->join('acquisitions', 'acquisitions.id', '=', 'customers.acquisitions_id')
                 ->join('products', 'products.id', '=', 'acquisitions.products_id')
-                ->select('customers.id','products.name','products.urlimg')
+                ->join('category_products', 'products.id', '=', 'category_products.products_id')
+                ->join('categories', 'categories.id', '=', 'category_products.categories_id')
+                ->select('customers.id','products.name','products.urlimg',
+                'category_products.categories_id','acquisitions.id as acid')
                 ->where('customers.branches_id', '=', $branches)
                 ->get();
-        // dd($products);        
+        // dd($products);  
         return view('super.productCompany',compact('company','branches','brans','products','productos'));
     }
     
