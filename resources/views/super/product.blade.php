@@ -143,8 +143,33 @@
                                                                         data-target="#WDNGcreate">
                                                                         <i class="mdi mdi-plus-circle"></i>
                                                                     </a>
+                                                                    @if($ac!=null)
+                                                                        @foreach($ac as $a)
+                                                                            @switch(true)
+                                                                                @case($a->id == $product->id)
+                                                                                    <input id="in{{$count}}" type="text" value="{{$a->products_id}}">
+                                                                                    {{$p=0}}
+                                                                                    @break
+                                                                                @case($p == $le)
+                                                                                    <input id="in{{$count}}" type="text" value="0">
+                                                                                    {{$p}}
+                                                                                    {{$le}}
+                                                                                    {{$p=1}}
+                                                                                    @break
+                                                                                @default
+                                                                                    @break
+                                                                            @endswitch
+                                                                            <input hidden value="{{$p++}}">
+                                                                                
+                                                                        @endforeach
+                                                                        
+                                                                    @endif
+                                                                    
+                                                                    
+                                                                    
                                                                     <a 
                                                                         id="down"
+                                                                        onClick="inputs('#in{{$count}}');" 
                                                                         class="btn" 
                                                                         style="background: #b60303; color: white;"
                                                                         href="{{ route('productDeleteGeneral',$product->id)}}">
@@ -156,6 +181,7 @@
                                                                         href="{{ route('productsShowSpecific',$product->id)}}">
                                                                         <i class="mdi mdi-arrow-right-bold"></i>
                                                                     </a>
+                                                                    {{$count++}}
                                                                     @csrf @method('DELETE')
                                                                 </td>
                                                             </tr>

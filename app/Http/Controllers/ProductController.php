@@ -62,10 +62,18 @@ class ProductController extends Controller
         $storage = Storage::orderBy('id','ASC')->get();
         // $unitstorage = UnitStorage::orderBy('id','ASC')->get();
         $nus = NumberUserStorage::orderBy('id','ASC')->get();
-        
+
+        //Con esta consulta vemos si se ha adquirido cada producto
+        $ac = Acquisition::join('products', 'products.id', '=',
+        'acquisitions.products_id')->get();
+        $le = count($ac);
+        // dd($ac);
+        $p=1;
+        $count=1;
         return view('super.product', compact('products',
         'i','makers','processors','memories','discs',
-        'numberusers','mails','years','storage',/*'unitstorage',*/'nus'));
+        'numberusers','mails','years','storage',/*'unitstorage',*/'nus',
+        'ac','le','p','count'));
         
     }
     
@@ -140,7 +148,12 @@ class ProductController extends Controller
     }
 
     public function AddCompanyProduct($company, $branch, $id){  
-        $products = Category::where("products_id",$id)->get();
+        $products = Product::join('category_products', 'category_products.products_id',
+            '=','products.id')
+            ->join('categories', 'category_products.categories_id',
+            '=','categories.id')
+            ->where("category_products.products_id",$id)
+            ->get();
         $name = Product::find($id);
         // dd($names->id);
         $i=0;
@@ -176,7 +189,10 @@ class ProductController extends Controller
     public function datatableproductsadd($id){
         // $tasks = Product::orderBy('id','ASC')->get();
         return Datatables()     
-            ->eloquent(Category::where("products_id",$id))
+            ->eloquent(Product::join('category_products', 'category_products.products_id',
+            '=','products.id')
+            ->join('categories', 'category_products.categories_id',
+            '=','categories.id')->where("products_id",$id))//--------------------------------
             ->addColumn('btn','<a 
                 id=""
                 href="{{ route("productAddCompany",$id)}}"

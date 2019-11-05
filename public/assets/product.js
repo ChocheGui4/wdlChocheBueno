@@ -138,47 +138,58 @@ $('body').on('click','#delete', function(event){
     }); 
     
 });
-
+var dato;
+function inputs(valor){
+    dato = valor;
+}
 $('body').on('click','#down', function(event){
     event.preventDefault();
-    var me = $(this),
+    con = $(dato).val();
+    console.log(con);
+    if(con==0){
+        var me = $(this),
         url = me.attr("href"),
         title = me.attr("title"),
         csrf_token = $('meta[name="csrf-token"]').attr("content");
-    swal({   
-        title: "Are you sure delete?",   
-        type: "warning",   
-        showCancelButton: true,   
-        confirmButtonColor: "#C52300",   
-        confirmButtonText: "Yes, delete it!",   
-        closeOnConfirm: false 
-    }, function(){   
-        $.ajax({
-            url:url, //===PHP file name====
-            data:{
-                '_method':'GET',
-                'token':csrf_token
-            },
-            type:'POST',
-            success:function(data){              
-                swal({   
-                    title: "Element removed!",   
-                    text: "",   
-                    type:"success",
-                    timer: 2000,   
-                    showConfirmButton: false 
-                    
-                });
-                setTimeout("document.location.reload()", 1500);
-              // swal("¡Success!", "Message sent!", "success");
-            },
-            error:function(data){
-              //Error Message == 'Title', 'Message body', Last one leave as it is
-              swal("Oops...", "Something went wrong :(", "error");
-            }
-          });
-        // swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
-    }); 
+        swal({   
+            title: "Are you sure delete?",   
+            type: "warning",   
+            showCancelButton: true,   
+            confirmButtonColor: "#C52300",   
+            confirmButtonText: "Yes, delete it!",   
+            closeOnConfirm: false 
+        }, function(){   
+            $.ajax({
+                url:url, //===PHP file name====
+                data:{
+                    '_method':'GET',
+                    'token':csrf_token
+                },
+                type:'POST',
+                success:function(data){              
+                    swal({   
+                        title: "Element removed!",   
+                        text: "",   
+                        type:"success",
+                        timer: 2000,   
+                        showConfirmButton: false 
+                        
+                    });
+                    setTimeout("document.location.reload()", 1500);
+                // swal("¡Success!", "Message sent!", "success");
+                },
+                error:function(data){
+                //Error Message == 'Title', 'Message body', Last one leave as it is
+                swal("Oops...", "Something went wrong :(", "error");
+                }
+            });
+            // swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
+        });
+
+    }else{
+        swal("Failed", "This product is enable in companies or people", "error");
+    }
+     
     
 });
 

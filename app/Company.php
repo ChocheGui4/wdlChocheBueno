@@ -6,17 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-    public function contact()
+    public function contact_company()
     {
-        return $this->belongsTo('App\Contact');
+        return $this->hasMany('App\Contact');
     }
     public function customer()
     {
         return $this->hasMany('App\Customer');
-    }
-    public function branche()
-    {
-        return $this->hasMany('App\Branch');
     }
     
     protected $fillable = [

@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Branch extends Model
 {
-    public function company()
+    public function contact_branch()
     {
-        return $this->belongsTo('App\Company');
+        return $this->belongsTo('App\ContactBranch');
+    }
+    public function customer()
+    {
+        return $this->hasMany('App\Customer');
     }
     protected $fillable = [
         'branchname','branchimg','branchtelephone1','branchtelephone2','branchemail1',
