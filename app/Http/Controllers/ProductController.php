@@ -65,9 +65,12 @@ class ProductController extends Controller
 
         //Con esta consulta vemos si se ha adquirido cada producto
         $ac = Acquisition::join('products', 'products.id', '=',
-        'acquisitions.products_id')->get();
+        'acquisitions.products_id')
+        ->select('products.id')
+        ->groupBy('products.id')
+        ->get();
         $le = count($ac);
-        // dd($ac);
+        // dd($le);
         $p=1;
         $count=1;
         return view('super.product', compact('products',

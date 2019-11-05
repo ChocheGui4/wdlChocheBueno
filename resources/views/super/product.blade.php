@@ -145,24 +145,32 @@
                                                                     </a>
                                                                     @if($ac!=null)
                                                                         @foreach($ac as $a)
-                                                                            @switch(true)
-                                                                                @case($a->id == $product->id)
-                                                                                    <input id="in{{$count}}" type="text" value="{{$a->products_id}}">
-                                                                                    {{$p=0}}
-                                                                                    @break
-                                                                                @case($p == $le)
-                                                                                    <input id="in{{$count}}" type="text" value="0">
-                                                                                    {{$p}}
-                                                                                    {{$le}}
-                                                                                    {{$p=1}}
-                                                                                    @break
-                                                                                @default
-                                                                                    @break
-                                                                            @endswitch
+                                                                            
+                                                                            @if($product->id == $a->id )
+                                                                                <input  hidden id="in{{$count}}" type="text" value="{{$a->id}}">
+                                                                                <label  hidden >p antes de 0 pero coincidió: {{$p}} </label>
+                                                                                <label  hidden >{{$p=1}}</label>
+                                                                                @break
+                                                                            
+                                                                            @elseif($p == $le)
+                                                                                <input  hidden id="in{{$count}}" type="text" value="0">
+                                                                                <label  hidden >id: {{$a->id}} </label>
+                                                                                <label  hidden >p antes de 0: {{$p}} </label>
+                                                                                <label  hidden >le: {{$le}}</label>
+                                                                                <label hidden >{{$p=1}}</label>
+                                                                                @break
+                                                                            @endif
+                                                                                
+                                                                            
                                                                             <input hidden value="{{$p++}}">
                                                                                 
                                                                         @endforeach
+                                                                        <!-- valooooor: {{$p}} -->
                                                                         
+                                                                    @endif
+
+                                                                    @if($le==0)
+                                                                        <input hidden id="in{{$count}}" type="text" value="0">
                                                                     @endif
                                                                     
                                                                     
@@ -181,7 +189,7 @@
                                                                         href="{{ route('productsShowSpecific',$product->id)}}">
                                                                         <i class="mdi mdi-arrow-right-bold"></i>
                                                                     </a>
-                                                                    {{$count++}}
+                                                                    <label hidden>{{$count++}}</label>
                                                                     @csrf @method('DELETE')
                                                                 </td>
                                                             </tr>

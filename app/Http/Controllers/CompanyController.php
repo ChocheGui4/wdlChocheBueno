@@ -21,6 +21,7 @@ use App\Branch;
 use App\BranchCopy;
 use App\Company;
 use App\Contact;
+use App\CategoryProduct;
 use App\ContactCompany;
 use App\ContactBranch;
 use App\ContactBranchCopy;
@@ -416,16 +417,15 @@ class CompanyController extends Controller
         $corg = ContactBranch::where("branches_id",$id)->first();
         // dd($borg);
         $query = Branch::join("customers","customers.branches_id","=","branches.id")
-        ->where("customers.branches_id",$id)
+        ->where("branches.id",$id)
         ->join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
         ->whereNotNull("customers.acquisitions_id")
         ->join("licenses","acquisitions.licenses_id","=","licenses.id")
         ->join("products","acquisitions.products_id","=","products.id")
-        ->join("categories","categories.products_id","=","products.id")
-        
-        
+        ->join("category_products","category_products.products_id","=","products.id")
+        ->join("categories","category_products.categories_id","=","categories.id")
         ->get();
-        dd($query);
+        
         // $query2 = Branch::join("customers","customers.branches_id","=","branches.id")
         // ->join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
         // ->join("licenses","acquisitions.licenses_id","=","licenses.id")
@@ -442,44 +442,55 @@ class CompanyController extends Controller
             $history->description = "Se dio de baja la sucursal y por tanto el producto";
             $history->company = $company;
             $history->branch = $id;
-            $history->save();
+            
+            
             $ser = License::where("serialkey",$qu1->serialkey)->first();
-            $ser->delete();
+            if($ser!=null){
+                $history->save();                
+                $ser->delete();
+            }
+            
         }
         
         $branch = new BranchCopy;
-        $branch ->branchname= $borg->branchname;
-        $branch ->branchimg= $borg->branchimg;
-        $branch ->branchtelephone1= $borg->branchtelephone1;
-        $branch ->branchtelephone2= $borg->branchtelephone2;
-        $branch ->branchemail1= $borg->branchemail1;
-        $branch ->branchemail2= $borg->branchemail2;
-        $branch ->zipcode= $borg->zipcode;
-        $branch ->district= $borg->district;
-        $branch ->street= $borg->street;
-        $branch ->insidenumber= $borg->insidenumber;
-        $branch ->exteriornumber= $borg->exteriornumber;
-        $branch ->companies_id= $company;
-        $branch->save();
-        $borg->delete();
+        if($borg!=null){
+            $branch ->id= $borg->id;
+            $branch ->branchname= $borg->branchname;
+            $branch ->branchimg= $borg->branchimg;
+            $branch ->branchtelephone1= $borg->branchtelephone1;
+            $branch ->branchtelephone2= $borg->branchtelephone2;
+            $branch ->branchemail1= $borg->branchemail1;
+            $branch ->branchemail2= $borg->branchemail2;
+            $branch ->zipcode= $borg->zipcode;
+            $branch ->district= $borg->district;
+            $branch ->street= $borg->street;
+            $branch ->insidenumber= $borg->insidenumber;
+            $branch ->exteriornumber= $borg->exteriornumber;
+            $branch ->companies_id= $company;
+            $branch->save();
+            $borg->delete();
+        }
 
         
         $contact = new ContactBranchCopy;
-        $contact->name = $corg->name;
-        $contact->lastname = $corg->lastname;
-        $contact->telephone1 = $corg->telephone1;
-        $contact->telephone2 = $corg->telephone2;
-        $contact->email = $corg->email;
-        $contact->email2 = $corg->email2;
-        $contact->area = $corg->area;
-        $contact->branches_id = $corg->branches_id;
-        $contact->save();
+        if($corg!=null){
+            $contact->id = $corg->id;
+            $contact->name = $corg->name;
+            $contact->lastname = $corg->lastname;
+            $contact->telephone1 = $corg->telephone1;
+            $contact->telephone2 = $corg->telephone2;
+            $contact->email = $corg->email;
+            $contact->email2 = $corg->email2;
+            $contact->area = $corg->area;
+            $contact->branches_id = $corg->branches_id;
+            $contact->save();
 
+            
+            $corg->delete();
+        }
         
-        $corg->delete();
         
-        
-        // return redirect()->route('branchEdit',compact('id','company'));
+        return redirect()->route('companyShow');
     }
 
     public function companyDelete($id)
