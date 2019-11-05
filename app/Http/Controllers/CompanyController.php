@@ -495,31 +495,155 @@ class CompanyController extends Controller
 
     public function companyDelete($id)
     {
+        // dd($id);
+        $companyorg = Company::find($id);
+        $corg = Company::join("contacts","companies.id","=","contacts.companies_id")
+        ->join("contact_companies","contact_companies.id","=","contacts.contact_companies_id")
+        ->where("contacts.companies_id",$id)->get();
+        // dd($corg);
+
+        $query = Company::join("customers","customers.companies_id","=","companies.id")
+        ->where("companies.id",$id)
+        ->join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
+        ->whereNotNull("customers.acquisitions_id")
+        ->join("licenses","acquisitions.licenses_id","=","licenses.id")
+        ->join("products","acquisitions.products_id","=","products.id")
+        ->join("category_products","category_products.products_id","=","products.id")
+        ->join("categories","category_products.categories_id","=","categories.id")
+        ->get();
+        $val = count($query);
         
-        $company = Company::find($id);
-        $company->save();
+        // $query2 = Branch::join("customers","customers.branches_id","=","branches.id")
+        // ->join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
+        // ->join("licenses","acquisitions.licenses_id","=","licenses.id")
+        // ->get();
+        // dd($query);
+        if($val!=0){
+            dd("entro");
+            foreach ($query as $qu1) {
+                dd($qu1);
+                $history = new History;
+                $history->product = $qu1->name;
+                $history->serial = $qu1->serialkey;
+                $history->time = $qu1->year;
+                $history->period = "year";
+                $history->storage = $qu1->storage;
+                $history->unitstorage = $qu1->unitstorage;
+                $history->description = "Se dio de baja la empresa y por tanto el producto y sucursales";
+                $history->company = $id;
+                $history->branch = $id;
+                
+                
+                $ser = License::where("serialkey",$qu1->serialkey)->first();
+                if($ser!=null){
+                                
+                    $ser->delete();
+                }
+                $bnc = Branch::find($qu1->branches_id);
+                $branch = new BranchCopy;
 
-        $contact = ContactCompany::find($id);
-        $contact->save();
+                if($bnc!=null){
+                    $branch ->id= $bnc->id;
+                    $branch ->branchname= $bnc->branchname;
+                    $branch ->branchimg= $bnc->branchimg;
+                    $branch ->branchtelephone1= $bnc->branchtelephone1;
+                    $branch ->branchtelephone2= $bnc->branchtelephone2;
+                    $branch ->branchemail1= $bnc->branchemail1;
+                    $branch ->branchemail2= $bnc->branchemail2;
+                    $branch ->zipcode= $bnc->zipcode;
+                    $branch ->district= $bnc->district;
+                    $branch ->street= $bnc->street;
+                    $branch ->insidenumber= $bnc->insidenumber;
+                    $branch ->exteriornumber= $bnc->exteriornumber;
+                    $branch ->companies_id= $id;
+                    $branch->save();
+                    $history->save();  
+                    $bnc->delete();
 
-        $customers = Customer::where('companies_id',$company->id)->get();
-        foreach ($customers as $customer) {
-            $valac = $customer->acquisitions_id;
-            $customer->save();
-            $branch = Branch::find($customer->branches_id);
+                }
+                
+            }
+        }else{
+            $queryc = Company::join("customers","customers.companies_id","=","companies.id")
+            ->join("branches","customers.branches_id","=","branches.id")
+            ->where("companies.id",$id)
+            ->get();
+            foreach ($queryc as $quc) {
+                $bnc = Branch::find($quc->branches_id);
+                $bncc = Branch::join("contact_branches","contact_branches.branches_id",
+                "=","branches.id")->get();
+                // dd($bncc);
+                $contc = new ContactBranchCopy;
+                foreach ($bncc as $conta) {
+                    $contc->name = $conta->name;
+                    $contc->lastname = $conta->lastname;
+                    $contc->telephone1 = $conta->telephone1;
+                    $contc->telephone2 = $conta->telephone2;
+                    $contc->email = $conta->email;
+                    $contc->email2 = $conta->email2;
+                    $contc->area = $conta->area;
+                    $contc->branches_id = $conta->branches_id;
+                    $contc->save();
+                }
+                $branch = new BranchCopy;
+
+                if($bnc!=null){
+                    $branch ->id= $bnc->id;
+                    $branch ->branchname= $bnc->branchname;
+                    $branch ->branchimg= $bnc->branchimg;
+                    $branch ->branchtelephone1= $bnc->branchtelephone1;
+                    $branch ->branchtelephone2= $bnc->branchtelephone2;
+                    $branch ->branchemail1= $bnc->branchemail1;
+                    $branch ->branchemail2= $bnc->branchemail2;
+                    $branch ->zipcode= $bnc->zipcode;
+                    $branch ->district= $bnc->district;
+                    $branch ->street= $bnc->street;
+                    $branch ->insidenumber= $bnc->insidenumber;
+                    $branch ->exteriornumber= $bnc->exteriornumber;
+                    $branch ->companies_id= $id;
+                    $branch->save();
+                    $bnc->delete();
+
+                }
+            }
+            
+        }
+        dd("borro sucursales y productos");
+        $companycopy = new CompanyCopy;
+        if($companyorg!=null){
+            $companycopy->id= $borg->id;
+            $branch ->branchname= $borg->branchname;
+            $branch ->branchimg= $borg->branchimg;
+            $branch ->branchtelephone1= $borg->branchtelephone1;
+            $branch ->branchtelephone2= $borg->branchtelephone2;
+            $branch ->branchemail1= $borg->branchemail1;
+            $branch ->branchemail2= $borg->branchemail2;
+            $branch ->zipcode= $borg->zipcode;
+            $branch ->district= $borg->district;
+            $branch ->street= $borg->street;
+            $branch ->insidenumber= $borg->insidenumber;
+            $branch ->exteriornumber= $borg->exteriornumber;
+            $branch ->companies_id= $company;
             $branch->save();
-            $con = ContactBranch::find($branch->id)->get();
-            foreach ($con as $c) {
-                $c->save();
-            }
+            $borg->delete();
+        }
+
+        
+        $contact = new ContactBranchCopy;
+        if($corg!=null){
+            $contact->id = $corg->id;
+            $contact->name = $corg->name;
+            $contact->lastname = $corg->lastname;
+            $contact->telephone1 = $corg->telephone1;
+            $contact->telephone2 = $corg->telephone2;
+            $contact->email = $corg->email;
+            $contact->email2 = $corg->email2;
+            $contact->area = $corg->area;
+            $contact->branches_id = $corg->branches_id;
+            $contact->save();
+
             
-            if($valac!=null){
-                $acquisition = Acquisition::find($valac);
-                $acquisition->save();
-                $license = License::find($acquisition->licenses_id);
-                $license->save();
-            }
-            
+            $corg->delete();
         }
         
         // return redirect()->route('branchEdit',compact('id','company'));

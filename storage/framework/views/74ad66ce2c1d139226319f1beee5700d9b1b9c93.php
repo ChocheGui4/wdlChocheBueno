@@ -17,7 +17,7 @@
         <div class="col-md-6 col-4 align-self-center">
 
             <a
-                href="<?php echo e(route('companyShow')); ?>"
+                href="/companies"
                 class="btn pull-right hidden-sm-down"
                 style="background: #383F49; color: white">
                 <i class="mdi mdi-arrow-left"></i>

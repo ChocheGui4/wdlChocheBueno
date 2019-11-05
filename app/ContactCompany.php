@@ -12,7 +12,7 @@ class ContactCompany extends Model
     }
     protected $fillable = [
         'name', 'lastname','telephone1','telephone2','email1','email2',
-        'area'
+        'area','company'
     ];
 }
 

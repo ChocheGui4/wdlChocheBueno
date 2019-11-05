@@ -22,6 +22,7 @@ class CreateContactCompanyCopiesTable extends Migration
             $table->string('email',45);
             $table->string('email2',45);
             $table->string('area',40);
+            $table->string('company');
             $table->timestamps();
         });
     }

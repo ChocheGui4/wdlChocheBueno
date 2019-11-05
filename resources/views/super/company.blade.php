@@ -50,7 +50,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a id="down" class="btn default btn-outline" href="{{ route('companyDelete',$company->id)}}">
+                                                <a id="" class="btn default btn-outline" href="{{ route('companyDelete',$company->id)}}">
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>
                                             </li>
