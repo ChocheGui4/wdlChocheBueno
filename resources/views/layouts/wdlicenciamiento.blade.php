@@ -103,8 +103,10 @@
                                     <i class="icon-arrow-left-circle"></i>
                                 </a>
                             </li>
+                            
+                            
                             <li class="nav-item dropdown">
-                                <a
+                                <!-- <a
                                     class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark"
                                     href=""
                                     data-toggle="dropdown"
@@ -114,7 +116,7 @@
                                     <div class="notify">
                                         <span class="heartbit"></span>
                                         <span class="point"></span></div>
-                                </a>
+                                </a> -->
                                 <!-- <div class="dropdown-menu mailbox animated bounceInDown">
                                     <ul>
                                         <li>
@@ -174,6 +176,7 @@
                                 </div> -->
                             </li>
                         </ul>
+                        
                     </div>
                 </nav>
             </header>
@@ -181,7 +184,7 @@
                 <div class="scroll-sidebar">
                     <div class="user-profile">
                         <div class="profile-img">
-                            <img src="{{ asset('bundle/assets/images/users/1.jpg') }}" alt="user"/>
+                            <img src="{{ asset('bundle/assets/images/users/perfil.png') }}" alt="user"/>
                         </div>
                         <div class="profile-text">
                             <a
@@ -196,12 +199,6 @@
                                 <a href="#" class="dropdown-item">
                                     <i class="ti-user"></i>
                                     My Profile</a>
-                                <a href="#" class="dropdown-item">
-                                    <i class="ti-wallet"></i>
-                                    My Balance</a>
-                                <a href="#" class="dropdown-item">
-                                    <i class="ti-email"></i>
-                                    Inbox</a>
                                 <div class="dropdown-divider"></div>
                                 <a href="#" class="dropdown-item">
                                     <i class="ti-settings"></i>
