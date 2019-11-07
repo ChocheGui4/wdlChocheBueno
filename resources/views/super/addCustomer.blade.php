@@ -63,7 +63,7 @@
                                                                                     required
                                                                                     maxlength="25"
                                                                                     pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                                    data-validation-pattern-message="The own names must have at least 3 letters">
+                                                                                    data-validation-pattern-message="Name must contain at least 3 letters">
                                                                             </div>
                                                                             <span class="invalid-feedback" role="alert" style="color:red;">
                                                                                 <strong>{{ $errors->first('name') }}</strong>
@@ -93,7 +93,7 @@
                                                                                 required
                                                                                 maxlength="25"
                                                                                 pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                                data-validation-pattern-message="The own lastname must have at least 3 letters"
+                                                                                data-validation-pattern-message="Lastname must contain at least 3 letters"
                                                                                 >
                                                                         </div>
                                                                         <span class="invalid-feedback" role="alert" style="color:red;">
@@ -301,7 +301,7 @@
                                                                                 value="{{ old('rfc') }}"
                                                                                 required
                                                                                 maxlength="13"
-                                                                                pattern="[A-Z0-9].{12}"
+                                                                                pattern="[A-Z0-9]{13}"
                                                                                 placeholder="Example: FTGY568765H78"
                                                                                 data-validation-pattern-message="The RFC must have 13 characters">
                                                                         </div>

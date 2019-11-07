@@ -364,7 +364,7 @@
                                                                         value="<?php echo e(old('companyrfc')); ?>"
                                                                         required
                                                                         maxlength="13"
-                                                                        pattern="[A-Z0-9].{12}"
+                                                                        pattern="[A-Z0-9]{13}"
                                                                         placeholder="Example: FTGY568765H78"
                                                                         data-validation-pattern-message="The RFC must have 13 characters">
                                                                 </div>

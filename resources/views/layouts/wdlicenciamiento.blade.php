@@ -8,7 +8,7 @@
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="{{ asset('bundle/assets/images/iconowdl.png') }}">
+            href="{{ asset('bundle/assets/images/faviwdl.jpeg') }}">
         <title>@yield('title' ,'WDLicense')</title>
         <link
             href="{{ asset('bundle/assets/plugins/bootstrap/css/bootstrap.min.css') }}"
@@ -106,17 +106,15 @@
                             
                             
                             <li class="nav-item dropdown">
-                                <!-- <a
+                                <a
                                     class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark"
-                                    href=""
+                                    href="/"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
                                     aria-expanded="false">
-                                    <i class="mdi mdi-message"></i>
-                                    <div class="notify">
-                                        <span class="heartbit"></span>
-                                        <span class="point"></span></div>
-                                </a> -->
+                                    <i class="mdi mdi-logout">log</i>
+                                </a>
                                 <!-- <div class="dropdown-menu mailbox animated bounceInDown">
                                     <ul>
                                         <li>
@@ -266,12 +264,12 @@
                                     </a>
 
                                 </li>                           
-                                <li>
+                                <!-- <li>
                                     <a
                                         href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="mdi mdi-logout"></i>Logout</a>
-                                </li>
+                                </li> -->
                                 <form
                                     id="logout-form"
                                     action="{{ route('logout') }}"

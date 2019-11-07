@@ -7,9 +7,11 @@ $(document).ready(function () {
     $("#area option:contains("+ val +")").attr("selected",true);
     // var val=$("#area2").val();
     // $("#areas option:contains("+ val +")").attr("selected",true);
-
+    $("#alert1").alert();
+    window.setTimeout(function () { 
+        $("#alert1").alert('close');
+    }, 5000);
 });
-
 function mayus(e) {
     e.value = e
         .value

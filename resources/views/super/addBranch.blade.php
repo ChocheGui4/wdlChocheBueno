@@ -77,7 +77,7 @@
                                                                                     required
                                                                                     maxlength="25"
                                                                                     pattern=".{2,50}" 
-                                                                                    data-validation-pattern-message="The own names must have at least 3 letters">
+                                                                                    data-validation-pattern-message="Name must contain at least 3 letters">
                                                                             </div>
                                                                             <span class="invalid-feedback" role="alert" style="color:red;">
                                                                                 <strong>{{ $errors->first('name') }}</strong>
@@ -107,7 +107,7 @@
                                                                                 required
                                                                                 maxlength="25"
                                                                                 pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                                data-validation-pattern-message="The own lastname must have at least 3 letters"
+                                                                                data-validation-pattern-message="Lastname must contain at least 3 letters"
                                                                                 >
                                                                         </div>
                                                                         <span class="invalid-feedback" role="alert" style="color:red;">

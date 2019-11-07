@@ -31,13 +31,13 @@
                 <div class="row el-element-overlay">
     
                     <?php $__currentLoopData = $companies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                    <div class="col-lg-3 col-md-4 col-sm-3 col-xs-3">
                         <div class="card">
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1" >
                                     <img 
                                         src="<?php echo e(Storage::url($company->companyimg)); ?>"
-                                        style="width:225px;height:230px;"
+                                        style="max-width:100%;"
                                         alt="user">
                                     <!-- <img src="<?php echo e(asset('bundle/assets/images/customers/HillsongThisisliving1.jpg')); ?>" alt="user"> -->
                                     <div class="el-overlay">
@@ -78,47 +78,45 @@
                                         <?php echo e($company->exteriornumber); ?>-<?php echo e($company->insidenumber); ?>,
                                         <?php echo e($company->zipcode); ?>,
                                         <?php echo e($company->district); ?></small>
-                                        <br><br>
-                                    <div style="float: left;">
-                                        <div class="btn-group dropright">
-                                            &nbsp;&nbsp;&nbsp;
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Contacts
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Actions</h5>
-                                                <li><a class="dropdown-item" href="<?php echo e(route('contactCompany')); ?>" style="font-size: 13px;"><i class="fa fa-user-plus"></i> Add contacts</a></li>
-                                                <li><a class="dropdown-item" href="#" style="font-size: 13px;"><i class="fa fa-users"></i> See contacts</a></li>
-                                                
-                                            </div>
+                                    <br><br>
+                                    
+                                    <div class="btn-group dropright">
+                                        
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Contacts
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Actions</h5>
+                                            <li><a class="dropdown-item" href="<?php echo e(route('contactCompany')); ?>" style="font-size: 13px;"><i class="fa fa-user-plus"></i> Add contacts</a></li>
+                                            <li><a class="dropdown-item" href="#" style="font-size: 13px;"><i class="fa fa-users"></i> See contacts</a></li>
+                                            
                                         </div>
                                     </div>
-                                    
-                                        
-                                        <div class="btn-group dropright">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Branches
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <br><br>
+                                    <div class="btn-group dropright">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Branches
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 
-                                                <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Actions</h5>
-                                                <div class="dropdown-divider"></div>
-                                                <li><a class="dropdown-item" href="<?php echo e(route('createBranches',$company->id)); ?>" style="font-size: 13px;"><i class="mdi mdi-plus-circle"></i> Create branch</a></li>
-                                                <li><a class="dropdown-item" href="<?php echo e(route('showBranches',$company->id)); ?>" style="font-size: 13px;"><i class="fa fa-edit"></i> Edit branches</a></li>
+                                            <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Actions</h5>
+                                            <div class="dropdown-divider"></div>
+                                            <li><a class="dropdown-item" href="<?php echo e(route('createBranches',$company->id)); ?>" style="font-size: 13px;"><i class="mdi mdi-plus-circle"></i> Create branch</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo e(route('showBranches',$company->id)); ?>" style="font-size: 13px;"><i class="fa fa-edit"></i> Edit branches</a></li>
 
-                                                <div class="dropdown-divider"></div>
-                                                <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Branches</h5>
-                                                <div class="dropdown-divider"></div>
-                                                <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <?php if($customer->companies_id == $company->id): ?>
-                                                        <?php if($customer->acquisitions_id == ""): ?>
-                                                            <li><a class="dropdown-item" href="<?php echo e(route('showBranchesProducts',[$customer->companies_id,$customer->bid])); ?>" style="font-size: 13px;"><?php echo e($customer->branchname); ?></a></li>
-                                                        <?php endif; ?>
+                                            <div class="dropdown-divider"></div>
+                                            <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Branches</h5>
+                                            <div class="dropdown-divider"></div>
+                                            <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if($customer->companies_id == $company->id): ?>
+                                                    <?php if($customer->acquisitions_id == ""): ?>
+                                                        <li><a class="dropdown-item" href="<?php echo e(route('showBranchesProducts',[$customer->companies_id,$customer->bid])); ?>" style="font-size: 13px;"><?php echo e($customer->branchname); ?></a></li>
                                                     <?php endif; ?>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                <p hidden><?php echo e($i++); ?></p>
-                                            </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <p hidden><?php echo e($i++); ?></p>
                                         </div>
+                                    </div>
                                     
                                     <br>
                                 </div>

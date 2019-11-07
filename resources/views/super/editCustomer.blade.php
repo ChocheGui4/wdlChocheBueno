@@ -113,13 +113,13 @@
                                                                     onkeyup="ucwords(this,'#nameuc');"
                                                                     type="text"
                                                                     name="name"
-                                                                    class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
+                                                                    class="form-control "
                                                                     value="{{$people->name}}"
                                                                     placeholder="The beauty S.A. de C.V."
                                                                     required
                                                                     maxlength="25"
                                                                     pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                    data-validation-pattern-message="The name company must have at least 3 letters">
+                                                                    data-validation-pattern-message="Name must contain at least 3 letters">
 
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
@@ -146,12 +146,12 @@
                                                                         type="text"
                                                                         id="lastname"
                                                                         name="lastname"
-                                                                        class="form-control {{ $errors->has('companyrfc') ? ' is-invalid' : '' }}"
+                                                                        class="form-control"
                                                                         value="{{$people->lastname}}"
                                                                         required
                                                                         maxlength="35"
                                                                         pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                        data-validation-pattern-message="The name company must have at least 3 letters">
+                                                                        data-validation-pattern-message="Lastname must contain at least 3 letters">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('lastname') }}</strong>

@@ -374,7 +374,8 @@ class CompanyController extends Controller
         $contact->area = $request->area;
         // dd("Ya se gaurdaron");
         $contact->save();
-        return redirect()->route('branchEdit',compact('id','company'));
+        return redirect()->route('branchEdit',compact('id','company'))
+        ->with('success','Successfully updated information');
 
     }
     public function branchUpdateCompany(BranchEdit $request, $id,$company)
@@ -394,7 +395,8 @@ class CompanyController extends Controller
         // dd("Entro a la compania editar");
         $branch->save();
         // return redirect()->route('showBranches',compact('br'));
-        return redirect()->route('branchEdit',compact('id','company'));
+        return redirect()->route('branchEdit',compact('id','company'))
+        ->with('success','Successfully updated information');
         
 
     }
@@ -407,7 +409,8 @@ class CompanyController extends Controller
         $branch->exteriornumber = $request->extnumber;
         $branch->insidenumber = $request->innumber;
         $branch->save();
-        return redirect()->route('branchEdit',compact('id','company'));
+        return redirect()->route('branchEdit',compact('id','company'))
+        ->with('success','Successfully updated information');
 
     }
     public function deleteBranch($company, $id)

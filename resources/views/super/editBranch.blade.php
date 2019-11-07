@@ -66,6 +66,12 @@
                     
             </div>
             <!---->
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p id="alert1">{{ $message }}</p>
+                </div>
+            @endif
+            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
@@ -102,26 +108,41 @@
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                                         <div class="form-group">
-                                                        <strong>Branch name</strong>
-                                                        <!--Se inicia icono con campo de texto-->
-                                                        <div class="controls">
-                                                            <div class="input-group mb-3">
-                                                                <span class="input-group-addon">
-                                                                    <i class="fa fa-building"></i>
-                                                                </span>
-                                                                <input
-                                                                    id="branchnameuc" 
-                                                                    onkeyup="ucwords(this,'#branchnameuc');"
-                                                                    type="text"
-                                                                    name="branchname"
-                                                                    class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
-                                                                    value="{{$branch->branchname}}"
-                                                                    placeholder="The beauty S.A. de C.V."
-                                                                    required
-                                                                    maxlength="50"
-                                                                    pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                    data-validation-pattern-message="The name company must have at least 3 letters">
-
+                                                            <strong>Branch name</strong>
+                                                            <!--Se inicia icono con campo de texto-->
+                                                            <div class="controls">
+                                                                <div class="input-group mb-3">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-building"></i>
+                                                                    </span>
+                                                                    @if($branch->branchname=="Own")
+                                                                        <input
+                                                                            id="branchnameuc" 
+                                                                            
+                                                                            onkeyup="ucwords(this,'#branchnameuc');"
+                                                                            type="text"
+                                                                            name="branchname"
+                                                                            class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
+                                                                            value="{{$branch->branchname}}"
+                                                                            placeholder="The beauty S.A. de C.V."
+                                                                            required
+                                                                            maxlength="15"
+                                                                            pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
+                                                                            data-validation-pattern-message="The name company must have at least 3 letters">
+                                                                    @elseif($branch->branchname!="Own")
+                                                                        <input
+                                                                            id="branchnameuc" 
+                                                                            onkeyup="ucwords(this,'#branchnameuc');"
+                                                                            type="text"
+                                                                            name="branchname"
+                                                                            class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
+                                                                            value="{{$branch->branchname}}"
+                                                                            placeholder="The beauty S.A. de C.V."
+                                                                            required
+                                                                            maxlength="15"
+                                                                            pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
+                                                                            data-validation-pattern-message="The name company must have at least 3 letters">
+                                                                    @endif
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
                                                                     <strong>{{ $errors->first('branchname') }}</strong>
@@ -354,7 +375,7 @@
                                                                 required
                                                                 maxlength="25"
                                                                 pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                data-validation-pattern-message="The own names must have at least 3 letters">
+                                                                data-validation-pattern-message="Name must contain at least 3 letters">
                                                         </div>
                                                         <span class="invalid-feedback" role="alert" style="color:red;">
                                                             <strong>{{ $errors->first('name') }}</strong>
@@ -382,7 +403,7 @@
                                                                 required
                                                                 maxlength="25"
                                                                 pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                data-validation-pattern-message="The own lastname must have at least 3 letters"
+                                                                data-validation-pattern-message="Lastname must contain at least 3 letters"
                                                                 value={{$contact->lastname}}
                                                                 placeholder="Juárez">
                                                         </div>

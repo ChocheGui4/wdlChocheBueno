@@ -59,7 +59,7 @@
                             <div class="el-card-item">
                                 <div class="el-card-avatar el-overlay-1">
                                     <img src="{{ Storage::url($branch->branchimg) }}" 
-                                    style="width:230px;height:230px;"
+                                    style="max-width:100%;"
                                     alt="user">
                                     <div class="el-overlay">
                                         <ul class="el-info">
@@ -86,12 +86,13 @@
                                     </div>
                                 </div>
                                 <div class="el-card-content">
-                                    <h3 class="box-title">{{ $branch->branchname }}
+                                    <h3 class="box-title" style="overflow: hidden;">{{ $branch->branchname }}
                                     </h3>
                                     <small>{{ $branch->street }},
                                         {{ $branch->exteriornumber }}-{{ $branch->insidenumber }},
                                         {{ $branch->zipcode }},
                                         {{ $branch->district }}</small>
+                                    <br><br>
                                     <div class="btn-group dropright">
                                         &nbsp;&nbsp;&nbsp;
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
