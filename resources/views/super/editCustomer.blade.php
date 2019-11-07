@@ -64,6 +64,11 @@
                     
             </div>
             <!---->
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p id="alert1">{{ $message }}</p>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-12">
                    
@@ -110,7 +115,7 @@
                                                                 </span>
                                                                 <input
                                                                     id="nameuc"
-                                                                    onkeyup="ucwords(this,'#nameuc');"
+                                                                    onkeyup="mayus(this);"
                                                                     type="text"
                                                                     name="name"
                                                                     class="form-control "
@@ -142,7 +147,7 @@
                                                                     </span>
                                                                     <input
                                                                         id="lastnameuc"
-                                                                        onkeyup="ucwords(this,'#lastnameuc');"
+                                                                        onkeyup="mayus(this);"
                                                                         type="text"
                                                                         id="lastname"
                                                                         name="lastname"

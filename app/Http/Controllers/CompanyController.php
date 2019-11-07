@@ -208,7 +208,8 @@ class CompanyController extends Controller
         $customers->save();
         
         // dd("Se agregaron: usuario login, contacto y empresa");
-        return redirect()->route('companyShow');
+        return redirect()->route('companyShow')
+        ->with('success','Company created successfully');
         
     }
 
@@ -300,7 +301,8 @@ class CompanyController extends Controller
         
         $company=$id;
         
-        return redirect()->route('companyShow');
+        return redirect()->route('companyShow')
+        ->with('success','Branch office created successfully');
 
         /*$company=$id;
         $branches = Branch::where("companies_id","=",$id)->get();     

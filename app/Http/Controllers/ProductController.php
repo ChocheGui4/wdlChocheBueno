@@ -86,7 +86,8 @@ class ProductController extends Controller
         $producto->description = $request->description;
         $producto->urlimg = $request->file('urlimg')->store('public');
         $producto->save();        
-        return redirect()->route('productsShow');
+        return redirect()->route('productsShow')
+        ->with('success','Product added successfully');
     }
 
     function productAddSpecific(ProductAddSpecific $request){
@@ -257,7 +258,8 @@ class ProductController extends Controller
         $custom->branches_id = $view->branch;
         $custom->save();
         
-        return redirect()->route('showBranchesProducts',compact('company','branch'));
+        return redirect()->route('showBranchesProducts',compact('company','branch'))
+        ->with('success','Product added successfully');
 
         // dd($view->company,$view->branch,$view->product);
         // $cat->union($prrr)->get();

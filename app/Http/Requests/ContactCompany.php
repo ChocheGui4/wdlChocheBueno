@@ -24,7 +24,7 @@ class ContactCompany extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3|max:25|regex:/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/',
+            'name' => 'required|min:3|max:25|regex:/^((([A-ZÑÁÉÍÓÚ]{3,})+[\s]*)+){1,}$/',
             'lastname' => 'required|min:3|max:35|regex:/^([A-Z]{1}[a-zñáéíóú]+[\s]*)+$/',
             'telephone1' =>'required|min:12|max:12|regex:/[0-9]$/|unique:contact_companies',
             'telephone2' =>'required|min:12|max:12|regex:/[0-9]$/',

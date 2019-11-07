@@ -49,9 +49,13 @@
                                                                         <span class="input-group-addon">
                                                                             <i class="mdi mdi-lead-pencil"></i>
                                                                         </span>
+                                                                        <!-- Esta línea de código es para transformar 
+                                                                        la primera letra de cada palabra en mayúscula -->
+                                                                        <!-- onkeyup="ucwords(this,'#nameuc');" 
+                                                                            onkeyup="mayus(this);"-->
                                                                         <input
                                                                             id="nameuc" 
-                                                                            onkeyup="ucwords(this,'#nameuc');"
+                                                                            onkeyup="mayus(this);"
                                                                             type="text"
                                                                             name="name"
                                                                             class="form-control required"
@@ -59,8 +63,8 @@
                                                                             placeholder="Example: Juana"
                                                                             required
                                                                             maxlength="25"
-                                                                            pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                            data-validation-pattern-message="The own names must have at least 3 letters">
+                                                                            pattern="^((([A-ZÑÁÉÍÓÚ]{3,})+[\s]*)+){1,}$" 
+                                                                            data-validation-pattern-message="Name must contain at least 3 letters">
                                                                     </div>
                                                                     <span class="invalid-feedback" role="alert" style="color:red;">
                                                                         <strong><?php echo e($errors->first('name')); ?></strong>
@@ -81,7 +85,7 @@
                                                                     </span>
                                                                     <input
                                                                         id="lastnameuc" 
-                                                                        onkeyup="ucwords(this,'#lastnameuc');"
+                                                                        onkeyup="mayus(this);"
                                                                         type="text"
                                                                         name="lastname"
                                                                         class="form-control required"
@@ -89,8 +93,8 @@
                                                                         placeholder="Example: Juárez"
                                                                         required
                                                                         maxlength="25"
-                                                                        pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                        data-validation-pattern-message="The own lastname must have at least 3 letters"
+                                                                        pattern="^((([A-ZÑÁÉÍÓÚ]{3,})+[\s]*)+){1,}$" 
+                                                                        data-validation-pattern-message="Lastname must contain at least 3 letters"
                                                                         >
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">
@@ -328,15 +332,15 @@
                                                                         </span>
                                                                         <input
                                                                             id="compannameuc"
-                                                                            onkeyup="ucwords(this,'#compannameuc');"
+                                                                            onkeyup="mayus(this);"
                                                                             type="text"
                                                                             name="companyname"
                                                                             class="form-control <?php echo e($errors->has('companyname') ? ' is-invalid' : ''); ?>"
                                                                             value="<?php echo e(old('companyname')); ?>"
                                                                             required
                                                                             placeholder="The beauty S.A. de C.V."
-                                                                            maxlength="50"
-                                                                            pattern=".{2,50}"
+                                                                            maxlength="20"
+                                                                            pattern=".{2,20}"
                                                                             data-validation-pattern-message="The name company must have at least 3 letters">
                                                                     </div>
                                                                     <span class="invalid-feedback" role="alert" style="color:red;">

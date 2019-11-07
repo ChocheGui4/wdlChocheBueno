@@ -117,8 +117,21 @@
                                                                     </span>
                                                                     <?php if($branch->branchname=="Own"): ?>
                                                                         <input
-                                                                            id="branchnameuc" 
                                                                             
+                                                                            disabled
+                                                                            onkeyup="ucwords(this,'#branchnameuc');"
+                                                                            type="text"
+                                                                            
+                                                                            class="form-control <?php echo e($errors->has('companyname') ? ' is-invalid' : ''); ?>"
+                                                                            value="<?php echo e($branch->branchname); ?>"
+                                                                            placeholder="The beauty S.A. de C.V."
+                                                                            required
+                                                                            maxlength="15"
+                                                                            pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
+                                                                            data-validation-pattern-message="The name company must have at least 3 letters">
+                                                                        <input
+                                                                            id="branchnameuc" 
+                                                                            hidden
                                                                             onkeyup="ucwords(this,'#branchnameuc');"
                                                                             type="text"
                                                                             name="branchname"

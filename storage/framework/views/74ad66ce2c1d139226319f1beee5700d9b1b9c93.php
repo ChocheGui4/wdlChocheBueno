@@ -64,6 +64,11 @@
                     
             </div>
             <!---->
+            <?php if($message = Session::get('success')): ?>
+                <div class="alert alert-success">
+                    <p id="alert1"><?php echo e($message); ?></p>
+                </div>
+            <?php endif; ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
@@ -408,7 +413,7 @@
                                                             <input
                                                                 id="nameuc"
                                                                 type="text"
-                                                                onkeyup="ucwords(this,'#nameuc');"
+                                                                onkeyup="mayus(this);"
                                                                 name="name"
                                                                 class="form-control<?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>"
                                                                 value="<?php echo e($contact->name); ?>"
@@ -416,7 +421,7 @@
                                                                 required
                                                                 maxlength="25"
                                                                 pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                data-validation-pattern-message="The own names must have at least 3 letters">
+                                                                data-validation-pattern-message="Name must contain at least 3 letters">
                                                         </div>
                                                         <span class="invalid-feedback" role="alert" style="color:red;">
                                                             <strong><?php echo e($errors->first('name')); ?></strong>
@@ -436,14 +441,14 @@
                                                             </span>
                                                             <input
                                                                 id="lastnameuc"
-                                                                onkeyup="ucwords(this,'#lastnameuc');"
+                                                                onkeyup="mayus(this);"
                                                                 type="text"
                                                                 name="lastname"
                                                                 class="form-control<?php echo e($errors->has('lastname') ? ' is-invalid' : ''); ?>"
                                                                 required
                                                                 maxlength="25"
                                                                 pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
-                                                                data-validation-pattern-message="The own lastname must have at least 3 letters"
+                                                                data-validation-pattern-message="Lastname must contain at least 3 letters"
                                                                 value=<?php echo e($contact->lastname); ?>
 
                                                                 placeholder="Juárez">

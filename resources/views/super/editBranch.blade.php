@@ -117,8 +117,21 @@
                                                                     </span>
                                                                     @if($branch->branchname=="Own")
                                                                         <input
-                                                                            id="branchnameuc" 
                                                                             
+                                                                            disabled
+                                                                            onkeyup="ucwords(this,'#branchnameuc');"
+                                                                            type="text"
+                                                                            
+                                                                            class="form-control {{ $errors->has('companyname') ? ' is-invalid' : '' }}"
+                                                                            value="{{$branch->branchname}}"
+                                                                            placeholder="The beauty S.A. de C.V."
+                                                                            required
+                                                                            maxlength="15"
+                                                                            pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
+                                                                            data-validation-pattern-message="The name company must have at least 3 letters">
+                                                                        <input
+                                                                            id="branchnameuc" 
+                                                                            hidden
                                                                             onkeyup="ucwords(this,'#branchnameuc');"
                                                                             type="text"
                                                                             name="branchname"
@@ -366,7 +379,7 @@
                                                             </span>
                                                             <input
                                                                 id="nameuc" 
-                                                                onkeyup="ucwords(this,'#nameuc');"
+                                                                onkeyup="mayus(this);"
                                                                 type="text"
                                                                 name="name"
                                                                 class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
@@ -396,7 +409,7 @@
                                                             </span>
                                                             <input
                                                                 id="lastnameuc" 
-                                                                onkeyup="ucwords(this,'#lastnameuc');"
+                                                                onkeyup="mayus(this);"
                                                                 type="text"
                                                                 name="lastname"
                                                                 class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}"

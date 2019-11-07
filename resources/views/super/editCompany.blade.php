@@ -64,6 +64,11 @@
                     
             </div>
             <!---->
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p id="alert1">{{ $message }}</p>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
@@ -408,7 +413,7 @@
                                                             <input
                                                                 id="nameuc"
                                                                 type="text"
-                                                                onkeyup="ucwords(this,'#nameuc');"
+                                                                onkeyup="mayus(this);"
                                                                 name="name"
                                                                 class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                                                 value="{{$contact->name}}"
@@ -436,7 +441,7 @@
                                                             </span>
                                                             <input
                                                                 id="lastnameuc"
-                                                                onkeyup="ucwords(this,'#lastnameuc');"
+                                                                onkeyup="mayus(this);"
                                                                 type="text"
                                                                 name="lastname"
                                                                 class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}"

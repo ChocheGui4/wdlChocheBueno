@@ -40,6 +40,11 @@
         </div>
 
     </div>
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p id="alert1">{{ $message }}</p>
+        </div>
+    @endif
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->

@@ -37,6 +37,11 @@
         </div>
 
     </div>
+    <?php if($message = Session::get('success')): ?>
+        <div class="alert alert-success">
+            <p id="alert1"><?php echo e($message); ?></p>
+        </div>
+    <?php endif; ?>
     <!-- <div class="row page-titles">
         <div class="col-md-3 ">
                 <a

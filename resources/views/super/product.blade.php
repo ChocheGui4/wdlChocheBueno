@@ -24,11 +24,11 @@
             </div>
             
         </div>
-        <!--Notificación-->
-        <div class="jq-toast-wrap top-right">
-            <div class="jq-toast-single jq-has-icon jq-icon-success" style="text-align: left; display: none;">
-                <span class="jq-toast-loader jq-toast-loaded" style="-webkit-transition: width 3.1s ease-in;                       -o-transition: width 3.1s ease-in;                       transition: width 3.1s ease-in;                       background-color: #ff6849;"></span><span class="close-jq-toast-single">×</span><h2 class="jq-toast-heading">Welcome to Monster admin</h2>Use the predefined ones, or specify a custom position object.</div></div>
-        <!--Notificación-->
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p id="alert1">{{ $message }}</p>
+            </div>
+        @endif
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach -->
+                        @endforeach -->                        
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="card">
                                 <div class="card-block">
