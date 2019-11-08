@@ -680,9 +680,14 @@ class CompanyController extends Controller
             $history->description = "Se dio de baja el producto";
             $history->company = $id;
             $history->branch = $branch;
-            $history->save();
+            
+            
             $ser = License::where("serialkey",$qu1->serialkey)->first();
-            $ser->delete();
+            if($ser!=null){
+                $history->save();                
+                $ser->delete();
+            }
+            
         }
         
         return redirect()->route('showBranchesProducts',compact('id','branch'));

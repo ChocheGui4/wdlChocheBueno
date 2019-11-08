@@ -97,10 +97,7 @@
                                                 <th>Year</th>
                                                 <th>Offer</th>
                                                 <th>&nbsp</th>
-                                                @foreach ($products as $product)
-
-                                                    {{ $product->id}}
-                                                @endforeach
+                                                
                                                 
                                             </tr>
                                             </thead>
@@ -123,6 +120,7 @@
 
 <script>
     $(document).ready(function() {
+        
         var mail = $('#mail').val();
         
         if(mail=="Warriors Defender Mail"){
@@ -159,7 +157,9 @@
                     {data: 'btn' },
                 ]
             });
+            
         }else{
+            
             oTable = $('#task').DataTable({
                 // processing: true,
                 serverSide: true,
@@ -175,7 +175,10 @@
                     {data: 'btn' },
                 ]
             });
+            
+                
         }
+        
         
     });
     // $(document).ready(function() {

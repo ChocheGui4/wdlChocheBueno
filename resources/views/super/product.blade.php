@@ -261,7 +261,7 @@
                                         value="{{ old('name')}}"
                                         required 
                                         minlength="3"
-                                        maxlength="60"
+                                        maxlength="40"
                                         placeholder="Product title"
                                         data-validation-required-message="This field is required">
                                     </div>
@@ -286,7 +286,7 @@
                                             value="{{ old('description')}}"
                                             required
                                             minlength="10"
-                                            maxlength="120"
+                                            maxlength="65"
                                             placeholder="Product description"
                                             data-validation-required-message="This field is required"></textarea>
                                     </div>
