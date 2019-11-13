@@ -45,12 +45,14 @@ Route::get('/productsshow/{id}', 'ProductController@productsShowSpecific') ->nam
 
 Route::get('datatableproducts/{id}', 'ProductController@datatableproducts')->name('datatableproducts'); 
 Route::get('datatableproductscompany/{id}', 'ProductController@datatableproductsadd')->name('datatableproductsadd'); 
+Route::get('datatableproductscustomer/{id}', 'CustomController@datatablecustomerproductsadd')->name('datatablecustomerproductsadd');
 Route::post('/productcreate', 'ProductController@productCreate') ->name('productCreate');
 Route::post('/productaddspecific', 'ProductController@productAddSpecific') ->name('productAddSpecific');
 
 Route::post('/productedit', 'ProductController@productEdit') ->name('productEdit');
 Route::get('/productdelete/{id}', 'ProductController@productDelete') ->name('productDelete');
 Route::get('/productaddcompany/{id}', 'ProductController@productAddCompany') ->name('productAddCompany');
+Route::get('/productaddcustomer/{id}', 'CustomController@productAddCustomer') ->name('productAddCustomer');
 Route::get('/productdeletegeneral/{id}', 'ProductController@productDeleteGeneral') ->name('productDeleteGeneral');
 Route::get('/productdeletebranch/{id}', 'ProductController@deleteProductBranch') ->name('deleteProductBranch');
 

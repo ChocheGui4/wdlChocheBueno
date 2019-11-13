@@ -24,6 +24,11 @@
 
         </div>
     </div>
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p id="alert1">{{ $message }}</p>
+        </div>
+    @endif
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
@@ -57,11 +62,11 @@
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>                                                
                                             </li>
-                                            <li>
+                                            <!-- <li>
                                                 <a class="btn default btn-outline" href="{{ route('showPeopleProducts',$people->id)}}">
                                                     <i class="mdi mdi-arrow-right-bold"></i>
                                                 </a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                 </div>
@@ -80,7 +85,7 @@
                                             <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Products</h5>
                                             <div class="dropdown-divider"></div>
                                             @foreach ($productos as $prod)
-                                                <li><a class="dropdown-item" href="{{ route('AddCustomerProduct',[$people->id,$prod->id])}}" style="font-size: 13px;">{{$prod->name}}</a></li>
+                                                    <li><a class="dropdown-item" href="#" style="font-size: 13px;">{{$prod->name}}</a></li>
                                             @endforeach
                                             
                                             
@@ -95,9 +100,13 @@
 
                                             <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Products</h5>
                                             <div class="dropdown-divider"></div>
+                                            @foreach ($product as $prod)
+                                                @if($people->id == $prod->people_id)
+                                                    <li><a class="dropdown-item" href="{{ route('AddCustomerProduct',[$people->id,$prod->id])}}" style="font-size: 13px;">{{$prod->name}}</a></li>
+                                                @endif
+                                            @endforeach
                                             
-                                            <li><a class="dropdown-item" href="#" style="font-size: 13px;"><i class="mdi mdi-plus-circle"></i> Create branch</a></li>
-                                            <li><a class="dropdown-item" href="#" style="font-size: 13px;"> Edit branches</a></li>
+                                            
                                         </div>
                                     </div>
                                 </div>

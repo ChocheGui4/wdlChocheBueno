@@ -7,16 +7,35 @@ use App\Http\Requests\CustomerCreate;
 use App\Http\Requests\CustomerEditCreate;
 use App\Http\Requests\CustomerAddressEditCreate;
 
-use DB;
 use App\Acquisition;
+use App\AcquisitionType;
+use App\Area;
+use App\Branch;
+use App\Category;
+use App\CategoryCopy;
+use App\CategoryProduct;
+use App\Characteristic;
 use App\Company;
 use App\Customer;
-use App\Branch;
+use App\Disc;
 use App\License;
+use App\Maker;
+use App\MailService;
+use App\Memory;
+use App\NumberUser;
+use App\NumberUserStorage;
 use App\People;
+use App\Processor;
 use App\Product;
+use App\ProductCopy;
+use App\ProductList;
+use App\Storage;
+use App\UnitStorage;
 use App\User;
 use App\ViewAdd;
+use App\Year;
+use DB;
+use Yajra\Datatables\Datatables;
 
 
 class CustomController extends Controller
@@ -29,8 +48,13 @@ class CustomController extends Controller
     public function customerShow(){
         $peoples = People::orderBy('id','ASC')->get();
         $productos = Product::orderBy('id','ASC')->get();
-
-        return view('super.customer', compact('peoples','productos'));
+        $product = People::join('customers', 'customers.people_id', '=', 'people.id')
+        ->join('acquisitions', 'acquisitions.id', '=', 'customers.acquisitions_id')
+        ->join('products', 'products.id', '=', 'acquisitions.products_id')
+        // ->where('customers.people_id', '=', $branches)
+        ->get();
+        // dd($product);
+        return view('super.customer', compact('peoples','productos','product'));
     }
     public function customerCreate()
     {
@@ -145,10 +169,94 @@ class CustomController extends Controller
         // dd($names->id);
         $i=0;
         $prodid = $id;
+        $view = new ViewAdd;
+        $view->people = $people;
+        $view->product = $id;
+        $view->save();
         
         // dd($products);
         
         return view('super.addProductCustomer', compact('people','id','products','i','prodid','name'));
+    }
+
+    //Ajax para agregar productos
+    public function datatablecustomerproductsadd($id){
+        // $tasks = Product::orderBy('id','ASC')->get();
+        return Datatables()     
+            ->eloquent(Product::join('category_products', 'category_products.products_id',
+            '=','products.id')
+            ->join('categories', 'category_products.categories_id',
+            '=','categories.id')->where("products_id",$id))//--------------------------------
+            ->addColumn('btn','<a 
+                id=""
+                href="{{ route("productAddCustomer",$id)}}"
+                alt="alert"
+                style="background: #31B90C; color: white;"
+                class="btn" >
+                <i class="fa fa-plus"></i>
+            </a>')
+            ->rawColumns(['btn'])
+            ->toJson();
+    }
+    function productAddCustomer($id){
+        $cat = Category::find($id);
+        $prrr = Product::orderBy('id','ASC')->get();
+        $ac = Acquisition::orderBy('id','DESC')->latest()->first();
+        $ma = Maker::where("namem",$cat->maker)->first();
+        $pr = Processor::where("namep",$cat->processor)->first();
+        $me = Memory::where("sizem",$cat->memory)->first();
+        $di = Disc::where("typed",$cat->disc)->first();
+        
+        
+        $license = "";
+        $license = "*WD";
+        $license .=$ma->valuem;
+        $license .=$pr->valuep;
+        $license .=$me->valueme;
+        $now = new \DateTime();
+        $license .=$now->format('dmy');
+        $license .=$di->valued."-";
+        // if($ac==null){
+        //     $license .=(1)."*";
+        // }else{
+        //     $license .=($ac->salenumber + 1)."*";
+        // }
+        // dd($license);
+        $lic1 = new License;
+        $lic1->serialkey = "License";
+        $lic1->save();
+        $Li = License::orderBy('id','DESC')->latest()->first();
+        $license .=($Li->id)."*";
+        $Li->serialkey = $license;
+        $Li->save();
+        
+        $view = ViewAdd::orderBy('id','DESC')->latest()->first();
+        $company = $view->company;
+        $branch = $view->branch;
+        $lic = License::orderBy('id','DESC')->latest()->first();
+        $acq = new Acquisition;
+        if($ac==null){
+            $acq->salenumber = 1;
+        }else{
+            $acq->salenumber = $ac->salenumber + 1;
+        }
+        
+        $acq->products_id = $view->product;
+        $acq->acquisition_types_id = 1;
+        $acq->licenses_id = $lic->id;
+        $acq->save();
+        $acq = Acquisition::orderBy('id','DESC')->latest()->first();
+
+        $custom = new Customer;
+        $custom->acquisitions_id = $acq->id;
+        $custom->people_id = $view->people;
+        $custom->save();
+        
+        return redirect()->route('customerShow')
+        ->with('success','Product added successfully');
+
+        // dd($view->company,$view->branch,$view->product);
+        // $cat->union($prrr)->get();
     }
     //Productos finaliza
     public function customerDelete($id)

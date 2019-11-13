@@ -119,7 +119,7 @@
             oTable = $('#task').DataTable({
                 // processing: true,
                 serverSide: true,
-                ajax: "{{ route('datatableproductsadd',$prodid) }}",
+                ajax: "{{ route('datatablecustomerproductsadd',$prodid) }}",
                 columns: [
                     {data: 'maker'},
                     {data: 'processor'},
@@ -136,7 +136,7 @@
             oTable = $('#task').DataTable({
                 // processing: true,
                 serverSide: true,
-                ajax: "{{ route('datatableproductsadd',$prodid) }}",
+                ajax: "{{ route('datatablecustomerproductsadd',$prodid) }}",
                 columns: [
                     {data: 'maker'},
                     {data: 'processor'},
@@ -149,13 +149,12 @@
                     {data: 'btn' },
                 ]
             });
-            
         }else{
             
             oTable = $('#task').DataTable({
                 // processing: true,
                 serverSide: true,
-                ajax: "{{ route('datatableproductsadd',$prodid) }}",
+                ajax: "{{ route('datatablecustomerproductsadd',$prodid) }}",
                 columns: [
                     {data: 'maker'},
                     {data: 'processor'},
