@@ -14,7 +14,9 @@ use App\Customer;
 use App\Branch;
 use App\License;
 use App\People;
+use App\Product;
 use App\User;
+use App\ViewAdd;
 
 
 class CustomController extends Controller
@@ -25,10 +27,10 @@ class CustomController extends Controller
     }
 
     public function customerShow(){
-        $peoples = People::orderBy('id','ASC')->where("pstatus",true)->get();
+        $peoples = People::orderBy('id','ASC')->get();
+        $productos = Product::orderBy('id','ASC')->get();
 
-        return view('super.customer', compact('peoples'))
-            ->with('i',(request()->input('page',1)-1)*5);
+        return view('super.customer', compact('peoples','productos'));
     }
     public function customerCreate()
     {
@@ -43,7 +45,6 @@ class CustomController extends Controller
         $users ->role= "user";
         $users ->email= $request->email;
         $users ->password= bcrypt($request->password);
-        $users ->usstatus= 1;
         $users->save();
 
         //Insert people
@@ -70,14 +71,12 @@ class CustomController extends Controller
         $person->street = $request->street;
         $person->insidenumber = $request->innumber;
         $person->exteriornumber = $request->extnumber;
-        $person->pstatus = 1;
         $person->save();
 
         //Customer
         $peo= People::latest('id')->first();
         $customers = new Customer;
         $customers->people_id=$peo->id;
-        $customers->customstatus=1;
         $customers->save();
         
         return redirect()->route('customerShow');
@@ -107,11 +106,11 @@ class CustomController extends Controller
         $people->telephone2 = $request->telephone2;
         $people->email = $request->email;
         $people->email2 = $request->email2;
-        $people->pstatus = 1;
         $people->save();
 
         // return view('super.editCustomer', compact('people','customer'));
-        return redirect()->route('customerEdit', compact('customer'));
+        return redirect()->route('customerEdit', compact('customer'))
+        ->with('success','Successfully updated information');
 
     }
 
@@ -129,10 +128,29 @@ class CustomController extends Controller
         $people->save();
 
 
-        return redirect()->route('customerEdit', compact('customer'));
+        return redirect()->route('customerEdit', compact('customer'))
+        ->with('success','Successfully updated information');
 
     }
-    
+    //Productos inicia
+    public function AddCustomerProduct($people, $id){
+        // dd($people, $id);
+        $products = Product::join('category_products', 'category_products.products_id',
+            '=','products.id')
+            ->join('categories', 'category_products.categories_id',
+            '=','categories.id')
+            ->where("category_products.products_id",$id)
+            ->get();
+        $name = Product::find($id);
+        // dd($names->id);
+        $i=0;
+        $prodid = $id;
+        
+        // dd($products);
+        
+        return view('super.addProductCustomer', compact('people','id','products','i','prodid','name'));
+    }
+    //Productos finaliza
     public function customerDelete($id)
     {
         //$direccion=Direccion::find(11);
@@ -148,15 +166,12 @@ class CustomController extends Controller
             $val = $del->id;
             $idpeople = $del->people_id;
             $customer = Customer::find($val);
-            $customer->customstatus = 0;
             $customer->save();
             $acval = $customer->acquisitions_id;
             if($acval!=null){
                 $acquisition = Acquisition::find($customer->acquisitions_id);
-                $acquisition->astatus = 0;
                 $acquisition->save();
                 $license = License::find($acquisition->licenses_id);
-                $license->sstatus = 0;
                 $license->save();
             }
             
@@ -165,7 +180,6 @@ class CustomController extends Controller
         // dd($customer->acquisitions_id);
         // $acquisition = Acquisition::find();
         $people = People::find($idpeople);
-        $people->pstatus = 0;
         $people->save();
         return redirect()->route('customerShow');
     }

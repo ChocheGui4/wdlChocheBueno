@@ -9,13 +9,10 @@
                         <a href="/home">Home</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="/companies">Company</a>
+                        <a href="/customer">Customer</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{ route('showBranches',$company)}}">Branch</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('showBranchesProducts',[$company,$branch])}}">Add product</a>
+                        <a href="#">Add product</a>
                     </li>
                     <li class="breadcrumb-item active">List</li>
                 </ol>
@@ -23,17 +20,12 @@
             <div class="col-md-4 ">
                 <div class="col-md-12 align-self-center">
                     <a
-                        href="{{ route('showBranchesProducts',[$company,$branch])}}"
+                        href="/customer"
                         class="btn pull-right hidden-sm-down"
                         style="background: #383F49; color: white">
                         <i class="mdi mdi-arrow-left"></i>
                         Back</a>
-                    <!-- <a
-                        href="{{ route('showBranchesCreateProduct',[$company,$branch])}}"
-                        class="btn pull-right hidden-sm-down"
-                        style="background: #383F49; color: white">
-                        <i class="mdi mdi-arrow-left"></i>
-                        Back</a> -->
+                    
                 </div>
                 <div class="col-md-9 align-self-center"></div>
             </div>

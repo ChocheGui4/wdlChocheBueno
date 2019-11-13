@@ -142,6 +142,56 @@ var dato;
 function inputs(valor){
     dato = valor;
 }
+//Eliminar compañías
+$('body').on('click','#del', function(event){
+    event.preventDefault();
+    var me = $(this),
+    url = me.attr("href"),
+    title = me.attr("title"),
+    csrf_token = $('meta[name="csrf-token"]').attr("content");
+    swal({   
+        title: "Are you sure delete?",   
+        type: "warning",   
+        showCancelButton: true,   
+        confirmButtonColor: "#C52300",   
+        confirmButtonText: "Yes, delete it!",   
+        closeOnConfirm: false 
+    }, function(){   
+        $.ajax({
+            url:url, //===PHP file name====
+            data:{
+                '_method':'GET',
+                'token':csrf_token
+            },
+            type:'POST',
+            success:function(data){              
+                swal({   
+                    title: "Element removed!",   
+                    text: "",   
+                    type:"success",
+                    timer: 2000,   
+                    showConfirmButton: false 
+                    
+                });
+                setTimeout("document.location.reload()", 1500);
+                
+            // swal("¡Success!", "Message sent!", "success");
+            },
+            error:function(data){
+            //Error Message == 'Title', 'Message body', Last one leave as it is
+            swal("Oops...", "Something went wrong :(", "error");
+            }
+        });
+        // swal("Deleted!", "Your imaginary file has been deleted.", "success"); 
+    });
+
+
+    
+    
+     
+    
+});
+//
 $('body').on('click','#down', function(event){
     event.preventDefault();
     con = $(dato).val();

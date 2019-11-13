@@ -41,11 +41,11 @@
                                 <div class="el-card-avatar el-overlay-1">
                                     <img
                                         src="{{ Storage::url($people->img)}}"
-                                        style="width:230px;height:230px;"
+                                        style="max-width:100%;"
                                         alt="user">
                                     <div class="el-overlay">
                                         <ul class="el-info">
-                                            <li>
+                                            <li>    
                                                 <a
                                                     class="btn default btn-outline image-popup-vertical-fit"
                                                     href="{{ route('customerEdit',$people->id)}}">
@@ -70,7 +70,36 @@
                                     </h3>
                                     <small>{{ $people->email }}</small>
                                     
-                                    <br>
+                                    <br><br>
+                                    <div class="btn-group dropright">
+                                        
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Add Product
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Products</h5>
+                                            <div class="dropdown-divider"></div>
+                                            @foreach ($productos as $prod)
+                                                <li><a class="dropdown-item" href="{{ route('AddCustomerProduct',[$people->id,$prod->id])}}" style="font-size: 13px;">{{$prod->name}}</a></li>
+                                            @endforeach
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <div class="btn-group dropright">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Acquired
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+                                            <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Products</h5>
+                                            <div class="dropdown-divider"></div>
+                                            
+                                            <li><a class="dropdown-item" href="#" style="font-size: 13px;"><i class="mdi mdi-plus-circle"></i> Create branch</a></li>
+                                            <li><a class="dropdown-item" href="#" style="font-size: 13px;"> Edit branches</a></li>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

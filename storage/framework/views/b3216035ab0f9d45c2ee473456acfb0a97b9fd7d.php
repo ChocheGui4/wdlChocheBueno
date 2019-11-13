@@ -1,5 +1,5 @@
  <?php $__env->startSection('content'); ?>
-<div class="wrapper">
+<div id="looooad" class="wrapper">
     <div class="row page-titles">
         <div class="col-md-6 col-8 align-self-center">
             <h3 class="text-themecolor m-b-0 m-t-0">Companies</h3>
@@ -55,7 +55,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a id="" class="btn default btn-outline" href="<?php echo e(route('companyDelete',$company->id)); ?>">
+                                                <a id="del" class="btn default btn-outline" href="<?php echo e(route('companyDelete',$company->id)); ?>">
                                                     <i class="mdi mdi-close-circle"></i>
                                                 </a>
                                             </li>

@@ -85,6 +85,7 @@ return array(
     'App\\Period' => $baseDir . '/app/Period.php',
     'App\\Processor' => $baseDir . '/app/Processor.php',
     'App\\Product' => $baseDir . '/app/Product.php',
+    'App\\ProductCopy' => $baseDir . '/app/ProductCopy.php',
     'App\\ProductList' => $baseDir . '/app/ProductList.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

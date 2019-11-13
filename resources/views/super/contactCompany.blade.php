@@ -59,7 +59,7 @@
                                                                             placeholder="Example: Juana"
                                                                             required
                                                                             maxlength="25"
-                                                                            pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
+                                                                            pattern="^((([A-ZÑÁÉÍÓÚ]{3,})+[\s]*)+){1,}$" 
                                                                             data-validation-pattern-message="The own names must have at least 3 letters">
                                                                     </div>
                                                                     <span class="invalid-feedback" role="alert" style="color:red;">
@@ -89,7 +89,7 @@
                                                                         placeholder="Example: Juárez"
                                                                         required
                                                                         maxlength="25"
-                                                                        pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
+                                                                        pattern="^((([A-ZÑÁÉÍÓÚ]{3,})+[\s]*)+){1,}$" 
                                                                         data-validation-pattern-message="The own lastname must have at least 3 letters"
                                                                         >
                                                                 </div>

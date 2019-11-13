@@ -60,8 +60,9 @@ Route::get('/companyproducts/{id}/{branch}', 'ProductController@showBranchesProd
 Route::get('/customerproducts/{id}', 'ProductController@showPeopleProducts') ->name('showPeopleProducts');
 Route::get('/companycreateproducts/{id}/{branch}', 'ProductController@showBranchesCreateProduct') ->name('showBranchesCreateProduct');
 Route::get('/companyaddproduct/{id}/{branch}/{idprod}', 'ProductController@AddCompanyProduct') ->name('AddCompanyProduct');
+Route::get('/customeraddproduct/{id}/{idprod}', 'CustomController@AddCustomerProduct') ->name('AddCustomerProduct');
 
-Route::post('/companyaddproduct/{id}/{branch}', 'ProductController@showBranchesAddProduct') ->name('showBranchesAddProduct');
+Route::post('/companyshowbranchproduct/{id}/{branch}', 'ProductController@showBranchesAddProduct') ->name('showBranchesAddProduct');
 Route::get('/companycreatebranches/{id}', 'CompanyController@createBranches') ->name('createBranches');
 Route::post('/companyupdatecompany/{id}','CompanyController@companyUpdateCompany')->name('companyUpdateCompany');
 Route::post('/companyaddbranches/{id}', 'CompanyController@addBranches') ->name('addBranches');

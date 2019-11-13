@@ -556,6 +556,7 @@ class ComposerStaticInit555245e103f30d83f259f3e5d7c820d5
         'App\\Period' => __DIR__ . '/../..' . '/app/Period.php',
         'App\\Processor' => __DIR__ . '/../..' . '/app/Processor.php',
         'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
+        'App\\ProductCopy' => __DIR__ . '/../..' . '/app/ProductCopy.php',
         'App\\ProductList' => __DIR__ . '/../..' . '/app/ProductList.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

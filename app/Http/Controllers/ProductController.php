@@ -175,10 +175,10 @@ class ProductController extends Controller
     public function datatableproducts($id){
         // $tasks = Product::orderBy('id','ASC')->get();
         return Datatables()     
-            ->eloquent(Category::join('category_products', 'categories.id', '=',
-            'category_products.categories_id')
-            ->join('products', 'products.id', '=',
-            'category_products.products_id')->where("products_id",$id))
+            ->eloquent(Product::join("category_products","category_products.products_id",
+            "=","products.id")
+            ->join("categories","category_products.categories_id","=","categories.id")
+            ->where("products_id",$id))
             ->addColumn('btn','<a 
                 id="delete" 
                 style="background: #DD1E00; color: white;" 
@@ -217,6 +217,8 @@ class ProductController extends Controller
         $pr = Processor::where("namep",$cat->processor)->first();
         $me = Memory::where("sizem",$cat->memory)->first();
         $di = Disc::where("typed",$cat->disc)->first();
+        
+        
         $license = "";
         $license = "*WD";
         $license .=$ma->valuem;
@@ -225,15 +227,19 @@ class ProductController extends Controller
         $now = new \DateTime();
         $license .=$now->format('dmy');
         $license .=$di->valued."-";
-        if($ac==null){
-            $license .=(1)."*";
-        }else{
-            $license .=($ac->salenumber + 1)."*";
-        }
+        // if($ac==null){
+        //     $license .=(1)."*";
+        // }else{
+        //     $license .=($ac->salenumber + 1)."*";
+        // }
         // dd($license);
-        $lic = new License;
-        $lic->serialkey = $license;
-        $lic->save();
+        $lic1 = new License;
+        $lic1->serialkey = "License";
+        $lic1->save();
+        $Li = License::orderBy('id','DESC')->latest()->first();
+        $license .=($Li->id)."*";
+        $Li->serialkey = $license;
+        $Li->save();
         
         $view = ViewAdd::orderBy('id','DESC')->latest()->first();
         $company = $view->company;
@@ -418,7 +424,30 @@ class ProductController extends Controller
     function productDelete($id){
         
         $product = Category::find($id);
-        $product->save();
+        $conv1 = Product::join("category_products","category_products.products_id",
+        "=","products.id")
+        ->join("categories","category_products.categories_id","=","categories.id")
+        ->where("categories.id",$id)->first();
+        
+        // dd($product);
+        // dd($conv1);
+        $catco = new CategoryCopy;
+        $catco->maker = $product->maker;
+        $catco->processor = $product->processor;
+        $catco->memory = $product->memory;
+        $catco->disc = $product->disc;
+        $catco->storagem = $product->storagem;
+        $catco->unitstoragemail = $product->unitstoragemail;
+        $catco->storage = $product->storage;
+        $catco->unitstorage = $product->unitstorage;
+        $catco->numberstorage = $product->numberstorage;
+        $catco->year = $product->year;
+        $catco->period = $product->period;
+        $catco->numberuser = $product->numberuser;
+        $catco->offer = $product->offer;
+        $catco->name_product = $conv1->name;
+        $catco->save();
+        $product->delete();
         
     }
 

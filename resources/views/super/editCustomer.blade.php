@@ -29,6 +29,11 @@
     <div class="content">
         <div class="container-fluid">
             <!---->
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p id="alert1">{{ $message }}</p>
+                </div>
+            @endif
             <div class="row mb-12">
                 <div class="col-sm-6">
                     <div class="row">
@@ -64,11 +69,7 @@
                     
             </div>
             <!---->
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p id="alert1">{{ $message }}</p>
-                </div>
-            @endif
+            
             <div class="row">
                 <div class="col-lg-12">
                    
@@ -123,7 +124,7 @@
                                                                     placeholder="The beauty S.A. de C.V."
                                                                     required
                                                                     maxlength="25"
-                                                                    pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
+                                                                    pattern="^((([A-ZÑÁÉÍÓÚ]{3,})+[\s]*)+){1,}$" 
                                                                     data-validation-pattern-message="Name must contain at least 3 letters">
 
                                                                 </div>
@@ -155,7 +156,7 @@
                                                                         value="{{$people->lastname}}"
                                                                         required
                                                                         maxlength="35"
-                                                                        pattern="^(([A-Z]{1}([a-zñáéíóú]{2,})+[\s]*)+){1,}$" 
+                                                                        pattern="^((([A-ZÑÁÉÍÓÚ]{3,})+[\s]*)+){1,}$" 
                                                                         data-validation-pattern-message="Lastname must contain at least 3 letters">
                                                                 </div>
                                                                 <span class="invalid-feedback" role="alert" style="color:red;">

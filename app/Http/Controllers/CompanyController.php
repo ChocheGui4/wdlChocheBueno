@@ -20,15 +20,18 @@ use App\Acquisition;
 use App\Branch;
 use App\BranchCopy;
 use App\Company;
+use App\CompanyCopy;
 use App\Contact;
 use App\CategoryProduct;
 use App\ContactCompany;
+use App\ContactCompanyCopy;
 use App\ContactBranch;
 use App\ContactBranchCopy;
 use App\History;
 use App\License;
 use App\People;
 use App\User;
+use App\UserCopy;
 use App\Customer;
 
 
@@ -323,7 +326,8 @@ class CompanyController extends Controller
         $contact->area = $request->area;
         // dd("Ya se gaurdaron");
         $contact->save();
-        return redirect()->route('companyEdit',compact('compan'));
+        return redirect()->route('companyEdit',compact('compan'))
+        ->with('success','Successfully updated information');
 
     }
     public function companyUpdateCompany(CompanyEditCompanyCreate $request, $id)
@@ -346,7 +350,8 @@ class CompanyController extends Controller
         $company->companyemail2 = $request->companyemail2;
         // dd("Entro a la compania editar");
         $company->save();
-        return redirect()->route('companyEdit',compact('compan'));
+        return redirect()->route('companyEdit',compact('compan'))
+        ->with('success','Successfully updated information');
 
     }
     public function companyUpdateAddress(CompanyEditAddressCreate $request, $id)
@@ -359,7 +364,8 @@ class CompanyController extends Controller
         $company->exteriornumber = $request->extnumber;
         $company->insidenumber = $request->innumber;
         $company->save();
-        return redirect()->route('companyEdit',compact('compan'));
+        return redirect()->route('companyEdit',compact('compan'))
+        ->with('success','Successfully updated information');
 
     }
 
@@ -524,9 +530,9 @@ class CompanyController extends Controller
         // ->get();
         // dd($query);
         if($val!=0){
-            dd("entro");
+            
             foreach ($query as $qu1) {
-                dd($qu1);
+                
                 $history = new History;
                 $history->product = $qu1->name;
                 $history->serial = $qu1->serialkey;
@@ -539,11 +545,7 @@ class CompanyController extends Controller
                 $history->branch = $id;
                 
                 
-                $ser = License::where("serialkey",$qu1->serialkey)->first();
-                if($ser!=null){
-                                
-                    $ser->delete();
-                }
+                
                 $bnc = Branch::find($qu1->branches_id);
                 $branch = new BranchCopy;
 
@@ -561,8 +563,29 @@ class CompanyController extends Controller
                     $branch ->insidenumber= $bnc->insidenumber;
                     $branch ->exteriornumber= $bnc->exteriornumber;
                     $branch ->companies_id= $id;
+                    $contacb = ContactBranch::find($bnc->id)->get();
+                    // dd($contacb);
+                    
+                    foreach ($contacb as $conta) {
+                        $contc = new ContactBranchCopy;
+                        $contc->name = $conta->name;
+                        $contc->lastname = $conta->lastname;
+                        $contc->telephone1 = $conta->telephone1;
+                        $contc->telephone2 = $conta->telephone2;
+                        $contc->email = $conta->email;
+                        $contc->email2 = $conta->email2;
+                        $contc->area = $conta->area;
+                        $contc->branches_id = $conta->branches_id;
+                        $contc->save();
+                    }
+                    $ser = License::where("serialkey",$qu1->serialkey)->first();
+                    if($ser!=null){
+                                    
+                        $ser->delete();
+                    }
                     $branch->save();
                     $history->save();  
+                    
                     $bnc->delete();
 
                 }
@@ -590,9 +613,10 @@ class CompanyController extends Controller
                     $contc->branches_id = $conta->branches_id;
                     $contc->save();
                 }
-                $branch = new BranchCopy;
+                
 
                 if($bnc!=null){
+                    $branch = new BranchCopy;
                     $branch ->id= $bnc->id;
                     $branch ->branchname= $bnc->branchname;
                     $branch ->branchimg= $bnc->branchimg;
@@ -613,45 +637,49 @@ class CompanyController extends Controller
             }
             
         }
-        dd("borro sucursales y productos");
+        // dd("borro sucursales y productos");
         $companycopy = new CompanyCopy;
         if($companyorg!=null){
-            $companycopy->id= $borg->id;
-            $branch ->branchname= $borg->branchname;
-            $branch ->branchimg= $borg->branchimg;
-            $branch ->branchtelephone1= $borg->branchtelephone1;
-            $branch ->branchtelephone2= $borg->branchtelephone2;
-            $branch ->branchemail1= $borg->branchemail1;
-            $branch ->branchemail2= $borg->branchemail2;
-            $branch ->zipcode= $borg->zipcode;
-            $branch ->district= $borg->district;
-            $branch ->street= $borg->street;
-            $branch ->insidenumber= $borg->insidenumber;
-            $branch ->exteriornumber= $borg->exteriornumber;
-            $branch ->companies_id= $company;
-            $branch->save();
-            $borg->delete();
-        }
-
-        
-        $contact = new ContactBranchCopy;
-        if($corg!=null){
-            $contact->id = $corg->id;
-            $contact->name = $corg->name;
-            $contact->lastname = $corg->lastname;
-            $contact->telephone1 = $corg->telephone1;
-            $contact->telephone2 = $corg->telephone2;
-            $contact->email = $corg->email;
-            $contact->email2 = $corg->email2;
-            $contact->area = $corg->area;
-            $contact->branches_id = $corg->branches_id;
-            $contact->save();
-
+            $companycopy->id= $companyorg->id;
+            $companycopy->companyrfc= $companyorg->companyrfc;
+            $companycopy->companyname= $companyorg->companyname;
+            $companycopy->companyimg= $companyorg->companyimg;
+            $companycopy->companytelephone1= $companyorg->companytelephone1;
+            $companycopy->companytelephone2= $companyorg->companytelephone2;
+            $companycopy->companyemail1= $companyorg->companyemail1;
+            $companycopy->companyemail2= $companyorg->companyemail2;
+            $companycopy->zipcode= $companyorg->zipcode;
+            $companycopy->district= $companyorg->district;
+            $companycopy->street= $companyorg->street;
+            $companycopy->insidenumber= $companyorg->insidenumber;
+            $companycopy->exteriornumber= $companyorg->exteriornumber;
+            $companycopy->save();
+            $comcon = Company::join("contacts","companies.id","=","contacts.companies_id")
+            ->join("contact_companies","contacts.contact_companies_id","=","contact_companies.id")
+            ->get();
+            foreach($comcon as $contact){
+                $contactcom = ContactCompany::find($contact->contact_companies_id);
+                
+                $concopy = new ContactCompanyCopy;
+                $concopy->id = $contactcom->id;
+                $concopy->name = $contactcom->name;
+                $concopy->lastname = $contactcom->lastname;
+                $concopy->telephone1 = $contactcom->telephone1;
+                $concopy->telephone2 = $contactcom->telephone2;
+                $concopy->email = $contactcom->email;
+                $concopy->email2 = $contactcom->email2;
+                $concopy->area = $contactcom->area;
+                $concopy->company = $companyorg->companyname;
+                $concopy->save();
+            }
             
-            $corg->delete();
+            
+            $companyorg->delete();
+            
         }
         
-        // return redirect()->route('branchEdit',compact('id','company'));
+        return redirect()->route('companyShow')
+        ->with('success','Company deleted successfully');
     }
     public function deleteBranchProduct($id, $branch, $product, $specific){
         // dd($id,$branch, $product,$specific);

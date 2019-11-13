@@ -10,7 +10,7 @@ $(document).ready(function () {
     $("#alert1").alert();
     window.setTimeout(function () { 
         $("#alert1").alert('close');
-    }, 5000);
+    }, 3000);
 });
 function mayus(e) {
     e.value = e
