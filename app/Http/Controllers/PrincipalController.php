@@ -65,6 +65,7 @@ class PrincipalController extends Controller
             ->groupBy('customers.companies_id','companies.id')
             ->get();
         $c=0;
+        $compa['null']=0;
         foreach($cuscompany as $cuscom){
 
             $compa[$cuscom->companyname]=0;
