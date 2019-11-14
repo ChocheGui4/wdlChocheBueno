@@ -28,39 +28,65 @@ class PrincipalController extends Controller
     //Página principal
     public function Home()
     {
-        // $lava = new Lavacharts; // See note below for Laravel
+     
+        $products = Product::orderBy('id','DESC')->get();
+        $licenses = Customer::join("acquisitions","customers.acquisitions_id","=","acquisitions.id")
+        ->join("licenses","acquisitions.licenses_id","=","licenses.id")
+        ->join("products","acquisitions.products_id","=","products.id")
+        ->select('products.id','products.name')
+        ->groupBy('products.id')
+        ->get();
 
-        // $stocksTable = Lava::DataTable();
-        // $stocksTable->addDateColumn('Day of Month')
-        //     ->addNumberColumn('Projected')
-        //     ->addNumberColumn('Official');
-
-        // for ($a = 1; $a < 30; $a++) {
-        //     $stocksTable->addRow([
-        //         '2015-10-' . $a, rand(800,1000), rand(800,1000)
-        //     ]);
-        // }
+        //Para ver número de compañías y clientes
+        $cus = Customer::whereNull('acquisitions_id')
+        ->select('customers.companies_id','customers.people_id')
+        ->groupBy('customers.companies_id','customers.people_id')
+        ->get();
+        $coun = count($cus);
+        // dd($cus,$coun);
+        $cuscom = Customer::whereNull('acquisitions_id')->get();
         
-        // $chart = Lava::LineChart('MyStocks', $stocksTable);
-            
-            
-        // $reasons->addStringColumn(‘Reasons’)
-        // ->addNumberColumn(‘Percent’)
-        // ->addRow([‘Check Reviews’, 5])
-        // ->addRow([‘Watch Trailers’, 2])
-        // ->addRow([‘See Actors Other Work’, 4])
-        // ->addRow([‘Settle Argument’, 89]);
+        $i=0;
+        foreach($cus as $cc){
+            if($cc->companies_id != null){
+                $i++;
+            }
+        }
+        // dd($i);
+        $array = [
+            "Companies" => $i,
+            "People" => $coun-$i,
+        ];
+        
+        //Para ver sucursales de compañías
+        $cuscompany = Customer::join("companies","customers.companies_id","=","companies.id")
+            ->join("branches","customers.branches_id","=","branches.id")
+            ->select('customers.companies_id','companies.companyname','companies.id')
+            ->groupBy('customers.companies_id','companies.id')
+            ->get();
+        $c=0;
+        foreach($cuscompany as $cuscom){
 
-        // $lava->PieChart(‘IMDB’, $stocksTable, [
-        // ‘title’ => "Hola como esta",
-        // ‘is3D’ => true
-        // ]);
-        $products = DB::select("select * from products, makers, 
-        processors where products.id = ?",[1]);
-        // ->where("")
-
-        //dd($products);
-        return view('super.principal');
+            $compa[$cuscom->companyname]=0;
+            $compa1[$c]=$cuscom->companyname;
+            $c++;
+        }
+        
+        $customers = Customer::join("companies","customers.companies_id","=","companies.id")
+            ->join("branches","customers.branches_id","=","branches.id")
+            ->whereNotNull("customers.branches_id")
+            ->get();
+        $i=0;
+        foreach($customers as $cust){
+            for ($j=0; $j < count($compa); $j++) { 
+                if($cust->companyname == $compa1[$j]){
+                    $compa[$compa1[$j]] +=1;
+                }    
+            }
+        }
+        
+        return view('super.principal',compact('licenses','customers'
+        ,'cuscompany','products','array','compa'));
     }
     
 }

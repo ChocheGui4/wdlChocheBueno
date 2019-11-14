@@ -310,13 +310,30 @@
         <script
             src="{{ asset('bundle/assets/plugins/chartist-js/dist/chartist.min.js') }}"></script>
         <script
+            src="{{ asset('bundle/assets/plugins/chartist-js/dist/highcharts.js') }}"></script>
+        <script
+            src="{{ asset('bundle/assets/plugins/chartist-js/dist/graficas.js') }}"></script>
+        <script
             src="{{ asset('bundle/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script>
         <script src="{{ asset('bundle/assets/plugins/echarts/echarts-all.js') }}"></script>
         <script src="{{ asset('bundle/assets/plugins/toast-master/js/jquery.toast.js') }}"></script>
         <script src="{{ asset('bundle/assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
         <script src="{{ asset('bundle/assets/plugins/sweetalert/jquery.sweet-alert.custom.js') }}"></script>
         <script src="{{ asset('bundle/js/validation.js') }}"></script>
-        
+        <!-- Char gráficas -->
+        <script
+            src="{{ asset('bundle/assets/plugins/chartist-js/dist/graficas/Chart.bundle.js') }}"></script>
+            <script
+            src="{{ asset('bundle/assets/plugins/chartist-js/dist/graficas/Chart.bundle.min.js') }}"></script>
+            <script
+            src="{{ asset('bundle/assets/plugins/chartist-js/dist/graficas/Chart.css') }}"></script>
+            <script
+            src="{{ asset('bundle/assets/plugins/chartist-js/dist/graficas/Chart.js') }}"></script>
+            <script
+            src="{{ asset('bundle/assets/plugins/chartist-js/dist/graficas/Chart.min.css') }}"></script>
+            <script
+            src="{{ asset('bundle/assets/plugins/chartist-js/dist/graficas/Chart.min.js') }}"></script>
+        <!-- End Char gráficas -->
             
         <script src="{{ asset('bundle/js/dashboard1.js') }}"></script>
         <script src="{{ asset('bundle/js/toastr.js') }}"></script>

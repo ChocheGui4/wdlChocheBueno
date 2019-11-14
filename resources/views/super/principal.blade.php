@@ -24,40 +24,44 @@
                 <button class="btn pull-right hidden-sm-down btn-success">
                     <i class="mdi mdi-plus-circle"></i>
                     Create</button>
-                <div class="dropdown pull-right m-r-10 hidden-sm-down">
-                    <button
-                        class="btn btn-secondary dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-                        January 2017
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">February 2017</a>
-                        <a class="dropdown-item" href="#">March 2017</a>
-                        <a class="dropdown-item" href="#">April 2017</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--  -->
-        <div id="piechart" style="width: 900px; height: 500px;"></div>
-        <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
-        
-        <!--  -->
-        <!-- Start Chart Flot-->
-        <div class="card">
-            <div class="card-block">
-                <h4 class="card-title">Pie Chart</h4>
-                <div class="stocks-chart">
                 
-                    <!-- <div class="flot-chart-content" id="flot-pie-chart"></div> -->
-                </div>
             </div>
         </div>
-        <!-- End Chart Flot -->
+        <!--  -->        
+        
+        
+        <div>
+            <div class="row">
+                <div class="col-md-5">
+                    <!-- <div id="piechart" style="width: 600px; height: 500px;"></div> -->
+                    <h3 align="center">Customers and Companies</h3>
+                    <canvas id="myChart1" width="100" height="100"></canvas>
+                </div>
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-5">
+                    <h3 align="center">Products in use</h3>
+                    <canvas id="myChart2" width="100" height="100"></canvas>
+                </div>
+                
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-md-5">
+                    <!-- <div id="piechart" style="width: 600px; height: 500px;"></div> -->
+                    <h3 align="center">Branches office</h3>
+                    <canvas id="myChart3" width="100" height="100"></canvas>
+                </div>
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-5">
+                    <canvas id="myChart4" width="100" height="100"></canvas>
+                </div>
+                
+            </div>
+        </div>
+        
+
     </div>
 @endsection
 
@@ -72,54 +76,150 @@
     }(window, document, jQuery);
 </script>
 
-<script type="text/javascript">
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+<script>
 
-    function drawChart() {
-
-    var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['Work',     11],
-        ['Eat',      2],
-        ['Commute',  2],
-        ['Watch TV', 2],
-        ['Sleep',    7]
-    ]);
-
-    var options = {
-        title: 'My Daily Activities'
-    };
-
-    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-    chart.draw(data, options);
+//Calcular compañías y clientes
+var ctx = document.getElementById('myChart1').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: [
+            'Companies','Customers'
+            
+        ],
+        datasets: [{
+            label: '# of Votes',
+            data: [
+                @foreach($array as $ar)
+                    {{$ar}},
+                @endforeach
+            ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     }
-</script>
+});
 
-<script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-        
-        var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            ['Work',     11],
-            ['Eat',      2],
-            ['Commute',  2],
-            ['Watch TV', 2],
-            ['Sleep',    7]
-        ]);
-        //console.log(pro);
-        
-
-        var options = {
-            title: 'My Daily Activities',
-            is3D: true,
-        };
-        
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-        chart.draw(data, options);
+//Productos
+var ctx = document.getElementById('myChart2').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: [
+            @foreach ($licenses as $lic)
+                '{{$lic->name}}',
+            @endforeach
+            
+        ],
+        datasets: [{
+            label: '# of Votes',
+            data: [
+                @foreach ($licenses as $lic)
+                    {{$lic->id}},
+                @endforeach
+            ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     }
+});
+
+
+//Calcular sucursales
+var ctx = document.getElementById('myChart3').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: [
+            @foreach($cuscompany as $cuscomp)
+                '{{$cuscomp->companyname}}',
+            @endforeach
+            
+        ],
+        datasets: [{
+            label: '# of Votes',
+            data: [
+                @foreach($compa as $ar)
+                    {{$ar}},
+                @endforeach
+                
+            ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 </script>
 @endsection

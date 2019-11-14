@@ -48,7 +48,7 @@ class CompaniesTableSeeders extends Seeder
 
         $compan = new Company;
         $compan->companyrfc = "HYTG652534R65";
-        $compan->companyname = "Salvatori";
+        $compan->companyname = "SALVATORI";
         $compan->companyimg = "company.png";
         $compan->companytelephone1 = "248-564-8720";
         $compan->companytelephone2 = "246-176-1729";
@@ -68,7 +68,7 @@ class CompaniesTableSeeders extends Seeder
 
         //Branch
         $branch = new Branch;
-        $branch->branchname = "Own";
+        $branch->branchname = "OWN";
         $branch->branchimg = "sucursal.jpg";
         $branch->branchtelephone1 = "231-234-5671";
         $branch->branchtelephone2 = "904-200-5273";

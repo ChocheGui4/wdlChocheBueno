@@ -85,7 +85,7 @@
                                             <h5 class="dropdown-header" style="color: #b60303; font-size: 13px;">Products</h5>
                                             <div class="dropdown-divider"></div>
                                             @foreach ($productos as $prod)
-                                                    <li><a class="dropdown-item" href="#" style="font-size: 13px;">{{$prod->name}}</a></li>
+                                                    <li><a class="dropdown-item" href="{{ route('AddCustomerProduct',[$people->id,$prod->id])}}" style="font-size: 13px;">{{$prod->name}}</a></li>
                                             @endforeach
                                             
                                             
