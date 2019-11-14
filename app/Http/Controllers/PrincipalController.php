@@ -65,13 +65,18 @@ class PrincipalController extends Controller
             ->groupBy('customers.companies_id','companies.id')
             ->get();
         $c=0;
-        $compa['null']=0;
-        foreach($cuscompany as $cuscom){
+        
+        if(count($cuscompany)!=0){
+            foreach($cuscompany as $cuscom){
 
-            $compa[$cuscom->companyname]=0;
-            $compa1[$c]=$cuscom->companyname;
-            $c++;
+                $compa[$cuscom->companyname]=0;
+                $compa1[$c]=$cuscom->companyname;
+                $c++;
+            }
+        }else{
+            $compa['null']=0;
         }
+        
         
         $customers = Customer::join("companies","customers.companies_id","=","companies.id")
             ->join("branches","customers.branches_id","=","branches.id")
