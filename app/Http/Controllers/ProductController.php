@@ -8,7 +8,7 @@ use App\Http\Requests\ProductEditCreate;
 use App\Http\Requests\ProductAddCreate;
 use App\Http\Requests\ProductAddSpecific;
 
-
+use App\Mail\ProductAdded;
 use App\Acquisition;
 use App\AcquisitionType;
 use App\Area;
@@ -210,6 +210,9 @@ class ProductController extends Controller
     }
     
     function productAddCompany($id){
+        // $Prueba = "Boby LArios";
+        // \Mail::to('chochej10@gmail.com')->send(new ProductAdded($Prueba));
+        // return "Mensaje enviado";
         $cat = Category::find($id);
         $prrr = Product::orderBy('id','ASC')->get();
         $ac = Acquisition::orderBy('id','DESC')->latest()->first();
@@ -264,8 +267,13 @@ class ProductController extends Controller
         $custom->branches_id = $view->branch;
         $custom->save();
         
+        //Enviar correo a la persona
+        $mailcom = Company::find($company);
+        // dd($mailcom->companyemail1);
+        // $company = 
+        \Mail::to($mailcom->companyemail1)->send(new ProductAdded($license, $cat));
         return redirect()->route('showBranchesProducts',compact('company','branch'))
-        ->with('success','Product added successfully');
+        ->with('success','Product added and Email send successfully');
 
         // dd($view->company,$view->branch,$view->product);
         // $cat->union($prrr)->get();

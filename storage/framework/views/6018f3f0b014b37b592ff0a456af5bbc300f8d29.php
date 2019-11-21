@@ -379,7 +379,7 @@
                                                             </span>
                                                             <input
                                                                 id="nameuc" 
-                                                                onkeyup="ucwords(this,'#nameuc');"
+                                                                onkeyup="mayus(this);"
                                                                 type="text"
                                                                 name="name"
                                                                 class="form-control<?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>"
@@ -409,7 +409,7 @@
                                                             </span>
                                                             <input
                                                                 id="lastnameuc" 
-                                                                onkeyup="ucwords(this,'#lastnameuc');"
+                                                                onkeyup="mayus(this);"
                                                                 type="text"
                                                                 name="lastname"
                                                                 class="form-control<?php echo e($errors->has('lastname') ? ' is-invalid' : ''); ?>"

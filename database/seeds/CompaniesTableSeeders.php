@@ -52,7 +52,7 @@ class CompaniesTableSeeders extends Seeder
         $compan->companyimg = "company.png";
         $compan->companytelephone1 = "248-564-8720";
         $compan->companytelephone2 = "246-176-1729";
-        $compan->companyemail1 = "Sal_va@hotmail.com";
+        $compan->companyemail1 = "chochej10@gmail.com";
         $compan->companyemail2 = "Sal_va@gmail.com";
         $compan->zipcode = 10912;
         $compan->district = "Insurgentes";

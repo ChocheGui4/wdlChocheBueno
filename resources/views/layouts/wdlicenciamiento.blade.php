@@ -69,10 +69,10 @@
                         <a class="navbar-brand" href="/home">
                             <b>
                             <img
-                                src="{{ asset('bundle/assets/images/iconowdl.png') }}"
+                                
                                 style="width: 40px;"
                                 
-                                alt="homepage"
+                                
                                 class="light-logo"/>    
                             </b>
                             <!-- Logo text -->
